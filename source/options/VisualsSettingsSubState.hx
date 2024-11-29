@@ -124,14 +124,12 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			healthSkins.insert(0, ClientPrefs.defaultData.healthBarSkin);
 			healthSkins.insert(1, 'Char Based');
 		}
-		if (healthSkins.length > 0) {
-			var option:Option = new Option('Health Bar Skin:',
-				"How would you like your health bar to look?\nChar Based is set in the Character's json's.",
-				'healthBarSkin',
-				STRING,
-				healthSkins);
-			addOption(option);
-		}
+		var option:Option = new Option('Health Bar Skin:',
+			"How would you like your health bar to look?\nChar Based is set in the Character's json's.",
+			'healthBarSkin',
+			STRING,
+			healthSkins);
+		addOption(option);
 
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',
