@@ -146,13 +146,6 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']);
 		addOption(option);
 
-		var option:Option = new Option('Health Bar Type:',
-			"What style of the Health Bar do you want?",
-			'barTypeHealth',
-			STRING,
-			['Default', 'Reanimated']);
-		addOption(option);
-
 		var option:Option = new Option('Flashing Lights',
 			"Uncheck this if you're sensitive to flashing lights!",
 			'flashing',
