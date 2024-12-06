@@ -1,0 +1,161 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "pico idle"
+		},
+		{
+			"offsets": [
+				84,
+				-7
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "pico lef"
+		},
+		{
+			"offsets": [
+				76,
+				-93
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "pico sindrome de down"
+		},
+		{
+			"offsets": [
+				61,
+				50
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "pico up"
+		},
+		{
+			"offsets": [
+				-65,
+				16
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "pico righ"
+		},
+		{
+			"offsets": [
+				75,
+				-98
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "arriba"
+		},
+		{
+			"offsets": [
+				50,
+				52
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "abajoespania"
+		},
+		{
+			"offsets": [
+				97,
+				-7
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "milei"
+		},
+		{
+			"offsets": [
+				-64,
+				23
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "rimi"
+		},
+		{
+			"offsets": [
+				53,
+				-5
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "lockin",
+			"indices": [],
+			"name": "fuck you"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				296,
+				237
+			],
+			"anim": "shoot",
+			"fps": 24,
+			"name": "pico dispara gripa0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				8,
+				-22
+			],
+			"anim": "cock",
+			"fps": 24,
+			"name": "pico recarga movistar paquete de datos ilimitado0",
+			"indices": []
+		}
+	],
+	"vocals_file": "",
+	"noteSplashes": "normal",
+	"no_antialiasing": false,
+	"image": "characters/el_naranja",
+	"position": [
+		-20,
+		310
+	],
+	"strumCovers": "normal",
+	"noteAssets": "notas_chidas",
+	"healthicon": "pico-z3mp",
+	"flip_x": true,
+	"healthbar_colors": [
+		181,
+		216,
+		75
+	],
+	"camera_position": [
+		280,
+		-70
+	],
+	"notePath": "torchs_assets",
+	"sing_duration": 4,
+	"scale": 1,
+	"_editor_isPlayer": true
+}
