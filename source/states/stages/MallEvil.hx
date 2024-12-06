@@ -4,18 +4,39 @@ import states.stages.objects.*;
 
 class MallEvil extends BaseStage
 {
+	var filter:BGSprite;
+
 	override function create()
 	{
-		var bg:BGSprite = new BGSprite('christmas/evilBG', -400, -500, 0.2, 0.2);
-		bg.setGraphicSize(Std.int(bg.width * 0.8));
+		var bg:BGSprite = new BGSprite('christmas/EvilMall/evilbgWalls', -1150, -850, 0.2, 0.2);
+		bg.setGraphicSize(Std.int(bg.width * 1.8));
 		bg.updateHitbox();
 		add(bg);
 
-		var evilTree:BGSprite = new BGSprite('christmas/evilTree', 300, -300, 0.2, 0.2);
+		var evilTree:BGSprite = new BGSprite('christmas/EvilMall/Front_Lights', -1150, -850, 0.2, 0.2);
+		evilTree.setGraphicSize(Std.int(evilTree.width * 1.8));
+		evilTree.updateHitbox();
 		add(evilTree);
 
-		var evilSnow:BGSprite = new BGSprite('christmas/evilSnow', -200, 700);
+		filter = new BGSprite('christmas/EvilMall/Mini_Filter', -1150, -850, 0.2, 0.2);
+		filter.setGraphicSize(Std.int(filter.width * 1.8));
+		filter.updateHitbox();
+
+		var escalator:BGSprite = new BGSprite('christmas/EvilMall/EvilbgEscalator', -1100, -400, 0.3, 0.3);
+		escalator.setGraphicSize(Std.int(escalator.width * 1.9));
+		escalator.updateHitbox();
+		add(escalator);
+
+		var evilSnow:BGSprite = new BGSprite('christmas/EvilMall/evilSnow', -1200, 440, 0.9, 0.9);
+		evilSnow.setGraphicSize(Std.int(evilSnow.width * 2));
+		evilSnow.updateHitbox();
 		add(evilSnow);
+
+		var tree:BGSprite = new BGSprite('christmas/EvilMall/evilTree', 370, -480, 0.9, 0.9);
+		tree.setGraphicSize(Std.int(tree.width * 1.8));
+		tree.updateHitbox();
+		add(tree);
+
 		setDefaultGF('gf-christmas');
 		
 		//Winter Horrorland cutscene
@@ -34,9 +55,9 @@ class MallEvil extends BaseStage
 		camHUD.visible = false;
 		inCutscene = true;
 
-		FlxG.sound.play(playWeekSound('Lights_Turn_On'));
+		FlxG.sound.play(Paths.sound('Lights_Turn_On'));
 		FlxG.camera.zoom = 1.5;
-		FlxG.camera.focusOn(new FlxPoint(400, -2050));
+		FlxG.camera.focusOn(new FlxPoint(700, -400));
 
 		// blackout at the start
 		var blackScreen:FlxSprite = new FlxSprite().makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
@@ -63,4 +84,8 @@ class MallEvil extends BaseStage
 			});
 		});
 	}
+	override function createPost()
+		{
+			add(filter);
+		}
 }

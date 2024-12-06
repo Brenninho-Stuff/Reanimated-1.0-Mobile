@@ -84,7 +84,16 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Change Character', "Value 1: Character to change (Dad, BF, GF)\nValue 2: New character's name"],
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
-		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"]
+		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
+		["Torch's Custom Zoom", "Value 1: Sets the Zoom Type\nRegular: Default Cam Zoom\nMain: Use the tween on the Game Camera\nHUD: Uses the tween on the Game HUD\nBoth: Uses the tween on the Game Camera and the HUD\nReset: Resets both to default (leave Value 2 blank)\n\nValue 2: Is either Zoom Amount or 3 values\n1 - Zoom Amount, 2 - Zoom Duration, 3 - Tween Ease\n2 & 3 is only used if value 1 is not 'regular'\n\nExamples:\nRegular ex. - '1.5'\nCustom ex. - '1.5,0.75,expoIn'\n\nFor the list of tweens, please go to this site below\nhttps://api.haxeflixel.com/flixel/tweens/FlxEase.html"],
+		["Set Health Drain", 'Defines how much life will be taken from the player\nwhen the enemy presses a note\n(recommend to use 0.06 or less)'],
+		//["Change H. Bar Direction", "Allows you to change the health bar direction\n\nNo values are needed"],
+		['Wobble Notes', "Value 1: The wiggle factor 'x,y' Int Array\nValue 2: Who does it effect? Options are:\n'enemy', 'player', 'both', and 'none'\n'stop1' and 'stop2' also work\n'stop1' affects the enemy, 'stop2' affects the player\n\nSet value 1 to '0,0' or set 'none' in value 2 to remove\nwobble"],
+		["Enemy Splashes", "Value 1: Enemy Note Splashes (true/false)\n\nValue 2: Enemy Strum Cover Splashes (true/false)"],
+		//["Cam Filters", "Value 1: All cameras you want to apply a filter to\nOptions are: camHUD, camGame, camOther\n\nValue 2: What filter do you want to apply?\nYou will have to look in the code for the list, sorry.\n\n\nWARNING, ONLY USED FOR TESTING\nIT IS NOT FULLY FUNCTIONAL\n\nMAINLY USED FOR NEW SHADER UTILS TESTING"],
+		//["Change Rain Velocity"],
+		['Camera Flash', "You know what it is.\nValue 1: white/gray/black/green/lime/yellow/orange/\nred/purple/blue/pink/magenta/cyan\nValue 2: Flash duration"],
+		['HUD Fade', "Value 1: Opaticity\nValue 2: Duration"],
 	];
 	
 	public static var keysArray:Array<FlxKey> = [ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT]; //Used for Vortex Editor

@@ -13,6 +13,7 @@ enum HenchmenKillState
 
 class Limo extends BaseStage
 {
+	var limoStreet:BGSprite;
 	var grpLimoDancers:FlxTypedGroup<BackgroundDancer>;
 	var fastCar:BGSprite;
 	var fastCarCanDrive:Bool = true;
@@ -20,6 +21,7 @@ class Limo extends BaseStage
 	// event
 	var limoKillingState:HenchmenKillState = WAIT;
 	var limoMetalPole:BGSprite;
+	var skyBG:BGSprite;
 	var limoLight:BGSprite;
 	var limoCorpse:BGSprite;
 	var limoCorpseTwo:BGSprite;
@@ -29,14 +31,19 @@ class Limo extends BaseStage
 
 	override function create()
 	{
-		var skyBG:BGSprite = new BGSprite('limo/limoSunset', -120, -50, 0.1, 0.1);
+		skyBG = new BGSprite('limo/limoSunset', -2700, -300, 0.1, 0.1);
 		add(skyBG);
+
+		limoStreet = new BGSprite('limo/street', -800, 270, 0.4, 0.4, ['COOLROAD'], true);
+		add(limoStreet);
 
 		if(!ClientPrefs.data.lowQuality) {
 			limoMetalPole = new BGSprite('gore/metalPole', -500, 220, 0.4, 0.4);
 			add(limoMetalPole);
 
-			bgLimo = new BGSprite('limo/bgLimo', -150, 480, 0.4, 0.4, ['background limo pink'], true);
+			bgLimo = new BGSprite('limo/bgLimo', -150, 480, 0.4, 0.4, ['BG limo'], true);
+			FlxTween.tween(bgLimo, {x: bgLimo.x + 150}, 6, {ease: FlxEase.quadInOut, type: PINGPONG});
+			FlxTween.tween(bgLimo, {x: bgLimo.x + -100}, 6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
 			add(bgLimo);
 
 			limoCorpse = new BGSprite('gore/noooooo', -500, limoMetalPole.y - 130, 0.4, 0.4, ['Henchmen on rail'], true);
@@ -50,7 +57,7 @@ class Limo extends BaseStage
 
 			for (i in 0...5)
 			{
-				var dancer:BackgroundDancer = new BackgroundDancer((370 * i) + dancersDiff + bgLimo.x, bgLimo.y - 400);
+				var dancer:BackgroundDancer = new BackgroundDancer((480 * i) + dancersDiff + bgLimo.x, bgLimo.y - 400);
 				dancer.scrollFactor.set(0.4, 0.4);
 				grpLimoDancers.add(dancer);
 			}
@@ -68,11 +75,17 @@ class Limo extends BaseStage
 			resetLimoKill();
 
 			//PRECACHE SOUND
-			playWeekSound('dancerdeath');
+			Paths.sound('dancerdeath');
 			setDefaultGF('gf-car');
+			
+			switch(PlayState.SONG.song.toLowerCase()) {
+				case 'high':
+				defaultCamZoom = 0.85;
+			}
+		
 		}
 
-		fastCar = new BGSprite('limo/fastCarLol', -300, 160);
+		fastCar = new BGSprite('limo/fastCarLol', -300, 220);
 		fastCar.active = true;
 	}
 	override function createPost()
@@ -80,7 +93,9 @@ class Limo extends BaseStage
 		resetFastCar();
 		addBehindGF(fastCar);
 		
-		var limo:BGSprite = new BGSprite('limo/limoDrive', -120, 550, 1, 1, ['Limo stage'], true);
+		var limo:BGSprite = new BGSprite('limo/limoDrive', -460, 590, 1, 1, ['Limo stage'], true);
+		limo.setGraphicSize(Std.int(limo.width * 1.2));
+		limo.updateHitbox();
 		addBehindGF(limo); //Shitty layering but whatev it works LOL
 	}
 
@@ -96,7 +111,7 @@ class Limo extends BaseStage
 				}
 			});
 
-			switch(limoKillingState) {
+			/*switch(limoKillingState) {
 				case KILLING:
 					limoMetalPole.x += 5000 * elapsed;
 					limoLight.x = limoMetalPole.x - 180;
@@ -108,7 +123,7 @@ class Limo extends BaseStage
 						if(dancers[i].x < FlxG.width * 1.5 && limoLight.x > (370 * i) + 170) {
 							switch(i) {
 								case 0 | 3:
-									if(i == 0) FlxG.sound.play(playWeekSound('dancerdeath'), 0.5);
+									if(i == 0) FlxG.sound.play(Paths.sound('dancerdeath'), 0.5);
 
 									var diffStr:String = i == 3 ? ' 2 ' : ' ';
 									var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x + 200, dancers[i].y, 0.4, 0.4, ['hench leg spin' + diffStr + 'PINK'], false);
@@ -165,8 +180,20 @@ class Limo extends BaseStage
 					dancersParenting();
 
 				default: //nothing
-			}
+
+			}*/
+
+			skyBG.x += 0.020;
 		}
+
+		var dancers:Array<BackgroundDancer> = grpLimoDancers.members;
+		for (i in 0...dancers.length)
+		{
+			dancers[i].x = ((480) * i) + dancersDiff + bgLimo.x;
+			dancers[i].y = bgLimo.y - 400;
+		}
+
+		
 	}
 
 	override function beatHit()
@@ -231,7 +258,7 @@ class Limo extends BaseStage
 	function resetFastCar():Void
 	{
 		fastCar.x = -12600;
-		fastCar.y = FlxG.random.int(140, 250);
+		fastCar.y = FlxG.random.int(140, 550);
 		fastCar.velocity.x = 0;
 		fastCarCanDrive = true;
 	}
@@ -240,7 +267,7 @@ class Limo extends BaseStage
 	function fastCarDrive()
 	{
 		//trace('Car drive');
-		FlxG.sound.play(randomWeekSound('carPass', 0, 1), 0.7);
+		FlxG.sound.play(Paths.soundRandom('carPass', 0, 1), 0.7);
 
 		fastCar.velocity.x = (FlxG.random.int(170, 220) / FlxG.elapsed) * 3;
 		fastCarCanDrive = false;

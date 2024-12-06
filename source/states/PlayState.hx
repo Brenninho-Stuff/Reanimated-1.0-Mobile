@@ -114,6 +114,17 @@ class PlayState extends MusicBeatState
 	public var songSpeedType:String = "multiplicative";
 	public var noteKillOffset:Float = 350;
 
+	//Health Drain Event
+	public var healthDraining:Float;
+	public var canDie:Bool = false;
+
+	// These 5 are used for the wobble notes event
+	public var defaultStrumPosition:Array<Array<Float>>= [];
+	public var arrowMoveX:Array<Int> = [0,0];
+	public var arrowMoveY:Array<Int> = [0,0];
+	public var wobbleNotes:Bool = false;
+	public var strumsWobbled:Array<Bool> = [/*enemy*/ false, /*player*/ false];
+
 	public var playbackRate(default, set):Float = 1;
 
 	public var boyfriendGroup:FlxSpriteGroup;
@@ -403,7 +414,8 @@ class PlayState extends MusicBeatState
 			case 'tank': new Tank();					//Week 7 - Ugh, Guns, Stress
 			case 'phillyStreets': new PhillyStreets(); 	//Weekend 1 - Darnell, Lit Up, 2Hot
 			case 'phillyBlazin': new PhillyBlazin();	//Weekend 1 - Blazin
-		}
+			case 'wait': new Wait();					//Wait - CG5 Best Song
+		}	
 		if(isPixelStage) introSoundsSuffix = '-pixel';
 
 		#if (LUA_ALLOWED || HSCRIPT_ALLOWED)
@@ -2205,7 +2217,7 @@ class PlayState extends MusicBeatState
 			eventNotes.shift();
 		}
 	}
-
+	var zoomTweensByTorch:Array<FlxTween> = [null];
 	var zoomTweens:Array<FlxTween> = [null];
 
 	public function triggerEvent(eventName:String, value1:String, value2:String, strumTime:Float) {
@@ -2487,6 +2499,132 @@ class PlayState extends MusicBeatState
 			case 'Play Sound':
 				if(flValue2 == null) flValue2 = 1;
 				FlxG.sound.play(Paths.sound(value1), flValue2);
+			
+			case "Set Health Drain":
+				var val1 = flValue1;
+				healthDraining = val1;
+
+			case "Enemy Splashes":
+				var val1:Bool = (value1.toLowerCase().trim() == 'true');
+				var val2:Bool = (value2.toLowerCase().trim() == 'true');
+				enemyNoteSplashes = val1;
+				enemyCoverSplashes = val2;
+
+			case "Torch's Custom Zoom":
+				// Credit to Bitto's Zoom event, as that is what this was initially based off of
+				var val1:String = 'regular';
+				if (value1 != null && value1 != 'regular')
+					val1 = value1.toLowerCase().trim();
+				var vals2:Array<String> = value2.split(',');
+	
+				var zoomAmount:Float = Std.parseFloat(vals2[0]);
+				var zoomTime:Float = Std.parseFloat(vals2[1]);
+				var easeType:EaseFunction = Extras.stringToEase(vals2[2]);
+	
+				if (val1 == 'regular') {
+					FlxG.camera.zoom += zoomAmount;
+					camHUD.zoom += zoomAmount;
+				} else {
+					if (zoomTweensByTorch[0] != null && (val1 == 'main' || val1 == 'both' || val1 == 'reset')) zoomTweensByTorch[0].cancel();
+					if (zoomTweensByTorch[1] != null && (val1 == 'hud' || val1 == 'both' || val1 == 'reset')) zoomTweensByTorch[1].cancel();
+	
+					if (val1 == 'main') {
+						zoomTweensByTorch[0] = FlxTween.tween(camGame, {zoom: zoomAmount}, zoomTime, {ease: easeType, 
+							onComplete: function(twn:FlxTween) {
+								defaultCamZoom = camGame.zoom;
+							}});
+					} else if (val1 == 'hud') {
+						zoomTweensByTorch[1] = FlxTween.tween(camHUD, {zoom: zoomAmount}, zoomTime, {ease: easeType});
+					} else if (val1 == 'both') {
+						zoomTweensByTorch[0] = FlxTween.tween(camGame, {zoom: zoomAmount}, zoomTime, {ease: easeType, 
+							onComplete: function(twn:FlxTween) {
+								defaultCamZoom = camGame.zoom;
+							}});
+						zoomTweensByTorch[1] = FlxTween.tween(camHUD, {zoom: zoomAmount}, zoomTime, {ease: easeType});
+					} else if (val1 == 'reset') {
+							zoomTweensByTorch[0] = FlxTween.tween(camGame, {zoom: StageData.getStageFile(SONG.stage).defaultZoom}, 0.5, {ease: FlxEase.linear, 
+							onComplete: function(twn:FlxTween) {
+								defaultCamZoom = camGame.zoom;
+							}});
+						zoomTweensByTorch[1] = FlxTween.tween(camHUD, {zoom: 1}, 0.5, {ease: FlxEase.linear});
+					}
+				}
+
+			case 'HUD Fade':
+				var alpha:Float = Std.parseFloat(value1);
+				var duration:Float = Std.parseFloat(value2);
+		
+				cameraTwn = FlxTween.tween(camHUD, {alpha: alpha}, duration);
+	
+			case 'Camera Flash':
+				if(ClientPrefs.data.flashing) {
+					var galax:Int = 0;
+					var time:Float = Std.parseFloat(value2);
+					if(Math.isNaN(galax)) galax = 0;
+					switch(value1) {
+						case 'white':
+							galax = 0;
+						case 'black':
+							galax = 1;
+						default:
+							galax = Std.parseInt(value1);
+							if(Math.isNaN(galax)) galax = 0;
+					}
+	
+					switch(galax)
+					{
+						case 0:
+							camOther.flash(FlxColor.WHITE, time, null, true);
+						case 1:
+								camOther.flash(FlxColor.BLACK, time, null, true);
+					}
+				}
+			case "Wobble Notes":
+				var vals1:Array<String> = value1.trim().split(',');
+				var val1:Array<Null<Int>> = [Std.parseInt(vals1[0]), Std.parseInt(vals1[1])];
+				//var bools:Array<Bool> = [true, true];
+				//var val1:Null<Int> = Std.parseInt(value1);
+				//var val2:Null<Int> = Std.parseInt(value2);
+				var eventBools:Array<Bool> = [false, false];
+	
+				switch (value2.toLowerCase().trim()) {
+					case 'enemy':
+						strumsWobbled[0] = true;
+						eventBools[0] = true;
+					case 'player':
+						strumsWobbled[1] = true;
+						eventBools[1] = true;
+					case 'none' | 'stop' | 'disable':
+						strumsWobbled = [false, false];
+						val1[0] = 0;
+						val1[1] = 0;
+					case 'both':
+						strumsWobbled = [true, true];
+						eventBools = [true, true];
+					case 'stop1':
+						strumsWobbled[0] = false;
+						val1[0] = 0;
+						val1[1] = 0;
+					case 'stop2':
+						strumsWobbled[1] =  false;
+						val1[0] = 0;
+						val1[1] = 0;
+				}
+	
+				if ((val1[0] == 0 || val1[0] == null) && (val1[1] == 0 || val1[1] == null)) {
+					wobbleNotes = false;
+				} else {
+					if ((val1[0] != null && val1[0] != 0) && eventBools[0]) {arrowMoveX[0] = val1[0];}
+					else if (!strumsWobbled[0]) {arrowMoveX[0] = 0;}
+					if ((val1[0] != null && val1[0] != 0) && eventBools[1]) {arrowMoveX[1] = val1[0];}
+					else if (!strumsWobbled[1]) {arrowMoveX[1] = 0;}
+					if ((val1[1] != null && val1[1] != 0) && eventBools[0]) {arrowMoveY[0] = val1[1];}
+					else if (!strumsWobbled[0]) {arrowMoveY[0] = 0;}
+					if ((val1[1] != null && val1[1] != 0) && eventBools[1]) {arrowMoveY[1] = val1[1];}
+					else if (!strumsWobbled[1]) {arrowMoveY[1] = 0;}
+	
+					wobbleNotes = true;
+			}
 		}
 
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));
@@ -3229,6 +3367,18 @@ class PlayState extends MusicBeatState
 				if(canPlay) char.playAnim(animToPlay, true);
 				char.holdTimer = 0;
 			}
+			if(note.noteType == 'Duo Sing')
+				{
+					dad.playAnim(animToPlay, true);
+					dad.holdTimer = 0;
+					gf.playAnim(animToPlay, true);
+					gf.holdTimer = 0;
+				}
+		}
+
+		if(healthDraining * healthGain > 0 && health > healthDraining * healthGain + 0.2 && !note.isSustainNote) 
+		{
+			health -= healthDraining * healthGain;
 		}
 
 		if(opponentVocals.length <= 0) vocals.volume = 1;
@@ -3310,9 +3460,18 @@ class PlayState extends MusicBeatState
 							char.specialAnim = true;
 							char.heyTimer = 0.6;
 						}
+
 					}
 				}
 			}
+			if(note.noteType == 'Duo Sing')
+				{
+					var singsAnimations:Array<String> = ['singLEFT', 'singDOWN', 'singUP', 'singRIGHT'];
+					var animToPlay:String = singsAnimations[Std.int(Math.abs(note.noteData))];
+					boyfriend.playAnim(animToPlay, true);
+					gf.playAnim(animToPlay, true);
+					gf.holdTimer = 0;
+				}
 
 			if(!cpuControlled)
 			{

@@ -7,15 +7,19 @@ class Spooky extends BaseStage
 	override function create()
 	{
 		if(!ClientPrefs.data.lowQuality) {
-			halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
+			halloweenBG = new BGSprite('halloween_bg', -500, -190, ['halloweem bg0', 'halloweem bg lightning strike']);
+			halloweenBG.setGraphicSize(Std.int(1.3 * halloweenBG.width));
+			halloweenBG.updateHitbox();
 		} else {
-			halloweenBG = new BGSprite('halloween_bg_low', -200, -100);
+			halloweenBG = new BGSprite('halloween_bg_low', -500, -170);
+			halloweenBG.setGraphicSize(Std.int(1.3 * halloweenBG.width));
+			halloweenBG.updateHitbox();
 		}
 		add(halloweenBG);
 
 		//PRECACHE SOUNDS
-		playWeekSound('thunder_1');
-		playWeekSound('thunder_2');
+		Paths.sound('thunder_1');
+		Paths.sound('thunder_2');
 
 		//Monster cutscene
 		if (isStoryMode && !seenCutscene)
@@ -48,20 +52,23 @@ class Spooky extends BaseStage
 
 	function lightningStrikeShit():Void
 	{
-		FlxG.sound.play(randomWeekSound('thunder_', 1, 2));
+		FlxG.sound.play(Paths.soundRandom('thunder_', 1, 2));
 		if(!ClientPrefs.data.lowQuality) halloweenBG.animation.play('halloweem bg lightning strike');
 
 		lightningStrikeBeat = curBeat;
 		lightningOffset = FlxG.random.int(8, 24);
 
-		if(boyfriend.hasAnimation('scared'))
+		if(boyfriend.animOffsets.exists('scared')) {
 			boyfriend.playAnim('scared', true);
+		}
 
-		if(dad.hasAnimation('scared'))
+		if(dad.animOffsets.exists('scared')) {
 			dad.playAnim('scared', true);
+		}
 
-		if(gf != null && gf.hasAnimation('scared'))
+		if(gf != null && gf.animOffsets.exists('scared')) {
 			gf.playAnim('scared', true);
+		}
 
 		if(ClientPrefs.data.camZooms) {
 			FlxG.camera.zoom += 0.015;
@@ -88,7 +95,7 @@ class Spooky extends BaseStage
 		FlxG.camera.focusOn(new FlxPoint(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100));
 
 		// character anims
-		FlxG.sound.play(randomWeekSound('thunder_', 1, 2));
+		FlxG.sound.play(Paths.soundRandom('thunder_', 1, 2));
 		if(gf != null) gf.playAnim('scared', true);
 		boyfriend.playAnim('scared', true);
 
