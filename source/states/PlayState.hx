@@ -1977,6 +1977,22 @@ class PlayState extends MusicBeatState
 
 							if(daNote.isSustainNote && strum.sustainReduce) daNote.clipToStrumNote(strum);
 
+							// If this works, then I hate this setup
+							// ...it worked, and now I officially hate this lol -
+							if (daNote.noteType == 'Shoot Note' && daNote.mustPress) {
+								if (cpuControlled && !daNote.blockHit && daNote.canBeHit && (daNote.isSustainNote || daNote.strumTime <= Conductor.songPosition)) {
+									goodNoteHit(daNote);
+								} else if (Conductor.songPosition - daNote.strumTime > (noteKillOffset / 3) + 20) { // Might need to change this for better miss timing
+									if (!cpuControlled && !daNote.ignoreNote && !endingSong && (daNote.tooLate || !daNote.wasGoodHit))
+										noteMiss(daNote);
+
+									daNote.active = daNote.visible = false;
+									invalidateNote(daNote);
+								}
+							} else if (daNote.noteType == 'Shoot Note' && daNote.wasGoodHit && !daNote.hitByOpponent && !daNote.ignoreNote) {
+								opponentNoteHit(daNote);
+							}
+
 							// Kill extremely late notes and cause misses
 							if (Conductor.songPosition - daNote.strumTime > noteKillOffset)
 							{
@@ -3225,6 +3241,24 @@ class PlayState extends MusicBeatState
 				invalidateNote(note);
 		});
 
+		if(daNote.noteType == "Shoot Note")
+			{
+				if (boyfriend.animOffsets.exists('hurt')) {
+					boyfriend.playAnim('hurt', true);
+					boyfriend.specialAnim = true;
+					gf.playAnim('shoot', true);
+					gf.specialAnim = true;
+				}
+				var dadAnim:String = singAnimations[Std.int(Math.abs(daNote.noteData))] + '-shoot';
+				if (dad.animOffsets.exists(dadAnim)) {
+					dad.playAnim(dadAnim);
+					dad.specialAnim = true;
+					FlxG.sound.play(Paths.sound('shoot'));
+					FlxG.camera.shake(0.01, 0.2);
+				}
+				health -= 0.35;
+			}
+
 		noteMissCommon(daNote.noteData, daNote);
 		stagesFunc(function(stage:BaseStage) stage.noteMiss(daNote));
 		var result:Dynamic = callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
@@ -3348,6 +3382,7 @@ class PlayState extends MusicBeatState
 			dad.specialAnim = true;
 			dad.heyTimer = 0.6;
 		}
+		
 		else if(!note.noAnimation)
 		{
 			var char:Character = dad;
@@ -3464,6 +3499,25 @@ class PlayState extends MusicBeatState
 					}
 				}
 			}
+
+			if(note.noteType == "Shoot Note")
+			{
+			var dodgeAnimations:Array<String> = ['dodgeLEFT', 'dodgeDOWN', 'dodgeUP', 'dodgeRIGHT'];
+			var animToPlay:String = dodgeAnimations[Std.int(Math.abs(note.noteData))];
+			boyfriend.playAnim(animToPlay, true);
+			boyfriend.specialAnim = true;
+			gf.playAnim('shoot', true);
+			gf.specialAnim = true;
+
+			var dadAnim:String = singAnimations[Std.int(Math.abs(note.noteData))] + '-shoot';
+			if (dad.animOffsets.exists(dadAnim)) {
+				dad.playAnim(dadAnim);
+				dad.specialAnim = true;
+				FlxG.sound.play(Paths.sound('shoot'));
+				FlxG.camera.shake(0.01, 0.2);
+			}
+		}
+			
 			if(note.noteType == 'Duo Sing')
 				{
 					var singsAnimations:Array<String> = ['singLEFT', 'singDOWN', 'singUP', 'singRIGHT'];
