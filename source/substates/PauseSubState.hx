@@ -27,6 +27,25 @@ class PauseSubState extends MusicBeatSubstate
 
 	var missingTextBG:FlxSprite;
 	var missingText:FlxText;
+	var cancionpolla:String = PlayState.SONG.song;
+
+	var charactersData:Array<Array<String>> = [
+		//	['characterAssetName', 'x', 'y', 'graphicScale', 'Artist', 'PixelBlockSize' (for shader, 6 is default)],
+			['Sentao', '750', '250', '0.9', 'Law', '6'],
+			['jorge', '675', '0', '0.7', 'Dafne', '8'],
+			['jorege', '700', '190', '0.7', 'z3mp', '8'],
+			['zeta3emepe', '700', '190', '0.7', 'z3mp', '8'],
+			['snax', '750', '190', '0.3', "ImSnax", '10'],
+			['Roxy', '700', '70', '0.2', "SaNicbOom", '12'],
+			['Jeyzel', '650', '80', '0.3', "Jeyzel Arts", '12'],
+			['Torch', '750', '180', '1.4', "Callisto", '3'],
+			['olaa uwu', '350', '180', '0.8', "z3mp", '6'],
+			['BFRock', '750', '320', '0.9', "Phantom Arcade", '4'],
+			['Alejandro', '700', '70', '0.9', "ElDiezMixta", '6'],
+		];
+
+	var randomCharacternum:Int;
+	var character:BGSprite;
 
 	public static var songName:String = null;
 
@@ -76,6 +95,19 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
+		randomCharacternum = FlxG.random.int(0, charactersData.length - 1);
+		var charName:String = charactersData[randomCharacternum][0];
+		var charOffsets:Array<Int> = [Std.parseInt(charactersData[randomCharacternum][1]), Std.parseInt(charactersData[randomCharacternum][2])];
+		var charScale:Float = Std.parseFloat(charactersData[randomCharacternum][3]);
+		var artCredit:String = charactersData[randomCharacternum][4];
+		character = new BGSprite('pauseScreenChar/' + charName, 1000, charOffsets[1], 1.0, 1.0);
+		character.antialiasing = ClientPrefs.data.antialiasing;
+		character.setGraphicSize(Std.int(character.width * charScale));
+		character.updateHitbox();
+		add(character);
+		FlxTween.tween(character,{alpha: 1},0.5,{ease: FlxEase.linear});
+		FlxTween.tween(character,{x: charOffsets[0]},0.5,{ease: FlxEase.sineOut});
+
 		var levelInfo:FlxText = new FlxText(20, 15, 0, PlayState.SONG.song, 32);
 		levelInfo.scrollFactor.set();
 		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
@@ -94,6 +126,12 @@ class PauseSubState extends MusicBeatSubstate
 		blueballedTxt.updateHitbox();
 		add(blueballedTxt);
 
+		var artCredits:FlxText = new FlxText(20, 680, 0, "Art By: " + artCredit, 25);
+		artCredits.scrollFactor.set();
+		artCredits.setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'PhantomMuff.ttf'), PlayState.isPixelStage ? 15 : 25);
+		artCredits.updateHitbox();
+		add(artCredits);
+
 		practiceText = new FlxText(20, 15 + 101, 0, Language.getPhrase("Practice Mode").toUpperCase(), 32);
 		practiceText.scrollFactor.set();
 		practiceText.setFormat(Paths.font('vcr.ttf'), 32);
@@ -101,6 +139,44 @@ class PauseSubState extends MusicBeatSubstate
 		practiceText.updateHitbox();
 		practiceText.visible = PlayState.instance.practiceMode;
 		add(practiceText);
+
+		var path = "";
+		if (FileSystem.exists(Paths.json(cancionpolla + '/credits'))) {
+			path = File.getContent(Paths.json(cancionpolla + '/credits'));
+		} 
+		#if MODS_ALLOWED
+		else 
+		if (FileSystem.exists(Paths.modsJson(cancionpolla + '/credits'))){
+			path = File.getContent(Paths.modsJson(cancionpolla + '/credits'));
+		}
+		#end
+		else {
+			path = '
+			{
+				"artist": "Unknown",
+				"charter": "Unknown"
+			}
+			';		
+		}
+
+		var jsonObj = tjson.TJSON.parse(path);
+		var creditsTxt:FlxText = new FlxText(500, 20, 0, "> credits:\nmusic by: " + jsonObj.artist + "\nchart by: " + jsonObj.charter);
+		creditsTxt.scrollFactor.set();
+		creditsTxt.setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'PhantomMuff.ttf'), PlayState.isPixelStage ? 18 : 28);
+		creditsTxt.updateHitbox();
+		creditsTxt.alpha = 0;
+		add(creditsTxt);
+		FlxTween.tween(creditsTxt, {alpha: 1}, 0.5, {ease: FlxEase.linear});
+		FlxTween.tween(creditsTxt, {x: 20}, 0.5, {ease: FlxEase.sineOut});
+
+		var chartingText:FlxText = new FlxText(20, 15 + 101, 0, "CHARTING MODE", 32);
+		chartingText.scrollFactor.set();
+		chartingText.setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'PhantomMuff.ttf'), PlayState.isPixelStage ? 20 : 32);
+		chartingText.x = FlxG.width - (chartingText.width + 20);
+		chartingText.y = FlxG.height - (chartingText.height + 20);
+		chartingText.updateHitbox();
+		chartingText.visible = PlayState.chartingMode;
+		add(chartingText);
 
 		var chartingText:FlxText = new FlxText(20, 15 + 101, 0, Language.getPhrase("Charting Mode").toUpperCase(), 32);
 		chartingText.scrollFactor.set();
