@@ -26,6 +26,7 @@ class SchoolEvil extends BaseStage
 			bg = new BGSprite('weeb/animatedEvilSchool_low', posX, posY, 0.8, 0.9);
 
 		bg.scale.set(PlayState.daPixelZoom, PlayState.daPixelZoom);
+		bg.setGraphicSize(Std.int(9 * bg.width));
 		bg.antialiasing = false;
 		add(bg);
 		setDefaultGF('gf-pixel');
@@ -66,7 +67,7 @@ class SchoolEvil extends BaseStage
 			case "Trigger BG Ghouls":
 				if(!ClientPrefs.data.lowQuality)
 				{
-					bgGhouls = new BGSprite('weeb/bgGhouls', -100, 190, 0.9, 0.9, ['BG freaks glitch instance'], false);
+					bgGhouls = new BGSprite('weeb/bgGhouls', -800, 290, ['BG freaks glitch instance'], false);
 					bgGhouls.setGraphicSize(Std.int(bgGhouls.width * PlayState.daPixelZoom));
 					bgGhouls.updateHitbox();
 					bgGhouls.visible = false;
@@ -115,7 +116,7 @@ class SchoolEvil extends BaseStage
 	function schoolIntro():Void
 	{
 		inCutscene = true;
-		var red:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFFff1b31);
+		var red:FlxSprite = new FlxSprite(-300, -600).makeGraphic(FlxG.width * 10, FlxG.height * 10, 0xFFff1b31);
 		red.scrollFactor.set();
 		add(red);
 

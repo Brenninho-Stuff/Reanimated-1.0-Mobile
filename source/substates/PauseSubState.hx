@@ -110,25 +110,25 @@ class PauseSubState extends MusicBeatSubstate
 
 		var levelInfo:FlxText = new FlxText(20, 15, 0, PlayState.SONG.song, 32);
 		levelInfo.scrollFactor.set();
-		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
+		levelInfo.setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'vcr.ttf'), PlayState.isPixelStage ? 20 : 32);
 		levelInfo.updateHitbox();
 		add(levelInfo);
 
 		var levelDifficulty:FlxText = new FlxText(20, 15 + 32, 0, Difficulty.getString().toUpperCase(), 32);
 		levelDifficulty.scrollFactor.set();
-		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
+		levelDifficulty.setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'vcr.ttf'), PlayState.isPixelStage ? 20 : 32);
 		levelDifficulty.updateHitbox();
 		add(levelDifficulty);
 
 		var blueballedTxt:FlxText = new FlxText(20, 15 + 64, 0, Language.getPhrase("blueballed", "Blueballed: {1}", [PlayState.deathCounter]), 32);
 		blueballedTxt.scrollFactor.set();
-		blueballedTxt.setFormat(Paths.font('vcr.ttf'), 32);
+		blueballedTxt.setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'vcr.ttf'), PlayState.isPixelStage ? 20 : 32);
 		blueballedTxt.updateHitbox();
 		add(blueballedTxt);
 
-		var artCredits:FlxText = new FlxText(20, 680, 0, "Art By: " + artCredit, 25);
+		var artCredits:FlxText = new FlxText(20, 680, 0, "Art By: " + artCredit, 32);
 		artCredits.scrollFactor.set();
-		artCredits.setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'PhantomMuff.ttf'), PlayState.isPixelStage ? 15 : 25);
+		artCredits.setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'PhantomMuff.ttf'), PlayState.isPixelStage ? 20 : 32);
 		artCredits.updateHitbox();
 		add(artCredits);
 
