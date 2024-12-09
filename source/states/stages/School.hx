@@ -3,12 +3,18 @@ package states.stages;
 import states.stages.objects.*;
 import substates.GameOverSubstate;
 import cutscenes.DialogueBox;
+import torchsthings.shaders.*;
+import torchsfunctions.functions.ShaderUtils;
+import openfl.filters.ShaderFilter;
+
 
 import openfl.utils.Assets as OpenFlAssets;
 
 class School extends BaseStage
 {
 	var bgGirls:BackgroundGirls;
+	var crt:CRT = new CRT();
+	var shaderFilter:ShaderFilter;
 	override function create()
 	{
 		var _song = PlayState.SONG;
@@ -165,4 +171,13 @@ class School extends BaseStage
 			else tmr.reset(0.3);
 		});
 	}
+	override function createPost() {
+		shaderFilter = new ShaderFilter(crt);
+		ShaderUtils.applyFiltersToCams([camGame, camHUD, camOther], [shaderFilter]);
+	}
+
+	override function update(elapsed:Float) {
+		crt.update(elapsed);
+	}
+
 }

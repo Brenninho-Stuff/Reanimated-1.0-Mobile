@@ -3,6 +3,10 @@ package states.stages;
 import states.stages.objects.*;
 import objects.Character;
 
+import openfl.filters.ShaderFilter;
+import shaders.RainShader;
+import torchsthings.objects.ReflectedChar;
+
 class Philly extends BaseStage
 {
 	var phillyLightsColors:Array<FlxColor>;
@@ -21,6 +25,10 @@ class Philly extends BaseStage
 	var phillyGlowParticles:FlxTypedGroup<PhillyGlowParticle>;
 	var phillyWindowEvent:BGSprite;
 	var curLightEvent:Int = -1;
+
+	var rainShader:RainShader;
+	var rainShaderStartIntensity:Float = 0;
+	var rainShaderEndIntensity:Float = 0;
 
 	override function create()
 	{
@@ -81,6 +89,12 @@ class Philly extends BaseStage
 	override function createPost()
 		{
 			add(phillyPmg);
+			reflectedBF = new ReflectedChar(boyfriend, 0.35);
+			addBehindBF(reflectedBF);
+			reflectedGF = new ReflectedChar(gf, 0.35);
+			addBehindGF(reflectedGF);
+			reflectedDad = new ReflectedChar(dad, 0.35);
+			addBehindDad(reflectedDad);
 		}
 
 	override function eventPushed(event:objects.Note.EventNote)

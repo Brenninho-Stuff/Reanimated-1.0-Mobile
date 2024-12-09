@@ -5,9 +5,14 @@ import states.stages.objects.*;
 import substates.GameOverSubstate;
 import cutscenes.DialogueBox;
 import openfl.utils.Assets as OpenFlAssets;
+import torchsthings.shaders.*;
+import torchsfunctions.functions.ShaderUtils;
+import openfl.filters.ShaderFilter;
 
 class SchoolEvil extends BaseStage
 {
+	var crt:CRT = new CRT(true);
+	var shaderFilter:ShaderFilter;
 	override function create()
 	{
 		var _song = PlayState.SONG;
@@ -39,8 +44,15 @@ class SchoolEvil extends BaseStage
 			setStartCallback(schoolIntro);
 		}
 	}
+
+	override function update(elapsed:Float) {
+		crt.update(elapsed);
+	}
+
 	override function createPost()
 	{
+		shaderFilter = new ShaderFilter(crt);
+		ShaderUtils.applyFiltersToCams([camGame, camHUD, camOther], [shaderFilter]);
 		var trail:FlxTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 		addBehindDad(trail);
 	}
