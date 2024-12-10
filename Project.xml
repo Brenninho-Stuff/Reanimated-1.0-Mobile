@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': Torch Engine" file="TorchEngine" packageName="com.torchthedragon.torchengine" package="com.torchthedragon.torchengine" main="Main" version="0.2.8" company="TorchTheDragon" />
+	<app title="Friday Night Funkin' Reanimated Alpha 1.5" file="Reanimated" packageName="com.torchthedragon.torchengine" package="com.torchthedragon.torchengine" main="Main" version="0.2.8" company="TorchTheDragon" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />

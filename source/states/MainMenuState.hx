@@ -15,11 +15,6 @@ import backend.Song;
 import states.PlayState;
 import openfl.ui.Mouse;
 
-
-
-
-
-
 //temporary
 import torchsthings.states.ResultsScreen;
 
@@ -99,12 +94,13 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = 0.25;
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
+		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.scrollFactor.set(0, yScroll);
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.updateHitbox();
 		bg.screenCenter();
+		bg.color = 0xfffdf24e;
 		add(bg);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
@@ -117,7 +113,7 @@ class MainMenuState extends MusicBeatState
 		magenta.updateHitbox();
 		magenta.screenCenter();
 		magenta.visible = false;
-		magenta.color = 0xFFfd719b;
+		magenta.color = 0xfffd4e82;
 		add(magenta);
 
 		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x73FFFFFF, 0x0));
@@ -148,15 +144,15 @@ class MainMenuState extends MusicBeatState
 		{
 			var item:FlxSprite = createMenuItem(option, 0, (num * 140) + 90);
 			item.y += (4 - optionShit.length) * 70; // Offsets for when you have anything other than 4 items
-			item.screenCenter(X);
+			//item.screenCenter(X);
+
 		}
 
 		if (leftOption != null)
 			leftItem = createMenuItem(leftOption, 60, 490);
 		if (rightOption != null)
 		{
-			rightItem = createMenuItem(rightOption, FlxG.width - 60, 490);
-			rightItem.x -= rightItem.width;
+			rightItem = createMenuItem(rightOption, 500, 490);
 		}
 
 		var rVer:FlxText = new FlxText(12, FlxG.height - 64, 0, "Reanimated " + fnfReaniV, 12);
@@ -196,6 +192,7 @@ class MainMenuState extends MusicBeatState
 		menuItem.animation.addByPrefix('idle', '$name idle', 24, true);
 		menuItem.animation.addByPrefix('selected', '$name selected', 24, true);
 		menuItem.animation.play('idle');
+		menuItem.setGraphicSize(Std.int(menuItem.width * 0.9));
 		menuItem.updateHitbox();
 		
 		menuItem.antialiasing = ClientPrefs.data.antialiasing;
