@@ -3,8 +3,10 @@ package states.stages;
 import states.stages.objects.*;
 import objects.Character;
 
+import backend.MathUtil;
+import torchsthings.shaders.*;
+import torchsfunctions.functions.ShaderUtils;
 import openfl.filters.ShaderFilter;
-import shaders.RainShader;
 import torchsthings.objects.ReflectedChar;
 
 class Philly extends BaseStage
@@ -26,9 +28,9 @@ class Philly extends BaseStage
 	var phillyWindowEvent:BGSprite;
 	var curLightEvent:Int = -1;
 
-	var rainShader:RainShader;
-	var rainShaderStartIntensity:Float = 0;
-	var rainShaderEndIntensity:Float = 0;
+	var rain:Rain = new Rain();
+	var rainFilter:ShaderFilter;
+	var useShader:Bool = false;
 
 	override function create()
 	{
@@ -84,11 +86,37 @@ class Philly extends BaseStage
 		phillyStreet.setGraphicSize(Std.int(phillyStreet.width * 1.3));
 		phillyStreet.updateHitbox();
 		add(phillyStreet);
+
+		switch(PlayState.SONG.song.toLowerCase()) {
+			case 'verbal smash':
+			rain.setIntenseValues(0.0, 0.3);
+			useShader = true;
+			case 'pico':
+			rain.setIntenseValues(0.1, 0.2);
+			useShader = true;
+			case 'philly-nice':
+			rain.setIntenseValues(0.2, 0.3);
+			useShader = true;
+			case 'blammed':
+			defaultCamZoom = 0.67;
+			rain.setIntenseValues(0.3, 0.5);
+			useShader = true;
+			case 'blammed-erect':
+			rain.setIntenseValues(0.0, 0.7);
+			useShader = true;
+			case 'blammed-remix':
+			rain.setIntenseValues(0.0, 0.4);
+			useShader = true;
+		}
 	}
 
 	override function createPost()
 		{
-			add(phillyPmg);
+			add(phillyPmg);	
+			if (useShader) {
+			rainFilter = new ShaderFilter(rain);
+			//FlxG.camera.setFilters([new ShaderFilter(rain)]); //I don't know what I did but it worked lol (I do know xd)
+			ShaderUtils.applyFiltersToCams([camGame, camHUD], [rainFilter]);
 			reflectedBF = new ReflectedChar(boyfriend, 0.35);
 			addBehindBF(reflectedBF);
 			reflectedGF = new ReflectedChar(gf, 0.35);
@@ -96,6 +124,7 @@ class Philly extends BaseStage
 			reflectedDad = new ReflectedChar(dad, 0.35);
 			addBehindDad(reflectedDad);
 		}
+	}
 
 	override function eventPushed(event:objects.Note.EventNote)
 	{
@@ -124,6 +153,9 @@ class Philly extends BaseStage
 		}
 	}
 
+	var rainTimeScale:Float = 1.0;
+	var rainScaler:Float = 0.55;
+
 	override function update(elapsed:Float)
 	{
 		phillyWindow.alpha -= (Conductor.crochet / 1000) * FlxG.elapsed * 1.5;
@@ -142,6 +174,10 @@ class Philly extends BaseStage
 				--i;
 			}
 		}
+		
+		rain.update(elapsed * rainTimeScale);
+		rain.lerpRatio = Math.max(0, Conductor.songPosition - ClientPrefs.data.noteOffset) / FlxG.sound.music.length;
+		rainTimeScale = MathUtil.coolLerp(rainTimeScale, rainScaler, 0.05);
 
 	}
 

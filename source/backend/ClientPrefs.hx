@@ -43,6 +43,8 @@ import states.TitleState;
 	public var scoreZoom:Bool = true;
 	public var noReset:Bool = false;
 	public var healthBarAlpha:Float = 1;
+	public var iconAnim:String = 'Default';
+	public var extraCamMovementAmount:Int = 30;
 	public var hitsoundVolume:Float = 0;
 	public var pauseMusic:String = 'Tea Time';
 	public var checkForUpdates:Bool = true;

@@ -136,6 +136,13 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			'hideHud',
 			BOOL);
 		addOption(option);
+
+		var option:Option = new Option('Icons Dance:',
+			"What should icon movement styles be like??",
+			'iconAnim',
+			STRING,
+			['Default', 'Arrow Funk', 'GF Dance', 'Zoom In And Out']);
+		addOption(option);
 		
 		var option:Option = new Option('Time Bar:',
 			"What should the Time Bar display?",

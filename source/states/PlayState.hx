@@ -3704,9 +3704,40 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic)
 			notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
-
-		iconP1.scale.set(1.2, 1.2);
-		iconP2.scale.set(1.2, 1.2);
+		switch(ClientPrefs.data.iconAnim) {
+			case "Default":
+					iconP1.scale.set(1.2, 1.2);
+					iconP2.scale.set(1.2, 1.2);
+			case "Arrow Funk":
+				if (curBeat % 1 == 0) {
+					iconP1.scale.set(0.8, 0.8);
+					iconP2.scale.set(1.2, 1.2);
+				}
+				if (curBeat % 2 == 0) {
+					iconP1.scale.set(1.2, 1.2);
+					iconP2.scale.set(0.8, 0.8);
+				}
+			case "GF Dance":
+				iconP1.scale.set(1.2, 1.2);
+				iconP2.scale.set(1.2, 1.2);
+				if (curBeat % 1 == 0) {
+					iconP1.angle = 10;
+					iconP2.angle = 10;
+				}
+				if (curBeat % 2 == 0) {
+					iconP1.angle = -10;
+					iconP2.angle = -10;
+				}
+			case "Zoom In And Out":
+				if (curBeat % 1 == 0) {
+					iconP1.scale.set(0.8, 0.8);
+					iconP2.scale.set(0.8, 0.8);
+				}
+				if (curBeat % 2 == 0) {
+					iconP1.scale.set(1.2, 1.2);
+					iconP2.scale.set(1.2, 1.2);
+				}
+			}
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();

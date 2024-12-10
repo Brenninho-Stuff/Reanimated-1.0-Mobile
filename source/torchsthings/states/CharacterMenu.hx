@@ -625,10 +625,7 @@ class CharacterMenu extends MusicBeatState{
                         locked = true;
                     }
                 }
-                if (ClientPrefs.data.loadLockedChars == false && locked) {
-                    removeChars.push(charArray[i]);
-                    continue;
-                }
+
                 var characterImage:Character = new Character(0, 0, charArray[i]);
                 characterImage.scale.set(charScale * characterImage.scale.x, charScale * characterImage.scale.y);
     
@@ -669,10 +666,7 @@ class CharacterMenu extends MusicBeatState{
                         locked = true;
                     }
                 }
-                if (ClientPrefs.data.loadLockedChars == false && locked) {
-                    removeChars.push(charArray[i]);
-                    continue;
-                }
+
                 var characterImage:Character = new Character(0, 0, charArray[i], true);
                 characterImage.scale.set(charScale * characterImage.scale.x, charScale * characterImage.scale.y);
 
@@ -707,10 +701,7 @@ class CharacterMenu extends MusicBeatState{
                         locked = true;
                     }
                 }
-                if (ClientPrefs.data.loadLockedChars == false && locked) {
-                    removeChars.push(charArray[i]);
-                    continue;
-                }
+
                 var characterImage:Character = new Character(0, 0, charArray[i]);
                 characterImage.scale.set(charScale * characterImage.scale.x, charScale * characterImage.scale.y);
     
