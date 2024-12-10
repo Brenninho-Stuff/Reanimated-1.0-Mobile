@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="mecaigo.png">
+	<!-- Created with Adobe Animate version 22.0.2.168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="zemp dj enter0000" x="0" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0001" x="407" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0002" x="814" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0003" x="1221" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0004" x="1628" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0005" x="2035" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0006" x="2035" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0007" x="2442" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0008" x="2442" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0009" x="2849" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0010" x="3256" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0011" x="3663" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0012" x="4070" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0013" x="4477" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0014" x="4477" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0015" x="4477" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0016" x="4477" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj enter0017" x="4477" y="0" width="407" height="488"/>
+	<SubTexture name="zemp dj idle0000" x="4884" y="0" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0001" x="5291" y="0" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0002" x="5698" y="0" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0003" x="6105" y="0" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0004" x="6512" y="0" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0005" x="6919" y="0" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0006" x="7326" y="0" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0007" x="7733" y="0" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0008" x="0" y="488" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0009" x="407" y="488" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0010" x="0" y="488" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0011" x="0" y="488" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0012" x="0" y="488" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0013" x="0" y="488" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0014" x="0" y="488" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0015" x="0" y="488" width="407" height="482"/>
+	<SubTexture name="zemp dj idle0016" x="0" y="488" width="407" height="482"/>
+	<SubTexture name="zemp dj intro0000" x="814" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0001" x="1290" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0002" x="1766" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0003" x="2242" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0004" x="2718" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0005" x="3194" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0006" x="3670" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0007" x="4146" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0008" x="4622" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0009" x="4622" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0010" x="5098" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0011" x="5098" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0012" x="5574" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0013" x="6050" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0014" x="6526" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0015" x="7002" y="488" width="476" height="1087"/>
+	<SubTexture name="zemp dj intro0016" x="7478" y="488" width="476" height="1087"/>
+</TextureAtlas>

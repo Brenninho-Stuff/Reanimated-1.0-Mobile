@@ -414,6 +414,7 @@ class PlayState extends MusicBeatState
 			case 'tank': new Tank();					//Week 7 - Ugh, Guns, Stress
 			case 'phillyStreets': new PhillyStreets(); 	//Weekend 1 - Darnell, Lit Up, 2Hot
 			case 'phillyBlazin': new PhillyBlazin();	//Weekend 1 - Blazin
+			case "phillyStreetsErect": new PhillyStreetsErect(); //Weekend 1 bf mix - Erect
 			case 'wait': new Wait();					//Wait - CG5 Best Song
 		}	
 		if(isPixelStage) introSoundsSuffix = '-pixel';

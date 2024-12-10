@@ -1,10 +1,24 @@
 package states;
 
+import flixel.addons.display.FlxBackdrop;
+import flixel.addons.display.FlxGridOverlay;
 import flixel.FlxObject;
 import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import states.editors.MasterEditorMenu;
 import options.OptionsState;
+import torchsfunctions.functions.KeyboardTools;
+import flixel.input.keyboard.FlxKey;
+import flixel.input.FlxKeyManager;
+import backend.Highscore;
+import backend.Song;
+import states.PlayState;
+import openfl.ui.Mouse;
+
+
+
+
+
 
 //temporary
 import torchsthings.states.ResultsScreen;
@@ -17,21 +31,40 @@ enum MainMenuColumn {
 
 class MainMenuState extends MusicBeatState
 {
+	public static var fnfReaniV:String = 'Alpha 1.5';
 	public static var psychEngineVersion:String = '1.0'; // This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 	public static var curColumn:MainMenuColumn = CENTER;
+	public static var codeEntered:Bool = false; // Just for some detection is all, like for the "debugger" achievement
+
 	var allowMouse:Bool = true; //Turn this off to block mouse movement in menus
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	var leftItem:FlxSprite;
 	var rightItem:FlxSprite;
+	var charInput:String = "";
+	var codesAndSongs:Array<Array<String>> = [
+		["SMASH", "Verbal-smash"], 
+		["CHUDNELL", "score"], 
+		["TMG", "high-remix"], 
+		["HEV", "pico-erect"], 
+		["KARANXD", "blammed-erect"], 
+		["LOCKIN", "fuck-you"],
+		["DUPLEX", "blammed-remix"],
+		//["ICONOCLAST", "robin"],
+		["HENRY", "cg5"],
+		//["BFMIX", "Darnell-bf-mix"],
+		["DEBUG", 'test']
+	];
+
+	var invalidCodes:Array<String> = [];
 
 	//Centered/Text options
 	var optionShit:Array<String> = [
-		'story_mode',
-		'freeplay',
-		#if MODS_ALLOWED 'mods', #end
-		'credits'
+		'story_mode',//0
+		'freeplay',//1
+		#if MODS_ALLOWED 'mods', #end//2
+		'credits'//3
 	];
 
 	var leftOption:String = #if ACHIEVEMENTS_ALLOWED 'achievements' #else null #end;
@@ -39,6 +72,17 @@ class MainMenuState extends MusicBeatState
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
+
+	var djData:Array<Array<String>> = [
+		//	['djAssetName', 'x', 'y', 'graphicScale', 'djIdle', 'selectedAnimation'],
+			['tutututurutututru', '1160', '190', '0.6', 'bfeando ando0', ''], 
+			['Jeys_BF_DJ_Assets', '880', '100', '0.8', 'BF Dancing Beat0', 'BF Cheer0'],
+			['Boyfriend_DJ_original', '1130', '200', '1.2', 'Boyfriend DJ0', 'Boyfriend hey0'],
+			['Girlfriend', '1130', '200', '1.2', 'Idle menu0', 'Start menu0'],
+			['mecaigo', '1130', '200', '1.2', 'zemp dj idle0', 'zemp dj enter0']
+		];
+		var randomDJnum:Int;
+		var dj:BGSprite;
 
 	override function create()
 	{
@@ -76,6 +120,27 @@ class MainMenuState extends MusicBeatState
 		magenta.color = 0xFFfd719b;
 		add(magenta);
 
+		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x73FFFFFF, 0x0));
+		grid.velocity.set(-40, 40);
+		grid.alpha = 0;
+		FlxTween.tween(grid, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
+		add(grid);
+
+		randomDJnum = FlxG.random.int(0, djData.length - 1);
+		var djName:String = djData[randomDJnum][0];
+		var djOffsets:Array<Int> = [Std.parseInt(djData[randomDJnum][1]), Std.parseInt(djData[randomDJnum][2])];
+		var djScale:Float = Std.parseFloat(djData[randomDJnum][3]);
+		var djAnims:Array<String> = [djData[randomDJnum][4], djData[randomDJnum][5]];
+		
+		dj = new BGSprite('menuDJs/' + djName, djOffsets[0], djOffsets[1], 0.3, 0.3, [djAnims[0]], true);
+		dj.animation.addByPrefix(djAnims[1], djAnims[1], 24, false);
+		dj.antialiasing = ClientPrefs.data.antialiasing;
+		dj.setGraphicSize(Std.int(dj.width * djScale));
+		dj.updateHitbox();
+		dj.alpha = 0;
+		FlxTween.tween(dj, {alpha: 1, x: dj.x + -500}, 0.7, {startDelay: 0.3, ease: FlxEase.smoothStepOut});
+		add(dj);
+
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
@@ -94,6 +159,10 @@ class MainMenuState extends MusicBeatState
 			rightItem.x -= rightItem.width;
 		}
 
+		var rVer:FlxText = new FlxText(12, FlxG.height - 64, 0, "Reanimated " + fnfReaniV, 12);
+		rVer.scrollFactor.set();
+		rVer.setFormat("vcr.ttf", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(rVer);
 		var psychVer:FlxText = new FlxText(12, FlxG.height - 44, 0, "Torch Engine v" + psychEngineVersion, 12);
 		psychVer.scrollFactor.set();
 		psychVer.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -117,7 +186,7 @@ class MainMenuState extends MusicBeatState
 
 		super.create();
 
-		FlxG.camera.follow(camFollow, null, 0.15);
+		//FlxG.camera.follow(camFollow, null, 0.15);
 	}
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
@@ -133,6 +202,7 @@ class MainMenuState extends MusicBeatState
 		menuItem.scrollFactor.set();
 		menuItems.add(menuItem);
 		return menuItem;
+
 	}
 
 	var selectedSomethin:Bool = false;
@@ -263,12 +333,17 @@ class MainMenuState extends MusicBeatState
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				if (optionShit[curSelected] != 'donate')
+				
 				{
 					selectedSomethin = true;
+
+					var djCheer:String = djData[randomDJnum][5];
+					dj.animation.play(djCheer);
 					FlxG.mouse.visible = false;
 
 					if (ClientPrefs.data.flashing)
 						FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+				
 
 					var item:FlxSprite;
 					var option:String;
@@ -338,10 +413,45 @@ class MainMenuState extends MusicBeatState
 				MusicBeatState.switchState(new MasterEditorMenu());
 			}
 			#end
+
+			charInput += KeyboardTools.keypressToString();
+			for (array in codesAndSongs) {
+				if (array[0].toUpperCase().trim().startsWith(charInput)) {
+					if (charInput == array[0].toUpperCase().trim() && !invalidCodes.contains(array[0])) {
+						FlxG.mouse.visible = false;
+						selectedSomethin = true;
+						codeEntered = true;
+
+						FlxG.sound.play(Paths.sound('confirmMenu'));
+						var djCheer:String = djData[randomDJnum][5];
+						dj.animation.play(djCheer);
+
+						var songLowercase:String = Paths.formatToSongPath(array[1]);
+						var poop:String = Highscore.formatSong(songLowercase, 2);
+
+						PlayState.SONG = Song.loadFromJson(poop, songLowercase);
+						PlayState.isStoryMode = false;
+						PlayState.storyDifficulty = 2;
+
+						LoadingState.loadAndSwitchState(new PlayState());
+					}
+					continue;
+				} else {
+					if (invalidCodes.contains(array[0])) continue;
+					invalidCodes.push(array[0]);
+					//trace(invalidCodes);
+				}
+			}
+			if (invalidCodes.length == codesAndSongs.length) {
+				invalidCodes = [];
+				charInput = '';
+				//trace("reset char input");
+			}
 		}
 
 		super.update(elapsed);
 	}
+
 
 	function changeItem(change:Int = 0)
 	{
@@ -368,5 +478,6 @@ class MainMenuState extends MusicBeatState
 		selectedItem.animation.play('selected');
 		selectedItem.centerOffsets();
 		camFollow.y = selectedItem.getGraphicMidpoint().y;
+		}
 	}
-}
+
