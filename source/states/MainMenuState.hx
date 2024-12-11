@@ -70,11 +70,11 @@ class MainMenuState extends MusicBeatState
 
 	var djData:Array<Array<String>> = [
 		//	['djAssetName', 'x', 'y', 'graphicScale', 'djIdle', 'selectedAnimation'],
-			['tutututurutututru', '1160', '190', '0.6', 'bfeando ando0', ''], 
-			['Jeys_BF_DJ_Assets', '880', '100', '0.8', 'BF Dancing Beat0', 'BF Cheer0'],
-			['Boyfriend_DJ_original', '1130', '200', '1.2', 'Boyfriend DJ0', 'Boyfriend hey0'],
-			['Girlfriend', '1130', '200', '1.2', 'Idle menu0', 'Start menu0'],
-			['mecaigo', '1130', '200', '1.2', 'zemp dj idle0', 'zemp dj enter0']
+			['tutututurutututru', '660', '190', '0.6', 'bfeando ando0', ''], 
+			['Jeys_BF_DJ_Assets', '380', '100', '0.8', 'BF Dancing Beat0', 'BF Cheer0'],
+			['Boyfriend_DJ_original', '630', '200', '1.2', 'Boyfriend DJ0', 'Boyfriend hey0'],
+			['Girlfriend', '630', '200', '1.2', 'Idle menu0', 'Start menu0'],
+			['mecaigo', '730', '200', '1.2', 'zemp dj idle0', 'zemp dj enter0']
 		];
 		var randomDJnum:Int;
 		var dj:BGSprite;
@@ -97,7 +97,6 @@ class MainMenuState extends MusicBeatState
 		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.scrollFactor.set(0, yScroll);
-		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.color = 0xfffdf24e;
@@ -109,7 +108,6 @@ class MainMenuState extends MusicBeatState
 		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		magenta.antialiasing = ClientPrefs.data.antialiasing;
 		magenta.scrollFactor.set(0, yScroll);
-		magenta.setGraphicSize(Std.int(magenta.width * 1.175));
 		magenta.updateHitbox();
 		magenta.screenCenter();
 		magenta.visible = false;
@@ -133,8 +131,6 @@ class MainMenuState extends MusicBeatState
 		dj.antialiasing = ClientPrefs.data.antialiasing;
 		dj.setGraphicSize(Std.int(dj.width * djScale));
 		dj.updateHitbox();
-		dj.alpha = 0;
-		FlxTween.tween(dj, {alpha: 1, x: dj.x + -500}, 0.7, {startDelay: 0.3, ease: FlxEase.smoothStepOut});
 		add(dj);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
@@ -142,17 +138,17 @@ class MainMenuState extends MusicBeatState
 
 		for (num => option in optionShit)
 		{
-			var item:FlxSprite = createMenuItem(option, 0, (num * 140) + 90);
+			var item:FlxSprite = createMenuItem(option, 110, (num * 120) + 50);
 			item.y += (4 - optionShit.length) * 70; // Offsets for when you have anything other than 4 items
 			//item.screenCenter(X);
 
 		}
 
 		if (leftOption != null)
-			leftItem = createMenuItem(leftOption, 60, 490);
+			leftItem = createMenuItem(leftOption, 60, 540);
 		if (rightOption != null)
 		{
-			rightItem = createMenuItem(rightOption, 500, 490);
+			rightItem = createMenuItem(rightOption, 350, 540);
 		}
 
 		var rVer:FlxText = new FlxText(12, FlxG.height - 64, 0, "Reanimated " + fnfReaniV, 12);

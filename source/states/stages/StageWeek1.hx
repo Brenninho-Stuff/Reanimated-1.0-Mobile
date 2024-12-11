@@ -24,12 +24,12 @@ class StageWeek1 extends BaseStage
 	override function create()
 	{
 		offsetState = Std.isOfType(FlxG.state, options.NoteOffsetState);
-		var bg:BGSprite = new BGSprite('stageback', -850, -580, 0.9, 0.9);
+		var bg:BGSprite = new BGSprite('rework/stageback', -850, -580, 0.9, 0.9);
 		bg.setGraphicSize(Std.int(bg.width * 2.3));
 		bg.updateHitbox();
 		add(bg);
 
-		var stageFront:BGSprite = new BGSprite('stagefront', -900, 600, 0.9, 0.9);
+		var stageFront:BGSprite = new BGSprite('rework/stagefront', -900, 600, 0.9, 0.9);
 		stageFront.setGraphicSize(Std.int(stageFront.width * 2.3));
 		stageFront.updateHitbox();
 		add(stageFront);
@@ -39,12 +39,12 @@ class StageWeek1 extends BaseStage
 					stageHorns.updateHitbox();
 					add(stageHorns);*/
 
-					var stagelittlelights:BGSprite = new BGSprite('stage_light',  -300, -400, 1.2, 1.2);
+					var stagelittlelights:BGSprite = new BGSprite('rework/stage_light',  -300, -400, 1.2, 1.2);
 					stagelittlelights.setGraphicSize(Std.int(stagelittlelights.width * 2.1));
 					stagelittlelights.updateHitbox();
 					add(stagelittlelights);
 
-					var stageCurtains:BGSprite = new BGSprite('stagecurtains',  -800, -750, 1.2, 1.2);
+					var stageCurtains:BGSprite = new BGSprite('rework/stagecurtains',  -800, -750, 1.2, 1.2);
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 2.2));
 					stageCurtains.updateHitbox();
 					add(stageCurtains);
@@ -111,13 +111,13 @@ class StageWeek1 extends BaseStage
 				dadbattleBlack.visible = false;
 				add(dadbattleBlack);
 
-				dadbattleLight = new BGSprite('spotlight', 400, -400);
+				dadbattleLight = new BGSprite('rework/spotlight', 400, -400);
 				dadbattleLight.alpha = 0.375;
 				dadbattleLight.blend = ADD;
 				dadbattleLight.visible = false;
 				add(dadbattleLight);
 
-				dadbattleGlowup = new BGSprite('light', -400, -400, 1.2, 1.2);
+				dadbattleGlowup = new BGSprite('rework/light', -400, -400, 1.2, 1.2);
 				dadbattleGlowup.setGraphicSize(Std.int(dadbattleGlowup.width * 2.3));
 				dadbattleGlowup.updateHitbox();
 				dadbattleGlowup.alpha = 0.75;
@@ -125,7 +125,7 @@ class StageWeek1 extends BaseStage
 				dadbattleGlowup.visible = false;
 				add(dadbattleGlowup);
 
-				dadbattleGlowdown = new BGSprite('light2', -700, 600, 0.9, 0.9);
+				dadbattleGlowdown = new BGSprite('rework/light2', -700, 600, 0.9, 0.9);
 				dadbattleGlowdown.setGraphicSize(Std.int(dadbattleGlowdown.width * 2.1));
 				dadbattleGlowdown.updateHitbox();
 				dadbattleGlowdown.alpha = 0.75;

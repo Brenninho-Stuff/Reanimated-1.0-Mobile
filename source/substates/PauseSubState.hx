@@ -52,6 +52,7 @@ class PauseSubState extends MusicBeatSubstate
 		['olaa uwu', '350', '180', '0.8', "z3mp", '6'],
 		['BFRock', '750', '320', '0.9', "Phantom Arcade", '4'],
 		['Alejandro', '700', '70', '0.9', "ElDiezMixta", '6'],
+		['Junio Sonic', '700', '180', '0.25', "SaNicbOom", '6'],
 	];
 	var randomCharacternum:Int;
 	var character:BGSprite;
