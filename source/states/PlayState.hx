@@ -2319,7 +2319,8 @@ class PlayState extends MusicBeatState
 					camHUD.zoom += flValue2;
 				}
 
-			case 'Updated Camera Zoom': //I will not remove the old one, instead, I will just add my own. Eventually, I will get to replacing the old ones to use my new zoom function.
+			case 'Updated Camera Zoom' | "Torch's Custom Zoom": 
+				//I will not remove the old one, instead, I will just add my own. Eventually, I will get to replacing the old ones to use my new zoom function.
 				if (ClientPrefs.data.camZooms) {
 					var val1:String = 'regular';
 					if (value1 != null && value1 != 'regular' && value1 != '') val1 = value1.toLowerCase().trim();
@@ -2560,46 +2561,6 @@ class PlayState extends MusicBeatState
 				var val2:Bool = (value2.toLowerCase().trim() == 'true');
 				enemyNoteSplashes = val1;
 				enemyCoverSplashes = val2;
-
-			case "Torch's Custom Zoom":
-				// Credit to Bitto's Zoom event, as that is what this was initially based off of
-				var val1:String = 'regular';
-				if (value1 != null && value1 != 'regular')
-					val1 = value1.toLowerCase().trim();
-				var vals2:Array<String> = value2.split(',');
-	
-				var zoomAmount:Float = Std.parseFloat(vals2[0]);
-				var zoomTime:Float = Std.parseFloat(vals2[1]);
-				var easeType:EaseFunction = Extras.stringToEase(vals2[2]);
-	
-				if (val1 == 'regular') {
-					FlxG.camera.zoom += zoomAmount;
-					camHUD.zoom += zoomAmount;
-				} else {
-					if (zoomTweensByTorch[0] != null && (val1 == 'main' || val1 == 'both' || val1 == 'reset')) zoomTweensByTorch[0].cancel();
-					if (zoomTweensByTorch[1] != null && (val1 == 'hud' || val1 == 'both' || val1 == 'reset')) zoomTweensByTorch[1].cancel();
-	
-					if (val1 == 'main') {
-						zoomTweensByTorch[0] = FlxTween.tween(camGame, {zoom: zoomAmount}, zoomTime, {ease: easeType, 
-							onComplete: function(twn:FlxTween) {
-								defaultCamZoom = camGame.zoom;
-							}});
-					} else if (val1 == 'hud') {
-						zoomTweensByTorch[1] = FlxTween.tween(camHUD, {zoom: zoomAmount}, zoomTime, {ease: easeType});
-					} else if (val1 == 'both') {
-						zoomTweensByTorch[0] = FlxTween.tween(camGame, {zoom: zoomAmount}, zoomTime, {ease: easeType, 
-							onComplete: function(twn:FlxTween) {
-								defaultCamZoom = camGame.zoom;
-							}});
-						zoomTweensByTorch[1] = FlxTween.tween(camHUD, {zoom: zoomAmount}, zoomTime, {ease: easeType});
-					} else if (val1 == 'reset') {
-							zoomTweensByTorch[0] = FlxTween.tween(camGame, {zoom: StageData.getStageFile(SONG.stage).defaultZoom}, 0.5, {ease: FlxEase.linear, 
-							onComplete: function(twn:FlxTween) {
-								defaultCamZoom = camGame.zoom;
-							}});
-						zoomTweensByTorch[1] = FlxTween.tween(camHUD, {zoom: 1}, 0.5, {ease: FlxEase.linear});
-					}
-				}
 
 			case 'HUD Fade':
 				var alpha:Float = Std.parseFloat(value1);
