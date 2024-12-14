@@ -11,7 +11,7 @@ import openfl.utils.Assets;
 
 using StringTools;
 // Hehe, just testing Jorge's Webhook for his server
-
+// lol :V
 class StrumCover extends FlxSprite {
 	public static var defaultCoverSkin(default, never):String = 'strumCovers/NOTE_covers';
     public static var defaultLibrary(default, never):String = 'shared';
