@@ -1,76 +1,7 @@
 {
 	"animations": [
 		{
-			"loop": false,
-			"offsets": [
-				190,
-				183
-			],
-			"anim": "hey-alt",
-			"fps": 24,
-			"name": "hey alt0",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				74,
-				-13
-			],
-			"anim": "dodgeUP",
-			"fps": 24,
-			"name": "dodge0",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				74,
-				-13
-			],
-			"anim": "dodgeDOWN",
-			"fps": 24,
-			"name": "dodge0",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				74,
-				-13
-			],
-			"anim": "dodgeLEFT",
-			"fps": 24,
-			"name": "dodge0",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				74,
-				-13
-			],
-			"anim": "dodgeRIGHT",
-			"fps": 24,
-			"name": "dodge0",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				74,
-				-13
-			],
-			"anim": "dodge",
-			"fps": 24,
-			"name": "dodge0",
-			"indices": []
-		},
-		{
-			"offsets": [
-				0,
-				0
-			],
+			"offsets": [0, 0],
 			"loop": false,
 			"fps": 24,
 			"anim": "idle",
@@ -78,21 +9,7 @@
 			"name": "BF COOL idle dance0"
 		},
 		{
-			"offsets": [
-				-316,
-				-79
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singLEFT",
-			"indices": [],
-			"name": "BF NOTE LEFT0"
-		},
-		{
-			"offsets": [
-				-299,
-				-80
-			],
+			"offsets": [-299, -80],
 			"loop": false,
 			"fps": 24,
 			"anim": "singRIGHT",
@@ -100,10 +17,7 @@
 			"name": "BF NOTE RIGHT0"
 		},
 		{
-			"offsets": [
-				-322,
-				-82
-			],
+			"offsets": [-322, -82],
 			"loop": false,
 			"fps": 24,
 			"anim": "singUP",
@@ -111,10 +25,7 @@
 			"name": "BF NOTE UP0"
 		},
 		{
-			"offsets": [
-				-296,
-				-78
-			],
+			"offsets": [-296, -78],
 			"loop": false,
 			"fps": 24,
 			"anim": "singDOWN",
@@ -122,10 +33,7 @@
 			"name": "BF NOTE DOWN0"
 		},
 		{
-			"offsets": [
-				-314,
-				-80
-			],
+			"offsets": [-314, -80],
 			"loop": false,
 			"fps": 24,
 			"anim": "singLEFTmiss",
@@ -133,10 +41,7 @@
 			"name": "BF NOTE LEFTMiss0"
 		},
 		{
-			"offsets": [
-				-297,
-				-80
-			],
+			"offsets": [-297, -80],
 			"loop": false,
 			"fps": 24,
 			"anim": "singRIGHTmiss",
@@ -144,10 +49,7 @@
 			"name": "BF NOTE RIGHTMiss0"
 		},
 		{
-			"offsets": [
-				-318,
-				-82
-			],
+			"offsets": [-318, -82],
 			"loop": false,
 			"fps": 24,
 			"anim": "singUPmiss",
@@ -155,10 +57,7 @@
 			"name": "BF NOTE UPMiss0"
 		},
 		{
-			"offsets": [
-				-297,
-				-79
-			],
+			"offsets": [-297, -79],
 			"loop": false,
 			"fps": 24,
 			"anim": "singDOWNmiss",
@@ -166,10 +65,7 @@
 			"name": "BF NOTE DOWNMiss0"
 		},
 		{
-			"offsets": [
-				-313,
-				-79
-			],
+			"offsets": [-313, -79],
 			"loop": false,
 			"fps": 24,
 			"anim": "hey",
@@ -177,10 +73,7 @@
 			"name": "BF HEY!!0"
 		},
 		{
-			"offsets": [
-				-226,
-				-9
-			],
+			"offsets": [-226, -9],
 			"loop": false,
 			"fps": 24,
 			"anim": "singLEFT-alt",
@@ -188,10 +81,7 @@
 			"name": "BF NOTE LEFT ALT0"
 		},
 		{
-			"offsets": [
-				-196,
-				-2
-			],
+			"offsets": [-196, -2],
 			"loop": false,
 			"fps": 24,
 			"anim": "singRIGHT-alt",
@@ -199,10 +89,7 @@
 			"name": "BF NOTE RIGHT ALT0"
 		},
 		{
-			"offsets": [
-				-232,
-				-86
-			],
+			"offsets": [-232, -86],
 			"loop": false,
 			"fps": 24,
 			"anim": "singDOWN-alt",
@@ -210,10 +97,7 @@
 			"name": "BF NOTE DOWN ALT0"
 		},
 		{
-			"offsets": [
-				-250,
-				-6
-			],
+			"offsets": [-250, -6],
 			"loop": false,
 			"fps": 24,
 			"anim": "singUP-alt",
@@ -221,40 +105,132 @@
 			"name": "BF NOTE UP ALT0"
 		},
 		{
-			"offsets": [
-				-413,
-				-184
-			],
+			"offsets": [-413, -184],
 			"loop": false,
 			"fps": 24,
 			"anim": "idle-alt",
 			"indices": [],
 			"name": "BF COOL idle dance ALT0"
+		},
+		{
+			"loop": false,
+			"offsets": [-227, -6],
+			"anim": "hey-alt",
+			"fps": 24,
+			"name": "BF COOL HEY!! ALT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-316, -23],
+			"anim": "singDOWN-beat",
+			"fps": 24,
+			"name": "BF BeatBox Down0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-316, -79],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "BF NOTE LEFT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-301, -26],
+			"anim": "singRIGHT-beat",
+			"fps": 24,
+			"name": "BF BeatBox Right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-328, -25],
+			"anim": "singUP-beat",
+			"fps": 24,
+			"name": "BF BeatBox Up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-327, -30],
+			"anim": "singLEFT-beat",
+			"fps": 24,
+			"name": "BF BeatBox Left0",
+			"indices": []
+		},
+		{
+			"offsets": [-129, 331],
+			"indices": [],
+			"fps": 24,
+			"anim": "pre-attack",
+			"loop": false,
+			"name": "BF Pre Attack0"
+		},
+		{
+			"offsets": [-129, 330],
+			"indices": [],
+			"fps": 24,
+			"anim": "attack",
+			"loop": false,
+			"name": "BF Attack0"
 		}
 	],
 	"vocals_file": "",
-	"noteSplashes": "jeys",
 	"no_antialiasing": false,
 	"image": "unlockable characters/Jey's_BF_Assets",
-	"position": [
-		-500,
-		0
-	],
-	"strumCovers": "jeys",
-	"noteAssets": "NOTE_assets_jeyzel",
+	"position": [-500, 0],
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "Jeysbf",
 	"flip_x": true,
-	"healthbar_colors": [
-		10,
-		109,
-		202
-	],
-	"camera_position": [
-		220,
-		90
-	],
-	"notePath": "torchs_assets",
+	"healthbar_colors": [10, 109, 202],
+	"camera_position": [220, 90],
+	"noteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"sing_duration": 7.5,
+	"hasAltColors": false,
 	"scale": 1,
 	"_editor_isPlayer": true
 }

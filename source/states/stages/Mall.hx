@@ -1,6 +1,7 @@
 package states.stages;
 
 import states.stages.objects.*;
+import torchsthings.shaders.AdjustColorShader;
 import cutscenes.CutsceneHandler;
 import objects.Character;
 
@@ -88,9 +89,18 @@ class Mall extends BaseStage
 	}
 
 	override function createPost()
-		{
+		{			
 			add(santa);
 			add(snowfallin);
+			super.createPost();
+			var colorShader = new AdjustColorShader();
+			colorShader.hue = 5;
+			colorShader.saturation = 20;
+
+			boyfriend.shader = colorShader;
+			gf.shader = colorShader;
+			dad.shader = colorShader;
+			santa.shader = colorShader;
 		}
 
 	override function countdownTick(count:Countdown, num:Int) everyoneDance();

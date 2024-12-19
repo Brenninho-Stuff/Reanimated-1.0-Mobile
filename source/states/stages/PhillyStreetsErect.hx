@@ -9,6 +9,7 @@ import torchsthings.shaders.*;
 import torchsfunctions.functions.ShaderUtils;
 import torchsthings.objects.ReflectedChar;
 import openfl.filters.ShaderFilter;
+import torchsthings.shaders.AdjustColorShader;
 
 class PhillyStreetsErect extends BaseStage
 {
@@ -167,6 +168,11 @@ class PhillyStreetsErect extends BaseStage
 
     override function createPost()
     {
+        super.createPost();
+        gf.shader = makeCoolShader(-5,-40,-25,-20);
+        dad.shader = makeCoolShader(-5,-40,-25,-20);
+        boyfriend.shader = makeCoolShader(-5,-40,-25,-20);
+
         if (useShader) 
         {
             rainFilter = new ShaderFilter(rain);
@@ -418,5 +424,13 @@ class PhillyStreetsErect extends BaseStage
                 car2Interruptable = true;
             }
         });
+    }
+    function makeCoolShader(hue:Float,sat:Float,bright:Float,contrast:Float) {
+        var coolShader = new AdjustColorShader();
+        coolShader.hue = hue;
+        coolShader.saturation = sat;
+        coolShader.brightness = bright;
+        coolShader.contrast = contrast;
+        return coolShader;
     }
 }

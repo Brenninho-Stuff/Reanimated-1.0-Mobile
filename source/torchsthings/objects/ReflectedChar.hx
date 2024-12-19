@@ -28,6 +28,10 @@ class ReflectedChar extends Character {
         switch (name) {
             case 'pico-player' | 'pico' | 'pico-playable' | 'pico-blazin':
                 return -65;
+            case 'jeys-bf':
+                return -270;
+            case 'jeys-pico':
+                return -285;
             case 'gf':
                 return -10;
             case 'bf-pixel-opponent':

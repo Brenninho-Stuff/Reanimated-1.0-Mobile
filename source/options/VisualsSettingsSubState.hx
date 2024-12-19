@@ -143,6 +143,12 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			STRING,
 			['Default', 'Arrow Funk', 'GF Dance', 'Zoom In And Out']);
 		addOption(option);
+
+		var option:Option = new Option('Smooth health bar',
+			'If enabled makes health bar move more smoothly',
+			'vsliceSmoothBar',
+			'bool');
+		addOption(option);
 		
 		var option:Option = new Option('Time Bar:',
 			"What should the Time Bar display?",

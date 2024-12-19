@@ -196,6 +196,7 @@ class PlayState extends MusicBeatState
 
 	public var gfSpeed:Int = 1;
 	public var health(default, set):Float = 1;
+	private var healthLerp:Float = 1;
 	public var combo:Int = 0;
 	var maxCombo:Int = 0;
 
@@ -567,7 +568,13 @@ class PlayState extends MusicBeatState
 		}
 		
 		//healthBar = new Bar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), 'healthBar', function() return health, 0, 2);
-		healthBar = new ImageBar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.85 /*0.88*/: 0.06 /*0.12*/), healthBars[0], healthBars[1], FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]), FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]), function() return health, 0, 2);
+		healthBar = new ImageBar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.85 /*0.88*/: 0.06 /*0.12*/), healthBars[0], healthBars[1], FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]), FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]), function() {
+			if(ClientPrefs.data.vsliceSmoothBar){
+				healthLerp = FlxMath.lerp(healthLerp, health, 0.15);
+				return healthLerp;
+			}
+			return health;
+		}, 0, 2);
 		healthBar.screenCenter(X);
 		healthBar.leftToRight = false;
 		healthBar.scrollFactor.set();
