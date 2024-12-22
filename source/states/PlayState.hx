@@ -1908,6 +1908,21 @@ class PlayState extends MusicBeatState
 				openCharacterEditor();
 		}
 
+		if(FlxG.keys.justPressed.SHIFT)
+			{
+				if(boyfriend.animOffsets.exists('hey')) {
+					boyfriend.playAnim('hey', true);
+					boyfriend.specialAnim = true;
+					boyfriend.heyTimer = 0.6;
+					gf.playAnim('cheer', true);
+					gf.specialAnim = true;
+					var num = FlxG.random.int(1,3);
+					var thesound = "heysound" + num;
+					FlxG.sound.play(Paths.sound(thesound));
+					trace(thesound);
+				}
+			}
+
 		if (healthBar.bounds.max != null && health > healthBar.bounds.max)
 			health = healthBar.bounds.max;
 
