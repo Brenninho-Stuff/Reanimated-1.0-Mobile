@@ -148,7 +148,7 @@ class PhillyStreetsErect extends BaseStage
         add(foreground);
 
         mistMid = new FlxBackdrop(Paths.image("phillyStreets/erect/mistMid"), X);
-        mistMid.setPosition(0, 375);
+        mistMid.setPosition(0, 395);
         mistMid.blend = ADD;
         mistMid.scrollFactor.set(0.9, 0.9);
         mistMid.scale.set(0.9, 0.9);

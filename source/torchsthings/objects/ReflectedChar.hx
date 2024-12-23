@@ -29,7 +29,7 @@ class ReflectedChar extends Character {
             case 'pico-player' | 'pico' | 'pico-playable' | 'pico-blazin':
                 return -65;
             case 'jeys-bf':
-                return -270;
+                return -225;
             case 'jeys-pico':
                 return -285;
             case 'gf':
