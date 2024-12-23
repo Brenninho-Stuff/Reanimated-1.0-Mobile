@@ -1419,11 +1419,17 @@ class PlayState extends MusicBeatState
 				swagNote.mustPress = gottaHitNote;
 				swagNote.sustainLength = holdLength;
 				swagNote.noteType = noteType;
+				if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled') {
+					swagNote.reloadNote(boyfriend.noteSkin, boyfriend.noteSkinLib);
+				} else if (dad.useNoteSkin && !gottaHitNote && ClientPrefs.data.characterNoteColors != 'Disabled') {
+					swagNote.reloadNote(dad.noteSkin, dad.noteSkinLib);
+				}
 				if (ClientPrefs.data.characterNoteColors != 'Disabled') {
 					switch (swagNote.noteData) {
 						case 0:
 							if (gottaHitNote) {
-								if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+								if (boyfriend.disableNoteRGB) swagNote.rgbShader.enabled = false;
+								else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 									swagNote.rgbShader.changeRGB(boyfriend.noteColors.left);
 									if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && boyfriend.hasAltColors) swagNote.rgbShader.changeRGB(boyfriend.altNoteColors.left);
 									else swagNote.rgbShader.changeRGB(boyfriend.noteColors.left);
@@ -1432,12 +1438,14 @@ class PlayState extends MusicBeatState
 								}
 							} else {
 								swagNote.rgbShader.changeRGB(dad.noteColors.left);
-								if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && dad.hasAltColors) swagNote.rgbShader.changeRGB(dad.altNoteColors.left);
+								if (dad.disableNoteRGB) swagNote.rgbShader.enabled = false;
+								else if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && dad.hasAltColors) swagNote.rgbShader.changeRGB(dad.altNoteColors.left);
 								else swagNote.rgbShader.changeRGB(dad.noteColors.left);
 							}
 						case 1:
 							if (gottaHitNote) {
-								if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+								if (boyfriend.disableNoteRGB) swagNote.rgbShader.enabled = false;
+								else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 									swagNote.rgbShader.changeRGB(boyfriend.noteColors.down);
 									if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && boyfriend.hasAltColors) swagNote.rgbShader.changeRGB(boyfriend.altNoteColors.down);
 									else swagNote.rgbShader.changeRGB(boyfriend.noteColors.down);
@@ -1446,12 +1454,14 @@ class PlayState extends MusicBeatState
 								}
 							} else {
 								swagNote.rgbShader.changeRGB(dad.noteColors.down);
-								if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && dad.hasAltColors) swagNote.rgbShader.changeRGB(dad.altNoteColors.down);
+								if (dad.disableNoteRGB) swagNote.rgbShader.enabled = false;
+								else if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && dad.hasAltColors) swagNote.rgbShader.changeRGB(dad.altNoteColors.down);
 								else swagNote.rgbShader.changeRGB(dad.noteColors.down);
 							}
 						case 2:
 							if (gottaHitNote) {
-								if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+								if (boyfriend.disableNoteRGB) swagNote.rgbShader.enabled = false;
+								else if (ClientPrefs.data.characterNoteColors == 'Enabled') {									
 									swagNote.rgbShader.changeRGB(boyfriend.noteColors.up);
 									if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && boyfriend.hasAltColors) swagNote.rgbShader.changeRGB(boyfriend.altNoteColors.up);
 									else swagNote.rgbShader.changeRGB(boyfriend.noteColors.up);
@@ -1460,12 +1470,14 @@ class PlayState extends MusicBeatState
 								}
 							} else {
 								swagNote.rgbShader.changeRGB(dad.noteColors.up);
-								if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && dad.hasAltColors) swagNote.rgbShader.changeRGB(dad.altNoteColors.up);
+								if (dad.disableNoteRGB) swagNote.rgbShader.enabled = false;
+								else if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && dad.hasAltColors) swagNote.rgbShader.changeRGB(dad.altNoteColors.up);
 								else swagNote.rgbShader.changeRGB(dad.noteColors.up);
 							}
 						case 3:
 							if (gottaHitNote) {
-								if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+									if (boyfriend.disableNoteRGB) swagNote.rgbShader.enabled = false;
+									else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 									swagNote.rgbShader.changeRGB(boyfriend.noteColors.right);
 									if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && boyfriend.hasAltColors) swagNote.rgbShader.changeRGB(boyfriend.altNoteColors.right);
 									else swagNote.rgbShader.changeRGB(boyfriend.noteColors.right);
@@ -1474,7 +1486,8 @@ class PlayState extends MusicBeatState
 								}
 							} else {
 								swagNote.rgbShader.changeRGB(dad.noteColors.right);
-								if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && dad.hasAltColors) swagNote.rgbShader.changeRGB(dad.altNoteColors.right);
+								if (dad.disableNoteRGB) swagNote.rgbShader.enabled = false;
+								else if ((swagNote.noteType == 'Alt Animation' || swagNote.animSuffix == '-alt') && dad.hasAltColors) swagNote.rgbShader.changeRGB(dad.altNoteColors.right);
 								else swagNote.rgbShader.changeRGB(dad.noteColors.right);
 							}
 					}
@@ -1497,11 +1510,18 @@ class PlayState extends MusicBeatState
 						sustainNote.gfNote = swagNote.gfNote;
 						sustainNote.noteType = swagNote.noteType;
 
+						if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled') {
+							sustainNote.reloadNote(boyfriend.noteSkin, boyfriend.noteSkinLib);
+						} else if (dad.useNoteSkin && !gottaHitNote && ClientPrefs.data.characterNoteColors != 'Disabled') {
+							sustainNote.reloadNote(dad.noteSkin, dad.noteSkinLib);
+						}
+
 						if (ClientPrefs.data.characterNoteColors != 'Disabled') {
 							switch (sustainNote.noteData) {
 								case 0:
 									if (gottaHitNote) {
-										if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+										if (boyfriend.disableNoteRGB) sustainNote.rgbShader.enabled = false;
+										else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 											sustainNote.rgbShader.changeRGB(boyfriend.noteColors.left);
 											if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && boyfriend.hasAltColors) sustainNote.rgbShader.changeRGB(boyfriend.altNoteColors.left);
 											else sustainNote.rgbShader.changeRGB(boyfriend.noteColors.left);
@@ -1510,12 +1530,14 @@ class PlayState extends MusicBeatState
 										}
 									} else {
 										sustainNote.rgbShader.changeRGB(dad.noteColors.left);
-										if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && dad.hasAltColors) sustainNote.rgbShader.changeRGB(dad.altNoteColors.left);
+										if (dad.disableNoteRGB) sustainNote.rgbShader.enabled = false;
+										else if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && dad.hasAltColors) sustainNote.rgbShader.changeRGB(dad.altNoteColors.left);
 										else sustainNote.rgbShader.changeRGB(dad.noteColors.left);
 									}
 								case 1:
 									if (gottaHitNote) {
-										if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+										if (boyfriend.disableNoteRGB) sustainNote.rgbShader.enabled = false;
+										else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 											sustainNote.rgbShader.changeRGB(boyfriend.noteColors.down);
 											if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && boyfriend.hasAltColors) sustainNote.rgbShader.changeRGB(boyfriend.altNoteColors.down);
 											else sustainNote.rgbShader.changeRGB(boyfriend.noteColors.down);
@@ -1524,12 +1546,14 @@ class PlayState extends MusicBeatState
 										}
 									} else {
 										sustainNote.rgbShader.changeRGB(dad.noteColors.down);
-										if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && dad.hasAltColors) sustainNote.rgbShader.changeRGB(dad.altNoteColors.down);
+										if (dad.disableNoteRGB) sustainNote.rgbShader.enabled = false;
+										else if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && dad.hasAltColors) sustainNote.rgbShader.changeRGB(dad.altNoteColors.down);
 										else sustainNote.rgbShader.changeRGB(dad.noteColors.down);
 									}
 								case 2:
 									if (gottaHitNote) {
-										if (ClientPrefs.data.characterNoteColors == 'Enabled') {
+										if (boyfriend.disableNoteRGB) sustainNote.rgbShader.enabled = false;
+										else if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 											sustainNote.rgbShader.changeRGB(boyfriend.noteColors.up);
 											if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && boyfriend.hasAltColors) sustainNote.rgbShader.changeRGB(boyfriend.altNoteColors.up);
 											else sustainNote.rgbShader.changeRGB(boyfriend.noteColors.up);
@@ -1538,13 +1562,14 @@ class PlayState extends MusicBeatState
 										}
 									} else {
 										sustainNote.rgbShader.changeRGB(dad.noteColors.up);
-										if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && dad.hasAltColors) sustainNote.rgbShader.changeRGB(dad.altNoteColors.up);
+										if (dad.disableNoteRGB) sustainNote.rgbShader.enabled = false;
+										else if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && dad.hasAltColors) sustainNote.rgbShader.changeRGB(dad.altNoteColors.up);
 										else sustainNote.rgbShader.changeRGB(dad.noteColors.up);
 									}
 								case 3:
 									if (gottaHitNote) {
-										if (ClientPrefs.data.characterNoteColors == 'Enabled') {
-											sustainNote.rgbShader.changeRGB(boyfriend.noteColors.right);
+										if (boyfriend.disableNoteRGB) sustainNote.rgbShader.enabled = false;
+										else if (ClientPrefs.data.characterNoteColors == 'Enabled') {											sustainNote.rgbShader.changeRGB(boyfriend.noteColors.right);
 											if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && boyfriend.hasAltColors) sustainNote.rgbShader.changeRGB(boyfriend.altNoteColors.right);
 											else sustainNote.rgbShader.changeRGB(boyfriend.noteColors.right);
 										} else if (ClientPrefs.data.characterNoteColors == 'Opponent Only') {
@@ -1552,7 +1577,8 @@ class PlayState extends MusicBeatState
 										}
 									} else {
 										sustainNote.rgbShader.changeRGB(dad.noteColors.right);
-										if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && dad.hasAltColors) sustainNote.rgbShader.changeRGB(dad.altNoteColors.right);
+										if (dad.disableNoteRGB) sustainNote.rgbShader.enabled = false;
+										else if ((sustainNote.noteType == 'Alt Animation' || sustainNote.animSuffix == '-alt') && dad.hasAltColors) sustainNote.rgbShader.changeRGB(dad.altNoteColors.right);
 										else sustainNote.rgbShader.changeRGB(dad.noteColors.right);
 									}
 							}
@@ -1685,6 +1711,20 @@ class PlayState extends MusicBeatState
 		callOnScripts('onEventPushed', [subEvent.event, subEvent.value1 != null ? subEvent.value1 : '', subEvent.value2 != null ? subEvent.value2 : '', subEvent.strumTime]);
 	}
 
+	function skinChosen(player:Int, lib:Bool):String {
+		if (ClientPrefs.data.characterNoteColors == 'Enabled' && player == 1 && boyfriend.useNoteSkin) {
+			if (lib) return boyfriend.noteSkinLib;
+			else return boyfriend.noteSkin;
+		} else if (ClientPrefs.data.characterNoteColors != 'Disabled' && player == 0 && dad.useNoteSkin) {
+			if (lib) return dad.noteSkinLib;
+			else return dad.noteSkin;
+		} else {
+			if (lib) return 'shared';
+			else return 'noteSkins/NOTE_assets' + Note.getNoteSkinPostfix();
+		}
+	}
+
+
 	public var skipArrowStartTween:Bool = false; //for lua
 	private function generateStaticArrows(player:Int):Void
 	{
@@ -1700,7 +1740,7 @@ class PlayState extends MusicBeatState
 				else if(ClientPrefs.data.middleScroll) targetAlpha = 0.35;
 			}
 
-			var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, i, player);
+			var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, i, player, skinChosen(player, false), skinChosen(player, true));
 			var strumCover:StrumCover = new StrumCover(babyArrow);
 			babyArrow.downScroll = ClientPrefs.data.downScroll;
 			if (!isStoryMode && !skipArrowStartTween)
@@ -1713,19 +1753,23 @@ class PlayState extends MusicBeatState
 
 			if (player == 1) {
 				if (ClientPrefs.data.characterNoteColors == 'Enabled') {
-					switch (i) {
-						case 0:
-							babyArrow.rgbShader.changeRGB(boyfriend.noteColors.left);
-							strumCover.rgbShader.changeRGB(boyfriend.noteColors.left);
-						case 1:
-							babyArrow.rgbShader.changeRGB(boyfriend.noteColors.down);
-							strumCover.rgbShader.changeRGB(boyfriend.noteColors.down);
-						case 2:
-							babyArrow.rgbShader.changeRGB(boyfriend.noteColors.up);
-							strumCover.rgbShader.changeRGB(boyfriend.noteColors.up);
-						case 3:
-							babyArrow.rgbShader.changeRGB(boyfriend.noteColors.right);
-							strumCover.rgbShader.changeRGB(boyfriend.noteColors.right);
+					if (boyfriend.disableNoteRGB) {
+						babyArrow.disableRGB = true;
+					} else {
+						switch (i) {
+							case 0:
+								babyArrow.rgbShader.changeRGB(boyfriend.noteColors.left);
+								strumCover.rgbShader.changeRGB(boyfriend.noteColors.left);
+							case 1:
+								babyArrow.rgbShader.changeRGB(boyfriend.noteColors.down);
+								strumCover.rgbShader.changeRGB(boyfriend.noteColors.down);
+							case 2:
+								babyArrow.rgbShader.changeRGB(boyfriend.noteColors.up);
+								strumCover.rgbShader.changeRGB(boyfriend.noteColors.up);
+							case 3:
+								babyArrow.rgbShader.changeRGB(boyfriend.noteColors.right);
+								strumCover.rgbShader.changeRGB(boyfriend.noteColors.right);
+						}
 					}
 					babyArrow.rgbShader.enabled = false;
 				}
@@ -1741,24 +1785,29 @@ class PlayState extends MusicBeatState
 					}
 				}
 				if (ClientPrefs.data.characterNoteColors != 'Disabled') {
-					switch (i) {
-						case 0:
-							babyArrow.rgbShader.changeRGB(dad.noteColors.left);
-							strumCover.rgbShader.changeRGB(dad.noteColors.left);
-						case 1:
-							babyArrow.rgbShader.changeRGB(dad.noteColors.down);
-							strumCover.rgbShader.changeRGB(dad.noteColors.down);
-						case 2:
-							babyArrow.rgbShader.changeRGB(dad.noteColors.up);
-							strumCover.rgbShader.changeRGB(dad.noteColors.up);
-						case 3:
-							babyArrow.rgbShader.changeRGB(dad.noteColors.right);
-							strumCover.rgbShader.changeRGB(dad.noteColors.right);
+					if (dad.disableNoteRGB) {
+						babyArrow.disableRGB = true;
+					} else {
+						switch (i) {
+							case 0:
+								babyArrow.rgbShader.changeRGB(dad.noteColors.left);
+								strumCover.rgbShader.changeRGB(dad.noteColors.left);
+							case 1:
+								babyArrow.rgbShader.changeRGB(dad.noteColors.down);
+								strumCover.rgbShader.changeRGB(dad.noteColors.down);
+							case 2:
+								babyArrow.rgbShader.changeRGB(dad.noteColors.up);
+								strumCover.rgbShader.changeRGB(dad.noteColors.up);
+							case 3:
+								babyArrow.rgbShader.changeRGB(dad.noteColors.right);
+								strumCover.rgbShader.changeRGB(dad.noteColors.right);
+						}
 					}
 
 					babyArrow.rgbShader.enabled = false;
 				}
 				opponentStrums.add(babyArrow);
+				//if (dad.useNoteSkin && dad.disableNoteRGB) babyArrow.rgbShader.enabled = false;
 				opponentCovers.add(strumCover);
 			}
 
