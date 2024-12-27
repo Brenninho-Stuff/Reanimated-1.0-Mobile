@@ -23,6 +23,9 @@ class StageWeek1 extends BaseStage
 	//var reflectedDad:ReflectedChar;
 	override function create()
 	{
+		ratingPos.set(850, 450);
+        comboCountPos.set(750, 600);
+
 		offsetState = Std.isOfType(FlxG.state, options.NoteOffsetState);
 		var bg:BGSprite = new BGSprite('rework/stageback', -850, -580, 0.9, 0.9);
 		bg.setGraphicSize(Std.int(bg.width * 2.3));

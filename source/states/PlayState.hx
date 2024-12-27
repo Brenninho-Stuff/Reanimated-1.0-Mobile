@@ -12,12 +12,14 @@ import flixel.FlxSubState;
 import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
 import flixel.util.FlxSave;
+import flixel.util.FlxGradient;
 import flixel.input.keyboard.FlxKey;
 import flixel.animation.FlxAnimationController;
 import lime.utils.Assets;
 import openfl.utils.Assets as OpenFlAssets;
 import openfl.events.KeyboardEvent;
 import haxe.Json;
+import tjson.TJSON;
 
 import cutscenes.DialogueBoxPsych;
 
@@ -113,6 +115,17 @@ class PlayState extends MusicBeatState
 	public var songSpeed(default, set):Float = 1;
 	public var songSpeedType:String = "multiplicative";
 	public var noteKillOffset:Float = 350;
+
+	//Credits
+	public var creditsGroup:FlxSpriteGroup;
+	public var creditsDisk:FlxSprite;
+	public var creditsArtist:FlxText;
+	public var creditsCharter:FlxText;
+	public var creditsSongTitle:FlxText;
+	public var creditsBG:FlxSprite;
+	public var creditsFrontBG:FlxSprite;
+	public var creditsIconP:HealthIcon;
+	public var creditsIconEn:HealthIcon;
 
 	//Health Drain Event
 	public var healthDraining:Float;
@@ -256,7 +269,7 @@ class PlayState extends MusicBeatState
 	private var singAnimations:Array<String> = ['singLEFT', 'singDOWN', 'singUP', 'singRIGHT'];
 
 	public var inCutscene:Bool = false;
-	public var skipCountdown:Bool = false;
+	public var skipCountdown:Bool = ClientPrefs.data.skipCountdown;
 	var songLength:Float = 0;
 
 	public var boyfriendCameraOffset:Array<Float> = null;
@@ -405,10 +418,13 @@ class PlayState extends MusicBeatState
 		switch (curStage)
 		{
 			case 'stage': new StageWeek1(); 			//Week 1
+			case "stageErect": new StageErect();		//Week 1 - Erect
 			case 'spooky': new Spooky();				//Week 2
 			case 'philly': new Philly();				//Week 3
 			case 'limo': new Limo();					//Week 4
+			case "limoErect": new LimoErect();			//Week 4 - Erect
 			case 'mall': new Mall();					//Week 5 - Cocoa, Eggnog
+			case 'mallErect': new MallErect();			//Week 5 - Erect
 			case 'mallEvil': new MallEvil();			//Week 5 - Winter Horrorland
 			case 'school': new School();				//Week 6 - Senpai, Roses
 			case 'schoolEvil': new SchoolEvil();		//Week 6 - Thorns
@@ -417,7 +433,6 @@ class PlayState extends MusicBeatState
 			case 'phillyBlazin': new PhillyBlazin();	//Weekend 1 - Blazin
 			case "phillyStreetsErect": new PhillyStreetsErect(); //Weekend 1 bf mix - Erect
 			case 'wait': new Wait();					//Wait - CG5 Best Song
-			case "week1erect": new Week1Erect();		//Week 1 - Erect
 		}	
 		if(isPixelStage) introSoundsSuffix = '-pixel';
 
@@ -502,6 +517,8 @@ class PlayState extends MusicBeatState
 		uiGroup = new FlxSpriteGroup();
 		comboGroup = new FlxSpriteGroup();
 		noteGroup = new FlxTypedGroup<FlxBasic>();
+		creditsGroup = new FlxSpriteGroup();
+		add(creditsGroup);
 		add(comboGroup);
 		add(uiGroup);
 		add(noteGroup);
@@ -616,7 +633,85 @@ class PlayState extends MusicBeatState
 
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
-		comboGroup.cameras = [camHUD];
+		//comboGroup.cameras = [camHUD];
+		creditsGroup.cameras = [camOther];
+
+		// Below didn't work so I shall give it a fix
+		//var path = File.getContent(Paths.json(songName + '/credits')); 
+		var path = "";
+		if (FileSystem.exists(Paths.json(songName + '/credits'))) {
+			path = File.getContent(Paths.json(songName + '/credits'));
+		} 
+		#if MODS_ALLOWED
+		else 
+		if (FileSystem.exists(Paths.modsJson(songName + '/credits'))){
+			path = File.getContent(Paths.modsJson(songName + '/credits'));
+		}
+		#end
+		else {
+			path = '
+			{
+				"artist": "Unknown",
+				"charter": "Unknown"
+			}
+			';		
+		}
+
+		var jsonObj = tjson.TJSON.parse(path);
+
+		//creditsBG = new FlxSprite(-2500, 300).loadGraphic(Paths.image('rectangulofeo')).makeGraphic(2400, 170);
+		//creditsBG.color = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
+		var dadColor:FlxColor = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
+		var bfColor:FlxColor = FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]);
+		creditsBG = FlxGradient.createGradientFlxSprite(2400, 170, [dadColor, dadColor, bfColor, bfColor, bfColor], 1, 0, false); // 2:3 ratio to make it look better
+		creditsBG.x = -2500;
+		creditsBG.y = 300;
+		creditsFrontBG = new FlxSprite(-2500, 300);
+		creditsFrontBG.makeGraphic(2400, 150, FlxColor.BLACK);
+
+		creditsDisk = new FlxSprite(-1175, 300).loadGraphic(Paths.image("disk"));
+		creditsDisk.setGraphicSize(Std.int(creditsDisk.width * 0.65));
+
+		var textX:Int = -575;
+		var creditsTextSize:Int = 25;
+
+		creditsSongTitle = new FlxText(textX, 330);
+		creditsSongTitle.text = "Now Playing  :  " + curSong;
+		creditsSongTitle.setFormat(Paths.font(isPixelStage ? "pixel.otf" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		creditsSongTitle.size = creditsTextSize;
+
+		creditsArtist = new FlxText(textX, creditsSongTitle.y + 40);
+		creditsArtist.text = "By: " + jsonObj.artist;
+		creditsArtist.setFormat(Paths.font(isPixelStage ? "pixel.otf" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		creditsArtist.size = creditsTextSize;
+
+		creditsCharter = new FlxText(textX, creditsArtist.y + 40);
+		creditsCharter.text = "Charter: " + jsonObj.charter;
+		creditsCharter.setFormat(Paths.font(isPixelStage ? "pixel.otf" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		creditsCharter.size = creditsTextSize;
+
+		creditsIconP = new HealthIcon(boyfriend.healthIcon, false);
+		creditsIconP.flipX = true;
+		creditsIconP.setGraphicSize(Std.int(creditsIconP.width * 0.65));
+		//creditsIconP.setGraphicSize(0.4, 0.4);
+		creditsIconP.x = -170;
+		creditsIconP.y = 315;
+
+		creditsIconEn = new HealthIcon(dad.healthIcon, false);
+		creditsIconEn.setGraphicSize(Std.int(creditsIconEn.width * 0.65));
+		//creditsIconEn.setGraphicSize(0.4, 0.4);
+		creditsIconEn.x = -170;
+		creditsIconEn.y = 315; 
+
+		creditsGroup.add(creditsBG);
+		creditsGroup.add(creditsFrontBG);
+		creditsGroup.add(creditsDisk);
+		creditsGroup.add(creditsIconP);
+		creditsGroup.add(creditsIconEn);
+		creditsGroup.add(creditsArtist);
+		creditsGroup.add(creditsSongTitle);
+		creditsGroup.add(creditsCharter);
+		creditsGroup.visible = ClientPrefs.data.showSongCredits;
 
 		startingSong = true;
 
@@ -679,6 +774,7 @@ class PlayState extends MusicBeatState
 
 		stagesFunc(function(stage:BaseStage) stage.createPost());
 		callOnScripts('onCreatePost');
+		
 		
 		var splash:NoteSplash = new NoteSplash();
 		grpNoteSplashes.add(splash);
@@ -975,6 +1071,7 @@ class PlayState extends MusicBeatState
 	var finishTimer:FlxTimer = null;
 
 	// For being able to mess with the sprites on Lua
+	public var countdownThree:FlxSprite;
 	public var countdownReady:FlxSprite;
 	public var countdownSet:FlxSprite;
 	public var countdownGo:FlxSprite;
@@ -1048,9 +1145,9 @@ class PlayState extends MusicBeatState
 
 				var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
 				var introImagesArray:Array<String> = switch(stageUI) {
-					case "pixel": ['pixelUI/ready-pixel', 'pixelUI/set-pixel', 'pixelUI/date-pixel'];
-					case "normal": ["ready", "set" ,"go"];
-					default: ['${uiPrefix}UI/ready${uiPostfix}', '${uiPrefix}UI/set${uiPostfix}', '${uiPrefix}UI/go${uiPostfix}'];
+					case "pixel": ['${stageUI}UI/ready-pixel', '${stageUI}UI/set-pixel', '${stageUI}UI/date-pixel', '${stageUI}UI/three-pixel'];
+					case "normal": ["ready", "set" ,"go", "three"];
+					default: ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go', '${stageUI}UI/three'];
 				}
 				introAssets.set(stageUI, introImagesArray);
 
@@ -1061,6 +1158,7 @@ class PlayState extends MusicBeatState
 				switch (swagCounter)
 				{
 					case 0:
+						countdownThree = createCountdownSprite(introAlts[3], antialias);
 						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
 						tick = THREE;
 					case 1:
@@ -2192,8 +2290,20 @@ class PlayState extends MusicBeatState
 		var newPercent:Null<Float> = FlxMath.remapToRange(FlxMath.bound(healthBar.valueFunction(), healthBar.bounds.min, healthBar.bounds.max), healthBar.bounds.min, healthBar.bounds.max, 0, 100);
 		healthBar.percent = (newPercent != null ? newPercent : 0);
 
-		iconP1.animation.curAnim.curFrame = (healthBar.percent < 20) ? 1 : 0; //If health is under 20%, change player icon to frame 1 (losing icon), otherwise, frame 0 (normal)
-		iconP2.animation.curAnim.curFrame = (healthBar.percent > 80) ? 1 : 0; //If health is over 80%, change opponent icon to frame 1 (losing icon), otherwise, frame 0 (normal)
+		if (healthBar.percent < 30) // Player Losing
+			iconP1.animation.curAnim.curFrame = healthBar.leftToRight ? 2 : 1;
+		else if (healthBar.percent > 75) // Player Winning
+			iconP1.animation.curAnim.curFrame = healthBar.leftToRight ? 1 : 2;
+		else
+			iconP1.animation.curAnim.curFrame = 0;
+
+		if (healthBar.percent > 75) // Enemy Losing
+			iconP2.animation.curAnim.curFrame = healthBar.leftToRight ? 2 : 1;
+		else if (healthBar.percent < 30) // Enemy Winning
+			iconP2.animation.curAnim.curFrame = healthBar.leftToRight ? 1 : 2;
+		else
+			iconP2.animation.curAnim.curFrame = 0;
+		
 		return health;
 	}
 
@@ -2277,6 +2387,8 @@ class PlayState extends MusicBeatState
 				FlxG.animationTimeScale = 1;
 				boyfriend.stunned = true;
 				deathCounter++;
+
+				creditsGroup.visible = false;
 
 				paused = true;
 				canResync = false;
@@ -3036,8 +3148,13 @@ class PlayState extends MusicBeatState
 		rating.velocity.y -= FlxG.random.int(140, 175) * playbackRate;
 		rating.velocity.x -= FlxG.random.int(0, 10) * playbackRate;
 		rating.visible = (!ClientPrefs.data.hideHud && showRating);
-		rating.x += ClientPrefs.data.comboOffset[0];
-		rating.y -= ClientPrefs.data.comboOffset[1];
+		var tempPoint:FlxPoint = new FlxPoint(0, 0);
+		stagesFunc(function(stage:BaseStage) {
+			tempPoint.x = stage.ratingPos.x;
+			tempPoint.y = stage.ratingPos.y;
+		});
+		if (tempPoint.x != 0) rating.x = tempPoint.x; else rating.x += ClientPrefs.data.comboOffset[0];
+		if (tempPoint.y != 0) rating.y = tempPoint.y; else rating.y -= ClientPrefs.data.comboOffset[1];
 		rating.antialiasing = antialias;
 
 		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(uiFolder + 'combo' + uiPostfix));
@@ -3075,10 +3192,16 @@ class PlayState extends MusicBeatState
 		var separatedScore:String = Std.string(combo).lpad('0', 3);
 		for (i in 0...separatedScore.length)
 		{
+			var comboPoint:FlxPoint = new FlxPoint(0, 0);
+			stagesFunc(function(stage:BaseStage) {
+				comboPoint.x = stage.comboCountPos.x;
+				comboPoint.y = stage.comboCountPos.y;
+			});
+
 			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(uiFolder + 'num' + Std.parseInt(separatedScore.charAt(i)) + uiPostfix));
 			numScore.screenCenter();
-			numScore.x = placement + (43 * daLoop) - 90 + ClientPrefs.data.comboOffset[2];
-			numScore.y += 80 - ClientPrefs.data.comboOffset[3];
+			if (comboPoint.x != 0) numScore.x = (43 * daLoop) + comboPoint.x; else numScore.x = placement + (43 * daLoop) - 90 + ClientPrefs.data.comboOffset[2];
+			if (comboPoint.y != 0) numScore.y = comboPoint.y; else numScore.y += 80 - ClientPrefs.data.comboOffset[3];
 
 			if (!PlayState.isPixelStage) numScore.setGraphicSize(Std.int(numScore.width * 0.5));
 			else numScore.setGraphicSize(Std.int(numScore.width * daPixelZoom));
@@ -3808,6 +3931,57 @@ class PlayState extends MusicBeatState
 	var lastStepHit:Int = -1;
 	override function stepHit()
 	{
+
+		switch(curStep)
+		{
+			case 3:
+				FlxTween.tween(creditsBG, {x: -120}, 2.6, {ease:FlxEase.expoOut});
+				FlxTween.tween(creditsFrontBG, {x: -100}, 3.1, {ease:FlxEase.expoOut});
+				creditsIconEn.angle = 15;
+				creditsIconP.angle = -15;
+				FlxTween.tween(creditsIconP, {x: 1095}, 2, {ease:FlxEase.expoOut});	
+				FlxTween.tween(creditsDisk, {x: 390}, 2.6, {ease:FlxEase.expoOut});
+				FlxTween.tween(creditsDisk, {angle: 2000}, 15, 
+				{   ease:FlxEase.expoOut, 
+					onComplete: 
+					function(twn:FlxTween)
+					{
+						remove(creditsGroup);
+					}
+				});
+				FlxTween.tween(creditsSongTitle, {x: 530}, 2.6, {ease:FlxEase.expoOut});
+				FlxTween.tween(creditsArtist, {x: 530}, 2.6, {ease:FlxEase.expoOut});
+				FlxTween.tween(creditsCharter, {x: 530}, 2.6, {ease:FlxEase.expoOut});
+			case 7:
+				FlxTween.tween(creditsIconEn, {x: 30}, 2.3, {ease: FlxEase.expoOut});
+			case 25:
+				FlxTween.tween(creditsIconP, {x: 2075}, 2.1, {ease:FlxEase.expoIn});
+			case 26:
+				FlxTween.tween(creditsBG, {x: 1400}, 2.3, {ease:FlxEase.expoIn});
+				FlxTween.tween(creditsFrontBG, {x: 1400}, 2.6, {ease:FlxEase.expoIn});
+				FlxTween.tween(creditsIconEn, {x: 2075}, 2.1, {ease:FlxEase.expoIn});
+				FlxTween.tween(creditsDisk, {x: 2075}, 1.9, {ease:FlxEase.expoIn});
+				FlxTween.tween(creditsSongTitle, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
+				FlxTween.tween(creditsArtist, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
+				FlxTween.tween(creditsCharter, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
+			}
+
+			if(curStep % 2 == 0)
+			{
+				if (creditsIconP.angle == -15)
+				{
+					creditsIconP.angle = 15;
+					creditsIconEn.angle = -15;
+				}
+				else
+				{
+					if(creditsIconP.angle == 15)
+					{
+						creditsIconP.angle = -15;
+						creditsIconEn.angle = 15;
+					}
+				}	
+		}
 		super.stepHit();
 
 		if(curStep == lastStepHit) {

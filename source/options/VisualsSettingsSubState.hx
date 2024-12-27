@@ -137,6 +137,18 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			BOOL);
 		addOption(option);
 
+		var option:Option = new Option('Show Credits',
+			'Uncheck this if you dont want to see the credits on song start',
+			'showSongCredits',
+			'bool');
+		addOption(option);
+
+		var option:Option = new Option('Skip CountDown',
+		'if checked, skips the countdown in song start',
+		'skipCountdown',
+		'bool');
+		addOption(option);
+
 		var option:Option = new Option('Icons Dance:',
 			"What should icon movement styles be like??",
 			'iconAnim',

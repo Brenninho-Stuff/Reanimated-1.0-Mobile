@@ -1,8 +1,11 @@
 package states.stages;
 
 import states.stages.objects.*;
+import torchsthings.shaders.AdjustColorShader;
+import flash.display.BlendMode;
+import flixel.addons.display.FlxBackdrop;
 
-enum HenchmenKillState
+enum HenchmenKillState1
 {
 	WAIT;
 	KILLING;
@@ -11,16 +14,15 @@ enum HenchmenKillState
 	STOPPING;
 }
 
-class Limo extends BaseStage
+class LimoErect extends BaseStage
 {
-
 	var limoStreet:BGSprite;
 	var grpLimoDancers:FlxTypedGroup<BackgroundDancer>;
 	var fastCar:BGSprite;
 	var fastCarCanDrive:Bool = true;
 
 	// event
-	var limoKillingState:HenchmenKillState = WAIT;
+	var limoKillingState:HenchmenKillState1 = WAIT;
 	var limoMetalPole:BGSprite;
 	var skyBG:BGSprite;
 	var limoLight:BGSprite;
@@ -30,13 +32,40 @@ class Limo extends BaseStage
 	var grpLimoParticles:FlxTypedGroup<BGSprite>;
 	var dancersDiff:Float = 320;
 
+    // Erect
+    var colorShader:AdjustColorShader;
+	var mist1:FlxBackdrop;
+	var mist2:FlxBackdrop;
+	var mist3:FlxBackdrop;
+	var mist4:FlxBackdrop;
+	var mist5:FlxBackdrop;
+
+	var shootingStarBeat:Int = 0;
+	var shootingStarOffset:Int = 2;
+	var star:BGSprite;
+
 	override function create()
 	{
 		ratingPos.set(750, 300);
         comboCountPos.set(650, 450);
 
-		skyBG = new BGSprite('limo/limoSunset', -2700, -300, 0.1, 0.1);
+		skyBG = new BGSprite('limo/erect/limoSunset', -200, -270, 0.1, 0.1);
+        skyBG.scale.set(1.3, 1);
 		add(skyBG);
+
+        star = new BGSprite('limo/erect/shooting star', 200, 0, 1, 1, ['shooting star']);
+		star.blend = BlendMode.ADD;
+		add(star);
+
+        {
+			colorShader = new AdjustColorShader();
+			colorShader.hue = -30;
+			colorShader.saturation = -20;
+			colorShader.contrast = 0;
+			colorShader.brightness = -30;
+		}
+		makeMists();
+		add(mist5);
 
 		limoStreet = new BGSprite('limo/street', -800, 270, 0.4, 0.4, ['COOLROAD'], true);
 		add(limoStreet);
@@ -45,7 +74,7 @@ class Limo extends BaseStage
 			limoMetalPole = new BGSprite('gore/metalPole', -500, 220, 0.4, 0.4);
 			add(limoMetalPole);
 
-			bgLimo = new BGSprite('limo/bgLimo', -150, 480, 0.4, 0.4, ['BG limo'], true);
+			bgLimo = new BGSprite('limo/erect/bgLimo', -150, 480, 0.4, 0.4, ['background limo blue0'], true);
 			FlxTween.tween(bgLimo, {x: bgLimo.x + 150}, 6, {ease: FlxEase.quadInOut, type: PINGPONG});
 			FlxTween.tween(bgLimo, {x: bgLimo.x + -100}, 6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
 			add(bgLimo);
@@ -92,21 +121,96 @@ class Limo extends BaseStage
 		fastCar = new BGSprite('limo/fastCarLol', -300, 220);
 		fastCar.active = true;
 	}
+
+    function makeMists()
+        {
+            mist1 = new FlxBackdrop(Paths.image('limo/erect/mistMid'), X);
+            mist1.setPosition(-650, -100);
+            mist1.scrollFactor.set(1.1, 1.1);
+            //mist1.zIndex = 400;
+            mist1.blend = ADD;
+            mist1.color = 0xFFc6bfde;
+            mist1.alpha = 0.4;
+            mist1.velocity.x = 1700;
+    
+            mist2 = new FlxBackdrop(Paths.image('limo/erect/mistBack'), X);
+            mist2.setPosition(-650, -100);
+            mist2.scrollFactor.set(1.2, 1.2);
+            //mist2.zIndex = 401;
+            mist2.blend = ADD;
+            mist2.color = 0xFF6a4da1;
+            mist2.alpha = 1;
+            mist2.velocity.x = 2100;
+            mist1.scale.set(1.3, 1.3);
+    
+            mist3 = new FlxBackdrop(Paths.image('limo/erect/mistMid'), X);
+            mist3.setPosition(-650, -100);
+            mist3.scrollFactor.set(0.8, 0.8);
+            //mist3.zIndex = 99;
+            mist3.blend = ADD;
+            mist3.color = 0xFFa7d9be;
+            mist3.alpha = 0.5;
+            mist3.velocity.x = 900;
+            mist3.scale.set(1.5, 1.5);
+    
+    
+            mist4 = new FlxBackdrop(Paths.image('limo/erect/mistBack'), X);
+            mist4.setPosition(-650, -100);
+            mist4.scrollFactor.set(0.6, 0.6);
+            //mist4.zIndex = 98;
+            mist4.blend = ADD;
+            mist4.color = 0xFF9c77c7;
+            mist4.alpha = 1;
+            mist4.velocity.x = 700;
+            mist4.scale.set(1.5, 1.5);
+    
+            mist5 = new FlxBackdrop(Paths.image('limo/erect/mistMid'), X);
+            mist5.setPosition(-650, -400);
+            mist5.scrollFactor.set(0.2, 0.2);
+            //mist5.zIndex = 15;
+            mist5.blend = ADD;
+            mist5.color = 0xFFE7A480;
+            mist5.alpha = 1;
+            mist5.velocity.x = 100;
+            mist5.scale.set(1.5, 1.5);
+        }
 	override function createPost()
 	{
+		add(mist4);
+		add(mist3);
+		
 		resetFastCar();
 		addBehindGF(fastCar);
 		
-		var limo:BGSprite = new BGSprite('limo/limoDrive', -460, 590, 1, 1, ['Limo stage'], true);
+		var limo:BGSprite = new BGSprite('limo/erect/limoDrive', -460, 590, 1, 1, ['Limo stage'], true);
 		limo.setGraphicSize(Std.int(limo.width * 1.2));
 		limo.updateHitbox();
 		addBehindGF(limo); //Shitty layering but whatev it works LOL
+        {
+            grpLimoDancers.forEach(s -> s.shader = colorShader);
+			limoStreet.shader = colorShader;
+			fastCar.shader = colorShader;
+			gf.shader = colorShader;
+			dad.shader = colorShader;
+			boyfriend.shader = colorShader;
+                
+         }
 	}
 
 	var limoSpeed:Float = 0;
+    var _timer:Float = 0;
+
 	override function update(elapsed:Float)
 	{
+        _timer += elapsed;
+        mist1.y = 100 + (Math.sin(_timer)*200);
+        mist2.y = 0 + (Math.sin(_timer*0.8)*100);
+        mist3.y = -20 + (Math.sin(_timer*0.5)*200);
+        mist4.y = -180 + (Math.sin(_timer*0.4)*100);
+        mist5.y = -450 + (Math.sin(_timer*0.2)*150);
+        
 		if(!ClientPrefs.data.lowQuality) {
+            
 			grpLimoParticles.forEach(function(spr:BGSprite) {
 				if(spr.animation.curAnim.finished) {
 					spr.kill();
@@ -187,7 +291,6 @@ class Limo extends BaseStage
 
 			}*/
 
-			skyBG.x += 0.020;
 		}
 
 		var dancers:Array<BackgroundDancer> = grpLimoDancers.members;
@@ -211,7 +314,11 @@ class Limo extends BaseStage
 
 		if (FlxG.random.bool(10) && fastCarCanDrive)
 			fastCarDrive();
-	}
+        if (FlxG.random.bool(10) && curBeat > (shootingStarBeat + shootingStarOffset))
+            {
+                doShootingStar(curBeat);
+            }
+	    }
 	
 	// Substates for pausing/resuming tweens and timers
 	override function closeSubState()
@@ -246,7 +353,19 @@ class Limo extends BaseStage
 			dancers[i].x = (370 * i) + dancersDiff + bgLimo.x;
 		}
 	}
-	
+
+    function doShootingStar(beat:Int):Void
+        {
+            star.x = FlxG.random.int(50, 900);
+            star.y = FlxG.random.int(-10, 20);
+            star.flipX = FlxG.random.bool(50);
+            star.animation.play('shooting star');
+    
+            shootingStarBeat = beat;
+            shootingStarOffset = FlxG.random.int(4, 8);
+        }
+    
+
 	function resetLimoKill():Void
 	{
 		limoMetalPole.x = -500;
@@ -276,7 +395,7 @@ class Limo extends BaseStage
 		fastCar.velocity.x = (FlxG.random.int(170, 220) / FlxG.elapsed) * 3;
 		fastCarCanDrive = false;
 		carTimer = new FlxTimer().start(2, function(tmr:FlxTimer)
-		{
+            {
 			resetFastCar();
 			carTimer = null;
 		});

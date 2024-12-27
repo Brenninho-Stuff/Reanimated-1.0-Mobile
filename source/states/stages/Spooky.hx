@@ -6,6 +6,9 @@ class Spooky extends BaseStage
 	var halloweenWhite:BGSprite;
 	override function create()
 	{
+		ratingPos.set(750, 600);
+        comboCountPos.set(650, 750);
+
 		if(!ClientPrefs.data.lowQuality) {
 			halloweenBG = new BGSprite('halloween_bg', -500, -190, ['halloweem bg0', 'halloweem bg lightning strike']);
 			halloweenBG.setGraphicSize(Std.int(1.3 * halloweenBG.width));

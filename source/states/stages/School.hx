@@ -17,6 +17,10 @@ class School extends BaseStage
 	var shaderFilter:ShaderFilter;
 	override function create()
 	{
+
+		ratingPos.set(500, 600);
+        comboCountPos.set(400, 750);
+
 		var _song = PlayState.SONG;
 		if(_song.gameOverSound == null || _song.gameOverSound.trim().length < 1) GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
 		if(_song.gameOverLoop == null || _song.gameOverLoop.trim().length < 1) GameOverSubstate.loopSoundName = 'gameOver-pixel';

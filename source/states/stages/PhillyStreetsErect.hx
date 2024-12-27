@@ -49,6 +49,9 @@ class PhillyStreetsErect extends BaseStage
 
     override function create() {
 
+        ratingPos.set(1400, 800);
+		comboCountPos.set(1300, 950);
+
 		if (ClientPrefs.data.shaders) rain = new Rain();
 
         //Adding Stage Objects

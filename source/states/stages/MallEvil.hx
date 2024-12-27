@@ -8,6 +8,9 @@ class MallEvil extends BaseStage
 
 	override function create()
 	{
+		ratingPos.set(850, 450);
+        comboCountPos.set(750, 600);
+		
 		var bg:BGSprite = new BGSprite('christmas/EvilMall/evilbgWalls', -1150, -850, 0.2, 0.2);
 		bg.setGraphicSize(Std.int(bg.width * 1.8));
 		bg.updateHitbox();

@@ -16,6 +16,9 @@ class Tank extends BaseStage
 
 	override function create()
 	{
+		ratingPos.set(550, 500);
+        comboCountPos.set(450, 650);
+
 		var sky:BGSprite = new BGSprite('tankSky', -500, -400, 0, 0);
 		sky.setGraphicSize(Std.int(1.2 * sky.width));
 		sky.updateHitbox();
