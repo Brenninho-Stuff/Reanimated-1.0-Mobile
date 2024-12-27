@@ -1,0 +1,136 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [0, 0],
+			"anim": "idle",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [23, 28],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [13, -45],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-15, 40],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-10, 15],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [22, 26],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "failleft0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [14, -46],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "faildown0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-10, 42],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "failup0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-12, 21],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "failright0",
+			"indices": []
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"useNoteSkin": false,
+	"image": "unlockable characters/bfAndGF-hev",
+	"position": [10, 330],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
+	"healthicon": "hev",
+	"flip_x": true,
+	"healthbar_colors": [0, 233, 255],
+	"disableNoteRGB": false,
+	"camera_position": [80, -10],
+	"noteSkin": "",
+	"noteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
+	"sing_duration": 4,
+	"hasAltColors": false,
+	"scale": 1,
+	"_editor_isPlayer": true
+}

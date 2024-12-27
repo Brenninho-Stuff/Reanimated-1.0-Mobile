@@ -27,6 +27,7 @@ class StageErect extends BaseStage
 
         ratingPos.set(850, 450);
         comboCountPos.set(750, 600);
+		comboImage.set( 0, 550);
 
         offsetState = Std.isOfType(FlxG.state, options.NoteOffsetState);
         background = new BGSprite('rework/Erect/background', 989, -370, 1, 1);

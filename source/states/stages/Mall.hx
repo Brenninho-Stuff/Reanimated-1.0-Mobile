@@ -13,6 +13,7 @@ class Mall extends BaseStage
 	{
 		ratingPos.set(550, 450);
         comboCountPos.set(450, 600);
+		comboImage.set( 0, 550);
 
 		var bg:BGSprite = new BGSprite('christmas/bgWalls', -1900, -1000, 0.2, 0.2);
 		bg.setGraphicSize(Std.int(bg.width * 1.2));

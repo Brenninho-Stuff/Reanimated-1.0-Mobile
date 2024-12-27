@@ -18,6 +18,7 @@ class Tank extends BaseStage
 	{
 		ratingPos.set(550, 500);
         comboCountPos.set(450, 650);
+        comboImage.set( 0, 600);
 
 		var sky:BGSprite = new BGSprite('tankSky', -500, -400, 0, 0);
 		sky.setGraphicSize(Std.int(1.2 * sky.width));

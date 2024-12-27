@@ -51,6 +51,7 @@ class PhillyStreetsErect extends BaseStage
 
         ratingPos.set(1400, 800);
 		comboCountPos.set(1300, 950);
+		comboImage.set( 0, 900);
 
 		if (ClientPrefs.data.shaders) rain = new Rain();
 

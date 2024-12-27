@@ -48,6 +48,7 @@ class LimoErect extends BaseStage
 	{
 		ratingPos.set(750, 300);
         comboCountPos.set(650, 450);
+		comboImage.set( 0, 400);
 
 		skyBG = new BGSprite('limo/erect/limoSunset', -200, -270, 0.1, 0.1);
         skyBG.scale.set(1.3, 1);

@@ -8,6 +8,7 @@ class Spooky extends BaseStage
 	{
 		ratingPos.set(750, 600);
         comboCountPos.set(650, 750);
+		comboImage.set( 0, 700);
 
 		if(!ClientPrefs.data.lowQuality) {
 			halloweenBG = new BGSprite('halloween_bg', -500, -190, ['halloweem bg0', 'halloweem bg lightning strike']);

@@ -50,6 +50,7 @@ class PhillyStreets extends BaseStage
 	{
 		ratingPos.set(1400, 800); // Just used random numbers for example
 		comboCountPos.set(1300, 950);
+		comboImage.set( 0, 900);
 
 		if(!ClientPrefs.data.lowQuality)
 		{

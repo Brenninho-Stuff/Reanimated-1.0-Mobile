@@ -17,6 +17,7 @@ class SchoolEvil extends BaseStage
 	{
 		ratingPos.set(500, 600);
         comboCountPos.set(400, 750);
+		comboImage.set( 0, 750);
 
 		var _song = PlayState.SONG;
 		if(_song.gameOverSound == null || _song.gameOverSound.trim().length < 1) GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';

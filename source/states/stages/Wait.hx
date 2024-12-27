@@ -8,6 +8,7 @@ class Wait extends BaseStage
         { 
             ratingPos.set(400, 200);
             comboCountPos.set(300, 350);
+            comboImage.set( 0, 300);
 
         var blackScreen:FlxSprite = new FlxSprite(-900, -500).makeGraphic(Std.int(FlxG.width * 10), Std.int(FlxG.height * 10), FlxColor.WHITE);
 		blackScreen.scrollFactor.set();

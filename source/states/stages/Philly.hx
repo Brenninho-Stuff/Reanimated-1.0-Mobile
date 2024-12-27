@@ -36,6 +36,8 @@ class Philly extends BaseStage
 	{
 		ratingPos.set(400, 500);
         comboCountPos.set(300, 650);
+		comboImage.set( 0, 600);
+
 		if(!ClientPrefs.data.lowQuality) {
 			var bg:BGSprite = new BGSprite('philly/sky', -510, -300, 0.1, 0.1);
 			bg.setGraphicSize(Std.int(bg.width * 1.1));

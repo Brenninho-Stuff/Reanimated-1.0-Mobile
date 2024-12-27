@@ -3067,7 +3067,7 @@ class PlayState extends MusicBeatState
 	public var totalPlayed:Int = 0;
 	public var totalNotesHit:Float = 0.0;
 
-	public var showCombo:Bool = false;
+	public var showCombo:Bool = true;
 	public var showComboNum:Bool = true;
 	public var showRating:Bool = true;
 
@@ -3159,14 +3159,19 @@ class PlayState extends MusicBeatState
 
 		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(uiFolder + 'combo' + uiPostfix));
 		comboSpr.screenCenter();
-		comboSpr.x = placement;
+		//comboSpr.x = placement;
 		comboSpr.acceleration.y = FlxG.random.int(200, 300) * playbackRate * playbackRate;
 		comboSpr.velocity.y -= FlxG.random.int(140, 160) * playbackRate;
 		comboSpr.visible = (!ClientPrefs.data.hideHud && showCombo);
-		comboSpr.x += ClientPrefs.data.comboOffset[0];
-		comboSpr.y -= ClientPrefs.data.comboOffset[1];
+		var comboImage:FlxPoint = new FlxPoint(0, 0);
+		stagesFunc(function(stage:BaseStage) {
+			comboImage.x = stage.comboImage.x;
+			comboImage.y = stage.comboImage.y;
+		});
+		if (comboImage.x != 0) comboSpr.x = comboImage.x; else comboSpr.x += ClientPrefs.data.comboOffset[0];
+		if (comboImage.y != 0) comboSpr.y = comboImage.y; else comboSpr.y -= ClientPrefs.data.comboOffset[1];
 		comboSpr.antialiasing = antialias;
-		comboSpr.y += 60;
+		//comboSpr.y += 60;
 		comboSpr.velocity.x += FlxG.random.int(1, 10) * playbackRate;
 		comboGroup.add(rating);
 
@@ -3186,7 +3191,7 @@ class PlayState extends MusicBeatState
 
 		var daLoop:Int = 0;
 		var xThing:Float = 0;
-		if (showCombo)
+		if (showCombo && combo >= 50)
 			comboGroup.add(comboSpr);
 
 		var separatedScore:String = Std.string(combo).lpad('0', 3);
@@ -3749,9 +3754,18 @@ class PlayState extends MusicBeatState
 			if (!note.isSustainNote)
 			{
 				combo++;
-				if(combo > 9999) combo = 9999;
+				//if(combo > 9999) combo = 9999;
 				popUpScore(note);
 			}
+			if (combo == 50)
+				{
+					if (gf != null) {
+						if (gf.animOffsets.exists("cheer")) {
+							gf.playAnim('cheer', true);
+							gf.specialAnim = true;
+						}
+					}
+				}
 			var gainHealth:Bool = true; // prevent health gain, *if* sustains are treated as a singular note
 			if (guitarHeroSustains && note.isSustainNote) gainHealth = false;
 			if (gainHealth) health += note.hitHealth * healthGain;

@@ -52,8 +52,10 @@ class BaseStage extends FlxBasic
 	public var defaultCamZoom(get, set):Float;
 	public var camFollow(get, never):FlxObject;
 
+	// ratings x and y poss
 	public var ratingPos:FlxPoint = new FlxPoint(0, 0);
 	public var comboCountPos:FlxPoint = new FlxPoint(0, 0);
+	public var comboImage:FlxPoint = new FlxPoint(0, 0);
 	public function new()
 	{
 		if(game == null)

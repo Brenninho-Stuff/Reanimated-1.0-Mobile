@@ -34,6 +34,7 @@ class Limo extends BaseStage
 	{
 		ratingPos.set(750, 300);
         comboCountPos.set(650, 450);
+		comboImage.set( 0, 400);
 
 		skyBG = new BGSprite('limo/limoSunset', -2700, -300, 0.1, 0.1);
 		add(skyBG);
