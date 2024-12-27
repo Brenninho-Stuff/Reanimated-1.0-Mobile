@@ -1,21 +1,24 @@
 {
-	"song": {
-		"events": [
+	"events": [
+		[
+			0,
 			[
-				0,
-				[
-					[
-						"Enemy Splashes",
-						"true",
-						"true"
-					],
-					[
-						"Set Health Drain",
-						"0.023",
-						""
-					]
-				]
+				["Cinematics (With HUD)", "1", "100"]
+			]
+		],
+		[
+			128000,
+			[
+				["Camera Follow Pos", "850", "450"]
+			]
+		],
+		[
+			128100,
+			[
+				["Play Animation", "hey", "dad"],
+				["Play Animation", "hey", "bf"]
 			]
 		]
-	}
+	],
+	"format": "psych_v1"
 }

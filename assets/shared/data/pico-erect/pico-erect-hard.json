@@ -1,7 +1,7 @@
 {
 	"song": {
 		"player1": "bf-hev",
-		"player2": "pico-Iandee",
+		"player2": "jeys-pico",
 		"notes": [
 			{
 				"lengthInSteps": 16,
@@ -7776,7 +7776,7 @@
 			]
 		],
 		"player3": null,
-		"splashSkin": "CoolSplashes_Assets",
+		"splashSkin": "",
 		"song": "pico-erect",
 		"validScore": true,
 		"needsVoices": true,
