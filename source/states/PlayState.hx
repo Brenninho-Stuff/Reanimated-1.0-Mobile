@@ -439,7 +439,12 @@ class PlayState extends MusicBeatState
 			case "phillyStreetsErect": new PhillyStreetsErect(); //Weekend 1 bf mix - Erect
 			case 'wait': new Wait();					//Wait - CG5 Best Song
 		}	
-		if(isPixelStage) introSoundsSuffix = '-pixel';
+		if(isPixelStage) {
+			introSoundsSuffix = '-pixel';
+			if (curStage == "schoolEvil") {
+				introSoundsSuffix = '-pixel-corrupted';
+			}
+		}
 
 		#if (LUA_ALLOWED || HSCRIPT_ALLOWED)
 		luaDebugGroup = new FlxTypedGroup<psychlua.DebugLuaText>();

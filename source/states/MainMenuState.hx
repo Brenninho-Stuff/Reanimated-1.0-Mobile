@@ -46,6 +46,8 @@ class MainMenuState extends MusicBeatState
 		["KARANXD", "blammed-erect"], 
 		["LOCKIN", "fuck-you"],
 		["DUPLEX", "blammed-remix"],
+		["CHRISTMAS", "erect-eggnog"],
+		["GREEN", "eggnog-pico-mix"],
 		//["ICONOCLAST", "robin"],
 		["HENRY", "cg5"],
 		//["BFMIX", "Darnell-bf-mix"],
