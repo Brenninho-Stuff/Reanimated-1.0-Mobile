@@ -8,7 +8,7 @@ import objects.Character;
 class MallErect extends BaseStage
 {
 	var upperBoppers:BGSprite;
-	var bottomBoppers:MallCrowd;
+	var bottomBoppers:MallCrowdErect;
 	var tree:BGSprite;
 	var santa:BGSprite;
 	var snowfallin:BGSprite;
@@ -20,7 +20,7 @@ class MallErect extends BaseStage
 	{
 		ratingPos.set(550, 450);
         comboCountPos.set(450, 600);
-		comboImage.set( 0, 550);
+		comboImage.set(0, 550);
 
 		var bg:BGSprite = new BGSprite('christmas/erect/bgWalls', -1150, -850, 0.2, 0.2);
 		bg.setGraphicSize(Std.int(bg.width * 1.8));
@@ -64,7 +64,7 @@ class MallErect extends BaseStage
 		tree.scale.set(1.3, 1.3);
 		add(tree);
 
-		bottomBoppers = new MallCrowd(-400, 100);
+		bottomBoppers = new MallCrowdErect(-400, 100);
 		add(bottomBoppers);
 
 		parentsCutscene = new Character(dadGroup.x, dadGroup.y, "parents-christmas-cutscene", false);
@@ -119,8 +119,6 @@ class MallErect extends BaseStage
 					case 'bf' | 'boyfriend' | '0':
 						return;
 				}
-				bottomBoppers.animation.play('hey', true);
-				bottomBoppers.heyTimer = flValue2;
 		}
 	}
 

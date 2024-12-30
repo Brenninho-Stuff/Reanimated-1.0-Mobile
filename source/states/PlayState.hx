@@ -131,6 +131,7 @@ class PlayState extends MusicBeatState
 	public var healthDraining:Float;
 	public var canDie:Bool = false;
 
+	public var isDad:Bool = true;
 	// These 5 are used for the wobble notes event
 	public var defaultStrumPosition:Array<Array<Float>>= [];
 	public var arrowMoveX:Array<Int> = [0,0];
@@ -172,6 +173,8 @@ class PlayState extends MusicBeatState
 	public static var storyDifficulty:Int = 1;
 
 	public var spawnTime:Float = 2000;
+
+	public var focusedChar:Character;
 
 	public var inst:FlxSound;
 	public var vocals:FlxSound;
@@ -263,6 +266,8 @@ class PlayState extends MusicBeatState
 	public static var deathCounter:Int = 0;
 
 	public var defaultCamZoom:Float = 1.05;
+
+	public var curNote:Int = 0;
 
 	// how big to stretch the pixel art assets
 	public static var daPixelZoom:Float = 6;
@@ -2014,18 +2019,68 @@ class PlayState extends MusicBeatState
 	var allowDebugKeys:Bool = true;
 
 	override public function update(elapsed:Float)
-	{
-		if(!inCutscene && !paused && !freezeCamera) {
-			FlxG.camera.followLerp = 0.04 * cameraSpeed * playbackRate;
-			if(!startingSong && !endingSong && boyfriend.getAnimationName().startsWith('idle')) {
-				boyfriendIdleTime += elapsed;
-				if(boyfriendIdleTime >= 0.15) { // Kind of a mercy thing for making the achievement easier to get as it's apparently frustrating to some playerss
-					boyfriendIdled = true;
+		{
+			if(!inCutscene && !paused && !freezeCamera) {
+				FlxG.camera.followLerp = 0.04 * cameraSpeed * playbackRate;
+				if(!startingSong && !endingSong && boyfriend.getAnimationName().startsWith('idle')) {
+					boyfriendIdleTime += elapsed;
+					if(boyfriendIdleTime >= 0.15) { // Kind of a mercy thing for making the achievement easier to get as it's apparently frustrating to some playerss
+						boyfriendIdled = true;
+					}
+				} else {
+					boyfriendIdleTime = 0;
 				}
-			} else {
-				boyfriendIdleTime = 0;
+	
+				if(!isCameraOnForcedPos && !inCutscene)
+				{
+					if(focusedChar == dad)
+					{
+						camFollow.setPosition(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
+						camFollow.x += dad.cameraPosition[0] + opponentCameraOffset[0];
+						camFollow.y += dad.cameraPosition[1] + opponentCameraOffset[1];
+						tweenCamIn();
+					}
+					if(focusedChar == boyfriend)
+					{
+						camFollow.setPosition(boyfriend.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
+						camFollow.x -= boyfriend.cameraPosition[0] - boyfriendCameraOffset[0];
+						camFollow.y += boyfriend.cameraPosition[1] + boyfriendCameraOffset[1];
+				
+						if (songName == 'tutorial' && cameraTwn == null && FlxG.camera.zoom != 1)
+						{
+							cameraTwn = FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut, onComplete:
+								function (twn:FlxTween)
+								{
+									cameraTwn = null;
+								}
+							});
+						}
+					}
+					if(focusedChar == gf)
+					{
+						camFollow.setPosition(gf.getMidpoint().x, gf.getMidpoint().y);
+						camFollow.x += gf.cameraPosition[0] + girlfriendCameraOffset[0];
+						camFollow.y += gf.cameraPosition[1] + girlfriendCameraOffset[1];
+						tweenCamIn();
+					}
+					if(focusedChar.animation.curAnim!=null){
+						if(focusedChar.getAnimationName().startsWith('idle')){ curNote = 69; }
+						else
+						if(focusedChar.getAnimationName().startsWith('dance')){ curNote = 69; }
+						switch (curNote){
+							case 2:
+								camFollow.y -=  ClientPrefs.data.extraCamMovementAmount;
+							case 1:
+								camFollow.y +=  ClientPrefs.data.extraCamMovementAmount;
+							case 0:
+								camFollow.x -=  ClientPrefs.data.extraCamMovementAmount;
+							case 3:
+								camFollow.x +=  ClientPrefs.data.extraCamMovementAmount;
+						}
+					}
+				}
+	
 			}
-		}
 		else FlxG.camera.followLerp = 0;
 		callOnScripts('onUpdate', [elapsed]);
 
@@ -2831,57 +2886,44 @@ class PlayState extends MusicBeatState
 		if(sec < 0) sec = 0;
 
 		if(SONG.notes[sec] == null) return;
-
 		if (gf != null && SONG.notes[sec].gfSection)
 		{
-			moveCameraToGirlfriend();
+			focusedChar = gf;
 			callOnScripts('onMoveCamera', ['gf']);
-			return;
 		}
 
-		var isDad:Bool = (SONG.notes[sec].mustHitSection != true);
-		moveCamera(isDad);
-		if (isDad)
-			callOnScripts('onMoveCamera', ['dad']);
-		else
-			callOnScripts('onMoveCamera', ['boyfriend']);
+		isDad = (SONG.notes[sec].mustHitSection != true);
+		moveCamera(isDad, sec);
+		callOnScripts('onMoveCamera', [isDad ? 'dad' : 'boyfriend']);
 	}
 	
-	public function moveCameraToGirlfriend()
+	/*public function moveCameraToGirlfriend()
 	{
 		camFollow.setPosition(gf.getMidpoint().x, gf.getMidpoint().y);
 		camFollow.x += gf.cameraPosition[0] + girlfriendCameraOffset[0];
 		camFollow.y += gf.cameraPosition[1] + girlfriendCameraOffset[1];
 		tweenCamIn();
-	}
+	}*/
 
 	var cameraTwn:FlxTween;
-	public function moveCamera(isDad:Bool)
-	{
-		if(isDad)
+	public function moveCamera(isDad:Bool, ?sec:Null<Int>)
 		{
-			if(dad == null) return;
-			camFollow.setPosition(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
-			camFollow.x += dad.cameraPosition[0] + opponentCameraOffset[0];
-			camFollow.y += dad.cameraPosition[1] + opponentCameraOffset[1];
-			tweenCamIn();
-		}
-		else
-		{
-			if(boyfriend == null) return;
-			camFollow.setPosition(boyfriend.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
-			camFollow.x -= boyfriend.cameraPosition[0] - boyfriendCameraOffset[0];
-			camFollow.y += boyfriend.cameraPosition[1] + boyfriendCameraOffset[1];
-
-			if (songName == 'tutorial' && cameraTwn == null && FlxG.camera.zoom != 1)
+			if(sec == null) sec = curSection;
+			if(sec < 0) sec = 0;
+			if (isDad)
 			{
-				cameraTwn = FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut, onComplete:
-					function (twn:FlxTween)
-					{
-						cameraTwn = null;
-					}
-				});
+				if (gf != null && SONG.notes[sec].gfSection)
+				{
+					focusedChar = gf;
+				}
+				else
+				{
+					focusedChar = dad;
+				}
 			}
+			else
+			{
+				focusedChar = boyfriend;
 		}
 	}
 
@@ -3569,25 +3611,26 @@ class PlayState extends MusicBeatState
 			dad.heyTimer = 0.6;
 		}
 		
-		else if(!note.noAnimation)
+		if (!note.noAnimation)
 		{
 			var char:Character = dad;
 			var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, note.noteData)))] + note.animSuffix;
 			if(note.gfNote) char = gf;
 
 			if(char != null)
-			{
+				{
 				var canPlay:Bool = true;
 				if(note.isSustainNote)
 				{
+			
 					var holdAnim:String = animToPlay + '-hold';
 					if(char.animation.exists(holdAnim)) animToPlay = holdAnim;
 					if(char.getAnimationName() == holdAnim || char.getAnimationName() == holdAnim + '-loop') canPlay = false;
 				}
-
-				if(canPlay) char.playAnim(animToPlay, true);
-				char.holdTimer = 0;
-			}
+					if (char == focusedChar){ curNote = note.noteData;}
+					char.playAnim(animToPlay, true);
+					char.holdTimer = 0;
+				}
 			if(note.noteType == 'Duo Sing')
 				{
 					dad.playAnim(animToPlay, true);
@@ -3680,8 +3723,7 @@ class PlayState extends MusicBeatState
 		{
 			if(!note.noAnimation)
 			{
-				var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, note.noteData)))] + note.animSuffix;
-
+				var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, note.noteData)))] + note.animSuffix;				
 				var char:Character = boyfriend;
 				var animCheck:String = 'hey';
 				if(note.gfNote)
@@ -3699,7 +3741,8 @@ class PlayState extends MusicBeatState
 						if(char.animation.exists(holdAnim)) animToPlay = holdAnim;
 						if(char.getAnimationName() == holdAnim || char.getAnimationName() == holdAnim + '-loop') canPlay = false;
 					}
-	
+
+					if (char == focusedChar){ curNote = note.noteData; }
 					if(canPlay) char.playAnim(animToPlay, true);
 					char.holdTimer = 0;
 

@@ -162,6 +162,7 @@ class Tank extends BaseStage
 
 		cutsceneHandler.finishCallback = function()
 		{
+			game.isCameraOnForcedPos = false;
 			var timeForStuff:Float = Conductor.crochet / 1000 * 4.5;
 			FlxG.sound.music.fadeOut(timeForStuff);
 			FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, timeForStuff, {ease: FlxEase.quadInOut});
@@ -202,6 +203,7 @@ class Tank extends BaseStage
 
 	function ughIntro()
 	{
+		game.isCameraOnForcedPos = true;
 		prepareCutscene();
 		cutsceneHandler.endTime = 12;
 		cutsceneHandler.useCurLevel = true;
@@ -256,6 +258,7 @@ class Tank extends BaseStage
 	}
 	function gunsIntro()
 	{
+		game.isCameraOnForcedPos = true;
 		prepareCutscene();
 		cutsceneHandler.endTime = 11.5;
 		cutsceneHandler.useCurLevel = true;
@@ -290,6 +293,7 @@ class Tank extends BaseStage
 	var dualWieldAnimPlayed = 0;
 	function stressIntro()
 	{
+		game.isCameraOnForcedPos = true;
 		prepareCutscene();
 		
 		cutsceneHandler.endTime = 35.5;
