@@ -1418,6 +1418,7 @@ class PlayState extends MusicBeatState
 		#end
 		setOnScripts('songLength', songLength);
 		callOnScripts('onSongStart');
+		canDie = true;
 	}
 
 	private var noteTypes:Array<String> = [];
@@ -2173,7 +2174,7 @@ class PlayState extends MusicBeatState
 		FlxG.watch.addQuick("stepShit", curStep);
 
 		// RESET = Quick Game Over Screen
-		if (!ClientPrefs.data.noReset && controls.RESET && canReset && !inCutscene && startedCountdown && !endingSong)
+		if (!ClientPrefs.data.noReset && controls.RESET && canReset && !inCutscene && startedCountdown && !endingSong && canDie)			
 		{
 			health = 0;
 			trace("RESET = True");
@@ -2431,7 +2432,8 @@ class PlayState extends MusicBeatState
 	public var isDead:Bool = false; //Don't mess with this on Lua!!!
 	public var gameOverTimer:FlxTimer;
 	function doDeathCheck(?skipHealthCheck:Bool = false) {
-		if (((skipHealthCheck && instakillOnMiss) || health <= 0) && !practiceMode && !isDead && gameOverTimer == null)
+		//if (((skipHealthCheck && instakillOnMiss) || health <= 0) && !practiceMode && !isDead && gameOverTimer == null)
+		if (((skipHealthCheck && instakillOnMiss) || health <= 0) && !practiceMode && !isDead && canDie)
 		{
 			var ret:Dynamic = callOnScripts('onGameOver', null, true);
 			if(ret != LuaUtils.Function_Stop)
@@ -2447,7 +2449,7 @@ class PlayState extends MusicBeatState
 				canPause = false;
 
 				persistentUpdate = false;
-				persistentDraw = false;
+				persistentDraw = true;
 				FlxTimer.globalManager.clear();
 				FlxTween.globalManager.clear();
 				FlxG.camera.setFilters([]);

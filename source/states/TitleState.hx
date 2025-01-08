@@ -68,6 +68,16 @@ class TitleState extends MusicBeatState
 	var mustUpdate:Bool = false;
 
 	public static var updateVersion:String = '';
+	
+	var titleJSON:TitleData;
+
+	var randomGfs:Array<String> = [
+		'gfDanceTitle',
+		'z3mp', 
+		'iandee', 
+		'gfJeyzel'
+	];
+	var randomGfInt:Int;
 
 	override public function create():Void
 	{
@@ -107,6 +117,10 @@ class TitleState extends MusicBeatState
 		}
 		#end
 
+		randomGfInt = FlxG.random.int(0, randomGfs.length - 1);
+
+		titleJSON = findTitleJson('images/GFs/' + randomGfs[randomGfInt]);
+
 		if(!initialized)
 		{
 			if(FlxG.save.data != null && FlxG.save.data.fullscreen)
@@ -142,6 +156,24 @@ class TitleState extends MusicBeatState
 		#end
 	}
 
+	function findTitleJson(fileName:String):TitleData {
+		if (Paths.getTextFromFile(fileName + ".json") == null) {
+			return {
+				titlex: -150,
+				titley: -100,
+				startx: 100,
+				starty: 576,
+				gfx: 512,
+				gfy: 40,
+				backgroundSprite: "",
+				bpm: 102
+			}
+		} else {
+			return tjson.TJSON.parse(Paths.getTextFromFile(fileName + ".json"));
+		}
+	}
+
+
 	var logoBl:FlxSprite;
 	var gfDance:FlxSprite;
 	var danceLeft:Bool = false;
@@ -168,8 +200,29 @@ class TitleState extends MusicBeatState
 
 		gfDance = new FlxSprite(gfPosition.x, gfPosition.y);
 		gfDance.antialiasing = ClientPrefs.data.antialiasing;
+
+		switch(randomGfs[randomGfInt])
+		{
+			case 'z3mp':
+				gfDance.frames = Paths.getSparrowAtlas('GFs/z3mp');
+				gfDance.animation.addByIndices('danceLeft', 'GF Dancing Beat', [30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				gfDance.animation.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+			case "gfDanceTitle":
+				gfDance.frames = Paths.getSparrowAtlas('GFs/gfDanceTitle');
+				gfDance.animation.addByIndices('danceLeft', 'GF Dance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				gfDance.animation.addByIndices('danceRight', 'GF Dance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+			case "iandee":
+				gfDance.frames = Paths.getSparrowAtlas('GFs/iandee');
+				gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+			case "gfJeyzel":
+				gfDance.frames = Paths.getSparrowAtlas('GFs/gfJeyzel');
+				gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+		}
+
 		
-		if(ClientPrefs.data.shaders)
+		/*if(ClientPrefs.data.shaders)
 		{
 			swagShader = new ColorSwap();
 			gfDance.shader = swagShader.shader;
@@ -188,7 +241,7 @@ class TitleState extends MusicBeatState
 			gfDance.animation.addByPrefix('idle', animationName, 24, false);
 			gfDance.animation.play('idle');
 		}
-
+*/
 
 		var animFrames:Array<FlxFrame> = [];
 		titleText = new FlxSprite(enterPosition.x, enterPosition.y);

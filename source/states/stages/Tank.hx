@@ -14,37 +14,54 @@ class Tank extends BaseStage
 	var tankmanRun:FlxTypedGroup<TankmenBG>;
 	var foregroundSprites:FlxTypedGroup<BGSprite>;
 
+	// lol
+	var tankleft1:BGSprite;
+	var tankleft2:BGSprite;
+	var tankmid:BGSprite;
+	var tankright1:BGSprite;
+	var tankright2:BGSprite;
+
 	override function create()
 	{
 		ratingPos.set(550, 500);
         comboCountPos.set(450, 650);
         comboImage.set( 0, 600);
 
-		var sky:BGSprite = new BGSprite('tankSky', -500, -400, 0, 0);
-		sky.setGraphicSize(Std.int(1.2 * sky.width));
+		var sky:BGSprite = new BGSprite('tankSky', -800, -800, 0, 0);
+		sky.setGraphicSize(Std.int(1.6 * sky.width));
 		sky.updateHitbox();
 		add(sky);
 	
 		if(!ClientPrefs.data.lowQuality)
 		{
 			var clouds:BGSprite = new BGSprite('tankClouds', -300, -200, 0.1, 0.1);
-			clouds.active = true;
+			//clouds.active = true;
 			//clouds.velocity.x = FlxG.random.float(3, 15);
 			add(clouds);
+
+			var right:BGSprite = new BGSprite('right smoke', 1300, -350, 0.3, 0.3, ['right smoke'], true);
+			right.setGraphicSize(Std.int(1.2 * right.width));
+			right.updateHitbox();
+			add(right);
+
+			var left:BGSprite = new BGSprite('left smoke', -650, -350, 0.3, 0.3, ['left smoke'], true);
+			left.setGraphicSize(Std.int(1.2 * left.width));
+			left.updateHitbox();
+			add(left);
 	
-			var mountains:BGSprite = new BGSprite('tankMountains', -500, -220, 0.2, 0.2);
-			mountains.setGraphicSize(Std.int(1.2 * mountains.width));
+			var mountains:BGSprite = new BGSprite('tankMountains', -800, -300, 0.2, 0.2);
+			mountains.setGraphicSize(Std.int(1.4 * mountains.width));
 			mountains.updateHitbox();
 			add(mountains);
 	
-			var buildings:BGSprite = new BGSprite('tankBuildings', -600, 150, 0.3, 0.3);
-			buildings.setGraphicSize(Std.int(1.2 * buildings.width));
+			var buildings:BGSprite = new BGSprite('tankBuildings', -800, 80, 0.3, 0.3);
+			buildings.setGraphicSize(Std.int(1.4 * buildings.width));
 			buildings.updateHitbox();
 			add(buildings);
 		}
 	
-		var ruins:BGSprite = new BGSprite('tankRuins',-600, 50, 0.35, 0.35);
-		ruins.setGraphicSize(Std.int(1.2 * ruins.width));
+		var ruins:BGSprite = new BGSprite('tankRuins',-800, -20, 0.35, 0.35);
+		ruins.setGraphicSize(Std.int(1.4 * ruins.width));
 		ruins.updateHitbox();
 		add(ruins);
 	
@@ -55,7 +72,8 @@ class Tank extends BaseStage
 			var smokeRight:BGSprite = new BGSprite('smokeRight', 1100, -100, 0.4, 0.4, ['SmokeRight'], true);
 			add(smokeRight);
 	
-			tankWatchtower = new BGSprite('tankWatchtower', -300, 20, 0.9, 0.9, ['watchtower']);
+			tankWatchtower = new BGSprite('tankWatchtower', -300, 20, 0.6, 0.6, ['watchtower']);
+			tankWatchtower.scale.set(1.4, 1.4);
 			add(tankWatchtower);
 		}
 	
@@ -65,18 +83,35 @@ class Tank extends BaseStage
 		tankmanRun = new FlxTypedGroup<TankmenBG>();
 		add(tankmanRun);
 	
-		var ground:BGSprite = new BGSprite('tankGround', -620, 500);
-		ground.setGraphicSize(Std.int(1.25 * ground.width));
+		var ground:BGSprite = new BGSprite('tankGround',  -760, 550);
+		ground.setGraphicSize(Std.int(1.4 * ground.width));
 		ground.updateHitbox();
 		add(ground);
 	
-		foregroundSprites = new FlxTypedGroup<BGSprite>();
-		foregroundSprites.add(new BGSprite('tank0', -650, 550, 1.5, 1.5, ['fg']));
-		if(!ClientPrefs.data.lowQuality) foregroundSprites.add(new BGSprite('tank1', -400, 900, 1.5, 1.5, ['fg']));
-		foregroundSprites.add(new BGSprite('tank2', 220, 790, 1.5, 1.5, ['foreground']));
+		/*foregroundSprites = new FlxTypedGroup<BGSprite>();
+		foregroundSprites.add(new BGSprite('tank0', -850, 550, 1.5, 1.5, ['fg']));
+		if(!ClientPrefs.data.lowQuality) foregroundSprites.add(new BGSprite('tank1', -600, 900, 1.5, 1.5, ['fg']));
+		foregroundSprites.add(new BGSprite('tank2', 20, 790, 1.5, 1.5, ['foreground']));
 		if(!ClientPrefs.data.lowQuality) foregroundSprites.add(new BGSprite('tank1', 600, 900, 1.5, 1.5, ['fg']));
 		foregroundSprites.add(new BGSprite('tank5', 1620, 680, 1.5, 1.5, ['fg']));
 		if(!ClientPrefs.data.lowQuality) foregroundSprites.add(new BGSprite('tank3', 1200, 750, 1.5, 1.5, ['fg']));
+		foregroundSprites.setGraphicSize(Std.int(foregroundSprites.width * 1.2));*/
+
+		tankleft1 = new BGSprite('tank0', -1050, 600, 1.5, 1.5, ['fg']);
+		tankleft1.setGraphicSize(Std.int(1.3 * tankleft1.width));
+		tankleft1.updateHitbox();
+		tankleft2 = new BGSprite('tank1', -600, 950, 1.5, 1.5, ['fg']);
+		tankleft2.setGraphicSize(Std.int(1.3 * tankleft2.width));
+		tankleft2.updateHitbox();
+		tankmid = new BGSprite('tank2', 180, 840, 1.5, 1.5, ['foreground']);
+		tankmid.setGraphicSize(Std.int(1.3 * tankmid.width));
+		tankmid.updateHitbox();
+		tankright1 = new BGSprite('tank1', 800, 950, 1.5, 1.5, ['fg']);
+		tankright1.setGraphicSize(Std.int(1.3 * tankright1.width));
+		tankright1.updateHitbox();
+		tankright2 = new BGSprite('tank5', 1820, 730, 1.5, 1.5, ['fg']);
+		tankright2.setGraphicSize(Std.int(1.3 * tankright2.width));
+		tankright2.updateHitbox();
 	
 		// Default GFs
 		if(songName == 'stress') setDefaultGF('pico-speaker');
@@ -97,7 +132,11 @@ class Tank extends BaseStage
 	}
 	override function createPost()
 	{
-		add(foregroundSprites);
+		add(tankleft1);
+		add(tankleft2);
+		add(tankmid);
+		add(tankright1);
+		add(tankright2);
 
 		if(!ClientPrefs.data.lowQuality)
 		{
@@ -131,11 +170,16 @@ class Tank extends BaseStage
 	override function beatHit() everyoneDance();
 	function everyoneDance()
 	{
-		if(!ClientPrefs.data.lowQuality) tankWatchtower.dance();
+		/*if(!ClientPrefs.data.lowQuality) tankWatchtower.dance();
 		foregroundSprites.forEach(function(spr:BGSprite)
 		{
 			spr.dance();
-		});
+		});*/
+		tankleft1.dance();
+		tankleft2.dance();
+		tankmid.dance();
+		tankright1.dance();
+		tankright2.dance();
 	}
 
 	// Cutscenes
@@ -301,10 +345,10 @@ class Tank extends BaseStage
 		boyfriendGroup.alpha = 0.00001;
 		camFollow.setPosition(dad.x + 400, dad.y + 170);
 		FlxTween.tween(FlxG.camera, {zoom: 0.9 * 1.2}, 1, {ease: FlxEase.quadInOut});
-		foregroundSprites.forEach(function(spr:BGSprite)
+		/*foregroundSprites.forEach(function(spr:BGSprite)
 		{
 			spr.y += 100;
-		});
+		});*/
 		playWeekSound('stressCutscene');
 
 		pico = new FlxAnimate(gf.x + 150, gf.y + 450);
