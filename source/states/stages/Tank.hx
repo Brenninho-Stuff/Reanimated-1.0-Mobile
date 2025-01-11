@@ -35,6 +35,7 @@ class Tank extends BaseStage
 		if(!ClientPrefs.data.lowQuality)
 		{
 			var clouds:BGSprite = new BGSprite('tankClouds', -300, -200, 0.1, 0.1);
+			clouds.scale.set(1.2, 1.2);
 			//clouds.active = true;
 			//clouds.velocity.x = FlxG.random.float(3, 15);
 			add(clouds);
@@ -103,13 +104,13 @@ class Tank extends BaseStage
 		tankleft2 = new BGSprite('tank1', -600, 950, 1.5, 1.5, ['fg']);
 		tankleft2.setGraphicSize(Std.int(1.3 * tankleft2.width));
 		tankleft2.updateHitbox();
-		tankmid = new BGSprite('tank2', 180, 840, 1.5, 1.5, ['foreground']);
+		tankmid = new BGSprite('tank2', 380, 920, 1.5, 1.5, ['foreground']);
 		tankmid.setGraphicSize(Std.int(1.3 * tankmid.width));
 		tankmid.updateHitbox();
-		tankright1 = new BGSprite('tank1', 800, 950, 1.5, 1.5, ['fg']);
+		tankright1 = new BGSprite('tank1', 1050, 950, 1.5, 1.5, ['fg']);
 		tankright1.setGraphicSize(Std.int(1.3 * tankright1.width));
 		tankright1.updateHitbox();
-		tankright2 = new BGSprite('tank5', 1820, 730, 1.5, 1.5, ['fg']);
+		tankright2 = new BGSprite('tank5', 1820, 680, 1.5, 1.5, ['fg']);
 		tankright2.setGraphicSize(Std.int(1.3 * tankright2.width));
 		tankright2.updateHitbox();
 	
@@ -170,8 +171,8 @@ class Tank extends BaseStage
 	override function beatHit() everyoneDance();
 	function everyoneDance()
 	{
-		/*if(!ClientPrefs.data.lowQuality) tankWatchtower.dance();
-		foregroundSprites.forEach(function(spr:BGSprite)
+		if(!ClientPrefs.data.lowQuality) tankWatchtower.dance();
+		/*foregroundSprites.forEach(function(spr:BGSprite)
 		{
 			spr.dance();
 		});*/
