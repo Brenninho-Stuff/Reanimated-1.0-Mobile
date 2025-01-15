@@ -253,6 +253,7 @@ class PlayState extends MusicBeatState
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
+	public var subTitle:FlxText;
 	public var scoreTxt:FlxText;
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
@@ -624,6 +625,15 @@ class PlayState extends MusicBeatState
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP2);
 
+		subTitle = new FlxText(0, 560.8, FlxG.width, "", 20);
+		//subTitle.setFormat(Paths.font("PhantomMuff.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		subTitle.setFormat(Paths.font(isPixelStage ? "pixel.otf" : "vcr2.ttf"), isPixelStage ? 20 : 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		subTitle.scrollFactor.set();
+		subTitle.borderSize = 1.25;
+		subTitle.cameras = [camOther];
+		subTitle.visible = !ClientPrefs.data.hideHud;
+		add(subTitle);
+
 		scoreTxt = new FlxText(0, healthBar.y + 70/*40*/, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'vcr.ttf'), PlayState.isPixelStage ? 14 : 20,FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
@@ -637,9 +647,9 @@ class PlayState extends MusicBeatState
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
-		uiGroup.add(botplayTxt);
+		uiGroup.add(botplayTxt);	
 		if(ClientPrefs.data.downScroll)
-			botplayTxt.y = healthBar.y + 70;
+			botplayTxt.y = healthBar.y + 120;
 
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
@@ -2804,7 +2814,7 @@ class PlayState extends MusicBeatState
 				var duration:Float = Std.parseFloat(value2);
 		
 				cameraTwn = FlxTween.tween(camHUD, {alpha: alpha}, duration);
-	
+				//FNF HD SOURCE LOL
 			case 'Camera Flash':
 				if(ClientPrefs.data.flashing) {
 					var galax:Int = 0;
@@ -2825,9 +2835,42 @@ class PlayState extends MusicBeatState
 						case 0:
 							camOther.flash(FlxColor.WHITE, time, null, true);
 						case 1:
-								camOther.flash(FlxColor.BLACK, time, null, true);
+							camOther.flash(FlxColor.BLACK, time, null, true);
 					}
 				}
+
+			case 'Show Lyrics':
+				var newcolor:String = "";
+				subTitle.text = value1;
+				if (value2.startsWith('0xFF'))
+				{ // uses hexadecimal value
+					newcolor = value2;
+				}
+					else
+					switch (value2)
+					{ // uses default color
+						case "Red":
+							newcolor = "0xFFFF1F1F";
+						case "Blue":
+							newcolor = "0xFF1A4AE8";
+						case "Yellow":
+							newcolor = "0xFFFF1F1F";
+						case "Green":
+							newcolor = "0xFF198C0E";
+						case "Purple":
+							newcolor = "0xFF8B1AE8";
+						case "Lime":
+							newcolor = "0xFF2BE81A";
+						}
+					if (value2 != "")
+						{
+							subTitle.color = Std.parseInt(newcolor);
+						}
+						else
+						{
+								subTitle.color = FlxColor.WHITE;
+						}
+	 
 			case "Wobble Notes":
 				var vals1:Array<String> = value1.trim().split(',');
 				var val1:Array<Null<Int>> = [Std.parseInt(vals1[0]), Std.parseInt(vals1[1])];

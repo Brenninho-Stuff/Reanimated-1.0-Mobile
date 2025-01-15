@@ -95,6 +95,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		//["Change Rain Velocity"],
 		['Camera Flash', "You know what it is.\nValue 1: white/gray/black/green/lime/yellow/orange/\nred/purple/blue/pink/magenta/cyan\nValue 2: Flash duration"],
 		['HUD Fade', "Value 1: Opaticity\nValue 2: Duration"],
+		['Show Lyrics', "Value 1: Show lyrics\nValue 2: periodo de pruebas"],
 	];
 	
 	public static var keysArray:Array<FlxKey> = [ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT]; //Used for Vortex Editor
