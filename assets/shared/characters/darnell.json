@@ -1,257 +1,184 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				0,
-				0
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [0, 0],
 			"anim": "idle",
-			"indices": [],
-			"name": "Darnell Idle0"
+			"fps": 24,
+			"name": "Darnell Idle0",
+			"indices": []
 		},
 		{
-			"offsets": [
-				27,
-				-43
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [27, -43],
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "Darnell Pose Down0"
+			"fps": 24,
+			"name": "Darnell Pose Down0",
+			"indices": []
 		},
 		{
-			"offsets": [
-				157,
-				-17
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [157, -17],
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "Darnell pose right0"
+			"fps": 24,
+			"name": "Darnell pose right0",
+			"indices": []
 		},
 		{
-			"offsets": [
-				17,
-				8
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [17, 8],
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "darnell pose left0"
+			"fps": 24,
+			"name": "darnell pose left0",
+			"indices": []
 		},
 		{
-			"offsets": [
-				20,
-				66
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [20, 66],
 			"anim": "singUP",
-			"indices": [],
-			"name": "Darnell pose up0"
+			"fps": 24,
+			"name": "Darnell pose up0",
+			"indices": []
 		},
 		{
-			"offsets": [
-				0,
-				0
-			],
 			"loop": true,
-			"fps": 24,
+			"offsets": [0, 0],
 			"anim": "intro",
-			"indices": [],
-			"name": "Darnell Idle0"
+			"fps": 24,
+			"name": "Darnell Idle0",
+			"indices": []
 		},
 		{
-			"offsets": [
-				155,
-				-17
-			],
 			"loop": true,
-			"fps": 24,
+			"offsets": [155, -17],
 			"anim": "singLEFT-loop",
-			"indices": [
-				8,
-				9,
-				10,
-				11,
-				12,
-				13,
-				14
-			],
-			"name": "Darnell pose right0"
+			"fps": 24,
+			"name": "Darnell pose right0",
+			"indices": [8, 9, 10, 11, 12, 13, 14]
 		},
 		{
-			"offsets": [
-				17,
-				8
-			],
 			"loop": true,
-			"fps": 24,
+			"offsets": [17, 8],
 			"anim": "singRIGHT-loop",
-			"indices": [
-				8,
-				9,
-				10,
-				11,
-				12,
-				13,
-				14
-			],
-			"name": "darnell pose left"
+			"fps": 24,
+			"name": "darnell pose left",
+			"indices": [8, 9, 10, 11, 12, 13, 14]
 		},
 		{
-			"offsets": [
-				19,
-				66
-			],
 			"loop": true,
-			"fps": 24,
+			"offsets": [19, 66],
 			"anim": "singUP-loop",
-			"indices": [
-				8,
-				9,
-				10,
-				11,
-				12,
-				13,
-				14
-			],
-			"name": "Darnell pose up"
+			"fps": 24,
+			"name": "Darnell pose up",
+			"indices": [8, 9, 10, 11, 12, 13, 14]
 		},
 		{
-			"offsets": [
-				27,
-				-44
-			],
 			"loop": true,
-			"fps": 24,
+			"offsets": [27, -44],
 			"anim": "singDOWN-loop",
-			"indices": [
-				8,
-				9,
-				10,
-				11,
-				12,
-				13,
-				14
-			],
-			"name": "Darnell Pose Down"
+			"fps": 24,
+			"name": "Darnell Pose Down",
+			"indices": [8, 9, 10, 11, 12, 13, 14]
 		},
 		{
-			"offsets": [
-				0,
-				0
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [0, 0],
 			"anim": "laughCutscene",
-			"indices": [
-				0,
-				1,
-				2,
-				3,
-				4,
-				5,
-				0,
-				1,
-				2,
-				3,
-				4,
-				5,
-				0,
-				1,
-				2,
-				3,
-				4,
-				5,
-				0,
-				1,
-				2,
-				3,
-				4,
-				5,
-				0,
-				1,
-				2,
-				3,
-				4,
-				5
-			],
-			"name": "darnell laugh0"
+			"fps": 24,
+			"name": "darnell laugh0",
+			"indices": [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
 		},
 		{
-			"offsets": [
-				0,
-				0
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [0, 0],
 			"anim": "laugh",
-			"indices": [],
-			"name": "darnell laugh"
+			"fps": 24,
+			"name": "darnell laugh",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-12,
-				-41
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [-12, -41],
 			"anim": "lightCan",
-			"indices": [],
-			"name": "Darnell lighting can"
+			"fps": 24,
+			"name": "Darnell lighting can",
+			"indices": []
 		},
 		{
-			"offsets": [
-				10,
-				20
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [10, 20],
 			"anim": "kickCan",
-			"indices": [],
-			"name": "Darnell can kick up"
+			"fps": 24,
+			"name": "Darnell can kick up",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-13,
-				-33
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [-13, -33],
 			"anim": "kneeCan",
-			"indices": [],
-			"name": "Darnell knee action"
+			"fps": 24,
+			"name": "Darnell knee action",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
-	"noteSplashes": "darnell",
 	"no_antialiasing": false,
+	"useNoteSkin": false,
 	"image": "characters/Darnell",
-	"position": [
-		60,
-		300
-	],
-	"strumCovers": "darnell",
-	"noteAssets": "darnell",
+	"position": [60, 300],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "darnell",
 	"flip_x": false,
-	"healthbar_colors": [
-		83,
-		65,
-		129
-	],
-	"camera_position": [
-		10,
-		20
-	],
-	"notePath": "torchs_assets",
+	"healthbar_colors": [83, 65, 129],
+	"disableNoteRGB": false,
+	"camera_position": [10, 20],
+	"noteSkin": "",
+	"noteColors": {
+		"right": [
+			-5271300,
+			-1,
+			-9876023
+		],
+		"up": [
+			-7639061,
+			-1,
+			-12246626
+		],
+		"down": [
+			-5271297,
+			-1,
+			-9876023
+		],
+		"left": [
+			-8294421,
+			-1,
+			-12246626
+		]
+	},
 	"sing_duration": 8,
+	"hasAltColors": false,
 	"scale": 1,
 	"_editor_isPlayer": false
 }

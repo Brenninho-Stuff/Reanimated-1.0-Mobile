@@ -1,100 +1,100 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [0, -9],
+			"loop": false,
+			"fps": 24,
 			"anim": "danceLeft",
-			"fps": 24,
-			"name": "idle0",
-			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+			"name": "idle0"
 		},
 		{
-			"loop": false,
 			"offsets": [0, -9],
+			"loop": false,
+			"fps": 24,
 			"anim": "danceRight",
-			"fps": 24,
-			"name": "idle0",
-			"indices": [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+			"indices": [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27],
+			"name": "idle0"
 		},
 		{
-			"loop": false,
-			"offsets": [0, 5],
-			"anim": "cheer",
-			"fps": 24,
-			"name": "hey0",
-			"indices": []
-		},
-		{
-			"loop": true,
 			"offsets": [-9, -11],
+			"loop": true,
+			"fps": 24,
 			"anim": "scared",
-			"fps": 24,
-			"name": "scared",
-			"indices": []
+			"indices": [],
+			"name": "scared"
 		},
 		{
-			"loop": false,
 			"offsets": [0, -13],
+			"loop": false,
+			"fps": 24,
 			"anim": "sad",
-			"fps": 24,
-			"name": "sad",
-			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 4, 5, 6, 7]
+			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 4, 5, 6, 7],
+			"name": "sad"
 		},
 		{
-			"loop": false,
 			"offsets": [0, 1],
+			"loop": false,
+			"fps": 24,
 			"anim": "singLEFT",
-			"fps": 24,
-			"name": "left",
-			"indices": []
+			"indices": [],
+			"name": "left"
 		},
 		{
-			"loop": false,
 			"offsets": [-1, -12],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWN",
-			"fps": 24,
-			"name": "down",
-			"indices": []
+			"indices": [],
+			"name": "down"
 		},
 		{
-			"loop": false,
 			"offsets": [0, 9],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUP",
-			"fps": 24,
-			"name": "up",
-			"indices": []
+			"indices": [],
+			"name": "up"
 		},
 		{
-			"loop": false,
 			"offsets": [0, -9],
+			"loop": false,
+			"fps": 24,
 			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "right",
-			"indices": []
+			"indices": [],
+			"name": "right"
 		},
 		{
-			"loop": true,
 			"offsets": [100, 2],
+			"loop": true,
+			"fps": 24,
 			"anim": "hairBlow",
-			"fps": 24,
-			"name": "idle hair left0",
-			"indices": []
+			"indices": [],
+			"name": "idle hair left0"
 		},
 		{
-			"loop": false,
 			"offsets": [91, -14],
-			"anim": "hairFall",
+			"loop": false,
 			"fps": 24,
-			"name": "idle hair stop0",
-			"indices": []
+			"anim": "hairFall",
+			"indices": [],
+			"name": "idle hair stop0"
 		},
 		{
-			"loop": false,
 			"offsets": [-9, -11],
-			"anim": "shoot",
+			"loop": false,
 			"fps": 24,
-			"name": "scared",
-			"indices": []
+			"anim": "shoot",
+			"indices": [],
+			"name": "scared"
+		},
+		{
+			"offsets": [0, 5],
+			"indices": [0, 1, 2, 3, 4, 5, 4, 5, 4, 5, 4, 5],
+			"fps": 24,
+			"anim": "cheer",
+			"loop": false,
+			"name": "hey0"
 		}
 	],
 	"vocals_file": "",

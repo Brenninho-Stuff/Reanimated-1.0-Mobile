@@ -175,6 +175,46 @@
 			"fps": 24,
 			"name": "BF Attack0",
 			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-233, -52],
+			"anim": "dodgeLEFT",
+			"fps": 24,
+			"name": "BF dodge LEFT",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-167, -45],
+			"anim": "dodgeRIGHT",
+			"fps": 24,
+			"name": "BF dodge RIGHT",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-205, -49],
+			"anim": "dodgeUP",
+			"fps": 24,
+			"name": "BF dodge UP",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-182, -49],
+			"anim": "dodgeDOWN",
+			"fps": 24,
+			"name": "BF dodge DOWN",
+			"indices": []
+		},
+		{
+			"offsets": [10, -3],
+			"indices": [],
+			"fps": 32,
+			"anim": "hurt",
+			"loop": false,
+			"name": "BF hit0"
 		}
 	],
 	"vocals_file": "",

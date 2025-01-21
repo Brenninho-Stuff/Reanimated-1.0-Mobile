@@ -1,90 +1,92 @@
 {
 	"animations": [
 		{
-			"offsets": [0, -9],
 			"loop": false,
-			"anim": "danceLeft",
+			"offsets": [0, -9],
 			"fps": 24,
-			"name": "GF Dancing Beat",
+			"anim": "danceLeft",
+			"indices": [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+			"name": "GF Dancing Beat"
+		},
+		{
+			"loop": false,
+			"offsets": [0, -9],
+			"fps": 24,
+			"anim": "danceRight",
+			"indices": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+			"name": "GF Dancing Beat"
+		},
+		{
+			"loop": false,
+			"offsets": [0, -9],
+			"anim": "danceLeft-happy",
+			"fps": 24,
+			"name": "GF Dancing Beat-alt",
 			"indices": [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 		},
 		{
-			"offsets": [0, -9],
 			"loop": false,
-			"anim": "danceRight",
+			"offsets": [0, -9],
+			"anim": "danceRight-happy",
 			"fps": 24,
-			"name": "GF Dancing Beat",
+			"name": "GF Dancing Beat-alt",
 			"indices": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
 		},
 		{
-			"offsets": [0, -9],
 			"loop": false,
-			"fps": 24,
-			"anim": "danceLeft-happy",
-			"indices": [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
-			"name": "GF Dancing Beat-alt"
-		},
-		{
-			"offsets": [0, -9],
-			"loop": false,
-			"fps": 24,
-			"anim": "danceRight-happy",
-			"indices": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
-			"name": "GF Dancing Beat-alt"
-		},
-		{
 			"offsets": [0, -18],
-			"loop": false,
-			"fps": 24,
 			"anim": "cheer",
-			"indices": [],
-			"name": "hey!!"
+			"fps": 24,
+			"name": "hey!!",
+			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [-92, -31],
+			"loop": false,
+			"fps": 24,
 			"anim": "sad",
-			"fps": 24,
-			"name": "sad",
-			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9, 10, 9, 10, 9, 10, 9, 10, 9, 10]
+			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9, 10, 9, 10, 9, 10, 9, 10, 9, 10],
+			"name": "sad"
 		},
 		{
+			"loop": false,
 			"offsets": [-89, -21],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "Left"
+			"fps": 24,
+			"name": "Left",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [-88, -20],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "Right"
+			"fps": 24,
+			"name": "Right",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [-89, -19],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUP",
-			"indices": [],
-			"name": "up"
+			"fps": 24,
+			"name": "up",
+			"indices": []
 		},
 		{
-			"offsets": [-89, -42],
 			"loop": false,
-			"fps": 24,
+			"offsets": [-89, -42],
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "down"
+			"fps": 24,
+			"name": "down",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
+	"useNoteSkin": false,
 	"image": "unlockable characters/Jey's_GF",
-	"position": [-110, -50],
+	"position": [-80, -60],
+	"noteSkinLib": "shared",
 	"altNoteColors": {
 		"right": [
 			-444097,
@@ -110,7 +112,9 @@
 	"healthicon": "gf",
 	"flip_x": false,
 	"healthbar_colors": [199, 38, 84],
+	"disableNoteRGB": false,
 	"camera_position": [0, 0],
+	"noteSkin": "",
 	"noteColors": {
 		"right": [
 			-444097,

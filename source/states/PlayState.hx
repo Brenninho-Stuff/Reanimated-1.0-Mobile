@@ -31,6 +31,8 @@ import states.editors.CharacterEditorState;
 import substates.PauseSubState;
 import substates.GameOverSubstate;
 
+import ghosteffect.GhostEffect;
+
 #if !flash
 import flixel.addons.display.FlxRuntimeShader;
 import openfl.filters.ShaderFilter;
@@ -2808,13 +2810,12 @@ class PlayState extends MusicBeatState
 				var val2:Bool = (value2.toLowerCase().trim() == 'true');
 				enemyNoteSplashes = val1;
 				enemyCoverSplashes = val2;
-
+				//FNF HD SOURCE LOL
 			case 'HUD Fade':
 				var alpha:Float = Std.parseFloat(value1);
 				var duration:Float = Std.parseFloat(value2);
 		
 				cameraTwn = FlxTween.tween(camHUD, {alpha: alpha}, duration);
-				//FNF HD SOURCE LOL
 			case 'Camera Flash':
 				if(ClientPrefs.data.flashing) {
 					var galax:Int = 0;
@@ -2840,37 +2841,16 @@ class PlayState extends MusicBeatState
 				}
 
 			case 'Show Lyrics':
-				var newcolor:String = "";
+				//var vals2:Array<String> = value2.split(',');
+				//var alpha:Float = Std.parseFloat(vals2[0].trim());
+				//var duration:Float = Std.parseFloat(vals2[1].trim());
 				subTitle.text = value1;
-				if (value2.startsWith('0xFF'))
-				{ // uses hexadecimal value
-					newcolor = value2;
-				}
-					else
-					switch (value2)
-					{ // uses default color
-						case "Red":
-							newcolor = "0xFFFF1F1F";
-						case "Blue":
-							newcolor = "0xFF1A4AE8";
-						case "Yellow":
-							newcolor = "0xFFFF1F1F";
-						case "Green":
-							newcolor = "0xFF198C0E";
-						case "Purple":
-							newcolor = "0xFF8B1AE8";
-						case "Lime":
-							newcolor = "0xFF2BE81A";
-						}
-					if (value2 != "")
-						{
-							subTitle.color = Std.parseInt(newcolor);
-						}
-						else
-						{
-								subTitle.color = FlxColor.WHITE;
-						}
-	 
+				subTitle.visible = true;
+				//subTitle.color = FlxColor.WHITE;
+
+				//cameraTwn = FlxTween.tween(subTitle, {alpha: alpha}, duration);
+
+
 			case "Wobble Notes":
 				var vals1:Array<String> = value1.trim().split(',');
 				var val1:Array<Null<Int>> = [Std.parseInt(vals1[0]), Std.parseInt(vals1[1])];
@@ -3638,6 +3618,7 @@ class PlayState extends MusicBeatState
 
 	function opponentNoteHit(note:Note):Void
 	{
+		GhostEffect.onDadNoteHit(note);
 		var result:Dynamic = callOnLuas('opponentNoteHitPre', [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
 		if(result != LuaUtils.Function_Stop && result != LuaUtils.Function_StopHScript && result != LuaUtils.Function_StopAll) result = callOnHScript('opponentNoteHitPre', [note]);
 
@@ -3743,6 +3724,7 @@ class PlayState extends MusicBeatState
 
 	public function goodNoteHit(note:Note):Void
 	{
+		GhostEffect.onBoyfiendNoteHit(note);
 		if(note.wasGoodHit) return;
 		if(cpuControlled && note.ignoreNote) return;
 

@@ -2,10 +2,7 @@
 	"animations": [
 		{
 			"loop": false,
-			"offsets": [
-				71,
-				16
-			],
+			"offsets": [71, 16],
 			"anim": "singUP",
 			"fps": 24,
 			"name": "pico Up note0",
@@ -13,10 +10,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [
-				114,
-				-87
-			],
+			"offsets": [114, -87],
 			"anim": "singDOWN",
 			"fps": 24,
 			"name": "Pico Down Note0",
@@ -24,10 +18,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [
-				95,
-				-48
-			],
+			"offsets": [95, -48],
 			"anim": "singDOWNmiss",
 			"fps": 24,
 			"name": "Pico Down Note MISS",
@@ -35,20 +26,14 @@
 		},
 		{
 			"loop": false,
-			"offsets": [
-				19,
-				53
-			],
+			"offsets": [19, 53],
 			"anim": "singUPmiss",
 			"fps": 24,
 			"name": "pico Up note miss",
 			"indices": []
 		},
 		{
-			"offsets": [
-				-53,
-				1
-			],
+			"offsets": [-53, 1],
 			"loop": false,
 			"fps": 24,
 			"anim": "singRIGHT",
@@ -56,10 +41,7 @@
 			"name": "Pico Note Right0"
 		},
 		{
-			"offsets": [
-				79,
-				-15
-			],
+			"offsets": [79, -15],
 			"loop": false,
 			"fps": 24,
 			"anim": "singLEFT",
@@ -67,10 +49,7 @@
 			"name": "Pico NOTE LEFT0"
 		},
 		{
-			"offsets": [
-				-47,
-				44
-			],
+			"offsets": [-47, 44],
 			"loop": false,
 			"fps": 24,
 			"anim": "singRIGHTmiss",
@@ -78,10 +57,7 @@
 			"name": "Pico Note Right Miss"
 		},
 		{
-			"offsets": [
-				81,
-				21
-			],
+			"offsets": [81, 21],
 			"loop": false,
 			"fps": 24,
 			"anim": "singLEFTmiss",
@@ -90,10 +66,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [
-				93,
-				-3
-			],
+			"offsets": [93, -3],
 			"anim": "idle",
 			"fps": 24,
 			"name": "Pico Idle Dance0",
@@ -101,10 +74,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [
-				302,
-				223
-			],
+			"offsets": [302, 223],
 			"anim": "shoot",
 			"fps": 24,
 			"name": "Pico Shoot Hip Full",
@@ -112,10 +82,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [
-				3,
-				-22
-			],
+			"offsets": [3, -22],
 			"anim": "cock",
 			"fps": 24,
 			"name": "reload0",
@@ -123,10 +90,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [
-				-20,
-				-12
-			],
+			"offsets": [-20, -12],
 			"anim": "hurt",
 			"fps": 24,
 			"name": "pico hit",
@@ -134,20 +98,14 @@
 		},
 		{
 			"loop": false,
-			"offsets": [
-				32,
-				1
-			],
+			"offsets": [32, 2],
 			"anim": "hey",
 			"fps": 24,
 			"name": "hey!!",
 			"indices": []
 		},
 		{
-			"offsets": [
-				34,
-				-3
-			],
+			"offsets": [34, -3],
 			"loop": false,
 			"fps": 24,
 			"anim": "burp",
@@ -155,40 +113,88 @@
 			"name": "burp fuck"
 		},
 		{
-			"offsets": [
-				-3,
-				-4
-			],
-			"indices": [],
+			"offsets": [-3, -4],
+			"loop": false,
 			"fps": 18,
 			"anim": "huh",
-			"loop": false,
+			"indices": [],
 			"name": "huh"
+		},
+		{
+			"offsets": [33, -4],
+			"indices": [],
+			"fps": 24,
+			"anim": "burp1",
+			"loop": false,
+			"name": "burp big pico"
+		},
+		{
+			"offsets": [34, -4],
+			"indices": [],
+			"fps": 24,
+			"anim": "burp2",
+			"loop": false,
+			"name": "burp small plus talk pico"
 		}
 	],
 	"vocals_file": "",
-	"noteSplashes": "pico",
 	"no_antialiasing": false,
+	"useNoteSkin": false,
 	"image": "characters/Pico_FNF_assetss",
-	"position": [
-		0,
-		300
-	],
-	"strumCovers": "pico",
-	"noteAssets": "pico",
+	"position": [0, 300],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "pico",
 	"flip_x": true,
-	"healthbar_colors": [
-		133,
-		230,
-		81
-	],
-	"camera_position": [
-		190,
-		0
-	],
-	"notePath": "torchs_assets",
+	"healthbar_colors": [133, 230, 81],
+	"disableNoteRGB": false,
+	"camera_position": [190, 0],
+	"noteSkin": "",
+	"noteColors": {
+		"right": [
+			-16718592,
+			-1,
+			-16751104
+		],
+		"up": [
+			-41728,
+			-1,
+			-9297408
+		],
+		"down": [
+			-16718592,
+			-1,
+			-16751104
+		],
+		"left": [
+			-41728,
+			-1,
+			-9297408
+		]
+	},
 	"sing_duration": 4,
+	"hasAltColors": false,
 	"scale": 1,
 	"_editor_isPlayer": true
 }
