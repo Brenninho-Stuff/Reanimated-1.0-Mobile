@@ -1,5 +1,5 @@
-import states.stages.objects.ABotSpeaker;
-var abot:ABotSpeaker;
+import states.stages.objects.ABot
+var abot:ABot;
 var abotLookDir:Bool = false;
 
 final MIN_BLINK_DELAY:Int = 3;
@@ -18,7 +18,7 @@ var animationFinished:Bool = false;
 
 function onCreate()
 {
-    abot = new ABotSpeaker(gfGroup.x - 100, gfGroup.y + 330);
+    abot = new ABot(gfGroup.x - 100, gfGroup.y + 330);
     addBehindGF(abot);
     updateABotEye(true);
 }
@@ -51,9 +51,8 @@ function onSectionHit()
 
 function onSongStart()
 {
-    abot.snd = FlxG.sound.music;
-    // abot.setAudioSource(FlxG.sound.music);
-    // abot.startVisualizer();
+    abot.setAudioSource(FlxG.sound.music);
+    abot.startVisualizer();
     gf.animation.finishCallback = onNeneAnimationFinished;
 }
 
@@ -146,7 +145,7 @@ function onBeatHit()
         default:
             // In other states, don't interrupt the existing animation.
     }
-    if(curBeat % 2 == 0) abot.beatHit();
+    abot.bop();
 }
 	
 function onNeneAnimationFinished(name:String)
