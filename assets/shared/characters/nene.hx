@@ -1,4 +1,4 @@
-import states.stages.objects.ABotSpeaker
+import states.stages.objects.ABotSpeaker;
 var abot:ABotSpeaker;
 var abotLookDir:Bool = false;
 

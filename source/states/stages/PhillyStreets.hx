@@ -196,23 +196,23 @@ class PhillyStreets extends BaseStage
 		add(spraycanPile);
 		darkenable.push(spraycanPile);
 
-		if(gf != null)
-		{
-			gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int)
-			{
-				switch(currentNeneState)
-				{
-					case STATE_PRE_RAISE:
-						if (name == 'danceLeft' && frameNumber >= 14)
-						{
-							animationFinished = true;
-							transitionState();
-						}
-					default:
-						// Ignore.
-				}
-			}
-		}
+		// if(gf != null)
+		// {
+		// 	gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int)
+		// 	{
+		// 		switch(currentNeneState)
+		// 		{
+		// 			case STATE_PRE_RAISE:
+		// 				if (name == 'danceLeft' && frameNumber >= 14)
+		// 				{
+		// 					animationFinished = true;
+		// 					transitionState();
+		// 				}
+		// 			default:
+		// 				// Ignore.
+		// 		}
+		// 	}
+		// }
 	}
 
 	var videoEnded:Bool = false;
@@ -543,7 +543,7 @@ class PhillyStreets extends BaseStage
 		if(gf == null || !game.startedCountdown) return;
 
 		animationFinished = gf.isAnimationFinished();
-		transitionState();
+		// transitionState();
 	}
 
 	// function transitionState()
@@ -611,7 +611,7 @@ class PhillyStreets extends BaseStage
 
 	override function beatHit()
 	{
-		//if(curBeat % 2 == 0) abot.beatHit();
+		
 		// switch(currentNeneState) {
 		// 	case STATE_READY:
 		// 		if (blinkCountdown == 0)
