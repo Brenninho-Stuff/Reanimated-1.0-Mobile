@@ -25,10 +25,10 @@ enum NeneState
 
 class PhillyStreets extends BaseStage
 {
-	final MIN_BLINK_DELAY:Int = 3;
-	final MAX_BLINK_DELAY:Int = 7;
-	final VULTURE_THRESHOLD:Float = 0.5;
-	var blinkCountdown:Int = 3;
+	// final MIN_BLINK_DELAY:Int = 3;
+	// final MAX_BLINK_DELAY:Int = 7;
+	// final VULTURE_THRESHOLD:Float = 0.5;
+	// var blinkCountdown:Int = 3;
 
 	var rainShader:RainShader;
 	var rainShaderStartIntensity:Float = 0;
@@ -136,9 +136,9 @@ class PhillyStreets extends BaseStage
 			darkenable.push(picoFade);
 		}
 
-		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
-		updateABotEye(true);
-		add(abot);
+		// abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
+		// updateABotEye(true);
+		// add(abot);
 		
 		if(ClientPrefs.data.shaders)
 			setupRainShader();
@@ -396,39 +396,39 @@ class PhillyStreets extends BaseStage
 		FlxG.camera.fade(FlxColor.BLACK, 2, true, null, true);
 	}
 
-	function updateABotEye(finishInstantly:Bool = false)
-	{
-		if(PlayState.SONG.notes[Std.int(FlxMath.bound(curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection == true)
-			abot.lookRight();
-		else
-			abot.lookLeft();
+	// function updateABotEye(finishInstantly:Bool = false)
+	// {
+	// 	if(PlayState.SONG.notes[Std.int(FlxMath.bound(curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection == true)
+	// 		abot.lookRight();
+	// 	else
+	// 		abot.lookLeft();
 
-		if(finishInstantly) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
-	}
+	// 	if(finishInstantly) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
+	// }
 
-	override function startSong()
-	{
-		abot.snd = FlxG.sound.music;
-		gf.animation.finishCallback = onNeneAnimationFinished;
-	}
+	// override function startSong()
+	// {
+	// 	abot.snd = FlxG.sound.music;
+	// 	gf.animation.finishCallback = onNeneAnimationFinished;
+	// }
 	
-	function onNeneAnimationFinished(name:String)
-	{
-		if(!game.startedCountdown) return;
+	// function onNeneAnimationFinished(name:String)
+	// {
+	// 	if(!game.startedCountdown) return;
 
-		switch(currentNeneState)
-		{
-			case STATE_RAISE, STATE_LOWER:
-				if (name == 'raiseKnife' || name == 'lowerKnife')
-				{
-					animationFinished = true;
-					transitionState();
-				}
+	// 	switch(currentNeneState)
+	// 	{
+	// 		case STATE_RAISE, STATE_LOWER:
+	// 			if (name == 'raiseKnife' || name == 'lowerKnife')
+	// 			{
+	// 				animationFinished = true;
+	// 				transitionState();
+	// 			}
 
-			default:
-				// Ignore.
-		}
-	}
+	// 		default:
+	// 			// Ignore.
+	// 	}
+	// }
 	
 	var casingGroup:FlxSpriteGroup;
 	var casingFrames:FlxAtlasFrames;
@@ -596,10 +596,10 @@ class PhillyStreets extends BaseStage
 		}
 	}
 
-	override function sectionHit()
-	{
-		updateABotEye();
-	}
+	// override function sectionHit()
+	// {
+	// 	updateABotEye();
+	// }
 
 	var lightsStop:Bool = false;
 	var lastChange:Int = 0;
@@ -798,19 +798,19 @@ class PhillyStreets extends BaseStage
 	override function goodNoteHit(note:Note)
 	{
 		// 10% chance of playing combo50/combo100 animations for Nene
-		if(FlxG.random.bool(10))
-		{
-			switch(game.combo)
-			{
-				case 50, 100:
-					var animToPlay:String = 'combo${game.combo}';
-					if(gf.animation.exists(animToPlay))
-					{
-						gf.playAnim(animToPlay);
-						gf.specialAnim = true;
-					}
-			}
-		}
+		// if(FlxG.random.bool(10))
+		// {
+		// 	switch(game.combo)
+		// 	{
+		// 		case 50, 100:
+		// 			var animToPlay:String = 'combo${game.combo}';
+		// 			if(gf.animation.exists(animToPlay))
+		// 			{
+		// 				gf.playAnim(animToPlay);
+		// 				gf.specialAnim = true;
+		// 			}
+		// 	}
+		// }
 
 		switch(note.noteType)
 		{
