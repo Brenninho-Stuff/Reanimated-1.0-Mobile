@@ -546,55 +546,55 @@ class PhillyStreets extends BaseStage
 		transitionState();
 	}
 
-	function transitionState()
-	{
-		switch (currentNeneState)
-		{
-			case STATE_DEFAULT:
-				if (game.health <= VULTURE_THRESHOLD)
-				{
-					currentNeneState = STATE_PRE_RAISE;
-					gf.skipDance = true;
-				}
+	// function transitionState()
+	// {
+	// 	switch (currentNeneState)
+	// 	{
+	// 		case STATE_DEFAULT:
+	// 			if (game.health <= VULTURE_THRESHOLD)
+	// 			{
+	// 				currentNeneState = STATE_PRE_RAISE;
+	// 				gf.skipDance = true;
+	// 			}
 
-			case STATE_PRE_RAISE:
-				if (game.health > VULTURE_THRESHOLD)
-				{
-					currentNeneState = STATE_DEFAULT;
-					gf.skipDance = false;
-				}
-				else if (animationFinished)
-				{
-					currentNeneState = STATE_RAISE;
-					gf.playAnim('raiseKnife');
-					gf.skipDance = true;
-					gf.danced = true;
-					animationFinished = false;
-				}
+	// 		case STATE_PRE_RAISE:
+	// 			if (game.health > VULTURE_THRESHOLD)
+	// 			{
+	// 				currentNeneState = STATE_DEFAULT;
+	// 				gf.skipDance = false;
+	// 			}
+	// 			else if (animationFinished)
+	// 			{
+	// 				currentNeneState = STATE_RAISE;
+	// 				gf.playAnim('raiseKnife');
+	// 				gf.skipDance = true;
+	// 				gf.danced = true;
+	// 				animationFinished = false;
+	// 			}
 
-			case STATE_RAISE:
-				if (animationFinished)
-				{
-					currentNeneState = STATE_READY;
-					animationFinished = false;
-				}
+	// 		case STATE_RAISE:
+	// 			if (animationFinished)
+	// 			{
+	// 				currentNeneState = STATE_READY;
+	// 				animationFinished = false;
+	// 			}
 
-			case STATE_READY:
-				if (game.health > VULTURE_THRESHOLD)
-				{
-					currentNeneState = STATE_LOWER;
-					gf.playAnim('lowerKnife');
-				}
+	// 		case STATE_READY:
+	// 			if (game.health > VULTURE_THRESHOLD)
+	// 			{
+	// 				currentNeneState = STATE_LOWER;
+	// 				gf.playAnim('lowerKnife');
+	// 			}
 
-			case STATE_LOWER:
-				if (animationFinished)
-				{
-					currentNeneState = STATE_DEFAULT;
-					animationFinished = false;
-					gf.skipDance = false;
-				}
-		}
-	}
+	// 		case STATE_LOWER:
+	// 			if (animationFinished)
+	// 			{
+	// 				currentNeneState = STATE_DEFAULT;
+	// 				animationFinished = false;
+	// 				gf.skipDance = false;
+	// 			}
+	// 	}
+	// }
 
 	// override function sectionHit()
 	// {
@@ -612,18 +612,18 @@ class PhillyStreets extends BaseStage
 	override function beatHit()
 	{
 		//if(curBeat % 2 == 0) abot.beatHit();
-		switch(currentNeneState) {
-			case STATE_READY:
-				if (blinkCountdown == 0)
-				{
-					gf.playAnim('idleKnife', false);
-					blinkCountdown = FlxG.random.int(MIN_BLINK_DELAY, MAX_BLINK_DELAY);
-				}
-				else blinkCountdown--;
+		// switch(currentNeneState) {
+		// 	case STATE_READY:
+		// 		if (blinkCountdown == 0)
+		// 		{
+		// 			gf.playAnim('idleKnife', false);
+		// 			blinkCountdown = FlxG.random.int(MIN_BLINK_DELAY, MAX_BLINK_DELAY);
+		// 		}
+		// 		else blinkCountdown--;
 
-			default:
-				// In other states, don't interrupt the existing animation.
-		}
+		// 	default:
+		// 		// In other states, don't interrupt the existing animation.
+		// }
 
 		if(ClientPrefs.data.lowQuality) return;
 

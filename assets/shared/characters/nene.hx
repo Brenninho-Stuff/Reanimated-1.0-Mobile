@@ -146,7 +146,7 @@ function onBeatHit()
         default:
             // In other states, don't interrupt the existing animation.
     }
-    abot.speaker.anim.play('anim', true);
+    if(curBeat % 2 == 0) abot.beatHit();
 }
 	
 function onNeneAnimationFinished(name:String)
