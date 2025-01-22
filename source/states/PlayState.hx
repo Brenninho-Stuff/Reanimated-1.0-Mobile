@@ -31,7 +31,9 @@ import states.editors.CharacterEditorState;
 import substates.PauseSubState;
 import substates.GameOverSubstate;
 
-import ghosteffect.GhostEffect;
+//objects Plus
+import objectsplus.GhostEffect;
+import objectsplus.ScoreDisplay;
 
 #if !flash
 import flixel.addons.display.FlxRuntimeShader;
@@ -290,6 +292,8 @@ class PlayState extends MusicBeatState
 	var detailsText:String = "";
 	var detailsPausedText:String = "";
 	#end
+
+	var scoreDisplay:ScoreDisplay;
 
 	//Achievement shit
 	var keysPressed:Array<Int> = [];
@@ -643,6 +647,10 @@ class PlayState extends MusicBeatState
 		scoreTxt.visible = !ClientPrefs.data.hideHud;
 		updateScore(false);
 		uiGroup.add(scoreTxt);
+
+		scoreDisplay = new ScoreDisplay();
+		add(scoreDisplay);
+		scoreTxt.visible = false;
 
 		botplayTxt = new FlxText(400, healthBar.y - 90, FlxG.width - 800, Language.getPhrase("Botplay").toUpperCase(), 32);
 		botplayTxt.setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'vcr.ttf'),PlayState.isPixelStage ? 16 : 20,FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);

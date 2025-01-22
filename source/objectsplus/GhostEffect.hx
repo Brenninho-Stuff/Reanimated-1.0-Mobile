@@ -1,4 +1,4 @@
-package ghosteffect;
+package objectsplus;
 
 import flixel.FlxSprite;
 import objects.Note;
