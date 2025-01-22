@@ -3790,32 +3790,29 @@ class PlayState extends MusicBeatState
 				}
 			}
 
-			if(note.noteType == "Shoot Note")
-			{
-			var dodgeAnimations:Array<String> = ['dodgeLEFT', 'dodgeDOWN', 'dodgeUP', 'dodgeRIGHT'];
-			var animToPlay:String = dodgeAnimations[Std.int(Math.abs(note.noteData))];
-			boyfriend.playAnim(animToPlay, true);
-			boyfriend.specialAnim = true;
-			gf.playAnim('shoot', true);
-			gf.specialAnim = true;
+			switch(note.noteType) {
+				case "Shoot Note":
+					var dodgeAnimations:Array<String> = ['dodgeLEFT', 'dodgeDOWN', 'dodgeUP', 'dodgeRIGHT'];
+					var animToPlay:String = dodgeAnimations[Std.int(Math.abs(note.noteData))];
+					boyfriend.playAnim(animToPlay, true);
+					boyfriend.specialAnim = true;
+					gf.playAnim('shoot', true);
+					gf.specialAnim = true;
 
-			var dadAnim:String = singAnimations[Std.int(Math.abs(note.noteData))] + '-shoot';
-			if (dad.animOffsets.exists(dadAnim)) {
-				dad.playAnim(dadAnim);
-				dad.specialAnim = true;
-				FlxG.sound.play(Paths.sound('shoot'));
-				FlxG.camera.shake(0.01, 0.2);
-			}
-		}
-			
-			if(note.noteType == 'Duo Sing')
-				{
+					var dadAnim:String = singAnimations[Std.int(Math.abs(note.noteData))] + '-shoot';
+					if (dad.animOffsets.exists(dadAnim)) {
+						dad.playAnim(dadAnim);
+						dad.specialAnim = true;
+						FlxG.sound.play(Paths.sound('shoot'));
+						FlxG.camera.shake(0.01, 0.2);
+					}
+				case "Duo Sing":
 					var singsAnimations:Array<String> = ['singLEFT', 'singDOWN', 'singUP', 'singRIGHT'];
 					var animToPlay:String = singsAnimations[Std.int(Math.abs(note.noteData))];
 					boyfriend.playAnim(animToPlay, true);
 					gf.playAnim(animToPlay, true);
 					gf.holdTimer = 0;
-				}
+			}
 
 			if(!cpuControlled)
 			{
@@ -3904,7 +3901,29 @@ class PlayState extends MusicBeatState
 		stagesFunc(function(stage:BaseStage) stage.goodNoteHit(note));
 		var result:Dynamic = callOnLuas('goodNoteHit', [notes.members.indexOf(note), leData, leType, isSus]);
 		if(result != LuaUtils.Function_Stop && result != LuaUtils.Function_StopHScript && result != LuaUtils.Function_StopAll) callOnHScript('goodNoteHit', [note]);
-		if(!note.isSustainNote) invalidateNote(note); else sickStrum(note);
+		if(!note.isSustainNote) invalidateNote(note); 
+		//else sickStrum(note);
+		else sustainHold(note);
+	}
+
+	private function sustainHold(note:Note = null):Void {
+		var scoreToAdd:Int = 35;
+		if (note.rating.toLowerCase() == 'unknown' && note.prevNote.rating.toLowerCase() != 'unknown') {
+			trace(note.prevNote.rating);
+			note.rating = note.prevNote.rating;
+		}
+		scoreToAdd = switch(note.rating) {
+			case 'sick':
+				35;
+			case 'good':
+				20;
+			case 'bad':
+				10;
+			default: //shit and unknown
+				5;
+		};
+		songScore += scoreToAdd;
+		sickStrum(note);
 	}
 
 	private function sickStrum(note:Note = null):Void {
@@ -3912,7 +3931,6 @@ class PlayState extends MusicBeatState
 		var daRating:Rating = Conductor.judgeNote(ratingsData, noteDiff / playbackRate);
 		playerCovers.forEach(function(c:StrumCover) {
 			if (daRating.noteSplash && Math.abs(note.noteData) == c.strumNote.noteData && (note.prevNote == null || !note.prevNote.isSustainNote) && note.prevNote.sustainLength >= c.minSustainLength) c.start(note);
-			else trace(note.prevNote.sustainLength);
 		});
 	}
 

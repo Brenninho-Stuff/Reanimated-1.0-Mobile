@@ -37,7 +37,8 @@ class ScoreDisplay extends FlxText
         alpha = PlayState.instance.scoreTxt.alpha;
         
         var targetScore:Float = PlayState.instance.songScore;
-        displayedScore = FlxMath.lerp(displayedScore, targetScore, lerpSpeed * elapsed);
+        displayedScore = FlxMath.lerp(displayedScore, targetScore, lerpSpeed * elapsed); 
+        //displayedScore = FlxMath.lerp(displayedScore, targetScore, 1); // testing only
         
         var roundedScore:Int = Math.round(displayedScore);
         text = 'Score: ${formatNumber(roundedScore)}';
