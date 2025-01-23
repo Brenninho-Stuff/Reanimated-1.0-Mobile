@@ -1,4 +1,4 @@
-import states.stages.objects.ABot
+import states.stages.objects.ABot;
 var abot:ABot;
 var abotLookDir:Bool = false;
 
@@ -21,6 +21,7 @@ function onCreate()
     abot = new ABot(gfGroup.x - 100, gfGroup.y + 330);
     addBehindGF(abot);
     updateABotEye(true);
+    trace(abot);
 }
 
 function onCreatePost()
@@ -54,6 +55,7 @@ function onSongStart()
     abot.setAudioSource(FlxG.sound.music);
     abot.startVisualizer();
     gf.animation.finishCallback = onNeneAnimationFinished;
+    trace("aah");
 }
 
 function updateABotEye(?finishInstantly:Bool = false)
