@@ -209,6 +209,9 @@ class PlayState extends MusicBeatState
 	public var enemyNoteSplashes:Bool = false;
 	public var enemyCoverSplashes:Bool = false;
 
+	
+	public var cameraZoomTween:FlxTween;
+	public var cameraFollowTween:FlxTween;
 	public var camZooming:Bool = false;
 	public var camZoomingMult:Float = 1;
 	public var camZoomingDecay:Float = 1;
