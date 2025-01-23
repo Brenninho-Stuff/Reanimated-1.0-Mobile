@@ -16,16 +16,12 @@ var STATE_LOWER = 4;
 var currentNeneState = STATE_DEFAULT;
 var animationFinished:Bool = false;
 
-function onCreate()
+function onCreatePost()
 {
+
     abot = new ABot(gfGroup.x - 100, gfGroup.y + 330);
     addBehindGF(abot);
     updateABotEye(true);
-    trace(abot);
-}
-
-function onCreatePost()
-{
     if(gf != null)
     {
         gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int)
