@@ -89,6 +89,10 @@ class PhillyStreets extends BaseStage
     var casingFrames:FlxAtlasFrames;
     var casingGroup:FlxSpriteGroup;
 
+	var rainShader:RainShader;
+	var rainShaderStartIntensity:Float = 0;
+	var rainShaderEndIntensity:Float = 0;
+
     override function create() {
 
 		ratingPos.set(1400, 800); // Just used random numbers for example
@@ -234,6 +238,8 @@ class PhillyStreets extends BaseStage
 				useShader = true;
 			}
 		}*/
+		if(ClientPrefs.data.shaders)
+			setupRainShader();
 
 		if(PlayState.SONG.song.toLowerCase() == "darnell")
 		{
@@ -248,6 +254,27 @@ class PhillyStreets extends BaseStage
         //updateABotEye(true);
 
     }
+
+	
+	function setupRainShader()
+	{
+		rainShader = new RainShader();
+		rainShader.scale = FlxG.height / 200;
+		switch (songName)
+		{
+			case 'darnell':
+				rainShaderStartIntensity = 0;
+				rainShaderEndIntensity = 0.1;
+			case 'lit-up':
+				rainShaderStartIntensity = 0.1;
+				rainShaderEndIntensity = 0.2;
+			case '2hot':
+				rainShaderStartIntensity = 0.2;
+				rainShaderEndIntensity = 0.4;
+		}
+		rainShader.intensity = rainShaderStartIntensity;
+		FlxG.camera.setFilters([new ShaderFilter(rainShader)]);
+	}
 
     override function createPost()
     {
@@ -445,6 +472,13 @@ class PhillyStreets extends BaseStage
 		/*if(ClientPrefs.data.shaders)
 			rain.update(elapsed * rainTimeScale, Math.max(0, Conductor.songPosition - ClientPrefs.data.noteOffset) / FlxG.sound.music.length);
 		    rainTimeScale = MathUtil.coolLerp(rainTimeScale, rainScaler, 0.05);*/
+	    if(rainShader != null)
+		{
+			var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 0, (FlxG.sound.music != null ? FlxG.sound.music.length : 0), rainShaderStartIntensity, rainShaderEndIntensity);
+			rainShader.intensity = remappedIntensityValue;
+			rainShader.updateViewInfo(FlxG.width, FlxG.height, FlxG.camera);
+			rainShader.update(elapsed);
+		}
 		if(gf.animation.curAnim.name == "Idle-alt"){
             blinkTime -= elapsed;
 
