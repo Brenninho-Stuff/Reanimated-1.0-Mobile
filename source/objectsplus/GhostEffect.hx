@@ -69,7 +69,14 @@ class GhostEffect extends FlxSprite
         var character = (char == 'boyfriend') ? PlayState.instance.boyfriend : PlayState.instance.dad;
         var ghostData = (char == 'boyfriend') ? boyfriendGhostData : dadGhostData;
         
-        ghostData.frameName = character.animation.frameName;
+        if(!character.isAnimateAtlas)
+        {
+            ghostData.frameName = character.animation.frameName;
+        }
+        else
+        {
+            character.atlas.anim.curFrame;
+        }
         ghostData.offsetX = character.offset.x;
         ghostData.offsetY = character.offset.y;
     }
