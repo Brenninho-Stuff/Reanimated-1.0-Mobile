@@ -11,9 +11,10 @@ import backend.MathUtil;
 import objects.Note;
 import flash.display.BlendMode;
 import torchsthings.shaders.*;
-import torchsthings.utils.ShaderUtils;
+//import torchsthings.utils.ShaderUtils;
 import torchsthings.objects.ReflectedChar;
 import openfl.filters.ShaderFilter;
+import shaders.RainShader;
 import flixel.addons.display.FlxTiledSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
@@ -44,11 +45,11 @@ class PhillyStreets extends BaseStage
     var lightsStop:Bool = false; // state of the traffic lights
 
     //Shader
-	var rain:Rain;
+	/*var rain:Rain;
 	var rainFilter:ShaderFilter;
 	var useShader:Bool = false;
     var rainTimeScale:Float = 1.0;
-	var rainScaler:Float = 0.55;
+	var rainScaler:Float = 0.55;*/
 
     //Cutscene Bools
     var inCutsceneDarnell:Bool = false;
@@ -73,8 +74,8 @@ class PhillyStreets extends BaseStage
     var cutsceneSnd:FlxSound = new FlxSound().loadEmbedded(Paths.sound('darnellCanCutscene'));
 
     //Nene and Speaker
-    var abot:ABot;
-	var abotLookDir:Bool = false;	
+    //var abot:ABot;
+	//var abotLookDir:Bool = false;	
     var knifeRaised:Bool = false;
     var blinkTime:Float = 0;
     final BLINK_MIN:Float = 1;
@@ -90,7 +91,11 @@ class PhillyStreets extends BaseStage
 
     override function create() {
 
-		if (ClientPrefs.data.shaders) rain = new Rain();
+		ratingPos.set(1400, 800); // Just used random numbers for example
+		comboCountPos.set(1300, 950);
+		comboImage.set( 0, 900);
+
+//		if (ClientPrefs.data.shaders) rain = new Rain();
         //Game Over
         var _song = PlayState.SONG;
 		var startingSong = game.startingSong;
@@ -205,8 +210,8 @@ class PhillyStreets extends BaseStage
 		casingGroup = new FlxSpriteGroup();
 
         //Adding Speaker
-        abot = new ABot(1100, 740);
-		add(abot);
+       // abot = new ABot(1100, 740);
+		//add(abot);
 
         //Adding picoFade
         picoFade = new FlxSprite();
@@ -215,7 +220,7 @@ class PhillyStreets extends BaseStage
 		addAndDark(picoFade);
 
         //Setting Up Shader And Starting Cutscene
-		if(ClientPrefs.data.shaders)
+		/*if(ClientPrefs.data.shaders)
 		{
 			switch(PlayState.SONG.song.toLowerCase()) {
 				case 'darnell':
@@ -228,7 +233,7 @@ class PhillyStreets extends BaseStage
 				rain.setIntenseValues(0.2, 0.4);
 				useShader = true;
 			}
-		}
+		}*/
 
 		if(PlayState.SONG.song.toLowerCase() == "darnell")
 		{
@@ -240,16 +245,16 @@ class PhillyStreets extends BaseStage
 
         //Functions
         resetCar(true, true);
-        updateABotEye(true);
+        //updateABotEye(true);
 
     }
 
     override function createPost()
     {
-        if (useShader) 
-		{
-			rainFilter = new ShaderFilter(rain);
-			ShaderUtils.applyFiltersToCams([camGame, camHUD], [rainFilter]);
+       // if (useShader) 
+		//{
+		//	rainFilter = new ShaderFilter(rain);
+		//	ShaderUtils.applyFiltersToCams([camGame, camHUD], [rainFilter]);
 			//FlxG.game.setFilters([rainFilter]);
 			
 			/*
@@ -265,9 +270,9 @@ class PhillyStreets extends BaseStage
 			Make sure to use "addBehindBF", "addBehindGF", and "addBehindDad" instead of "add" so that the reflected character is below the proper character it needs to be.
 			*/
 
-			reflectedBF = new ReflectedChar(boyfriend, 0.35);
-			addBehindBF(reflectedBF);
-		}
+		//	reflectedBF = new ReflectedChar(boyfriend, 0.35);
+			//addBehindBF(reflectedBF);
+		//}
         add(phillySpray);
         add(spraycan);
         add(casingGroup);
@@ -277,6 +282,8 @@ class PhillyStreets extends BaseStage
 
     function prepareCutscene()
 	{
+		reflectedBF = new ReflectedChar(boyfriend, 0.35);
+		addBehindBF(reflectedBF);
 		inCutsceneDarnell = true;
 		seenDarnellCutscene = false;
 		picoPos = [boyfriend.getMidpoint().x -400 - boyfriend.cameraPosition[0] - game.boyfriendCameraOffset[0],  boyfriend.getMidpoint().y - 100 + boyfriend.cameraPosition[1] + game.boyfriendCameraOffset[1]];
@@ -299,12 +306,12 @@ class PhillyStreets extends BaseStage
 		add(picoIntro2);
 		picoIntro2.alpha = 0.00001;
 
-		if (useShader)
+		/*if (useShader)
 		{
 			reflectedBF.destroy();
 			reflectedBF = new ReflectedChar(picoIntro1, 0.35);
 			addBehindBF(reflectedBF);
-		}
+		}*/
 
 		camFollow.setPosition(picoPos[0] + 250, picoPos[1]);
 
@@ -387,12 +394,12 @@ class PhillyStreets extends BaseStage
 		{
 			picoIntro2.alpha = 0.00001;
 			picoIntro1.alpha = 1;
-			if (useShader)
+/*			if (useShader)
 			{
 				reflectedBF.destroy();
 				reflectedBF = new ReflectedChar(picoIntro1, 0.35);
 				addBehindBF(reflectedBF);
-			}
+			}*/
 		});
 
 		cutsceneHandler.timer(7.0, function()
@@ -435,9 +442,9 @@ class PhillyStreets extends BaseStage
     override function update(elapsed:Float)
 	{
 		//rain.shader.update(elapsed * rainTimeScale);
-		if(ClientPrefs.data.shaders)
+		/*if(ClientPrefs.data.shaders)
 			rain.update(elapsed * rainTimeScale, Math.max(0, Conductor.songPosition - ClientPrefs.data.noteOffset) / FlxG.sound.music.length);
-		    rainTimeScale = MathUtil.coolLerp(rainTimeScale, rainScaler, 0.05);
+		    rainTimeScale = MathUtil.coolLerp(rainTimeScale, rainScaler, 0.05);*/
 		if(gf.animation.curAnim.name == "Idle-alt"){
             blinkTime -= elapsed;
 
@@ -467,7 +474,7 @@ class PhillyStreets extends BaseStage
 		{
 			case "Change Character":
 				if (value1.toLowerCase() == "bf" || value1.toLowerCase() == "boyfriend" || value1.toLowerCase() == "player") {
-					if (useShader)
+					//if (useShader)
 					{
 						reflectedBF.destroy();
 						reflectedBF = new ReflectedChar(boyfriend, 0.35);
@@ -485,21 +492,6 @@ class PhillyStreets extends BaseStage
 					addBehindGF(reflectedGF);
 				} 
 		}
-	}
-
-    override function sectionHit()
-	{
-		updateABotEye();
-	}
-
-	function updateABotEye(finishInstantly:Bool = false)
-	{
-		if(PlayState.SONG.notes[Std.int(FlxMath.bound(curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection == true)
-			abot.lookRight();
-		else
-			abot.lookLeft();
-
-		if(finishInstantly) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
 	}
 
 	override function countdownTick(count:Countdown, num:Int) {
@@ -527,7 +519,6 @@ class PhillyStreets extends BaseStage
 
     override function beatHit() 
 	{
-		abot.bop();
 		// Try driving a car when its possible
 		if (FlxG.random.bool(10) && curBeat != (lastChange + changeInterval) && carInterruptable == true)
 		{
@@ -764,19 +755,6 @@ class PhillyStreets extends BaseStage
 				car2Interruptable = true;
 			}
 		});
-	}
-
-    override function setAudioAndStart(isStart:Bool)
-	{
-		if (isStart)
-		{
-			abot.setAudioSource(FlxG.sound.music);
-			abot.startVisualizer();
-		}
-		else
-		{
-			abot.setAudioSource(null);
-		}
 	}
 
     override function goodNoteHit(note:Note)

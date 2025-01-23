@@ -77,7 +77,7 @@ class BaseStage extends FlxBasic
 	//public function update(elapsed:Float) {}
 	public function countdownTick(count:Countdown, num:Int) {}
 	public function startSong() {}
-
+	public function onEndSong() {} // Para hacer Funcionar la frecuencia del speaker de nene lol
 	// FNF steps, beats and sections
 	public var curBeat:Int = 0;
 	public var curDecBeat:Float = 0;
@@ -87,7 +87,7 @@ class BaseStage extends FlxBasic
 	public function beatHit() {}
 	public function stepHit() {}
 	public function sectionHit() {}
-
+	public function setAudioAndStart(isStart:Bool) {}
 	// Substate close/open, for pausing Tweens/Timers
 	public function closeSubState() {}
 	public function openSubState(SubState:FlxSubState) {}

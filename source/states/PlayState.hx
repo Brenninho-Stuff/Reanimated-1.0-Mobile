@@ -1439,6 +1439,9 @@ class PlayState extends MusicBeatState
 		setOnScripts('songLength', songLength);
 		callOnScripts('onSongStart');
 		canDie = true;
+
+		stagesFunc(function(stage:BaseStage) stage.setAudioAndStart(true));
+		stagesFunc(function(stage:BaseStage) stage.startSong()); // se me olvido esto :V
 	}
 
 	private var noteTypes:Array<String> = [];
@@ -3026,6 +3029,8 @@ class PlayState extends MusicBeatState
 		#end
 
 		var ret:Dynamic = callOnScripts('onEndSong', null, true);
+		stagesFunc(function(stage:BaseStage) stage.setAudioAndStart(false));
+		stagesFunc(function(stage:BaseStage) stage.onEndSong());
 		if(ret != LuaUtils.Function_Stop && !transitioning)
 		{
 			#if !switch
