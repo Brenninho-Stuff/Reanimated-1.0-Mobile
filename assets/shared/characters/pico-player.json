@@ -1,146 +1,162 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [71, 16],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUP",
-			"fps": 24,
-			"name": "pico Up note0",
-			"indices": []
+			"indices": [],
+			"name": "pico Up note0"
 		},
 		{
-			"loop": false,
 			"offsets": [114, -87],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWN",
-			"fps": 24,
-			"name": "Pico Down Note0",
-			"indices": []
+			"indices": [],
+			"name": "Pico Down Note0"
 		},
 		{
-			"loop": false,
 			"offsets": [95, -48],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWNmiss",
-			"fps": 24,
-			"name": "Pico Down Note MISS",
-			"indices": []
+			"indices": [],
+			"name": "Pico Down Note MISS"
 		},
 		{
-			"loop": false,
 			"offsets": [19, 53],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUPmiss",
-			"fps": 24,
-			"name": "pico Up note miss",
-			"indices": []
+			"indices": [],
+			"name": "pico Up note miss"
 		},
 		{
+			"loop": false,
 			"offsets": [-53, 1],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "Pico Note Right0"
+			"fps": 24,
+			"name": "Pico Note Right0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [79, -15],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "Pico NOTE LEFT0"
+			"fps": 24,
+			"name": "Pico NOTE LEFT0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [-47, 44],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHTmiss",
-			"indices": [],
-			"name": "Pico Note Right Miss"
+			"fps": 24,
+			"name": "Pico Note Right Miss",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [81, 21],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFTmiss",
-			"indices": [],
-			"name": "Pico NOTE LEFT miss"
+			"fps": 24,
+			"name": "Pico NOTE LEFT miss",
+			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [93, -3],
+			"loop": false,
+			"fps": 24,
 			"anim": "idle",
-			"fps": 24,
-			"name": "Pico Idle Dance0",
-			"indices": []
+			"indices": [],
+			"name": "Pico Idle Dance0"
 		},
 		{
+			"offsets": [250, 229],
 			"loop": false,
-			"offsets": [302, 223],
+			"fps": 24,
 			"anim": "shoot",
-			"fps": 24,
-			"name": "Pico Shoot Hip Full",
-			"indices": []
+			"indices": [],
+			"name": "Pico Shoot Hip Full"
 		},
 		{
+			"offsets": [-7, -22],
 			"loop": false,
-			"offsets": [3, -22],
+			"fps": 24,
 			"anim": "cock",
-			"fps": 24,
-			"name": "reload0",
-			"indices": []
+			"indices": [],
+			"name": "reload0"
 		},
 		{
-			"loop": false,
 			"offsets": [-20, -12],
+			"loop": false,
+			"fps": 24,
 			"anim": "hurt",
-			"fps": 24,
-			"name": "pico hit",
-			"indices": []
+			"indices": [],
+			"name": "pico hit"
 		},
 		{
-			"loop": false,
 			"offsets": [32, 2],
-			"anim": "hey",
+			"loop": false,
 			"fps": 24,
-			"name": "hey!!",
+			"anim": "hey",
+			"indices": [],
+			"name": "hey!!"
+		},
+		{
+			"loop": false,
+			"offsets": [34, -3],
+			"anim": "burp",
+			"fps": 24,
+			"name": "burp fuck",
 			"indices": []
 		},
 		{
-			"offsets": [34, -3],
 			"loop": false,
-			"fps": 24,
-			"anim": "burp",
-			"indices": [],
-			"name": "burp fuck"
-		},
-		{
 			"offsets": [-3, -4],
-			"loop": false,
-			"fps": 18,
 			"anim": "huh",
-			"indices": [],
-			"name": "huh"
+			"fps": 18,
+			"name": "huh",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [33, -4],
-			"indices": [],
-			"fps": 24,
 			"anim": "burp1",
-			"loop": false,
-			"name": "burp big pico"
+			"fps": 24,
+			"name": "burp big pico",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [34, -4],
+			"anim": "burp2",
+			"fps": 24,
+			"name": "burp small plus talk pico",
+			"indices": []
+		},
+		{
+			"offsets": [56, -4],
 			"indices": [],
 			"fps": 24,
-			"anim": "burp2",
+			"anim": "Intro",
 			"loop": false,
-			"name": "burp small plus talk pico"
+			"name": "Pico Gets Pissed0"
+		},
+		{
+			"offsets": [252, 227],
+			"indices": [],
+			"fps": 24,
+			"anim": "Return",
+			"loop": false,
+			"name": "shoot and return0"
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
 	"useNoteSkin": false,
-	"image": "characters/Pico_FNF_assetss",
+	"image": "characters/Pico_FNF_assetss,characters/Pico_Intro",
 	"position": [0, 300],
 	"noteSkinLib": "shared",
 	"altNoteColors": {
