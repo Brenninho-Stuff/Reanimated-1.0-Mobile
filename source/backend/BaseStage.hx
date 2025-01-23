@@ -77,7 +77,12 @@ class BaseStage extends FlxBasic
 	}
 
 	//main callbacks
-	public function create() {}
+	public function create() {
+		abot = new ABot(game.gfGroup.x - 100, game.gfGroup.y + 330);
+		abot.visible = false;
+		addBehindGF(abot);
+		updateABotEye(true);
+	}
 	public function createPost() {}
 	//public function update(elapsed:Float) {}
 	public function countdownTick(count:Countdown, num:Int) {}
@@ -93,20 +98,6 @@ class BaseStage extends FlxBasic
 	public function stepHit() {}
 	public function sectionHit() {
 		updateABotEye();
-	}
-	public function setAudioAndStart(isStart:Bool) {
-		abot.setAudioSource(FlxG.sound.music);
-		abot.startVisualizer();
-	}
-	function updateABotEye(?finishInstantly:Bool = false)
-	{
-		if(PlayState.SONG.notes[Std.int(FlxMath.bound(curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection == true)
-			abot.lookRight();
-		else
-			abot.lookLeft();
-		
-		if(finishInstantly) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
-			
 	}
 	// Substate close/open, for pausing Tweens/Timers
 	public function closeSubState() {}
@@ -142,9 +133,7 @@ class BaseStage extends FlxBasic
 		//Por el momento usaré esta funcion para lo del speaker también, luego se puede crear una nueva
 		if(name == "nene")
 		{
-			abot = new ABot(game.gfGroup.x - 100, game.gfGroup.y + 330);
-			addBehindGF(abot);
-			updateABotEye(true);
+			abot.visible = true;
 		}
 	}
 
