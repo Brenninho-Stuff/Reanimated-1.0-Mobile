@@ -8,6 +8,7 @@ import flixel.group.FlxGroup;
 import objects.Note;
 import objects.Character;
 import torchsthings.objects.ReflectedChar;
+import states.stages.objects.ABotSpeaker;
 
 enum Countdown
 {
@@ -16,6 +17,15 @@ enum Countdown
 	ONE;
 	GO;
 	START;
+}
+
+enum NeneState
+{
+	STATE_DEFAULT;
+	STATE_PRE_RAISE;
+	STATE_RAISE;
+	STATE_READY;
+	STATE_LOWER;
 }
 
 class BaseStage extends FlxBasic
@@ -197,5 +207,159 @@ class BaseStage extends FlxBasic
 	
 	function randomWeekSound(name:String, min:Int, max:Int, ?modsAllowed:Bool = true) {
 		return Paths.soundRandom(name, min, max, '', true, modsAllowed);
+	}
+
+	// Abot stuff
+	var abot:ABotSpeaker;
+	var blinkCountdown:Int = 3;
+	final VULTURE_THRESHOLD:Float = 0.5;
+	final MIN_BLINK_DELAY:Int = 3;
+	final MAX_BLINK_DELAY:Int = 7;
+	var animationFinished:Bool = false;
+
+	// As I can't make this permanently be in every stage, you will have to at least throw this function into createPost.
+	// Yes, it has to be in createPost otherwise it will mess up trying to figure out the character name from the gf object.
+	/* Example:
+	override function createPost() {
+		addAbot();
+	}
+	*/
+
+	function addAbot() {
+		if(gf != null) {
+			if (gf.curCharacter.toLowerCase() == 'nene' || gf.curCharacter.toLowerCase() == 'nene-opp') {
+				abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 350 /*+ 550*/);
+				updateABotEye(true);
+				addBehindGF(abot);
+			}
+
+			gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int) {
+				switch(currentNeneState) {
+					case STATE_PRE_RAISE:
+						if (name == 'danceLeft' && frameNumber >= 14) {
+							animationFinished = true;
+							transitionState();
+						}
+					default:
+						// Ignore.
+				}
+			}
+		}
+	}
+
+	// Put this in sectionHit
+	/*
+	override function sectionHit() {
+		updateABotEye();
+	}
+	*/
+	function updateABotEye(finishInstantly:Bool = false) {
+		if (abot != null) {
+			if(PlayState.SONG.notes[Std.int(FlxMath.bound(curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection == true)
+				abot.lookRight();
+			else
+				abot.lookLeft();
+	
+			if(finishInstantly) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
+		}
+	}
+
+	// Put this in startSong 
+	/*
+	override function startSong() {
+		abotSongStart();
+	}
+	*/
+	function abotSongStart() {
+		if (abot != null) abot.snd = FlxG.sound.music;
+		gf.animation.finishCallback = onNeneAnimationFinished;
+	}
+
+	// Put this in update
+	/*
+	override function update(elapsed:Float) {
+		abotUpdate();
+	}
+	*/
+	function abotUpdate() {
+		animationFinished = gf.isAnimationFinished();
+		transitionState();
+	}
+
+	// Put this in beatHit
+	/*
+	override function beatHit() {
+		abotBeatHit();
+	}
+	*/
+	function abotBeatHit() {
+		switch(currentNeneState) {
+			case STATE_READY:
+				if (blinkCountdown == 0) {
+					gf.playAnim('idleKnife', false);
+					blinkCountdown = FlxG.random.int(MIN_BLINK_DELAY, MAX_BLINK_DELAY);
+				}
+				else blinkCountdown--;
+
+			default:
+				// In other states, don't interrupt the existing animation.
+		}
+	}
+
+	var currentNeneState:NeneState = STATE_DEFAULT;
+	function onNeneAnimationFinished(name:String) {
+		if(!game.startedCountdown) return;
+
+		switch(currentNeneState) {
+			case STATE_RAISE, STATE_LOWER:
+				if (name == 'raiseKnife' || name == 'lowerKnife') {
+					animationFinished = true;
+					transitionState();
+				}
+
+			default:
+				// Ignore.
+		}
+	}
+
+	function transitionState() {
+		switch (currentNeneState) {
+			case STATE_DEFAULT:
+				if (game.health <= VULTURE_THRESHOLD) {
+					currentNeneState = STATE_PRE_RAISE;
+					gf.skipDance = true;
+				}
+
+			case STATE_PRE_RAISE:
+				if (game.health > VULTURE_THRESHOLD) {
+					currentNeneState = STATE_DEFAULT;
+					gf.skipDance = false;
+				} else if (animationFinished) {
+					currentNeneState = STATE_RAISE;
+					gf.playAnim('raiseKnife');
+					gf.skipDance = true;
+					gf.danced = true;
+					animationFinished = false;
+				}
+
+			case STATE_RAISE:
+				if (animationFinished) {
+					currentNeneState = STATE_READY;
+					animationFinished = false;
+				}
+
+			case STATE_READY:
+				if (game.health > VULTURE_THRESHOLD) {
+					currentNeneState = STATE_LOWER;
+					gf.playAnim('lowerKnife');
+				}
+
+			case STATE_LOWER:
+				if (animationFinished) {
+					currentNeneState = STATE_DEFAULT;
+					animationFinished = false;
+					gf.skipDance = false;
+				}
+		}
 	}
 }

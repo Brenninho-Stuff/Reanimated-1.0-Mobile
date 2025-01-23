@@ -300,12 +300,22 @@ class PhillyStreets extends BaseStage
 		//	reflectedBF = new ReflectedChar(boyfriend, 0.35);
 			//addBehindBF(reflectedBF);
 		//}
+		addAbot();
+
         add(phillySpray);
         add(spraycan);
         add(casingGroup);
 		createCan();
 
     }
+
+	override function sectionHit() {
+		updateABotEye();
+	}
+
+	override function startSong() {
+		abotSongStart();
+	}
 
     function prepareCutscene()
 	{
@@ -499,6 +509,7 @@ class PhillyStreets extends BaseStage
 			}
 		}
 
+		abotUpdate();
 		super.update(elapsed);
 	}
 
@@ -553,6 +564,8 @@ class PhillyStreets extends BaseStage
 
     override function beatHit() 
 	{
+		abotBeatHit();
+
 		// Try driving a car when its possible
 		if (FlxG.random.bool(10) && curBeat != (lastChange + changeInterval) && carInterruptable == true)
 		{

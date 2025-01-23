@@ -23,7 +23,7 @@ class PhillyBlazin extends BaseStage
 	
 	var lightningTimer:Float = 3.0;
 
-	var abot:ABotSpeaker;
+	//var abot:ABotSpeaker;
 
 	override function create()
 	{
