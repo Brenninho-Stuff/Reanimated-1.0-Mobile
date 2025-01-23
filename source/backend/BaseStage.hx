@@ -137,6 +137,22 @@ class BaseStage extends FlxBasic
 		}
 	}
 
+	function updateABotEye(?finishInstantly:Bool = false)
+	{
+		if(PlayState.SONG.notes[Std.int(FlxMath.bound(curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection == true)
+			abot.lookRight();
+		else
+			abot.lookLeft();
+		
+		if(finishInstantly) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
+			
+	}
+
+	public function setAudioAndStart(isStart:Bool) {
+		// abot.setAudioSource(FlxG.sound.music);
+		// abot.startVisualizer();
+	}
+
 	public function getStageObject(name:String) //Objects can only be accessed *after* create(), use createPost() if you want to mess with them on init
 		return game.variables.get(name);
 
