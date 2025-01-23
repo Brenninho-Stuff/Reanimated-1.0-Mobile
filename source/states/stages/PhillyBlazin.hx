@@ -23,6 +23,8 @@ class PhillyBlazin extends BaseStage
 	
 	var lightningTimer:Float = 3.0;
 
+	var abot:ABotSpeaker;
+
 	override function create()
 	{
 		FlxTransitionableState.skipNextTransOut = true; //skip the original transition fade
@@ -72,6 +74,9 @@ class PhillyBlazin extends BaseStage
 			additionalLighten.visible = false;
 			add(additionalLighten);
 		}
+
+		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
+		add(abot);
 		
 		if(ClientPrefs.data.shaders)
 			setupRainShader();
@@ -143,6 +148,11 @@ class PhillyBlazin extends BaseStage
 	override function beatHit()
 	{
 		//if(curBeat % 2 == 0) abot.beatHit();
+	}
+	
+	override function startSong()
+	{
+		abot.snd = FlxG.sound.music;
 	}
 
 	function setupRainShader()

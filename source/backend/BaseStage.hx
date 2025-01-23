@@ -9,8 +9,6 @@ import objects.Note;
 import objects.Character;
 import torchsthings.objects.ReflectedChar;
 
-import states.stages.objects.ABot;
-
 enum Countdown
 {
 	THREE;
@@ -33,9 +31,6 @@ class BaseStage extends FlxBasic
 	public var inCutscene(get, set):Bool;
 	public var canPause(get, set):Bool;
 	public var members(get, never):Array<FlxBasic>;
-
-	public var abot:ABot;
-    public var abotLookDir:Bool = false;
 
 	public var boyfriend(get, never):Character;
 	public var dad(get, never):Character;
@@ -77,12 +72,7 @@ class BaseStage extends FlxBasic
 	}
 
 	//main callbacks
-	public function create() {
-		abot = new ABot(game.gfGroup.x - 100, game.gfGroup.y + 330);
-		abot.visible = false;
-		addBehindGF(abot);
-		updateABotEye(true);
-	}
+	public function create() {}
 	public function createPost() {}
 	//public function update(elapsed:Float) {}
 	public function countdownTick(count:Countdown, num:Int) {}
@@ -96,9 +86,8 @@ class BaseStage extends FlxBasic
 	public var curSection:Int = 0;
 	public function beatHit() {}
 	public function stepHit() {}
-	public function sectionHit() {
-		updateABotEye();
-	}
+	public function sectionHit() {}
+	public function setAudioAndStart(isStart:Bool) {}
 	// Substate close/open, for pausing Tweens/Timers
 	public function closeSubState() {}
 	public function openSubState(SubState:FlxSubState) {}
@@ -130,27 +119,6 @@ class BaseStage extends FlxBasic
 			gfVersion = name;
 			PlayState.SONG.gfVersion = gfVersion;
 		}
-		//Por el momento usaré esta funcion para lo del speaker también, luego se puede crear una nueva
-		if(name == "nene")
-		{
-			abot.visible = true;
-		}
-	}
-
-	function updateABotEye(?finishInstantly:Bool = false)
-	{
-		if(PlayState.SONG.notes[Std.int(FlxMath.bound(curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection == true)
-			abot.lookRight();
-		else
-			abot.lookLeft();
-		
-		if(finishInstantly) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
-			
-	}
-
-	public function setAudioAndStart(isStart:Bool) {
-		// abot.setAudioSource(FlxG.sound.music);
-		// abot.startVisualizer();
 	}
 
 	public function getStageObject(name:String) //Objects can only be accessed *after* create(), use createPost() if you want to mess with them on init

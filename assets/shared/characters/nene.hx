@@ -1,4 +1,4 @@
-import states.stages.objects.ABot;
+import states.stages.objects.ABot
 var abot:ABot;
 var abotLookDir:Bool = false;
 
@@ -16,9 +16,15 @@ var STATE_LOWER = 4;
 var currentNeneState = STATE_DEFAULT;
 var animationFinished:Bool = false;
 
+function onCreate()
+{
+    abot = new ABot(gfGroup.x - 100, gfGroup.y + 330);
+    addBehindGF(abot);
+    updateABotEye(true);
+}
+
 function onCreatePost()
 {
-
     if(gf != null)
     {
         gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int)
@@ -38,9 +44,27 @@ function onCreatePost()
     }
 }
 
+function onSectionHit()
+{
+	updateABotEye();
+}
+
 function onSongStart()
 {
+    abot.setAudioSource(FlxG.sound.music);
+    abot.startVisualizer();
     gf.animation.finishCallback = onNeneAnimationFinished;
+}
+
+function updateABotEye(?finishInstantly:Bool = false)
+{
+    if(PlayState.SONG.notes[Std.int(FlxMath.bound(curSection, 0, PlayState.SONG.notes.length - 1))].mustHitSection == true)
+        abot.lookRight();
+    else
+        abot.lookLeft();
+
+    if(finishInstantly) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
+    
 }
 
 function onUpdate(elapsed:Float)
@@ -49,6 +73,11 @@ function onUpdate(elapsed:Float)
 
     animationFinished = gf.isAnimationFinished();
     transitionState();
+
+    if (songName == "blazin")
+    {
+        abot.color = 0xFF888888;
+    }
 }
 
 function transitionState() 
@@ -116,6 +145,7 @@ function onBeatHit()
         default:
             // In other states, don't interrupt the existing animation.
     }
+    abot.bop();
 }
 	
 function onNeneAnimationFinished(name:String)
