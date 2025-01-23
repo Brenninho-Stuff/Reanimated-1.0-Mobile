@@ -138,25 +138,33 @@
 		},
 		{
 			"offsets": [56, -4],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "Intro",
-			"loop": false,
+			"indices": [],
 			"name": "Pico Gets Pissed0"
 		},
 		{
 			"offsets": [252, 227],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "Return",
-			"loop": false,
+			"indices": [],
 			"name": "shoot and return0"
+		},
+		{
+			"loop": false,
+			"offsets": [0, 0],
+			"anim": "reload",
+			"fps": 24,
+			"name": "Pico Reload0",
+			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 12, 13, 14, 12, 13, 14, 12, 13, 14, 12, 13, 14, 12, 13, 14, 12, 13, 14, 12, 13, 14, 12, 13, 14]
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
 	"useNoteSkin": false,
-	"image": "characters/Pico_FNF_assetss,characters/Pico_Intro",
+	"image": "characters/Pico_FNF_assetss,characters/Pico_Intro,characters/Pico_all",
 	"position": [0, 300],
 	"noteSkinLib": "shared",
 	"altNoteColors": {

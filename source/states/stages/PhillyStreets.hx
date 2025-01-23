@@ -329,10 +329,10 @@ class PhillyStreets extends BaseStage
 		game.isCameraOnForcedPos = true;
 		cutsceneHandler = new CutsceneHandler();
 
-		boyfriendGroup.alpha = 0.00001;
+		//boyfriendGroup.alpha = 0.00001;
 		camHUD.visible = false;
 
-		picoIntro1 = new Character(1939, 454, "pico-intro", true);
+		/*picoIntro1 = new Character(1939, 454, "pico-intro", true);
 		picoIntro1.x += picoIntro1.positionArray[0];
 		picoIntro1.y += picoIntro1.positionArray[1];
 		add(picoIntro1);
@@ -342,6 +342,7 @@ class PhillyStreets extends BaseStage
 		picoIntro2.y += picoIntro2.positionArray[1];
 		add(picoIntro2);
 		picoIntro2.alpha = 0.00001;
+		*/
 
 		/*if (useShader)
 		{
@@ -382,7 +383,8 @@ class PhillyStreets extends BaseStage
 		{
 			game.tweenCameraZoom(1.3, 0, true, FlxEase.quadInOut);
 			game.tweenCameraToPosition(picoPos[0] + 250, picoPos[1], 0, FlxEase.sineInOut);
-			picoIntro1.playAnim("pissed", true);
+			//picoIntro1.playAnim("pissed", true);
+			boyfriend.playAnim("Intro", true);
 			gf.playAnim("intro", true);
 			dad.playAnim("intro", true);
 		});
@@ -409,12 +411,12 @@ class PhillyStreets extends BaseStage
 		
 		cutsceneHandler.timer(6.3, function()
 		{
-			picoIntro1.alpha = 0.00001;
-			picoIntro2.alpha = 1;
-			reflectedBF.destroy();
-			reflectedBF = new ReflectedChar(picoIntro2, 0.35);
+			// picoIntro1.alpha = 0.00001;
+			// picoIntro2.alpha = 1;
+			// reflectedBF.destroy();
+			// reflectedBF = new ReflectedChar(picoIntro2, 0.35);
 			addBehindBF(reflectedBF);
-			picoIntro2.playAnim("reload", true);
+			boyfriend.playAnim("reload", true);
 			gunPrepSnd.play(true);
 			game.tweenCameraToPosition(dadPos[0]+180, dadPos[1], 0.4, FlxEase.backOut);
 		});
@@ -429,8 +431,6 @@ class PhillyStreets extends BaseStage
 
 		cutsceneHandler.timer(6.97, function()
 		{
-			picoIntro2.alpha = 0.00001;
-			picoIntro1.alpha = 1;
 /*			if (useShader)
 			{
 				reflectedBF.destroy();
@@ -443,7 +443,7 @@ class PhillyStreets extends BaseStage
 		{
 			dad.playAnim("kneeCan", true);
 			kneeCanSnd.play(true);
-			picoIntro1.playAnim("return", true);
+			boyfriend.playAnim("Return", true);
 		});
 
 		cutsceneHandler.timer(7.1, function()
@@ -546,17 +546,7 @@ class PhillyStreets extends BaseStage
 			{
 				new FlxTimer().start(0.5, function(tmr)
 				{
-					picoIntro1.alpha = 0.00001;
-					boyfriendGroup.alpha = 1;
-					reflectedBF.destroy();
-					reflectedBF = new ReflectedChar(boyfriend, 0.35);
 					game.isCameraOnForcedPos = false;
-					addBehindBF(reflectedBF);
-					// Since these aren't getting used in the rest of the song after cutscene, remove them
-					if (picoIntro1 != null && picoIntro2 != null) {
-						picoIntro1.destroy();
-						picoIntro2.destroy();
-					}
 				});
 			}
 		}
