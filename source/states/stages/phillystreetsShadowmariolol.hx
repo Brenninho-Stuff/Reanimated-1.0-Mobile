@@ -1,6 +1,6 @@
 package states.stages;
 
-package states.stages;
+//package states.stages;
 
 import openfl.filters.ShaderFilter;
 import shaders.RainShader;

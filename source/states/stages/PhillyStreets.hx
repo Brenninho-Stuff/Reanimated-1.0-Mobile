@@ -111,20 +111,20 @@ class PhillyStreets extends BaseStage
         //Adding Sounds
         lightCanSnd = new FlxSound();
 		FlxG.sound.list.add(lightCanSnd);
-		lightCanSnd.loadEmbedded(Paths.sound('Darnell_Lighter'));
+		lightCanSnd.loadEmbedded(playWeekSound('Darnell_Lighter'));
 		kickCanSnd = new FlxSound();
 		FlxG.sound.list.add(kickCanSnd);
-		kickCanSnd.loadEmbedded(Paths.sound('Kick_Can_UP'));
+		kickCanSnd.loadEmbedded(playWeekSound('Kick_Can_UP'));
 		kneeCanSnd = new FlxSound();
 		FlxG.sound.list.add(kneeCanSnd);
-		kneeCanSnd.loadEmbedded(Paths.sound('Kick_Can_FORWARD'));
+		kneeCanSnd.loadEmbedded(playWeekSound('Kick_Can_FORWARD'));
 		gunPrepSnd = new FlxSound();
 		FlxG.sound.list.add(gunPrepSnd);
-		gunPrepSnd.loadEmbedded(Paths.sound('Gun_Prep'));
+		gunPrepSnd.loadEmbedded(playWeekSound('Gun_Prep'));
         bonkSnd = new FlxSound();
         FlxG.sound.list.add(bonkSnd);
-        bonkSnd.loadEmbedded(Paths.sound('Pico_Bonk'));
-        for (i in 1...5) Paths.sound('shot$i');
+        bonkSnd.loadEmbedded(playWeekSound('Pico_Bonk'));
+        for (i in 1...5) playWeekSound('shots/shot$i');
 
         //Adding Stage Objects
         scrollingSky = new FlxBackdrop(Paths.image("phillyStreets/phillySkybox"), X);
@@ -374,6 +374,19 @@ class PhillyStreets extends BaseStage
 	{
 
 		prepareCutscene();
+
+		var cutsceneMusic:FlxSound = new FlxSound().loadEmbedded(playWeekMusic('darnellCanCutscene'));
+		cutsceneMusic.looped = true;
+		FlxG.sound.list.add(cutsceneMusic);
+
+		var darnellLaugh:FlxSound = new FlxSound().loadEmbedded(playWeekSound('cutscene/darnell_laugh'));
+		darnellLaugh.volume = 0.6;
+		FlxG.sound.list.add(darnellLaugh);
+
+		var neneLaugh:FlxSound = new FlxSound().loadEmbedded(playWeekSound('cutscene/nene_laugh'));
+		neneLaugh.volume = 0.6;
+		FlxG.sound.list.add(neneLaugh);
+
 		blackScreen = new FlxSprite(-300,-170).makeGraphic(Std.int(FlxG.width * 3), Std.int(FlxG.height * 3), FlxColor.BLACK);
 		blackScreen.scrollFactor.set();
 		add(blackScreen);
@@ -385,8 +398,24 @@ class PhillyStreets extends BaseStage
 			game.tweenCameraToPosition(picoPos[0] + 250, picoPos[1], 0, FlxEase.sineInOut);
 			//picoIntro1.playAnim("pissed", true);
 			boyfriend.playAnim("Intro", true);
-			gf.playAnim("intro", true);
-			dad.playAnim("intro", true);
+			gf.animation.finishCallback = function(name:String)
+				{
+					switch(name)
+						{
+							case 'danceLeft', 'danceRight':
+							gf.dance();
+						}
+					}
+				gf.dance();
+			dad.animation.finishCallback = function(name:String)
+				{
+					switch(name)
+						{
+							case 'idle':
+							dad.dance();
+						}
+					}
+				dad.dance();
 		});
 		
 		var cutsceneSnd:FlxSound = new FlxSound().loadEmbedded(Paths.sound('darnellCanCutscene'));
@@ -406,7 +435,7 @@ class PhillyStreets extends BaseStage
 		cutsceneHandler.timer(5, function()
 		{
 			dad.playAnim("lightCan", true);
-			FlxG.sound.play(Paths.sound('Darnell_Lighter'));
+			lightCanSnd.play(true);
 		});
 		
 		cutsceneHandler.timer(6.3, function()
@@ -449,8 +478,7 @@ class PhillyStreets extends BaseStage
 		cutsceneHandler.timer(7.1, function()
 		{
 			game.tweenCameraToPosition(dadPos[0]+100, dadPos[1], 1, FlxEase.quadInOut);
-			FlxG.sound.play(Paths.soundRandom('shot', 1, 4));
-			spraycan.playCanShot();
+			FlxG.sound.play(randomWeekSound('shots/shot', 1, 4));			spraycan.playCanShot();
 			new FlxTimer().start(1/24, function(_)
 			{
 				darkenStageProps();
@@ -460,13 +488,17 @@ class PhillyStreets extends BaseStage
 		cutsceneHandler.timer(7.9, function()
 		{
 			dad.playAnim("laughCutscene", true);
-			FlxG.sound.play(Paths.sound('darnell_laugh'));
+			darnellLaugh.play(true);
+
+			//FlxG.sound.play(Paths.sound('darnell_laugh'));
 		});
 		
 		cutsceneHandler.timer(8.2, function()
 		{
 			gf.playAnim("laughCutscene", true);
-			FlxG.sound.play(Paths.sound('nene_laugh'));
+			neneLaugh.play(true);
+
+			//FlxG.sound.play(Paths.sound('nene_laugh'));
 		});
 
 		cutsceneHandler.timer(8.7, function()
@@ -846,7 +878,7 @@ class PhillyStreets extends BaseStage
 				boyfriend.holdTimer = 0;
 				boyfriend.playAnim('shoot', true);
 				boyfriend.specialAnim = true;
-				FlxG.sound.play(Paths.soundRandom('shot', 1, 4));
+				FlxG.sound.play(randomWeekSound('shots/shot', 1, 4));
 				spraycan.playCanShot();
 
 				new FlxTimer().start(1/24, function(tmr)
