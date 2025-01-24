@@ -134,11 +134,11 @@ Created with Funkin Packer v0.1.3 https://neeeoo.github.io/funkin-packer/
 	<SubTexture name="Pico Reload0013" x="476" y="3058" width="436" height="471" frameX="-4" frameY="-0" frameWidth="451" frameHeight="471"/>
 	<SubTexture name="Pico Reload0014" x="476" y="3058" width="436" height="471" frameX="-4" frameY="-0" frameWidth="451" frameHeight="471"/>
 	<SubTexture name="Pico Reload0015" x="476" y="3058" width="436" height="471" frameX="-4" frameY="-0" frameWidth="451" frameHeight="471"/>
-	<SubTexture name="Pico Shoot Hip Full0001" x="1" y="698" width="642" height="602" frameX="-124" frameY="-94" frameWidth="766" frameHeight="696"/>
-	<SubTexture name="Pico Shoot Hip Full0002" x="1" y="1" width="766" height="696" frameX="-0" frameY="-0" frameWidth="766" frameHeight="696"/>
-	<SubTexture name="Pico Shoot Hip Full0003" x="945" y="2634" width="482" height="434" frameX="-281" frameY="-262" frameWidth="766" frameHeight="696"/>
-	<SubTexture name="Pico Shoot Hip Full0004" x="2979" y="2495" width="477" height="434" frameX="-286" frameY="-262" frameWidth="766" frameHeight="696"/>
-	<SubTexture name="Pico Shoot Hip Full0005" x="1" y="3084" width="473" height="434" frameX="-290" frameY="-262" frameWidth="766" frameHeight="696"/>
-	<SubTexture name="Pico Shoot Hip Full0006" x="1" y="3084" width="473" height="434" frameX="-290" frameY="-262" frameWidth="766" frameHeight="696"/>
-	<SubTexture name="Pico Shoot Hip Full0007" x="1" y="3084" width="473" height="434" frameX="-290" frameY="-262" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="nose0001" x="1" y="698" width="642" height="602" frameX="-124" frameY="-94" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="nose0002" x="1" y="1" width="766" height="696" frameX="-0" frameY="-0" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="nose0003" x="945" y="2634" width="482" height="434" frameX="-281" frameY="-262" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="nose0004" x="2979" y="2495" width="477" height="434" frameX="-286" frameY="-262" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="nose0005" x="1" y="3084" width="473" height="434" frameX="-290" frameY="-262" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="nose0006" x="1" y="3084" width="473" height="434" frameX="-290" frameY="-262" frameWidth="766" frameHeight="696"/>
+	<SubTexture name="nose0007" x="1" y="3084" width="473" height="434" frameX="-290" frameY="-262" frameWidth="766" frameHeight="696"/>
 </TextureAtlas>
