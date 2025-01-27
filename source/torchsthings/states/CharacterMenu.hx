@@ -204,9 +204,9 @@ class CharacterMenu extends MusicBeatState{
     var saveButton:FlxButton;
     var bgColorText:FlxText;
     var backgroundColor:Array<Int> = [0, 0, 0];
-    var bgColorR:FlxUINumericStepper;
-    var bgColorG:FlxUINumericStepper;
-    var bgColorB:FlxUINumericStepper;
+    var bgColorR:PsychUINumericStepper;
+    var bgColorG:PsychUINumericStepper;
+    var bgColorB:PsychUINumericStepper;
     var testColors:FlxButton;
     #end
 
