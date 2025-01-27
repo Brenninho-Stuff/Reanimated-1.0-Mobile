@@ -351,9 +351,9 @@ class CharacterMenu extends MusicBeatState{
 
         backgroundColor = charData.color;
 
-        bgColorR = new FlxUINumericStepper(saveButton.x, saveButton.y - 40, 20, backgroundColor[0], 0, 255, 0);
-        bgColorG = new FlxUINumericStepper(bgColorR.x + 65, bgColorR.y, 20, backgroundColor[1], 0, 255, 0);
-        bgColorB = new FlxUINumericStepper(bgColorG.x + 65, bgColorG.y, 20, backgroundColor[2], 0, 255, 0);
+        bgColorR = new PsychUINumericStepper(saveButton.x, saveButton.y - 40, 20, backgroundColor[0], 0, 255, 0);
+        bgColorG = new PsychUINumericStepper(bgColorR.x + 65, bgColorR.y, 20, backgroundColor[1], 0, 255, 0);
+        bgColorB = new PsychUINumericStepper(bgColorG.x + 65, bgColorG.y, 20, backgroundColor[2], 0, 255, 0);
         add(bgColorR);
         add(bgColorG);
         add(bgColorB);
