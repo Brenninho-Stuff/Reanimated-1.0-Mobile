@@ -112,6 +112,22 @@ class PhillyBlazin extends BaseStage
 	
 	override function createPost()
 	{
+		{
+			// Move player notes to center
+			for (i in 0...4)
+			{
+				PlayState.instance.playerStrums.members[i].x = 365 + (110 * i);
+				PlayState.instance.playerStrums.members[i].x += 50;
+			}
+				
+			// Hide opponent notes
+			for (i in 0...4)
+			{
+				PlayState.instance.opponentStrums.members[i].visible = false;
+				PlayState.instance.opponentStrums.members[i].x = -5000;
+			}
+		}
+			
 		FlxG.camera.focusOn(camFollow.getPosition());
 		FlxG.camera.fade(FlxColor.BLACK, 1.5, true, null, true);
 
