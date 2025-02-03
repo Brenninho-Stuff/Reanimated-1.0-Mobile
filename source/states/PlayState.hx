@@ -34,7 +34,7 @@ import substates.GameOverSubstate;
 //objects Plus
 import objectsplus.GhostEffect;
 import objectsplus.ScoreDisplay;
-
+import objectsplus.Cinematics;
 #if !flash
 import flixel.addons.display.FlxRuntimeShader;
 import openfl.filters.ShaderFilter;
@@ -1800,7 +1800,7 @@ class PlayState extends MusicBeatState
 		}
 		stagesFunc(function(stage:BaseStage) stage.eventPushedUnique(event));
 	}
-
+	
 	function eventEarlyTrigger(event:EventNote):Float {
 		var returnedValue:Dynamic = callOnScripts('eventEarlyTrigger', [event.event, event.value1, event.value2, event.strumTime], true, [], [0]);
 		returnedValue = Std.parseFloat(returnedValue);
@@ -2952,18 +2952,24 @@ class PlayState extends MusicBeatState
 							camOther.flash(FlxColor.BLACK, time, null, true);
 					}
 				}
+				case "Cinematics":
+					var cinematics = new Cinematics();
+					cinematics.onEvent(eventName, value1, value2);
 
-			case 'Show Lyrics':
-				//var vals2:Array<String> = value2.split(',');
-				//var alpha:Float = Std.parseFloat(vals2[0].trim());
-				//var duration:Float = Std.parseFloat(vals2[1].trim());
-				subTitle.text = value1;
-				subTitle.visible = true;
-				//subTitle.color = FlxColor.WHITE;
-
-				//cameraTwn = FlxTween.tween(subTitle, {alpha: alpha}, duration);
-
-
+				case 'Show Lyrics':
+					subTitle.text = value1;
+					subTitle.visible = true;
+					subTitle.alpha = 1;
+					subTitle.color = FlxColor.WHITE;
+				
+					if (value2 != null && value2.length > 0)
+					{
+						var vals2:Array<String> = value2.split(',');
+						var alpha:Float = Std.parseFloat(vals2[0].trim());
+						var duration:Float = Std.parseFloat(vals2[1].trim());
+						cameraTwn = FlxTween.tween(subTitle, {alpha: alpha}, duration);
+					}
+					
 			case "Wobble Notes":
 				var vals1:Array<String> = value1.trim().split(',');
 				var val1:Array<Null<Int>> = [Std.parseInt(vals1[0]), Std.parseInt(vals1[1])];
