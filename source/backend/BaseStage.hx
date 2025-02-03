@@ -224,7 +224,6 @@ class BaseStage extends FlxBasic
 		addAbot();
 	}
 	*/
-
 	function addAbot() {
 		if(gf != null) {
 			if (gf.curCharacter.toLowerCase() == 'nene' || gf.curCharacter.toLowerCase() == 'nene-opp') {
