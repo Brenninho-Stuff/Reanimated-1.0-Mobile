@@ -37,19 +37,19 @@ class Cinematics extends FlxBasic
             {
                 // Entrance animation
                 FlxTween.tween(upperBar, {y: initialUpperY + distance}, speed, {ease: FlxEase.quadOut});
-                FlxTween.tween(lowerBar, {y: initialLowerY - distance}, speed, {ease: FlxEase.quadOut});
+                FlxTween.tween(lowerBar, {y: initialLowerY - distance}, speed, {
+                    ease: FlxEase.quadOut, 
+                    onComplete: function(twn:FlxTween){
+                        FlxTween.tween(upperBar, {y: initialUpperY}, speed, {ease: FlxEase.quadIn});
+                        FlxTween.tween(lowerBar, {y: initialLowerY}, speed, {ease: FlxEase.quadIn});
+                        FlxTween.tween(PlayState.instance.healthBar, {alpha: 1}, speed/2);
+                        FlxTween.tween(PlayState.instance.iconP1, {alpha: 1}, speed/2);
+                        FlxTween.tween(PlayState.instance.iconP2, {alpha: 1}, speed/2);
+                    }
+                });
                 FlxTween.tween(PlayState.instance.healthBar, {alpha: 0}, speed/2);
                 FlxTween.tween(PlayState.instance.iconP1, {alpha: 0}, speed/2);
                 FlxTween.tween(PlayState.instance.iconP2, {alpha: 0}, speed/2);
-            }
-            else if (distance <= 0)
-            {
-                // Exit animation - using exact initial positions
-                FlxTween.tween(upperBar, {y: initialUpperY}, speed, {ease: FlxEase.quadIn});
-                FlxTween.tween(lowerBar, {y: initialLowerY}, speed, {ease: FlxEase.quadIn});
-                FlxTween.tween(PlayState.instance.healthBar, {alpha: 1}, speed/2);
-                FlxTween.tween(PlayState.instance.iconP1, {alpha: 1}, speed/2);
-                FlxTween.tween(PlayState.instance.iconP2, {alpha: 1}, speed/2);
             }
         }
     }
