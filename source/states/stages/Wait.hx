@@ -14,4 +14,14 @@ class Wait extends BaseStage
 		blackScreen.scrollFactor.set();
 		add(blackScreen);
     }
+    override function createPost()
+    { 
+        // Hide opponent notes
+        for (i in 0...4)
+        {
+            PlayState.instance.opponentStrums.members[i].visible = false;
+            PlayState.instance.opponentStrums.members[i].x = -5000;
+        }
+    }
+    
 }
