@@ -15,6 +15,9 @@ import openfl.display.BitmapData;
 
 import shaders.ColorSwap;
 
+import torchsthings.utils.WindowTitleUtils as TitleUtil;
+import torchsthings.utils.ColorUtil;
+
 import states.StoryMenuState;
 import states.OutdatedState;
 import states.MainMenuState;
@@ -81,6 +84,9 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		TitleUtil.setDarkMode();
+		TitleUtil.setWindowBorderColor(ColorUtil.getIntArray(FlxColor.BLACK));
+		
 		Paths.clearStoredMemory();
 		super.create();
 		Paths.clearUnusedMemory();
