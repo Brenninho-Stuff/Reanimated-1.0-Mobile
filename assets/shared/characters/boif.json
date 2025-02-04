@@ -2,14 +2,20 @@
 	"animations": [
 		{
 			"loop": false,
-			"offsets": [5, -5],
+			"offsets": [
+				5,
+				-5
+			],
 			"anim": "idle",
 			"fps": 24,
 			"name": "idle",
 			"indices": []
 		},
 		{
-			"offsets": [82, -5],
+			"offsets": [
+				82,
+				-5
+			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singLEFT",
@@ -17,7 +23,10 @@
 			"name": "leff"
 		},
 		{
-			"offsets": [40, -50],
+			"offsets": [
+				40,
+				-50
+			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singDOWN",
@@ -25,7 +34,10 @@
 			"name": "downn"
 		},
 		{
-			"offsets": [10, 7],
+			"offsets": [
+				10,
+				7
+			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singUP",
@@ -33,7 +45,10 @@
 			"name": "upp"
 		},
 		{
-			"offsets": [-12, -18],
+			"offsets": [
+				-12,
+				-18
+			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singRIGHT",
@@ -42,7 +57,10 @@
 		},
 		{
 			"loop": false,
-			"offsets": [59, -13],
+			"offsets": [
+				59,
+				-13
+			],
 			"anim": "singLEFT-alt",
 			"fps": 24,
 			"name": "colifloor es una mrd",
@@ -50,7 +68,10 @@
 		},
 		{
 			"loop": false,
-			"offsets": [-7, -5],
+			"offsets": [
+				-7,
+				-5
+			],
 			"anim": "singRIGHT-alt",
 			"fps": 24,
 			"name": "mi prepucio",
@@ -58,7 +79,10 @@
 		},
 		{
 			"loop": false,
-			"offsets": [-45, 10],
+			"offsets": [
+				-45,
+				10
+			],
 			"anim": "singUP-alt",
 			"fps": 24,
 			"name": "oli",
@@ -66,7 +90,10 @@
 		},
 		{
 			"loop": false,
-			"offsets": [66, -53],
+			"offsets": [
+				66,
+				-53
+			],
 			"anim": "singDOWN-alt",
 			"fps": 24,
 			"name": "bajo",
@@ -75,62 +102,23 @@
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
-	"useNoteSkin": true,
 	"image": "17bucks/boif",
-	"position": [-120, 230],
-	"noteSkinLib": "torchs_assets",
-	"altNoteColors": {
-		"right": [
-			-444097,
-			-1,
-			-10153928
-		],
-		"up": [
-			-15533563,
-			-1,
-			-16104377
-		],
-		"down": [
-			-16711681,
-			-1,
-			-15383881
-		],
-		"left": [
-			-4043879,
-			-1,
-			-12837034
-		]
-	},
+	"position": [
+		0,
+		250
+	],
 	"healthicon": "boyf",
 	"flip_x": true,
-	"healthbar_colors": [75, 147, 178],
-	"disableNoteRGB": true,
-	"camera_position": [150, 50],
-	"noteSkin": "custom_notes/z3mp",
-	"noteColors": {
-		"right": [
-			-444097,
-			-1,
-			-10153928
-		],
-		"up": [
-			-15533563,
-			-1,
-			-16104377
-		],
-		"down": [
-			-16711681,
-			-1,
-			-15383881
-		],
-		"left": [
-			-4043879,
-			-1,
-			-12837034
-		]
-	},
+	"healthbar_colors": [
+		75,
+		147,
+		178
+	],
+	"camera_position": [
+		240,
+		-50
+	],
 	"sing_duration": 4,
-	"hasAltColors": false,
-	"scale": 0.8,
+	"scale": 0.9,
 	"_editor_isPlayer": true
 }

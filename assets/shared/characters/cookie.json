@@ -1,0 +1,60 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "danceLeft",
+			"fps": 18,
+			"name": "cookie",
+			"indices": [
+				13,
+				14,
+				15,
+				16,
+				1,
+				2
+			]
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				-1
+			],
+			"anim": "danceRight",
+			"fps": 18,
+			"name": "cookie",
+			"indices": [
+				4,
+				5,
+				6,
+				1,
+				2
+			]
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "17bucks/cookie",
+	"position": [
+		-460,
+		-130
+	],
+	"healthicon": "z3mp",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		255,
+		0
+	],
+	"camera_position": [
+		100,
+		90
+	],
+	"sing_duration": 4,
+	"scale": 0.9,
+	"_editor_isPlayer": false
+}
