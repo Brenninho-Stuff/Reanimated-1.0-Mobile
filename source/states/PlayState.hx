@@ -35,6 +35,7 @@ import substates.GameOverSubstate;
 import objectsplus.GhostEffect;
 import objectsplus.ScoreDisplay;
 import objectsplus.Cinematics;
+import objectsplus.CameraSwitchEvent;
 #if !flash
 import flixel.addons.display.FlxRuntimeShader;
 import openfl.filters.ShaderFilter;
@@ -2956,6 +2957,12 @@ class PlayState extends MusicBeatState
 					var cinematics = new Cinematics();
 					cinematics.onEvent(eventName, value1, value2);
 
+				case 'Camera Switch':
+					CameraSwitchEvent.onEvent(value1, value2);			
+					// Other events continue below
+					default:
+					// Default event handling
+					
 				case 'Show Lyrics':
 					subTitle.text = value1;
 					subTitle.visible = true;

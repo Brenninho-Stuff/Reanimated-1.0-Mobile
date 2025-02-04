@@ -27,6 +27,10 @@ class PhillyBlazin extends BaseStage
 
 	override function create()
 	{
+		ratingPos.set(1200, 550); // Just used random numbers for example
+		comboCountPos.set(1100, 700);
+		comboImage.set(0, 700);
+
 		FlxTransitionableState.skipNextTransOut = true; //skip the original transition fade
 		function setupScale(spr:BGSprite)
 		{
