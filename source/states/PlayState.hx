@@ -34,8 +34,11 @@ import substates.GameOverSubstate;
 //objects Plus
 import objectsplus.GhostEffect;
 import objectsplus.ScoreDisplay;
+import objectsplus.CustomEvents;
+/*
 import objectsplus.Cinematics;
 import objectsplus.CameraSwitchEvent;
+*/
 #if !flash
 import flixel.addons.display.FlxRuntimeShader;
 import openfl.filters.ShaderFilter;
@@ -2967,21 +2970,21 @@ class PlayState extends MusicBeatState
 							camOther.flash(FlxColor.BLACK, time, null, true);
 					}
 				}
-				case "Cinematics":
-					var cinematics = new Cinematics();
-					cinematics.onEvent(eventName, value1, value2);
 
-				case 'Camera Switch':
-					CameraSwitchEvent.onEvent(value1, value2);			
-					// Other events continue below
-					default:
-					// Default event handling
-					
-				case 'Show Lyrics':
-					subTitle.text = value1;
-					subTitle.visible = true;
-					subTitle.alpha = 1;
-					subTitle.color = FlxColor.WHITE;
+			case "Cinematics" | "Camera Switch":
+				CustomEvents.onEvent(eventName, value1, value2);
+
+			/*
+			case "Cinematics":
+				var cinematics = new Cinematics();
+				cinematics.onEvent(eventName, value1, value2);
+
+			case 'Camera Switch':
+				CameraSwitchEvent.onEvent(value1, value2);			
+				// Other events continue below
+				default:
+				// Default event handling
+			*/
 				
 			case 'Show Lyrics':
 				subTitle.text = value1;
