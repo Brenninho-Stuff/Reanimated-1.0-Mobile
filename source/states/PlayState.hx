@@ -4064,7 +4064,7 @@ class PlayState extends MusicBeatState
 	private function sustainHold(note:Note = null):Void {
 		var scoreToAdd:Int = 35;
 		if (note.rating.toLowerCase() == 'unknown' && note.prevNote.rating.toLowerCase() != 'unknown') {
-			trace(note.prevNote.rating);
+			//trace(note.prevNote.rating);
 			note.rating = note.prevNote.rating;
 		}
 		scoreToAdd = switch(note.rating) {
