@@ -2971,7 +2971,7 @@ class PlayState extends MusicBeatState
 					}
 				}
 
-			case "Cinematics" | "Camera Switch":
+			case "Cinematics" | "Camera Switch" | "Color Transform":
 				CustomEvents.onEvent(eventName, value1, value2);
 
 			/*

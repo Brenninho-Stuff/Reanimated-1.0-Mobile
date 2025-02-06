@@ -5,6 +5,7 @@ import flixel.FlxSprite;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
+import objects.Character;
 
 class CustomEvents {
     /* Quick Note:
@@ -73,6 +74,47 @@ class CustomEvents {
                     FlxTween.tween(PlayState.instance.camHUD, {alpha: 0}, duration, {ease: FlxEase.linear});
                     FlxTween.tween(PlayState.instance.camGame, {alpha: 0}, duration, {ease: FlxEase.linear});
                 }
+
+            case 'Color Transform':
+                var characters:Array<Character> = [PlayState.instance.boyfriend, PlayState.instance.gf, PlayState.instance.dad];
+                var seconds:Float = (value1 != null && value1 != '') ? Std.parseFloat(value1) : 0;
+                var delay:Float = 0;
+                var reverseImmediate:Bool = false;
+                
+                if (value2 != null && value2.trim() != '') {
+                    if (~/^-?\d+(\.\d+)?$/.match(value2)) {
+                        delay = Std.parseFloat(value2);
+                    } else {
+                        reverseImmediate = true;
+                    }
+                }
+                
+                for (char in characters) {
+                    if (char == null || !char.visible || char.alpha <= 0) continue;
+                
+                    FlxTween.cancelTweensOf(char.colorTransform);
+                
+                    var rgbColors:Array<Int> = char.healthColorArray;
+                    FlxTween.tween(char.colorTransform, { 
+                        redOffset: rgbColors[0], greenOffset: rgbColors[1], blueOffset: rgbColors[2], 
+                        redMultiplier: 0, greenMultiplier: 0, blueMultiplier: 0 
+                    }, seconds, {ease: FlxEase.linear});
+                
+                    if (reverseImmediate) {
+                        FlxTween.tween(char.colorTransform, { 
+                            redOffset: 0, greenOffset: 0, blueOffset: 0, 
+                            redMultiplier: 1.0, greenMultiplier: 1.0, blueMultiplier: 1.0 
+                        }, seconds, {ease: FlxEase.linear});
+                    } else if (delay > 0) {
+                        new FlxTimer().start(delay, function(tmr:FlxTimer) {
+                            FlxTween.tween(char.colorTransform, { 
+                                redOffset: 0, greenOffset: 0, blueOffset: 0, 
+                                redMultiplier: 1.0, greenMultiplier: 1.0, blueMultiplier: 1.0 
+                            }, seconds, {ease: FlxEase.linear});
+                        });
+                    }
+                }
         }
+                
     }
 }
