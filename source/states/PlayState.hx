@@ -149,6 +149,12 @@ class PlayState extends MusicBeatState
 
 	public var playbackRate(default, set):Float = 1;
 
+	//dodge Event
+	public var canDodge:Bool = true;
+	public var dodged:Bool = false;
+	public var warning:FlxSprite;
+	public var poste:FlxSprite;
+
 	public var boyfriendGroup:FlxSpriteGroup;
 	public var dadGroup:FlxSpriteGroup;
 	public var gfGroup:FlxSpriteGroup;
@@ -667,6 +673,18 @@ class PlayState extends MusicBeatState
 		uiGroup.add(botplayTxt);	
 		if(ClientPrefs.data.downScroll)
 			botplayTxt.y = healthBar.y + 120;
+
+		warning = new FlxSprite(30, 400).loadGraphic(Paths.image('Dodge Event/warningNote'));
+		warning.cameras = [camOther];
+		warning.alpha = 0;
+		warning.screenCenter();
+		add(warning);
+
+		poste = new FlxSprite(-1150, 110).loadGraphic(Paths.image('Dodge Event/street_pole'));
+		poste.cameras = [camOther];
+		poste.alpha = 0;
+		add(poste);
+
 
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
@@ -2265,6 +2283,24 @@ class PlayState extends MusicBeatState
 					trace(thesound);
 				}
 			}
+			if(FlxG.keys.justPressed.SPACE && canDodge)
+				{
+					boyfriend.animation.finishCallback = function(name:String) {
+						if (name == 'dodge')
+							boyfriend.dance();
+					};
+					
+					gf.animation.finishCallback = function(name:String) {
+						if (name == 'dodge')
+							gf.dance();
+					};
+					
+					boyfriend.playAnim('dodge', true);
+					gf.playAnim('dodge', true);
+					warning.alpha = 0;
+					dodged = true;
+					canDodge = false;
+				}
 
 		if (healthBar.bounds.max != null && health > healthBar.bounds.max)
 			health = healthBar.bounds.max;
@@ -2974,6 +3010,27 @@ class PlayState extends MusicBeatState
 			case "Cinematics" | "Camera Switch" | "Color Transform":
 				CustomEvents.onEvent(eventName, value1, value2);
 
+				
+			case 'Dodge Event':
+				dodged = false;
+				canDodge = true;
+				warning.alpha = 1;
+				poste.alpha = 1;
+				new FlxTimer().start(0.1, function(tmr:FlxTimer) {
+					FlxG.sound.play(Paths.sound('warning'));
+					FlxTween.tween(poste, {x:3650}, 1.35, {ease:FlxEase.sineIn, onComplete: 
+					function(twn:FlxTween)
+					{
+						poste.x = -1150;
+					}});
+				});
+				new FlxTimer().start(1, function(tmr:FlxTimer) {
+					if(!dodged)
+					{
+						health = 0;
+						boyfriend.playAnim('hurt', true);
+					}
+				});
 			/*
 			case "Cinematics":
 				var cinematics = new Cinematics();
@@ -3784,7 +3841,7 @@ class PlayState extends MusicBeatState
 
 	function opponentNoteHit(note:Note):Void
 	{
-		GhostEffect.onDadNoteHit(note);
+		//GhostEffect.onDadNoteHit(note);
 		var result:Dynamic = callOnLuas('opponentNoteHitPre', [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
 		if(result != LuaUtils.Function_Stop && result != LuaUtils.Function_StopHScript && result != LuaUtils.Function_StopAll) result = callOnHScript('opponentNoteHitPre', [note]);
 
@@ -3890,7 +3947,7 @@ class PlayState extends MusicBeatState
 
 	public function goodNoteHit(note:Note):Void
 	{
-		GhostEffect.onBoyfiendNoteHit(note);
+		//GhostEffect.onBoyfiendNoteHit(note);
 		if(note.wasGoodHit) return;
 		if(cpuControlled && note.ignoreNote) return;
 

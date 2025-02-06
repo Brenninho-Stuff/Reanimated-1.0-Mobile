@@ -1,60 +1,80 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				0,
-				0
-			],
-			"indices": [
-				4,
-				5,
-				6,
-				1,
-				2
-			],
+			"offsets": [0, 0],
+			"loop": false,
 			"fps": 18,
 			"anim": "danceRight",
-			"loop": false,
+			"indices": [4, 5, 6, 1, 2],
 			"name": "wiiii"
 		},
 		{
-			"offsets": [
-				0,
-				0
-			],
-			"indices": [
-				13,
-				14,
-				15,
-				16,
-				1,
-				2
-			],
+			"offsets": [0, 0],
+			"loop": false,
 			"fps": 18,
 			"anim": "danceLeft",
-			"loop": false,
+			"indices": [13, 14, 15, 16, 1, 2],
 			"name": "wiiii"
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
+	"useNoteSkin": false,
 	"image": "17bucks/wiiii",
-	"position": [
-		10,
-		-320
-	],
+	"position": [10, -320],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "z3mp",
 	"flip_x": false,
-	"healthbar_colors": [
-		255,
-		255,
-		0
-	],
-	"camera_position": [
-		0,
-		0
-	],
+	"healthbar_colors": [255, 102, 51],
+	"disableNoteRGB": false,
+	"camera_position": [0, 0],
+	"noteSkin": "",
+	"noteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"sing_duration": 4,
+	"hasAltColors": false,
 	"scale": 0.9,
 	"_editor_isPlayer": false
 }
