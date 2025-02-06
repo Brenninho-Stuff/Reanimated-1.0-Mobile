@@ -72,7 +72,7 @@ class GhostEffect extends FlxSprite
         
         if(!character.isAnimateAtlas)
         {
-            ghostData.frameName = character.animation.frameName;
+            ghostData.frameName = character.atlas.anim.curSymbol.curFrame;
         }
         else
         {
