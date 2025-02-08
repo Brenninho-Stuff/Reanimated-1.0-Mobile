@@ -45,7 +45,7 @@ class GhostEffect extends FlxSprite
             ghostSprite.scale.set(character.scale.x, character.scale.y);
             ghostSprite.flipX = character.flipX;
             ghostSprite.alpha = 1;
-            ghostSprite.colorTransform = character.colorTransform;
+            ghostSprite.color = character.color;
             
             var ghostData = (char == 'boyfriend') ? boyfriendGhostData : dadGhostData;
             ghostSprite.animation.frameName = ghostData.frameName;
