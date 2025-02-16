@@ -266,6 +266,7 @@ class PlayState extends MusicBeatState
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
 	public var camHUD:FlxCamera;
+	public var camBlack:FlxCamera;
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
@@ -374,6 +375,7 @@ class PlayState extends MusicBeatState
 
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = initPsychCamera();
+		camBlack = new FlxCamera();
 		camHUD = new FlxCamera();
 		camOther = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
@@ -477,7 +479,7 @@ class PlayState extends MusicBeatState
 
 		blackScreen = new FlxSprite(-1000,-200).makeGraphic(FlxG.width * 5, FlxG.height * 5, 0xFF000000);
 		blackScreen.alpha = 0;
-		blackScreen.cameras = [PlayState.instance.camGame];
+		blackScreen.cameras = [PlayState.instance.camBlack];
 		add(blackScreen);
 
 		if (!stageData.hide_girlfriend)
