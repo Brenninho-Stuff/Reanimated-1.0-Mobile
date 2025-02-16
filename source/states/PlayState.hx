@@ -481,7 +481,7 @@ class PlayState extends MusicBeatState
 		add(luaDebugGroup);
 		#end
 
-		blackScreen = new FlxSprite(-1000,-200).makeGraphic(FlxG.width * 5, FlxG.height * 5, 0xFF000000);
+		blackScreen = new FlxSprite(-1000,-200).makeGraphic(FlxG.width * 10, FlxG.height * 10, 0xFF000000);
 		blackScreen.alpha = 0;
 		blackScreen.cameras = [camBlack];
 		blackGroup.add(blackScreen);

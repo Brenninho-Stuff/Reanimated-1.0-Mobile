@@ -96,12 +96,12 @@ class Limo extends BaseStage
 	override function createPost()
 	{
 		resetFastCar();
-		addBehindGF(fastCar);
+		addBehindBlackSceen(fastCar);
 		
 		var limo:BGSprite = new BGSprite('limo/limoDrive', -460, 590, 1, 1, ['Limo stage'], true);
 		limo.setGraphicSize(Std.int(limo.width * 1.2));
 		limo.updateHitbox();
-		addBehindGF(limo); //Shitty layering but whatev it works LOL
+		addBehindBlackSceen(limo); //Shitty layering but whatev it works LOL
 	}
 
 	var limoSpeed:Float = 0;
