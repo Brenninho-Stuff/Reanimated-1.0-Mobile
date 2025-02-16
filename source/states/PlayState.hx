@@ -483,7 +483,7 @@ class PlayState extends MusicBeatState
 
 		blackScreen = new FlxSprite(-1000,-200).makeGraphic(FlxG.width * 5, FlxG.height * 5, 0xFF000000);
 		blackScreen.alpha = 0;
-		blackScreen.cameras = [PlayState.instance.camBlack];
+		blackScreen.cameras = [camBlack];
 		blackGroup.add(blackScreen);
 
 		if (!stageData.hide_girlfriend)
@@ -512,6 +512,7 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
+			add(blackGroup);
 			add(gfGroup);
 			add(dadGroup);
 			add(boyfriendGroup);
