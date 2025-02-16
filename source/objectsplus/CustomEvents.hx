@@ -16,6 +16,7 @@ class CustomEvents {
     static var initialUpperY:Float = -350; 
     static var initialLowerY:Float = 720;
 
+
     public static function onEvent(eventName:String, value1:String, value2:String) {
         switch (eventName) {
             case 'Cinematics':
@@ -88,7 +89,10 @@ class CustomEvents {
                         reverseImmediate = true;
                     }
                 }
-                
+            
+                var blackScreen:FlxSprite = PlayState.instance.blackScreen;
+                FlxTween.tween(blackScreen, {alpha: 0.4}, seconds, {ease: FlxEase.linear});
+            
                 for (char in characters) {
                     if (char == null || !char.visible || char.alpha <= 0) continue;
                 
@@ -101,20 +105,29 @@ class CustomEvents {
                     }, seconds, {ease: FlxEase.linear});
                 
                     if (reverseImmediate) {
-                        FlxTween.tween(char.colorTransform, { 
-                            redOffset: 0, greenOffset: 0, blueOffset: 0, 
-                            redMultiplier: 1.0, greenMultiplier: 1.0, blueMultiplier: 1.0 
-                        }, seconds, {ease: FlxEase.linear});
+                        revertColorTransform(char, seconds);
+                        fadeOutBlackScreen(blackScreen, seconds);
                     } else if (delay > 0) {
                         new FlxTimer().start(delay, function(tmr:FlxTimer) {
-                            FlxTween.tween(char.colorTransform, { 
-                                redOffset: 0, greenOffset: 0, blueOffset: 0, 
-                                redMultiplier: 1.0, greenMultiplier: 1.0, blueMultiplier: 1.0 
-                            }, seconds, {ease: FlxEase.linear});
+                            revertColorTransform(char, seconds);
+                            fadeOutBlackScreen(blackScreen, seconds);
                         });
                     }
                 }
+
         }
-                
+    
     }
+    
+    static function revertColorTransform(char:Character, seconds:Float) {
+        FlxTween.tween(char.colorTransform, { 
+            redOffset: 0, greenOffset: 0, blueOffset: 0, 
+            redMultiplier: 1.0, greenMultiplier: 1.0, blueMultiplier: 1.0 
+        }, seconds, {ease: FlxEase.linear});
+    }
+
+    static function fadeOutBlackScreen(blackScreen:FlxSprite, seconds:Float) {
+        FlxTween.tween(blackScreen, {alpha: 0}, seconds, {ease: FlxEase.linear});
+    }
+    
 }

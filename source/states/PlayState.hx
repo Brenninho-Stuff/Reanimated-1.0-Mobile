@@ -139,6 +139,9 @@ class PlayState extends MusicBeatState
 	public var healthDraining:Float;
 	public var canDie:Bool = false;
 
+	//Bg for color transform event
+	public var blackScreen:FlxSprite;
+
 	public var isDad:Bool = true;
 	// Wobbly Notes Stuff
 	public var defaultStrumPosition:Array<Array<Float>>= [];
@@ -471,6 +474,11 @@ class PlayState extends MusicBeatState
 		luaDebugGroup.cameras = [camOther];
 		add(luaDebugGroup);
 		#end
+
+		blackScreen = new FlxSprite(-1000,-200).makeGraphic(FlxG.width * 5, FlxG.height * 5, 0xFF000000);
+		blackScreen.alpha = 0;
+		blackScreen.cameras = [PlayState.instance.camGame];
+		add(blackScreen);
 
 		if (!stageData.hide_girlfriend)
 		{
