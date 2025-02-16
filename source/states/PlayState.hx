@@ -161,6 +161,7 @@ class PlayState extends MusicBeatState
 	public var boyfriendGroup:FlxSpriteGroup;
 	public var dadGroup:FlxSpriteGroup;
 	public var gfGroup:FlxSpriteGroup;
+	public var blackGroup:FlxSpriteGroup;
 	public static var curStage:String = '';
 	public static var stageUI(default, set):String = "normal";
 	public static var uiPrefix:String = "";
@@ -380,7 +381,9 @@ class PlayState extends MusicBeatState
 		camOther = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
 		camOther.bgColor.alpha = 0;
+		camBlack.bgColor.alpha = 0;
 
+		FlxG.cameras.add(camBlack, false);
 		FlxG.cameras.add(camHUD, false);
 		FlxG.cameras.add(camOther, false);
 
@@ -441,6 +444,7 @@ class PlayState extends MusicBeatState
 		if(girlfriendCameraOffset == null)
 			girlfriendCameraOffset = [0, 0];
 
+		blackGroup = new FlxSpriteGroup();
 		boyfriendGroup = new FlxSpriteGroup(BF_X, BF_Y);
 		dadGroup = new FlxSpriteGroup(DAD_X, DAD_Y);
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
@@ -480,7 +484,7 @@ class PlayState extends MusicBeatState
 		blackScreen = new FlxSprite(-1000,-200).makeGraphic(FlxG.width * 5, FlxG.height * 5, 0xFF000000);
 		blackScreen.alpha = 0;
 		blackScreen.cameras = [PlayState.instance.camBlack];
-		add(blackScreen);
+		blackGroup.add(blackScreen);
 
 		if (!stageData.hide_girlfriend)
 		{
