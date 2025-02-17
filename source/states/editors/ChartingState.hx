@@ -33,6 +33,8 @@ import objects.HealthIcon;
 import objects.Note;
 import objects.StrumNote;
 
+import torchsthings.utils.WindowTitleUtils;
+
 using DateTools;
 
 typedef UndoStruct = {
@@ -97,7 +99,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['HUD Fade', "Value 1: Opaticity\nValue 2: Duration"],
 		['Show Lyrics', "Value 1: Show lyrics\nValue 2: Fade Lyrics(This is optional, this is the same as fade hud [1,1]) \nAn example of how to use it when it is a lyrics with fade,\nValue1: [Hi!!]\nValue2: [0,1]\nTo return it to normal it would be like this\nValue1: [Surprise]\nValue2: [1,0.1]\nThis is used in case you use the fade lyrics"],
 		['Cinematics', "aun no terminado"],
-		['Camera Switch', "Value 1: Duration \nValue 2: Camera to switch to (off / on)"],
+		['Camera Fade', "Value 1: Duration \nValue 2: Camera to switch to (off / on)"],
 		['Color Transform', "Value 1: Time in seconds to apply the color transform effect.\nValue 2: (Optional) Time in seconds to wait before reverting the effect, or 'reverse' to immediately revert the effect. If left empty, the effect will not revert automatically."]
 
 	];
@@ -234,6 +236,8 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 
 	override function create()
 	{
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + ' - Charting Menu');
+
 		if(Difficulty.list.length < 1) Difficulty.resetList();
 		_keysPressedBuffer.resize(keysArray.length);
 

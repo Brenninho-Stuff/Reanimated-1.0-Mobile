@@ -68,7 +68,7 @@ class CustomEvents {
                     FlxTween.tween(PlayState.instance.iconP2, {alpha: 0}, speed/2);
                 }
 
-            case 'Camera Switch':
+            case 'Camera Fade':
                 var duration:Float = Std.parseFloat(value1);
                 if (gameTween != null) gameTween.cancel();
                 if (hudTween != null) hudTween.cancel();
