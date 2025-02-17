@@ -16,6 +16,8 @@ class CustomEvents {
     static var initialUpperY:Float = -350; 
     static var initialLowerY:Float = 720;
 
+    static var gameTween:FlxTween;
+    static var hudTween:FlxTween;
 
     public static function onEvent(eventName:String, value1:String, value2:String) {
         switch (eventName) {
@@ -68,12 +70,14 @@ class CustomEvents {
 
             case 'Camera Switch':
                 var duration:Float = Std.parseFloat(value1);
+                if (gameTween != null) gameTween.cancel();
+                if (hudTween != null) hudTween.cancel();
                 if (value2.toLowerCase() == 'on') {
-                    FlxTween.tween(PlayState.instance.camHUD, {alpha: 1}, duration, {ease: FlxEase.linear});
-                    FlxTween.tween(PlayState.instance.camGame, {alpha: 1}, duration, {ease: FlxEase.linear});
+                    hudTween = FlxTween.tween(PlayState.instance.camHUD, {alpha: 1}, duration, {ease: FlxEase.expoOut});
+                    gameTween = FlxTween.tween(PlayState.instance.camGame, {alpha: 1}, duration, {ease: FlxEase.expoOut});
                 } else if (value2.toLowerCase() == 'off') {
-                    FlxTween.tween(PlayState.instance.camHUD, {alpha: 0}, duration, {ease: FlxEase.linear});
-                    FlxTween.tween(PlayState.instance.camGame, {alpha: 0}, duration, {ease: FlxEase.linear});
+                    hudTween = FlxTween.tween(PlayState.instance.camHUD, {alpha: 0}, duration, {ease: FlxEase.expoOut});
+                    gameTween = FlxTween.tween(PlayState.instance.camGame, {alpha: 0}, duration, {ease: FlxEase.expoOut});
                 }
 
             case 'Color Transform':
