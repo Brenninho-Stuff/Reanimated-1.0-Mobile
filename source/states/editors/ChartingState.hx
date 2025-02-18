@@ -236,7 +236,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 
 	override function create()
 	{
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + ' - Charting Menu');
+		//WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + ' - Charting Menu');
 
 		if(Difficulty.list.length < 1) Difficulty.resetList();
 		_keysPressedBuffer.resize(keysArray.length);

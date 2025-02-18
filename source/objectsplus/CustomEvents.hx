@@ -95,7 +95,7 @@ class CustomEvents {
                 }
             
                 var blackScreen:FlxSprite = PlayState.instance.blackScreen;
-                FlxTween.tween(blackScreen, {alpha: 0.4}, seconds, {ease: FlxEase.linear});
+                FlxTween.tween(blackScreen, {alpha: 0.6}, seconds, {ease: FlxEase.linear});
             
                 for (char in characters) {
                     if (char == null || !char.visible || char.alpha <= 0) continue;
