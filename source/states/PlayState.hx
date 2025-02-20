@@ -122,7 +122,7 @@ class PlayState extends MusicBeatState
 	public var songSpeedTween:FlxTween;
 	public var songSpeed(default, set):Float = 1;
 	public var songSpeedType:String = "multiplicative";
-	public var noteKillOffset:Float = 350;
+	public var noteKillOffset:Float = 300;
 
 	//Credits
 	public var creditsGroup:FlxSpriteGroup;
@@ -3967,6 +3967,7 @@ class PlayState extends MusicBeatState
 	public function goodNoteHit(note:Note):Void
 	{
 		GhostEffect.onBoyfiendNoteHit(note);
+		songScore += FlxG.random.int(0, 50); // Sumar un valor aleatorio a songScore
 		if(note.wasGoodHit) return;
 		if(cpuControlled && note.ignoreNote) return;
 

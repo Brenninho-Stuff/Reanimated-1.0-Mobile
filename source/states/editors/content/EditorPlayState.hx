@@ -17,7 +17,7 @@ class EditorPlayState extends MusicBeatSubstate
 {
 	// Borrowed from original PlayState
 	var finishTimer:FlxTimer = null;
-	var noteKillOffset:Float = 350;
+	var noteKillOffset:Float = 300;
 	var spawnTime:Float = 2000;
 	var startingSong:Bool = true;
 
@@ -521,7 +521,7 @@ class EditorPlayState extends MusicBeatSubstate
 
 		var placement:Float = FlxG.width * 0.35;
 		var rating:FlxSprite = new FlxSprite();
-		var score:Int = 350;
+		var score:Int = 300;
 
 		//tryna do MS based judgment due to popular demand
 		var daRating:Rating = Conductor.judgeNote(ratingsData, noteDiff / playbackRate);
