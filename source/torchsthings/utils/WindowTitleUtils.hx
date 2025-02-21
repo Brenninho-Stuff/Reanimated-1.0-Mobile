@@ -27,6 +27,7 @@ class WindowTitleUtils {
         return Application.current.window;
     }
     public static var baseTitle:String = "Friday Night Funkin' Reanimated Alpha 1.5";
+    public static final DEFAULT_TITLE:String = "Friday Night Funkin' Reanimated Alpha 1.5";
     public static var isDarkMode:Bool = false;
     public static var windowHeaderColor:Array<Int> = [];
     public static var windowBorderColor:Array<Int> = [];
@@ -83,15 +84,16 @@ class WindowTitleUtils {
         gameWindow.borderless = false;
     }
 
-    public function changeTitle(title:String) {
+    public static function changeTitle(title:String) {
         gameWindow.title = title;
     }
-    public function changeDefaultTitle(title:String, ?changeNow:Bool = false) {
+    public static function changeDefaultTitle(title:String, ?changeNow:Bool = false) {
         baseTitle = title;
         if (changeNow) changeTitle(title);
     }
-
-
+    public static function getCurrentTitle():String {
+        return gameWindow.title;
+    }
 
     // Everything down here is just backend stuff
     #if windows

@@ -163,16 +163,15 @@ class MallErect extends BaseStage
 		function prepareEggnogCutscene()
 	{
 		cutsceneHandler = new CutsceneHandler();
-
 		santa.visible = false;
 		dad.visible = false;
 		parentsCutscene.visible = true;
 		santaDead.visible = true;
-
+	
 		game.inCutscene = true;
 		game.isCameraOnForcedPos = true;
 
-		Paths.sound('santa_emotion');
+		Paths.sound('mall/santa_emotion');
 
 		FlxTween.tween(camHUD, {alpha: 0}, 1,  {ease: FlxEase.sineInOut});
 
@@ -199,7 +198,7 @@ class MallErect extends BaseStage
 
 		game.tweenCameraToPosition(santaDead.x + 300, santaDead.y, 2.8, FlxEase.expoOut);
 		game.tweenCameraZoom(0.73, 2, true, FlxEase.quadInOut);
-		FlxG.sound.play(Paths.sound('santa_emotion'));
+		FlxG.sound.play(Paths.sound('mall/santa_emotion'));
 
 		cutsceneHandler.timer(2.8, function()
 		{
@@ -209,7 +208,7 @@ class MallErect extends BaseStage
 
 		cutsceneHandler.timer(11.375, function()
 		{
-			FlxG.sound.play(Paths.sound('santa_shot_n_falls'));
+			FlxG.sound.play(Paths.sound('mall/santa_shot_n_falls'));
 		});
 
 		

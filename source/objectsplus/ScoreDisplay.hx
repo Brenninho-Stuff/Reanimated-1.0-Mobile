@@ -8,7 +8,7 @@ import flixel.math.FlxMath;
 class ScoreDisplay extends FlxText
 {
     var displayedScore:Float = 0;
-    var lerpSpeed:Float = 6; // Reduced for smoother counting
+    var lerpSpeed:Float = 12; // Reduced for smoother counting
     var posY:Float = 0;
 
     public function new()
@@ -38,7 +38,7 @@ class ScoreDisplay extends FlxText
         
         var targetScore:Float = PlayState.instance.songScore;
         displayedScore = FlxMath.lerp(displayedScore, targetScore, lerpSpeed * elapsed); 
-        displayedScore = FlxMath.lerp(displayedScore, targetScore, 1); // testing only
+        //displayedScore = FlxMath.lerp(displayedScore, targetScore, 1); // testing only
         
         var roundedScore:Int = Math.round(displayedScore);
         text = 'Score: ${formatNumber(roundedScore)}';

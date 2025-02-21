@@ -8,6 +8,7 @@ import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import torchsthings.utils.WindowTitleUtils;
 
 class ClearPercentCounter extends FlxTypedSpriteGroup<FlxSprite> {
     public var curNumber(default, set):Int = 0;

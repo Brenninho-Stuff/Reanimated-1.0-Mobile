@@ -5,12 +5,16 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
+import torchsthings.utils.WindowTitleUtils;
 
 class ResultsScore extends FlxTypedSpriteGroup<ScoreNum> {
     public var score(default, set):Int = 0;
     public var scoreStart:Int = 0;
 
     function set_score(value:Float):Int {
+
+        WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + ' - Results');
+        
         if (group == null || group.members == null) return Std.parseInt(Std.string(value));
 
         var loop:Int = group.members.length - 1;

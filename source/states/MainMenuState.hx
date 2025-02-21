@@ -17,6 +17,7 @@ import openfl.ui.Mouse;
 
 //temporary
 import torchsthings.states.ResultsScreen;
+import torchsthings.utils.WindowTitleUtils;
 
 enum MainMenuColumn {
 	LEFT;
@@ -83,6 +84,9 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Main Menu");
+		
 		#if MODS_ALLOWED
 		Mods.pushGlobalMods();
 		#end

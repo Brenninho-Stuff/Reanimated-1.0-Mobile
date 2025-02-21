@@ -18,6 +18,7 @@ import objects.Note;
 import states.editors.content.Prompt;
 import states.editors.content.PsychJsonPrinter;
 
+import torchsthings.utils.WindowTitleUtils;
 class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler.PsychUIEvent
 {
 	var character:Character;
@@ -68,6 +69,8 @@ class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler
 
 	override function create()
 	{
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + ' - Character Editor');
+
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 

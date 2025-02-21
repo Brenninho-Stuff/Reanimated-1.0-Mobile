@@ -57,7 +57,7 @@ class Mall extends BaseStage
 	}
 
 	override function createPost() {
-		add(santa);
+		addBehindBlackSceen(santa);
 	}
 
 	override function countdownTick(count:Countdown, num:Int) everyoneDance();
@@ -97,7 +97,7 @@ class Mall extends BaseStage
 		var nextSong:String = Paths.formatToSongPath(PlayState.storyPlaylist[1]);
 		if(nextSong == 'winter-horrorland')
 		{
-			FlxG.sound.play(Paths.sound('Lights_Shut_off'));
+			FlxG.sound.play(Paths.sound('mall/Lights_Shut_off'));
 
 			var blackShit:FlxSprite = new FlxSprite(-FlxG.width * FlxG.camera.zoom,
 				-FlxG.height * FlxG.camera.zoom).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);

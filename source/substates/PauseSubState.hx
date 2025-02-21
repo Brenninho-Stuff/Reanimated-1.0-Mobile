@@ -19,6 +19,8 @@ import tjson.TJSON;
 import torchsthings.shaders.PixelShader.PixelShaderRef;
 import torchsthings.states.CharacterMenu;
 
+import torchsthings.utils.WindowTitleUtils;
+
 class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<FlxText>;
@@ -64,6 +66,8 @@ class PauseSubState extends MusicBeatSubstate
 
 	override function create()
 	{
+		WindowTitleUtils.changeTitle(WindowTitleUtils.getCurrentTitle() + " - PAUSED!");
+
 		switch(PlayState.curStage)
 		{
 			case 'phillyStreets' | 'phillyBlazin':
@@ -597,6 +601,10 @@ class PauseSubState extends MusicBeatSubstate
 		skipTimeText.x = skipTimeTracker.x + skipTimeTracker.width + 60;
 		skipTimeText.y = skipTimeTracker.y + 50;
 		skipTimeText.visible = (skipTimeTracker.alpha >= 1);
+	}
+	override public function close() {
+		WindowTitleUtils.changeTitle(WindowTitleUtils.getCurrentTitle().replace(" - PAUSED!", ''));
+		super.close();
 	}
 
 	function updateSkipTimeText()

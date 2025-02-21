@@ -9,6 +9,7 @@ import torchsthings.shaders.*;
 import torchsfunctions.functions.ShaderUtils;
 import openfl.filters.ShaderFilter;
 import torchsthings.objects.ReflectedChar;
+import flixel.addons.display.FlxBackdrop;
 class StageErect extends BaseStage
 {
     var background:BGSprite;
@@ -23,6 +24,13 @@ class StageErect extends BaseStage
 	var shaderFilter:ShaderFilter;
 	var gfPixel:Character = null;
 	var offsetState:Bool = false; // Literally only here to prevent a crash I found - Torch
+
+    //event lol
+    var dadbattleLight:BGSprite;
+	var dadbattleBlack:BGSprite;
+    var mist1:FlxBackdrop;
+    var mist2:FlxBackdrop;
+
     override function create() {
 
         ratingPos.set(850, 450);
@@ -38,6 +46,7 @@ class StageErect extends BaseStage
 
         crowd = new BGSprite('rework/Erect/crowd', 700, 190, 0.8, 0.8, ['Symbol 2 instance'], true);
         crowd.antialiasing =  ClientPrefs.data.antialiasing;
+        crowd.animation.curAnim.frameRate = 12;
         crowd.setGraphicSize(Std.int(crowd.width * 1.2));
         crowd.updateHitbox();
         add(crowd);
@@ -144,4 +153,73 @@ class StageErect extends BaseStage
 			}
 		}
 	}
+    override function eventPushed(event:objects.Note.EventNote)
+        {
+            switch(event.event)
+            {
+                case "Dadbattle Spotlight":
+                    dadbattleBlack = new BGSprite(null, -800, -400, 0, 0);
+                    dadbattleBlack.makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
+                    dadbattleBlack.alpha = 0.45;
+                    dadbattleBlack.visible = false;
+                    add(dadbattleBlack);
+    
+                    dadbattleLight = new BGSprite('rework/spotlight_Alt', 400);
+                    dadbattleLight.alpha = 0.375;
+                    dadbattleLight.blend = ADD;
+                    dadbattleLight.visible = false;
+                    add(dadbattleLight);
+
+                    mist2 = new FlxBackdrop(Paths.image("rework/Erect/mistMid"), X);
+                    mist2.setPosition(0, 25);
+                    mist2.blend = ADD;
+                    mist2.scrollFactor.set(0.9, 0.9);
+                    mist2.scale.set(0.9, 0.9);
+                    mist2.velocity.x = 30;
+                    mist2.alpha = 0.8;
+                    mist2.visible = false;
+                    mist2.antialiasing = ClientPrefs.data.antialiasing;
+                    add(mist2);
+            }
+        }
+    
+        override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float)
+        {
+            switch(eventName)
+            {
+                case "Dadbattle Spotlight":
+                    if(flValue1 == null) flValue1 = 0;
+                    var val:Int = Math.round(flValue1);
+    
+                    switch(val)
+                    {
+                        case 1, 2, 3: //enable and target dad
+                            if(val == 1) //enable
+                            {
+                                dadbattleBlack.visible = true;
+                                dadbattleLight.visible = true;
+                                mist2.visible = true;
+                                defaultCamZoom += 0.12;
+                            }
+    
+                            var who:Character = dad;
+                            if(val > 2) who = boyfriend;
+                            //2 only targets dad
+                            dadbattleLight.alpha = 0;
+                            new FlxTimer().start(0.12, function(tmr:FlxTimer) {
+                                dadbattleLight.alpha = 0.375;
+                            });
+                            // frameHeight grabs the proper pixel height for the frame, not just the actual height of the object
+                            dadbattleLight.setPosition(who.getGraphicMidpoint().x - dadbattleLight.width / 2, who.y + /*who.height*/ who.frameHeight - dadbattleLight.height + 50);   
+                            FlxTween.tween(mist2, {alpha: 0.7}, 1.5, {ease: FlxEase.quadInOut});
+                        default:
+                            dadbattleBlack.visible = false;
+                            dadbattleLight.visible = false;
+                            mist2.visible = false;
+                            defaultCamZoom -= 0.12;
+                            FlxTween.tween(mist2, {alpha: 0}, 0.7, {onComplete: function(twn:FlxTween) mist2.visible = false});
+
+                    }
+                }
+            }
 }

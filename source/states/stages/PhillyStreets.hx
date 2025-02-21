@@ -834,7 +834,7 @@ class PhillyStreets extends BaseStage
 				gf.playAnim('comboCheer', true);
 				gf.specialAnim = true;
 				trace("yeiii");
-			case 100:
+			case 200:
 				gf.playAnim('comboCheerHigh', true);
 				gf.specialAnim = true;
 				trace("yeii?");
@@ -872,7 +872,7 @@ class PhillyStreets extends BaseStage
 
 			case 'weekend-1-firegun':
 				if (!didReload)
-					note.blockHit = true;
+				note.blockHit = true;
 				camFollow.x -= 100;
 				camFollow.y -= 100;
 				boyfriend.holdTimer = 0;
@@ -893,7 +893,7 @@ class PhillyStreets extends BaseStage
 		switch(note.noteType)
 		{
 			case 'weekend-1-firegun':
-				boyfriend.playAnim('shootMISS', true);
+				boyfriend.playAnim('hurt', true);
 				boyfriend.specialAnim = true;
 				spraycan.playHitPico();
 				bonkSnd.play();
