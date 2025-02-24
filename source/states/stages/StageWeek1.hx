@@ -115,7 +115,7 @@ class StageWeek1 extends BaseStage
 				dadbattleBlack.visible = false;
 				add(dadbattleBlack);
 
-				dadbattleLight = new BGSprite('rework/spotlight', 400, -400);
+				dadbattleLight = new BGSprite('rework/spotlight_Alt', 400, 100);
 				dadbattleLight.alpha = 0.375;
 				dadbattleLight.blend = ADD;
 				dadbattleLight.visible = false;

@@ -41,6 +41,7 @@ class Note extends FlxSprite
 		'', //Always leave this one empty pls
 		'Alt Animation',
 		'Beat Animation',
+		'Shit Animation',
 		'Hey!',
 		'Hurt Note',
 		'GF Sing',
@@ -220,6 +221,8 @@ class Note extends FlxSprite
 					animSuffix = '-alt';
 				case 'Beat Animation':
 					animSuffix = '-beat';
+				case 'Shit Animation':
+					animSuffix = '-shit';
 				case 'No Animation':
 					noAnimation = true;
 					noMissAnimation = true;

@@ -6,6 +6,8 @@ import substates.GameOverSubstate;
 import objects.Character;
 
 import objects.Note;
+import states.stages.objects.ABot;
+
 
 class Tank extends BaseStage
 {
@@ -20,6 +22,8 @@ class Tank extends BaseStage
 	var tankmid:BGSprite;
 	var tankright1:BGSprite;
 	var tankright2:BGSprite;
+
+	//var abot:ABot;
 
 	override function create()
 	{
@@ -117,6 +121,8 @@ class Tank extends BaseStage
 		// Default GFs
 		if(songName == 'stress') setDefaultGF('pico-speaker');
 		else setDefaultGF('gf-tankmen');
+		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+
 		
 		if (isStoryMode && !seenCutscene)
 		{
@@ -133,6 +139,8 @@ class Tank extends BaseStage
 	}
 	override function createPost()
 	{
+		addAbot();
+
 		add(tankleft1);
 		add(tankleft2);
 		add(tankmid);
@@ -166,9 +174,19 @@ class Tank extends BaseStage
 			}
 		}
 	}
+	override function sectionHit() {
+		updateABotEye();
+	}
+
+	override function startSong() {
+		abotSongStart();
+	}
 
 	override function countdownTick(count:Countdown, num:Int) if(num % 2 == 0) everyoneDance();
-	override function beatHit() everyoneDance();
+	override function beatHit() 
+		{
+			abotBeatHit();
+		}
 	function everyoneDance()
 	{
 		if(!ClientPrefs.data.lowQuality) tankWatchtower.dance();

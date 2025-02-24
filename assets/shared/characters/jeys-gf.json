@@ -1,91 +1,131 @@
 {
 	"animations": [
 		{
+			"offsets": [-6, 74],
 			"loop": false,
-			"offsets": [0, -9],
 			"fps": 24,
-			"anim": "danceLeft",
-			"indices": [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
-			"name": "GF Dancing Beat"
-		},
-		{
-			"loop": false,
-			"offsets": [0, -9],
-			"fps": 24,
-			"anim": "danceRight",
-			"indices": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
-			"name": "GF Dancing Beat"
-		},
-		{
-			"loop": false,
-			"offsets": [0, -9],
-			"anim": "danceLeft-happy",
-			"fps": 24,
-			"name": "GF Dancing Beat-alt",
-			"indices": [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-		},
-		{
-			"loop": false,
-			"offsets": [0, -9],
-			"anim": "danceRight-happy",
-			"fps": 24,
-			"name": "GF Dancing Beat-alt",
-			"indices": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
-		},
-		{
-			"loop": false,
-			"offsets": [0, -18],
 			"anim": "cheer",
-			"fps": 24,
-			"name": "hey!!",
-			"indices": []
+			"indices": [],
+			"name": "Animations/hey!!"
 		},
 		{
-			"offsets": [-92, -31],
+			"offsets": [-97, 88],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Animations/down"
+		},
+		{
+			"offsets": [-195, -153],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "Animations/Left"
+		},
+		{
+			"offsets": [-203, -151],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "Animations/Right"
+		},
+		{
+			"offsets": [-203, 80],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "Animations/up"
+		},
+		{
+			"offsets": [-206, -125],
 			"loop": false,
 			"fps": 24,
 			"anim": "sad",
-			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9, 10, 9, 10, 9, 10, 9, 10, 9, 10],
-			"name": "sad"
+			"indices": [],
+			"name": "Animations/sad"
+		},
+		{
+			"offsets": [35, -23],
+			"loop": true,
+			"fps": 24,
+			"anim": "scared",
+			"indices": [],
+			"name": "Animations/scare"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "danceLeft",
+			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14],
+			"name": "Animations/GF Dancing Beat"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "danceRight",
+			"indices": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+			"name": "Animations/GF Dancing Beat"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "danceRight-happy",
+			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+			"name": "Animations/GF Dancing Beat-alt"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "danceLeft-happy",
+			"indices": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+			"name": "Animations/GF Dancing Beat-alt"
 		},
 		{
 			"loop": false,
-			"offsets": [-89, -21],
-			"anim": "singLEFT",
+			"offsets": [-209, 94],
+			"anim": "three",
 			"fps": 24,
-			"name": "Left",
+			"name": "Jeys CountDown/Three",
 			"indices": []
 		},
 		{
 			"loop": false,
-			"offsets": [-88, -20],
-			"anim": "singRIGHT",
+			"offsets": [-210, 96],
+			"anim": "two",
 			"fps": 24,
-			"name": "Right",
+			"name": "Jeys CountDown/Two",
 			"indices": []
 		},
 		{
 			"loop": false,
-			"offsets": [-89, -19],
-			"anim": "singUP",
+			"offsets": [-207, 95],
+			"anim": "one",
 			"fps": 24,
-			"name": "up",
+			"name": "Jeys CountDown/One",
 			"indices": []
 		},
 		{
 			"loop": false,
-			"offsets": [-89, -42],
-			"anim": "singDOWN",
+			"offsets": [390, 22],
+			"anim": "Go!",
 			"fps": 24,
-			"name": "down",
+			"name": "Jeys CountDown/Go",
 			"indices": []
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
 	"useNoteSkin": false,
-	"image": "unlockable characters/Jey's_GF",
-	"position": [-80, -60],
+	"image": "characters/JeysGF",
+	"position": [150, 380],
 	"noteSkinLib": "shared",
 	"altNoteColors": {
 		"right": [
@@ -111,9 +151,9 @@
 	},
 	"healthicon": "gf",
 	"flip_x": false,
-	"healthbar_colors": [199, 38, 84],
+	"healthbar_colors": [165, 0, 77],
 	"disableNoteRGB": false,
-	"camera_position": [0, 0],
+	"camera_position": [-170, -180],
 	"noteSkin": "",
 	"noteColors": {
 		"right": [
