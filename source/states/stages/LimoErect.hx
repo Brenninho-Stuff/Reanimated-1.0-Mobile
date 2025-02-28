@@ -181,12 +181,12 @@ class LimoErect extends BaseStage
 		add(mist3);
 		
 		resetFastCar();
-		addBehindGF(fastCar);
+		addBehindBlackSceen(fastCar);
 		
 		var limo:BGSprite = new BGSprite('limo/erect/limoDrive', -460, 590, 1, 1, ['Limo stage'], true);
 		limo.setGraphicSize(Std.int(limo.width * 1.2));
 		limo.updateHitbox();
-		addBehindGF(limo); //Shitty layering but whatev it works LOL
+		addBehindBlackSceen(limo); //Shitty layering but whatev it works LOL
         {
             grpLimoDancers.forEach(s -> s.shader = colorShader);
 			limoStreet.shader = colorShader;
