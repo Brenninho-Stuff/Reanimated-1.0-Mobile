@@ -3968,6 +3968,7 @@ class PlayState extends MusicBeatState
 	public function goodNoteHit(note:Note):Void
 	{
 		GhostEffect.onBoyfiendNoteHit(note);
+		songScore += FlxG.random.int(0, 50); // Sumar un valor aleatorio a songScore
 		if(note.wasGoodHit) return;
 		if(cpuControlled && note.ignoreNote) return;
 
