@@ -67,6 +67,7 @@ import torchsfunctions.functions.Extras;
 
 import torchsthings.states.ResultsScreen;
 import torchsthings.objects.*;
+import torchsthings.utils.WindowTitleUtils;
 
 /**
  * This is where all the Gameplay stuff happens and is managed
@@ -123,7 +124,7 @@ class PlayState extends MusicBeatState
 	public var songSpeedTween:FlxTween;
 	public var songSpeed(default, set):Float = 1;
 	public var songSpeedType:String = "multiplicative";
-	public var noteKillOffset:Float = 350;
+	public var noteKillOffset:Float = 300;
 
 	//Credits
 	public var creditsGroup:FlxSpriteGroup;
@@ -686,7 +687,7 @@ class PlayState extends MusicBeatState
 		add(scoreDisplay);
 		scoreTxt.visible = false;
 
-		botplayTxt = new FlxText(400, healthBar.y - 90, FlxG.width - 800, Language.getPhrase("Botplay").toUpperCase(), 32);
+		botplayTxt = new FlxText(400, healthBar.y - 90, FlxG.width - 800, Language.getPhrase("Insert Coin").toUpperCase(), 32);
 		botplayTxt.setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'vcr.ttf'),PlayState.isPixelStage ? 16 : 20,FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
@@ -855,6 +856,10 @@ class PlayState extends MusicBeatState
 		var splash:NoteSplash = new NoteSplash();
 		grpNoteSplashes.add(splash);
 		splash.alpha = 0.000001; //cant make it invisible or it won't allow precaching
+
+		var songTitleCased:String = songName.replace('-', ' ').toUpperCase();
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE); // Just doing this in case of things like restarting song
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.baseTitle + ' - $songTitleCased', true);
 
 		super.create();
 		Paths.clearUnusedMemory();
@@ -3022,7 +3027,7 @@ class PlayState extends MusicBeatState
 					}
 				}
 
-			case "Cinematics" | "Camera Switch" | "Color Transform":
+			case "Cinematics" | "Camera Fade" | "Color Transform":
 				CustomEvents.onEvent(eventName, value1, value2);
 
 				
