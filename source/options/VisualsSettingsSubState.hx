@@ -3,7 +3,6 @@ package options;
 import objects.Note;
 import objects.StrumNote;
 import objects.NoteSplash;
-import objects.Alphabet;
 import torchsthings.objects.StrumCover;
 
 class VisualsSettingsSubState extends BaseOptionsMenu
@@ -161,10 +160,33 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		addOption(option);
 
 		var option:Option = new Option('Icons Dance:',
-			"What should icon movement styles be like??",
-			'iconAnim',
-			STRING,
-			['Default', 'Arrow Funk', 'GF Dance', 'Zoom In And Out']);
+			"Combine up to 2 icon animations!",
+			'iconAnims',
+			ARRAY, 
+			[
+				'Default', 
+				'Arrow Funk', 
+				'GF Dance', 
+				'Zoom In And Out', 
+				'Bounce', 
+				'Heartbeat', 
+				'Spin', 
+				'Color Flash', 
+				'Stretch', 
+				'Mirror Flip', 
+				'Beat Drop', 
+				'Color Cycle', 
+				'Vertical Shake',
+				'Pulse',
+				'Wobble',     
+                'Pop',        
+                'Tilt',         
+                'Glow',             
+				'Disabled'
+			],
+			null,
+			2 
+		);
 		addOption(option);
 
 		var option:Option = new Option('Smooth health bar',

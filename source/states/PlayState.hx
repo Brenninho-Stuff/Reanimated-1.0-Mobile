@@ -35,6 +35,7 @@ import substates.GameOverSubstate;
 import objectsplus.GhostEffect;
 import objectsplus.ScoreDisplay;
 import objectsplus.CustomEvents;
+import objectsplus.IconsAnimator;
 /*
 import objectsplus.Cinematics;
 import objectsplus.CameraSwitchEvent;
@@ -66,8 +67,6 @@ import torchsfunctions.functions.Extras;
 
 import torchsthings.states.ResultsScreen;
 import torchsthings.objects.*;
-import torchsthings.utils.WindowTitleUtils;
-
 
 /**
  * This is where all the Gameplay stuff happens and is managed
@@ -124,7 +123,7 @@ class PlayState extends MusicBeatState
 	public var songSpeedTween:FlxTween;
 	public var songSpeed(default, set):Float = 1;
 	public var songSpeedType:String = "multiplicative";
-	public var noteKillOffset:Float = 300;
+	public var noteKillOffset:Float = 350;
 
 	//Credits
 	public var creditsGroup:FlxSpriteGroup;
@@ -333,6 +332,9 @@ class PlayState extends MusicBeatState
 	private var keysArray:Array<String>;
 	public var songName:String;
 
+	//IconsDance
+	var iconsAnimator:IconsAnimator;
+
 	// Callbacks for stages
 	public var startCallback:Void->Void = null;
 	public var endCallback:Void->Void = null;
@@ -504,10 +506,6 @@ class PlayState extends MusicBeatState
 		boyfriend = new Character(0, 0, SONG.player1, true);
 		startCharacterPos(boyfriend);
 		boyfriendGroup.add(boyfriend);
-
-		gfGroup.cameras = [camGame];
-		dadGroup.cameras = [camGame];
-		boyfriendGroup.cameras = [camGame];
 		
 		if(stageData.objects != null && stageData.objects.length > 0)
 		{
@@ -665,6 +663,8 @@ class PlayState extends MusicBeatState
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP2);
 
+		iconsAnimator = new IconsAnimator(iconP1, iconP2, iconP1.y);
+
 		subTitle = new FlxText(0, 560.8, FlxG.width, "", 20);
 		//subTitle.setFormat(Paths.font("PhantomMuff.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		subTitle.setFormat(Paths.font(isPixelStage ? "pixel.otf" : "vcr2.ttf"), isPixelStage ? 20 : 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -686,7 +686,7 @@ class PlayState extends MusicBeatState
 		add(scoreDisplay);
 		scoreTxt.visible = false;
 
-		botplayTxt = new FlxText(400, healthBar.y - 90, FlxG.width - 800, Language.getPhrase("Insert Coin").toUpperCase(), 32);
+		botplayTxt = new FlxText(400, healthBar.y - 90, FlxG.width - 800, Language.getPhrase("Botplay").toUpperCase(), 32);
 		botplayTxt.setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'vcr.ttf'),PlayState.isPixelStage ? 16 : 20,FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
@@ -855,10 +855,6 @@ class PlayState extends MusicBeatState
 		var splash:NoteSplash = new NoteSplash();
 		grpNoteSplashes.add(splash);
 		splash.alpha = 0.000001; //cant make it invisible or it won't allow precaching
-
-		var songTitleCased:String = songName.replace('-', ' ').toUpperCase();
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE); // Just doing this in case of things like restarting song
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.baseTitle + ' - $songTitleCased', true);
 
 		super.create();
 		Paths.clearUnusedMemory();
@@ -2331,7 +2327,8 @@ class PlayState extends MusicBeatState
 			health = healthBar.bounds.max;
 
 		updateIconsScale(elapsed);
-		updateIconsPosition();
+		iconsAnimator.updateIconsPosition();
+		
 
 		if (startedCountdown && !paused)
 		{
@@ -2365,7 +2362,6 @@ class PlayState extends MusicBeatState
 
 			if(ClientPrefs.data.timeBarType != 'Song Name')
 				timeTxt.text = FlxStringUtil.formatTime(secondsTotal, false);
-			WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - " + FlxStringUtil.formatTime(secondsTotal, false));
 		}
 
 		if (camZooming)
@@ -2524,13 +2520,6 @@ class PlayState extends MusicBeatState
 		var mult:Float = FlxMath.lerp(1, iconP2.scale.x, Math.exp(-elapsed * 9 * playbackRate));
 		iconP2.scale.set(mult, mult);
 		iconP2.updateHitbox();
-	}
-
-	public dynamic function updateIconsPosition()
-	{
-		var iconOffset:Int = 26;
-		iconP1.x = healthBar.barCenter + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
-		iconP2.x = healthBar.barCenter - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
 	}
 
 	var iconsAnimations:Bool = true;
@@ -3033,7 +3022,7 @@ class PlayState extends MusicBeatState
 					}
 				}
 
-			case "Cinematics" | "Camera Fade" | "Color Transform":
+			case "Cinematics" | "Camera Switch" | "Color Transform":
 				CustomEvents.onEvent(eventName, value1, value2);
 
 				
@@ -3974,7 +3963,6 @@ class PlayState extends MusicBeatState
 	public function goodNoteHit(note:Note):Void
 	{
 		GhostEffect.onBoyfiendNoteHit(note);
-		songScore += FlxG.random.int(0, 50); // Sumar un valor aleatorio a songScore
 		if(note.wasGoodHit) return;
 		if(cpuControlled && note.ignoreNote) return;
 
@@ -4354,45 +4342,10 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic)
 			notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
-		switch(ClientPrefs.data.iconAnim) {
-			case "Default":
-					iconP1.scale.set(1.2, 1.2);
-					iconP2.scale.set(1.2, 1.2);
-			case "Arrow Funk":
-				if (curBeat % 1 == 0) {
-					iconP1.scale.set(0.8, 0.8);
-					iconP2.scale.set(1.2, 1.2);
-				}
-				if (curBeat % 2 == 0) {
-					iconP1.scale.set(1.2, 1.2);
-					iconP2.scale.set(0.8, 0.8);
-				}
-			case "GF Dance":
-				iconP1.scale.set(1.2, 1.2);
-				iconP2.scale.set(1.2, 1.2);
-				if (curBeat % 1 == 0) {
-					iconP1.angle = 10;
-					iconP2.angle = 10;
-				}
-				if (curBeat % 2 == 0) {
-					iconP1.angle = -10;
-					iconP2.angle = -10;
-				}
-			case "Zoom In And Out":
-				if (curBeat % 1 == 0) {
-					iconP1.scale.set(0.8, 0.8);
-					iconP2.scale.set(0.8, 0.8);
-				}
-				if (curBeat % 2 == 0) {
-					iconP1.scale.set(1.2, 1.2);
-					iconP2.scale.set(1.2, 1.2);
-				}
-			}
-
-		iconP1.updateHitbox();
-		iconP2.updateHitbox();
-
+	
 		characterBopper(curBeat);
+
+		iconsAnimator.updateIcons(curBeat, ClientPrefs.data.iconAnims, boyfriend.animation.curAnim.name, dad.animation.curAnim.name);
 
 		super.beatHit();
 		lastBeatHit = curBeat;
