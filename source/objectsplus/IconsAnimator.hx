@@ -17,16 +17,12 @@ class IconsAnimator {
     var oBouncing:Bool = false;
     var initialX1:Float;
     var initialX2:Float;
+
+    public static var canResetProperties:Bool = true;
     
     var bounceHeight:Float = 15;
     var bounceDuration:Float = 0.5;
-    var shakeIntensity:Float = 10;
     var spinSpeed:Float = 0.4;
-    var max3DAngle:Float = 45;
-
-    var totalShake:Float = 0;
-    var totalRotateOffset:Float = 0;
-    var rotateScaleY:Float = 1;
 
     var isAnimatingPosition:Bool = false;
 
@@ -164,14 +160,12 @@ class IconsAnimator {
     }
 
     function resetIconProperties() {
+        if (!canResetProperties) return;
         iconP1.setPosition(initialX1, iconY);
         iconP2.setPosition(initialX2, iconY);
         iconP1.flipX = iconP2.flipX = false;
         iconP1.angle = iconP2.angle = 0;
         iconP1.alpha = iconP2.alpha = 1;
-        totalShake = 0;
-        totalRotateOffset = 0;
-        rotateScaleY = 1;
     }
 
     function setIconsScale(scale:Float) {

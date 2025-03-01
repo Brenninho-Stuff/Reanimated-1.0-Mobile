@@ -6,6 +6,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import objects.Character;
+import objectsplus.IconsAnimator;
 
 class CustomEvents {
     /* Quick Note:
@@ -60,12 +61,15 @@ class CustomEvents {
                                 FlxTween.tween(PlayState.instance.healthBar, {alpha: 1}, speed/2);
                                 FlxTween.tween(PlayState.instance.iconP1, {alpha: 1}, speed/2);
                                 FlxTween.tween(PlayState.instance.iconP2, {alpha: 1}, speed/2);
+                                IconsAnimator.canResetProperties = true;
                             });
                         }
                     });
                     FlxTween.tween(PlayState.instance.healthBar, {alpha: 0}, speed/2);
                     FlxTween.tween(PlayState.instance.iconP1, {alpha: 0}, speed/2);
                     FlxTween.tween(PlayState.instance.iconP2, {alpha: 0}, speed/2);
+                    IconsAnimator.canResetProperties = false;
+                    
                 }
 
             case 'Camera Fade':
