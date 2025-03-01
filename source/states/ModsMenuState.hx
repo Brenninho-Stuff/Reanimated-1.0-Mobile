@@ -15,6 +15,7 @@ import options.ModSettingsSubState;
 import openfl.display.BitmapData;
 import lime.utils.Assets;
 
+import torchsthings.utils.WindowTitleUtils;
 class ModsMenuState extends MusicBeatState
 {
 	var bg:FlxSprite;
@@ -55,6 +56,9 @@ class ModsMenuState extends MusicBeatState
 	}
 	override function create()
 	{
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Mods");
+
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 		persistentUpdate = false;

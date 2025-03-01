@@ -1,9 +1,13 @@
 package options;
 
+import torchsthings.utils.WindowTitleUtils;
 class GameplaySettingsSubState extends BaseOptionsMenu
 {
 	public function new()
 	{
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Gameplay");
+
 		title = Language.getPhrase('gameplay_menu', 'Gameplay Settings');
 		rpcTitle = 'Gameplay Settings Menu'; //for Discord Rich Presence
 

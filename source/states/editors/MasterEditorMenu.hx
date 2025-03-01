@@ -7,6 +7,7 @@ import objects.Character;
 import states.MainMenuState;
 import states.FreeplayState;
 
+import torchsthings.utils.WindowTitleUtils;
 class MasterEditorMenu extends MusicBeatState
 {
 	var options:Array<String> = [
@@ -28,6 +29,9 @@ class MasterEditorMenu extends MusicBeatState
 
 	override function create()
 	{
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Master Menu");
+
 		FlxG.camera.bgColor = FlxColor.BLACK;
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence

@@ -2,6 +2,7 @@ package options;
 
 import openfl.utils.Assets;
 
+import torchsthings.utils.WindowTitleUtils;
 class LanguageSubState extends MusicBeatSubstate
 {
 	#if TRANSLATIONS_ALLOWED
@@ -11,6 +12,9 @@ class LanguageSubState extends MusicBeatSubstate
 	var curSelected:Int = 0;
 	public function new()
 	{
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Language");
+
 		super();
 
 		var bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));

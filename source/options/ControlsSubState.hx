@@ -10,6 +10,7 @@ import flixel.input.gamepad.FlxGamepad;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.gamepad.FlxGamepadManager;
 
+import torchsthings.utils.WindowTitleUtils;
 class ControlsSubState extends MusicBeatSubstate
 {
 	var curSelected:Int = 0;
@@ -62,6 +63,9 @@ class ControlsSubState extends MusicBeatSubstate
 	
 	public function new()
 	{
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Controls");
+
 		super();
 
 		#if DISCORD_ALLOWED

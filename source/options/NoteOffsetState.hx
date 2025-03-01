@@ -7,6 +7,7 @@ import flixel.addons.display.shapes.FlxShapeCircle;
 
 import states.stages.StageWeek1 as BackgroundStage;
 
+import torchsthings.utils.WindowTitleUtils;
 class NoteOffsetState extends MusicBeatState
 {
 	var stageDirectory:String = 'week1';
@@ -37,6 +38,9 @@ class NoteOffsetState extends MusicBeatState
 
 	override public function create()
 	{
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Delay/Combo Offset");
+
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Delay/Combo Offset Menu", null);
 		#end

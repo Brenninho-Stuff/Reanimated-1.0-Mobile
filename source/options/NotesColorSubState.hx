@@ -13,6 +13,7 @@ import objects.Note;
 import shaders.RGBPalette;
 import shaders.RGBPalette.RGBShaderReference;
 
+import torchsthings.utils.WindowTitleUtils;
 class NotesColorSubState extends MusicBeatSubstate
 {
 	var onModeColumn:Bool = true;
@@ -48,6 +49,9 @@ class NotesColorSubState extends MusicBeatSubstate
 	var tipTxt:FlxText;
 
 	public function new() {
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Note Colors");
+
 		super();
 		
 		#if DISCORD_ALLOWED

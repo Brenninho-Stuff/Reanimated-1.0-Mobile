@@ -3,6 +3,7 @@ package options;
 import states.MainMenuState;
 import backend.StageData;
 
+import torchsthings.utils.WindowTitleUtils;
 class OptionsState extends MusicBeatState
 {
 	var options:Array<String> = [
@@ -44,6 +45,9 @@ class OptionsState extends MusicBeatState
 
 	override function create()
 	{
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Options");
+
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Options Menu", null);
 		#end

@@ -4,6 +4,7 @@ import objects.Note;
 import objects.StrumNote;
 import objects.NoteSplash;
 import torchsthings.objects.StrumCover;
+import torchsthings.utils.WindowTitleUtils;
 
 class VisualsSettingsSubState extends BaseOptionsMenu
 {
@@ -14,6 +15,9 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 	var noteY:Float = 90;
 	public function new()
 	{
+		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
+		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Visual Settings");
+
 		title = Language.getPhrase('visuals_menu', 'Visuals Settings');
 		rpcTitle = 'Visuals Settings Menu'; //for Discord Rich Presence
 

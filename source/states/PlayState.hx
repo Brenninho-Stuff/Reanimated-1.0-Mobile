@@ -2367,6 +2367,7 @@ class PlayState extends MusicBeatState
 
 			if(ClientPrefs.data.timeBarType != 'Song Name')
 				timeTxt.text = FlxStringUtil.formatTime(secondsTotal, false);
+			WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - " + FlxStringUtil.formatTime(secondsTotal, false));
 		}
 
 		if (camZooming)
