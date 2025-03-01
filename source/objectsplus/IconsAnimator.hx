@@ -9,14 +9,18 @@ import objects.HealthIcon;
 import states.PlayState;
 
 class IconsAnimator {
-    var iconP1:HealthIcon;
-    var iconP2:HealthIcon;
+
+    public var iconP1:HealthIcon;
+    public var iconP2:HealthIcon;
     var iconY:Float;
     
     var pBouncing:Bool = false;
     var oBouncing:Bool = false;
     var initialX1:Float;
     var initialX2:Float;
+
+    var stretchTweenP1:FlxTween;
+    var stretchTweenP2:FlxTween;
 
     public static var canResetProperties:Bool = true;
     
@@ -65,8 +69,8 @@ class IconsAnimator {
                     handleBounce(bfAnim, dadAnim);
 
                 case "Spin":
-                    FlxTween.angle(iconP1, iconP1.angle + 360, spinSpeed, {ease: FlxEase.quadOut});
-                    FlxTween.angle(iconP2, iconP2.angle - 360, spinSpeed, {ease: FlxEase.quadOut});
+                    FlxTween.angle(iconP1, iconP1.angle, iconP1.angle + 360, spinSpeed, {ease: FlxEase.quadOut});
+                    FlxTween.angle(iconP2, iconP2.angle, iconP2.angle - 360, spinSpeed, {ease: FlxEase.quadOut});
 
                 case "Color Flash":
                     var targetColor = (curBeat % 2 == 0) ? FlxColor.RED : FlxColor.CYAN;
@@ -75,12 +79,28 @@ class IconsAnimator {
 
                 case "Stretch":
                     if (bfAnim.startsWith("sing")) {
-                        FlxTween.tween(iconP1.scale, {x: 1.1, y: 0.8}, 0.1, {ease: FlxEase.quadOut});
+                        if (stretchTweenP1 != null) stretchTweenP1.cancel();
+                
+                        stretchTweenP1 = FlxTween.tween(iconP1.scale, {x: 1.1, y: 0.8}, 0.25, {
+                            ease: FlxEase.quadOut,
+                            onComplete: function(tween:FlxTween) {
+                                if (iconP1 != null) iconP1.scale.set(1, 1);
+                                stretchTweenP1 = null;
+                            }
+                        });
                     }
                     if (dadAnim.startsWith("sing")) {
-                        FlxTween.tween(iconP2.scale, {x: 1.1, y: 0.8}, 0.1, {ease: FlxEase.quadOut});
+                        if (stretchTweenP2 != null) stretchTweenP2.cancel();
+                
+                        stretchTweenP2 = FlxTween.tween(iconP2.scale, {x: 1.1, y: 0.8}, 0.25, {
+                            ease: FlxEase.quadOut,
+                            onComplete: function(tween:FlxTween) {
+                                if (iconP2 != null) iconP2.scale.set(1, 1);
+                                stretchTweenP2 = null;
+                            }
+                        });
                     }
-
+                
                 case "Mirror Flip":
                     if (curBeat % 2 == 0) {
                         iconP1.flipX = !iconP1.flipX;
@@ -141,13 +161,6 @@ class IconsAnimator {
                     var glowAlpha = (curBeat % 2 == 0) ? 0.5 : 1;
                     FlxTween.tween(iconP1, {alpha: glowAlpha}, 0.5, {ease: FlxEase.quadOut});
                     FlxTween.tween(iconP2, {alpha: glowAlpha}, 0.5, {ease: FlxEase.quadOut});
-
-                case "Slide":
-                    isAnimatingPosition = true;
-                    var slideX = (curBeat % 2 == 0) ? initialX1 + 10 : initialX1 - 10;
-                    FlxTween.tween(iconP1, {x: slideX}, 0.25, {ease: FlxEase.quadOut, onComplete: resetPosition});
-                    var slideX2 = (curBeat % 2 == 0) ? initialX2 + 10 : initialX2 - 10;
-                    FlxTween.tween(iconP2, {x: slideX2}, 0.25, {ease: FlxEase.quadOut, onComplete: resetPosition});
             }
         }
 
@@ -164,8 +177,11 @@ class IconsAnimator {
         iconP1.setPosition(initialX1, iconY);
         iconP2.setPosition(initialX2, iconY);
         iconP1.flipX = iconP2.flipX = false;
-        iconP1.angle = iconP2.angle = 0;
         iconP1.alpha = iconP2.alpha = 1;
+        iconP1.scale.set(1, 1);
+        iconP2.scale.set(1, 1);
+        iconP1.color = iconP2.color = FlxColor.WHITE;
+        iconP1.angle = iconP2.angle = 0;
     }
 
     function setIconsScale(scale:Float) {
@@ -212,12 +228,21 @@ class IconsAnimator {
         });
     }
 
-    public dynamic function updateIconsPosition()
-    {
+    public dynamic function updateIconsPosition() {
         var iconOffset:Int = 26;
-        if (!isAnimatingPosition) {
+        if (!isAnimatingPosition && PlayState.instance != null && PlayState.instance.healthBar != null) {
             iconP1.x = PlayState.instance.healthBar.barCenter + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
             iconP2.x = PlayState.instance.healthBar.barCenter - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
         }
+    }
+
+    public function destroy() {
+        if (stretchTweenP1 != null) stretchTweenP1.cancel();
+        if (stretchTweenP2 != null) stretchTweenP2.cancel();
+        FlxTween.cancelTweensOf(iconP1.scale);
+        FlxTween.cancelTweensOf(iconP2.scale);
+    
+        iconP1 = null;
+        iconP2 = null;
     }
 }

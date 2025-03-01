@@ -196,6 +196,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 							}
 							// Cambia al sub‑menú para seleccionar animaciones
 							persistentUpdate = false;
+							FlxG.sound.music.volume = 0;
 							openSubState(new IconDanceSubMenu(curOption.options, currentPrimary, currentSecondary, function() {
 								updateTextFrom(curOption); // Actualiza el texto en el menú principal
 								curOption.change();

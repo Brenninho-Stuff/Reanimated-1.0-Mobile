@@ -4340,23 +4340,17 @@ class PlayState extends MusicBeatState
 
 	var lastBeatHit:Int = -1;
 
-	override function beatHit()
-	{
-		if(lastBeatHit >= curBeat) {
-			//trace('BEAT HIT: ' + curBeat + ', LAST HIT: ' + lastBeatHit);
-			return;
-		}
-
-		if (generatedMusic)
-			notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
+	override function beatHit() {
+		if (lastBeatHit >= curBeat) return;
+		super.beatHit();
 	
 		characterBopper(curBeat);
-
 		iconsAnimator.updateIcons(curBeat, ClientPrefs.data.iconAnims, boyfriend.animation.curAnim.name, dad.animation.curAnim.name);
-
-		super.beatHit();
+		iconP1.updateHitbox();
+        iconP2.updateHitbox();
+	
 		lastBeatHit = curBeat;
-
+	
 		setOnScripts('curBeat', curBeat);
 		callOnScripts('onBeatHit');
 	}
