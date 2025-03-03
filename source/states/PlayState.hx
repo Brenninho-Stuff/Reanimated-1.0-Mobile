@@ -4339,13 +4339,21 @@ class PlayState extends MusicBeatState
 	}
 
 	var lastBeatHit:Int = -1;
-
 	override function beatHit() {
 		if (lastBeatHit >= curBeat) return;
 		super.beatHit();
 	
 		characterBopper(curBeat);
-		iconsAnimator.updateIcons(curBeat, ClientPrefs.data.iconAnims, boyfriend.animation.curAnim.name, dad.animation.curAnim.name);
+		var curDadAnimation = dad.isAnimateAtlas ? dad.atlas.anim.curSymbol.name : dad.animation.curAnim.name;
+		var curBoyfriendAnimation = boyfriend.isAnimateAtlas ? boyfriend.atlas.anim.curSymbol.name : boyfriend.animation.curAnim.name;
+		iconsAnimator.updateIcons(curBeat, ClientPrefs.data.iconAnims, curBoyfriendAnimation, curDadAnimation);
+		iconP1.updateHitbox();
+		iconP2.updateHitbox();
+	
+		lastBeatHit = curBeat;
+	
+		setOnScripts('curBeat', curBeat);
+		callOnScripts('onBeatHit');
 		iconP1.updateHitbox();
         iconP2.updateHitbox();
 	
