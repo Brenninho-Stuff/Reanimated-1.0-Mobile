@@ -3,6 +3,7 @@ package states.stages.objects;
 #if funkin.vis
 import funkin.vis.dsp.SpectralAnalyzer;
 #end
+import flixel.system.FlxAssets.FlxShader;
 
 class ABotSpeaker extends FlxSpriteGroup
 {
@@ -20,6 +21,18 @@ class ABotSpeaker extends FlxSpriteGroup
 	var analyzer:SpectralAnalyzer;
 	#end
 	var volumes:Array<Float> = [];
+
+	public function setShader(sdr:FlxShader){
+		this.shader = sdr;
+		bg.shader = sdr;
+		for (sprite in vizSprites) {
+			sprite.shader = sdr;
+		}
+		eyeBg.shader = sdr;
+		eyes.shader = sdr;
+		speaker.shader = sdr;
+		return sdr;
+	}
 
 	public var snd(default, set):FlxSound;
 	function set_snd(changed:FlxSound)

@@ -88,7 +88,8 @@ class PhillyErect extends BaseStage
         gf.shader = colorShader;
         dad.shader = colorShader;
         car.shader = colorShader;
-        abot.shader = colorShader;
+        //abot.shader = colorShader;
+        abot.setShader(colorShader);
     }
     override function sectionHit() {
 		updateABotEye();
@@ -194,6 +195,7 @@ class PhillyErect extends BaseStage
                                     if(!ClientPrefs.data.lowQuality){
                                         car.color = FlxColor.WHITE;
                                     }
+                                    if (abot != null) abot.color = FlxColor.WHITE;
                             }
                             case 1: //turn on
                                 curLightEvent = FlxG.random.int(0, phillyLightsColors.length-1, [curLightEvent]);
@@ -235,6 +237,7 @@ class PhillyErect extends BaseStage
                                 });
                                 phillyGlowGradient.color = color;
                                 phillyWindowEvent.color = color;
+                                if (abot != null) abot.color = color;
         
                                 color.brightness *= 0.5;
                                 street.color = color;
