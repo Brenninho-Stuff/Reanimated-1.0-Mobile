@@ -460,7 +460,7 @@ class PlayState extends MusicBeatState
 			case "stageErect": new StageErect();		//Week 1 - Erect
 			case 'spooky': new Spooky();				//Week 2
 			case 'philly': new Philly();				//Week 3
-			//case 'phillyErect': new PhillyErect();		//Week 3 - Erect
+			case "phillyErect": new PhillyErect();		//Week 3 - Erect
 			case 'limo': new Limo();					//Week 4
 			case "limoErect": new LimoErect();			//Week 4 - Erect
 			case 'mall': new Mall();					//Week 5 - Cocoa, Eggnog
