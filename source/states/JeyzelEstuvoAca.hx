@@ -6,7 +6,7 @@ import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import options.VisualsSettingsSubState;
 
-class SnaxEstuvoAqui extends MusicBeatState
+class JeyzelEstuvoAca extends MusicBeatState
 {
     public static var leftState:Bool = false;
 
@@ -19,9 +19,18 @@ class SnaxEstuvoAqui extends MusicBeatState
         add(bg);
 
         warnText = new FlxText(0, 0, FlxG.width,
-            "Customize Your Experience!\nVisit the Visual Options menu to personalize your interface.\nPress ENTER or ESCAPE to skip this message.\n",
-            32);
-        warnText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER);
+            "Hey, watch out!\n
+			This mod is not meant to offend or harm the original \n
+			creators of all the assets or similar\n
+			This mod is a re-imagining of our view towards the base game\n
+			We hope you like our project\n
+			Have fun\n
+			Sincerely\n
+			FNF Reanimated Team\n 
+I want my money\n 
+Atte: Jeyzel_Arts", //These 2 lines have to be like this so that everything is centered lol
+            100);
+        warnText.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER);
         warnText.screenCenter();
         add(warnText);
     }
@@ -38,14 +47,14 @@ class SnaxEstuvoAqui extends MusicBeatState
                     FlxG.sound.play(Paths.sound('confirmMenu'));
                     FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
                         new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-                            MusicBeatState.switchState(new JeyzelEstuvoAca());
+                            MusicBeatState.switchState(new TitleState());
                         });
                     });
                 } else {
                     FlxG.sound.play(Paths.sound('cancelMenu'));
                     FlxTween.tween(warnText, {alpha: 0}, 1, {
                         onComplete: function (twn:FlxTween) {
-                            MusicBeatState.switchState(new JeyzelEstuvoAca());
+                            MusicBeatState.switchState(new TitleState());
                         }
                     });
                 }

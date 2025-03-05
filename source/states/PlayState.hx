@@ -460,6 +460,7 @@ class PlayState extends MusicBeatState
 			case "stageErect": new StageErect();		//Week 1 - Erect
 			case 'spooky': new Spooky();				//Week 2
 			case 'philly': new Philly();				//Week 3
+			//case 'phillyErect': new PhillyErect();		//Week 3 - Erect
 			case 'limo': new Limo();					//Week 4
 			case "limoErect": new LimoErect();			//Week 4 - Erect
 			case 'mall': new Mall();					//Week 5 - Cocoa, Eggnog
@@ -628,6 +629,12 @@ class PlayState extends MusicBeatState
 				[[dad.healthBar, dad.healthBarLibrary, '${dad.animatedBar}', dad.healthBarAnimation], [boyfriend.healthBar, boyfriend.healthBarLibrary, '${boyfriend.animatedBar}', boyfriend.healthBarAnimation]];
 			case "Reanimated":
 				[['Reanimated' + (isPixelStage ? ((dad.curCharacter == 'spirit') ? '-pixel-glitch' : '-pixel') : ''), 'shared', ((isPixelStage && dad.curCharacter == 'spirit') ? 'true' : 'false'), ((isPixelStage && dad.curCharacter == 'spirit') ? 'healthBar_pixel_glitched' : 'none')], ['Reanimated' + (isPixelStage ? '-pixel' : ''), 'shared', 'false', 'none']];
+			case "17bucks":
+				[['5peso', 'shared', 'false', 'none'], ['5peso', 'shared', 'false', 'none']];
+			case "jey'sHealthbar":
+				[['jeysHealthbar', 'shared', 'false', 'none'], ['jeysHealthbar', 'shared', 'false', 'none']];
+			case "HealtBarKEIT":
+				[['HealtBarKEIT', 'shared', 'false', 'none'], ['HealtBarKEIT', 'shared', 'false', 'none']];
 			case "Default":
 				[['Default', 'shared', 'false', 'none'], ['Default', 'shared', 'false', 'none']];
 			default:
