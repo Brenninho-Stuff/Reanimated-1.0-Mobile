@@ -85,6 +85,8 @@ class StageErect extends BaseStage
         lightAbove.setGraphicSize(Std.int(lightAbove.width * 1.2));
         lightAbove.updateHitbox();
         
+        abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+
         if (!offsetState) {
             switch(PlayState.SONG.song.toLowerCase()) {
                 case 'test':
@@ -101,11 +103,18 @@ class StageErect extends BaseStage
         add(lightsmall);
         add(light);
         add(lightAbove);
+        addAbot();
         super.createPost();
+        var colorShader = new AdjustColorShader();
+        colorShader.hue = -9;
+        colorShader.saturation = 0;
+        colorShader.contrast = 30;
+        colorShader.brightness = -4;
             gf.shader = makeCoolShader(-9,0,-30,-4);
             dad.shader = makeCoolShader(-32,0,-33,-23);
             boyfriend.shader = makeCoolShader(12,0,-23,7);
-            
+            abot.setShader(colorShader);
+
             if (!offsetState) {
                 switch(PlayState.SONG.song.toLowerCase()) {
                     case 'test':
@@ -119,7 +128,22 @@ class StageErect extends BaseStage
                 }
             }
         }
+    override function sectionHit() {
+        updateABotEye();
+    }
+    
+     override function startSong() {
+         abotSongStart();
+    }
 
+    override function countdownTick(count:Countdown, num:Int) if(num % 2 == 0) everyoneDance();
+    override function beatHit()
+        {       
+            abotBeatHit();
+        }
+        function everyoneDance()
+            { 
+            }
     function makeCoolShader(hue:Float,sat:Float,bright:Float,contrast:Float) {
         var coolShader = new AdjustColorShader();
         coolShader.hue = hue;

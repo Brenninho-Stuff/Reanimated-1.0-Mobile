@@ -160,6 +160,8 @@ class PhillyStreetsErect extends BaseStage
         mistMid.alpha = 0.8;
         mistMid.antialiasing = ClientPrefs.data.antialiasing;
 
+        abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+
         if(ClientPrefs.data.shaders)
         {
             switch(PlayState.SONG.song.toLowerCase()) {
@@ -172,10 +174,18 @@ class PhillyStreetsErect extends BaseStage
 
     override function createPost()
     {
+        addAbot();
         super.createPost();
-        gf.shader = makeCoolShader(-5,-40,-25,-20);
-        dad.shader = makeCoolShader(-5,-40,-25,-20);
-        boyfriend.shader = makeCoolShader(-5,-40,-25,-20);
+        var colorShader = new AdjustColorShader();
+        colorShader.hue = -5;
+        colorShader.saturation = -40;
+        colorShader.contrast = -25;
+        colorShader.brightness = -20;
+
+        boyfriend.shader = colorShader;
+        gf.shader = colorShader;
+        dad.shader = colorShader;
+        abot.setShader(colorShader);
 
         if (useShader) 
         {
@@ -207,6 +217,16 @@ class PhillyStreetsErect extends BaseStage
         periodicoRandom.visible = false;
         add(periodicoRandom);
     }
+    override function sectionHit() {
+		updateABotEye();
+	}
+
+	override function startSong() {
+		abotSongStart();
+	}
+    function everyoneDance()
+        { 
+        }
     override function update(elapsed:Float)
     {
         //rain.shader.update(elapsed * rainTimeScale);
@@ -220,6 +240,7 @@ class PhillyStreetsErect extends BaseStage
 	var paperOffset:Int = 12;
     override function beatHit() 
     {
+        abotBeatHit();
         // Try driving a car when its possible
         if (FlxG.random.bool(10) && curBeat != (lastChange + changeInterval) && carInterruptable == true)
         {
@@ -428,13 +449,5 @@ class PhillyStreetsErect extends BaseStage
                 car2Interruptable = true;
             }
         });
-    }
-    function makeCoolShader(hue:Float,sat:Float,bright:Float,contrast:Float) {
-        var coolShader = new AdjustColorShader();
-        coolShader.hue = hue;
-        coolShader.saturation = sat;
-        coolShader.brightness = bright;
-        coolShader.contrast = contrast;
-        return coolShader;
     }
 }
