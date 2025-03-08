@@ -521,7 +521,7 @@ class PhillyStreets extends BaseStage
 			rainShader.updateViewInfo(FlxG.width, FlxG.height, FlxG.camera);
 			rainShader.update(elapsed);
 		}
-		if(gf.animation.curAnim.name == "Idle-alt"){
+		if(/*gf.animation.curAnim.name == "Idle-alt"*/ gf.getAnimationName() == "Idle-alt"){
             blinkTime -= elapsed;
 
             if(blinkTime <= 0){
