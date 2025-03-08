@@ -1,139 +1,144 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				0,
-				0
-			],
 			"loop": false,
-			"fps": 10,
+			"offsets": [0, 0],
 			"anim": "idle",
-			"indices": [],
-			"name": "idle"
+			"fps": 10,
+			"name": "idle",
+			"indices": []
 		},
 		{
-			"offsets": [
-				0,
-				0
-			],
 			"loop": false,
-			"fps": 10,
+			"offsets": [0, 0],
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "left pose"
+			"fps": 10,
+			"name": "left pose",
+			"indices": []
 		},
 		{
-			"offsets": [
-				0,
-				0
-			],
 			"loop": false,
-			"fps": 10,
+			"offsets": [0, 0],
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "down pose"
+			"fps": 10,
+			"name": "down pose",
+			"indices": []
 		},
 		{
-			"offsets": [
-				0,
-				0
-			],
 			"loop": false,
-			"fps": 10,
+			"offsets": [0, 0],
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "right pose"
+			"fps": 10,
+			"name": "right pose",
+			"indices": []
 		},
 		{
+			"offsets": [0, 0],
 			"loop": false,
-			"offsets": [
-				0,
-				0
-			],
+			"fps": 10,
 			"anim": "singLEFTmiss",
-			"fps": 10,
-			"name": "miss left pose",
-			"indices": []
+			"indices": [],
+			"name": "miss left pose"
 		},
 		{
+			"offsets": [0, 0],
 			"loop": false,
-			"offsets": [
-				0,
-				0
-			],
+			"fps": 10,
 			"anim": "singDOWNmiss",
-			"fps": 10,
-			"name": "miss down pose",
-			"indices": []
+			"indices": [],
+			"name": "miss down pose"
 		},
 		{
+			"offsets": [0, 0],
 			"loop": false,
-			"offsets": [
-				0,
-				0
-			],
+			"fps": 10,
 			"anim": "singUPmiss",
-			"fps": 10,
-			"name": "miss up pose",
-			"indices": []
+			"indices": [],
+			"name": "miss up pose"
 		},
 		{
+			"offsets": [0, 0],
 			"loop": false,
-			"offsets": [
-				0,
-				0
-			],
+			"fps": 10,
 			"anim": "singUP",
-			"fps": 10,
-			"name": "up pose",
-			"indices": []
+			"indices": [],
+			"name": "up pose"
 		},
 		{
+			"offsets": [0, 0],
 			"loop": false,
-			"offsets": [
-				0,
-				0
-			],
+			"fps": 10,
 			"anim": "singRIGHTmiss",
-			"fps": 10,
-			"name": "miss right pose",
-			"indices": []
+			"indices": [],
+			"name": "miss right pose"
 		},
 		{
+			"offsets": [0, 0],
 			"loop": false,
-			"offsets": [
-				0,
-				0
-			],
-			"anim": "hey",
 			"fps": 10,
-			"name": "yeah",
-			"indices": []
+			"anim": "hey",
+			"indices": [],
+			"name": "yeah"
 		}
 	],
 	"vocals_file": "",
-	"noteSplashes": "normal",
 	"no_antialiasing": true,
+	"useNoteSkin": false,
 	"image": "characters/bfPixel",
-	"position": [
-		0,
-		280
-	],
-	"strumCovers": "normal",
-	"noteAssets": "pixelUI/normal",
+	"position": [0, 280],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "icon-bf-pixel",
 	"flip_x": true,
-	"healthbar_colors": [
-		43,
-		174,
-		255
-	],
-	"camera_position": [
-		350,
-		-200
-	],
-	"notePath": "torchs_assets",
+	"healthbar_colors": [43, 174, 255],
+	"disableNoteRGB": false,
+	"camera_position": [350, -200],
+	"noteSkin": "",
+	"noteColors": {
+		"right": [
+			-30642,
+			-1291,
+			-9699328
+		],
+		"up": [
+			-9313536,
+			-589850,
+			-16764672
+		],
+		"down": [
+			-12727553,
+			-720897,
+			-16764832
+		],
+		"left": [
+			-1935647,
+			-1537,
+			-10485619
+		]
+	},
 	"sing_duration": 6.1,
+	"hasAltColors": false,
 	"scale": 6,
 	"_editor_isPlayer": true
 }
