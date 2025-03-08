@@ -26,7 +26,7 @@ class StrumCover extends FlxSprite {
     public var showSplash:Bool = false;
     public var enemySplash:Bool = false;
     var ratingsToShowUpOn:Array<String> = ['sick'];
-    public var minSustainLength:Float = 100.0; // Just change this to be whatever you want in case you don't want the splashes to show up too soon or too late
+    public var minSustainLength:Float = 125.0; // Just change this to be whatever you want in case you don't want the splashes to show up too soon or too late
 
     public function new(refNote:StrumNote, ?texture:String = 'strumCovers/NOTE_covers', ?library:String = 'shared') {
         super(0, 0);
