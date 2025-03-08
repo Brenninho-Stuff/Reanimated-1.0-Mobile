@@ -189,6 +189,8 @@ class Note extends FlxSprite
 		}
 	}
 
+	public var noCharShader:Bool = false;
+
 	private function set_noteType(value:String):String {
 		noteSplashData.texture = PlayState.SONG != null ? PlayState.SONG.splashSkin : 'noteSplashes';
 		defaultRGB();
@@ -217,6 +219,7 @@ class Note extends FlxSprite
 					hitCausesMiss = true;
 					hitsound = 'cancelMenu';
 					hitsoundChartEditor = false;
+					noCharShader = true;
 				case 'Alt Animation':
 					animSuffix = '-alt';
 				case 'Beat Animation':
@@ -237,6 +240,7 @@ class Note extends FlxSprite
 					//noteSplashData.r = 0xFF162C5A;
 					//noteSplashData.g = 0xFFDFB601;
 					noteSplashData.texture = 'noteSplashes/noteSplashes';
+					noCharShader = true;
 
 			}
 			if (value != null && value.length > 1) NoteTypesConfig.applyNoteTypeData(this, value);
