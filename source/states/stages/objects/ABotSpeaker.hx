@@ -23,7 +23,7 @@ class ABotSpeaker extends FlxSpriteGroup
 	var volumes:Array<Float> = [];
 
 	public function setShader(sdr:FlxShader){
-		this.shader = sdr;
+		//this.shader = sdr;
 		bg.shader = sdr;
 		for (sprite in vizSprites) {
 			sprite.shader = sdr;
@@ -103,6 +103,10 @@ class ABotSpeaker extends FlxSpriteGroup
 	{
 		super.update(elapsed);
 		if(analyzer == null) return;
+
+		if (this.shader != null && eyes.shader != this.shader) {// I just chose a random object that'll get the shader
+			setShader(this.shader);
+		}
 
 		levels = analyzer.getLevels(levels);
 		var oldLevelMax = levelMax;
