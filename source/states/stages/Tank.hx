@@ -6,8 +6,7 @@ import substates.GameOverSubstate;
 import objects.Character;
 
 import objects.Note;
-import states.stages.objects.ABot;
-
+import flixel.util.FlxSignal;
 
 class Tank extends BaseStage
 {
@@ -22,6 +21,8 @@ class Tank extends BaseStage
 	var tankmid:BGSprite;
 	var tankright1:BGSprite;
 	var tankright2:BGSprite;
+
+	var picoStress:FlxSignal = new FlxSignal();
 
 	//var abot:ABot;
 
@@ -384,6 +385,32 @@ class Tank extends BaseStage
 		cutsceneHandler.push(pico);
 
 		// prepare pico animation cycle
+
+		picoStress.add(function() {
+			switch (pico.anim.curInstance.symbol.name) {
+				case "dieBitch", "GF Time to Die sequence":
+					pico.anim.play('picoAppears', true);
+					boyfriendGroup.alpha = 1;
+					boyfriendCutscene.visible = false;
+					boyfriend.playAnim('bfCatch', true);
+					boyfriend.animation.finishCallback = function(name:String)
+					{
+						if(name != 'idle')
+						{
+							boyfriend.playAnim('idle', true);
+							boyfriend.animation.curAnim.finish(); //Instantly goes to last frame
+						}
+					};
+				case "picoAppears", "Pico Saves them sequence":
+					pico.anim.play('picoEnd', true);
+				case "picoEnd", "Pico Dual Wield on Speaker idle":
+					gfGroup.alpha = 1;
+					pico.visible = false;
+					if (pico.anim.onComplete == picoStress) pico.anim.onComplete = new FlxSignal();
+			}
+		});
+
+		/*
 		function picoStressCycle() {
 			switch (pico.anim.curInstance.symbol.name) {
 				case "dieBitch", "GF Time to Die sequence":
@@ -407,7 +434,8 @@ class Tank extends BaseStage
 					if (pico.anim.onComplete == picoStressCycle) pico.anim.onComplete = function() {};
 			}
 		}
-		pico.anim.onComplete = picoStressCycle;
+		*/
+		pico.anim.onComplete = picoStress;
 
 		boyfriendCutscene = new FlxSprite(boyfriend.x + 5, boyfriend.y + 20);
 		boyfriendCutscene.antialiasing = ClientPrefs.data.antialiasing;

@@ -3,7 +3,6 @@ package states.stages;
 import states.stages.objects.*;
 import objects.Character;
 import torchsthings.shaders.AdjustColorShader;
-import states.stages.objects.ABot;
 
 class PhillyErect extends BaseStage
 {
