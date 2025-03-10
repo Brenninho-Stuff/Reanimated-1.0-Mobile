@@ -1,124 +1,136 @@
 {
 	"animations": [
 		{
+			"offsets": [5, -5],
 			"loop": false,
-			"offsets": [
-				5,
-				-5
-			],
+			"fps": 24,
 			"anim": "idle",
-			"fps": 24,
-			"name": "idle",
-			"indices": []
+			"indices": [],
+			"name": "idle"
 		},
 		{
-			"offsets": [
-				82,
-				-5
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [82, -5],
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "leff"
+			"fps": 24,
+			"name": "leff",
+			"indices": []
 		},
 		{
-			"offsets": [
-				40,
-				-50
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [40, -50],
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "downn"
+			"fps": 24,
+			"name": "downn",
+			"indices": []
 		},
 		{
-			"offsets": [
-				10,
-				7
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [10, 7],
 			"anim": "singUP",
-			"indices": [],
-			"name": "upp"
+			"fps": 24,
+			"name": "upp",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-12,
-				-18
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [-12, -18],
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "righh"
+			"fps": 24,
+			"name": "righh",
+			"indices": []
 		},
 		{
+			"offsets": [59, -13],
 			"loop": false,
-			"offsets": [
-				59,
-				-13
-			],
+			"fps": 24,
 			"anim": "singLEFT-alt",
-			"fps": 24,
-			"name": "colifloor es una mrd",
-			"indices": []
+			"indices": [],
+			"name": "colifloor es una mrd"
 		},
 		{
+			"offsets": [-7, -5],
 			"loop": false,
-			"offsets": [
-				-7,
-				-5
-			],
+			"fps": 24,
 			"anim": "singRIGHT-alt",
-			"fps": 24,
-			"name": "mi prepucio",
-			"indices": []
+			"indices": [],
+			"name": "mi prepucio"
 		},
 		{
+			"offsets": [-45, 10],
 			"loop": false,
-			"offsets": [
-				-45,
-				10
-			],
+			"fps": 24,
 			"anim": "singUP-alt",
-			"fps": 24,
-			"name": "oli",
-			"indices": []
+			"indices": [],
+			"name": "oli"
 		},
 		{
+			"offsets": [66, -53],
 			"loop": false,
-			"offsets": [
-				66,
-				-53
-			],
-			"anim": "singDOWN-alt",
 			"fps": 24,
-			"name": "bajo",
-			"indices": []
+			"anim": "singDOWN-alt",
+			"indices": [],
+			"name": "bajo"
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
+	"useNoteSkin": true,
 	"image": "17bucks/boif",
-	"position": [
-		0,
-		250
-	],
+	"position": [0, 250],
+	"noteSkinLib": "torchs_assets",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "boyf",
 	"flip_x": true,
-	"healthbar_colors": [
-		75,
-		147,
-		178
-	],
-	"camera_position": [
-		240,
-		-50
-	],
+	"healthbar_colors": [75, 147, 178],
+	"disableNoteRGB": true,
+	"camera_position": [240, -50],
+	"noteSkin": "custom_notes/z3mp",
+	"noteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"sing_duration": 4,
+	"hasAltColors": false,
 	"scale": 0.9,
 	"_editor_isPlayer": true
 }

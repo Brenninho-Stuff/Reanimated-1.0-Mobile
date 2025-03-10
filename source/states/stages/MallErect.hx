@@ -105,6 +105,8 @@ class MallErect extends BaseStage
 			gf.shader = colorShader;
 			dad.shader = colorShader;
 			santa.shader = colorShader;
+			santaDead.shader = colorShader;
+			parentsCutscene.shader = colorShader;
 		}
 
 	override function countdownTick(count:Countdown, num:Int) everyoneDance();

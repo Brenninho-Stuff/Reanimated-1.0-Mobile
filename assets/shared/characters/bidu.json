@@ -1,304 +1,264 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				-40,
-				-16
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [-40, -16],
 			"anim": "hey",
-			"indices": [],
-			"name": "BIDU HEY!!"
+			"fps": 24,
+			"name": "BIDU HEY!!",
+			"indices": []
 		},
 		{
+			"offsets": [-35, 20],
 			"loop": false,
-			"offsets": [
-				-35,
-				20
-			],
+			"fps": 24,
 			"anim": "idle",
-			"fps": 24,
-			"name": "BIDU idle dance0",
-			"indices": []
+			"indices": [],
+			"name": "BIDU idle dance0"
 		},
 		{
+			"offsets": [97, 20],
 			"loop": false,
-			"offsets": [
-				97,
-				20
-			],
+			"fps": 24,
 			"anim": "singLEFT",
-			"fps": 24,
-			"name": "BIDU NOTE LEFT0",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE LEFT0"
 		},
 		{
+			"offsets": [-20, -31],
 			"loop": false,
-			"offsets": [
-				-20,
-				-31
-			],
+			"fps": 24,
 			"anim": "singDOWN",
-			"fps": 24,
-			"name": "BIDU NOTE DOWN0",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE DOWN0"
 		},
 		{
+			"offsets": [-12, 56],
 			"loop": false,
-			"offsets": [
-				-12,
-				56
-			],
+			"fps": 24,
 			"anim": "singUP",
-			"fps": 24,
-			"name": "BIDU NOTE UP0",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE UP0"
 		},
 		{
+			"offsets": [-50, 17],
 			"loop": false,
-			"offsets": [
-				-50,
-				17
-			],
+			"fps": 24,
 			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "BIDU NOTE RIGHT0",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE RIGHT0"
 		},
 		{
+			"offsets": [-47, 18],
 			"loop": true,
-			"offsets": [
-				-47,
-				18
-			],
+			"fps": 24,
 			"anim": "scared",
-			"fps": 24,
-			"name": "BIDU idle shaking",
-			"indices": []
+			"indices": [],
+			"name": "BIDU idle shaking"
 		},
 		{
+			"offsets": [87, 21],
 			"loop": false,
-			"offsets": [
-				87,
-				21
-			],
+			"fps": 24,
 			"anim": "singLEFTmiss",
-			"fps": 24,
-			"name": "BIDU NOTE LEFT MISS",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE LEFT MISS"
 		},
 		{
+			"offsets": [-20, -22],
 			"loop": false,
-			"offsets": [
-				-20,
-				-22
-			],
+			"fps": 24,
 			"anim": "singDOWNmiss",
-			"fps": 24,
-			"name": "BIDU NOTE DOWN MISS",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE DOWN MISS"
 		},
 		{
+			"offsets": [-49, 18],
 			"loop": false,
-			"offsets": [
-				-49,
-				18
-			],
+			"fps": 24,
 			"anim": "singRIGHTmiss",
-			"fps": 24,
-			"name": "BIDU NOTE RIGHT MISS",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE RIGHT MISS"
 		},
 		{
+			"offsets": [-23, 47],
 			"loop": false,
-			"offsets": [
-				-23,
-				47
-			],
+			"fps": 24,
 			"anim": "singUPmiss",
-			"fps": 24,
-			"name": "BIDU NOTE UP MISS",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE UP MISS"
 		},
 		{
+			"offsets": [-7, -41],
 			"loop": false,
-			"offsets": [
-				-7,
-				-41
-			],
+			"fps": 24,
 			"anim": "singDOWN-alt",
-			"fps": 24,
-			"name": "BIDU NOTE DOWN ALT",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE DOWN ALT"
 		},
 		{
+			"offsets": [0, 10],
 			"loop": false,
-			"offsets": [
-				0,
-				10
-			],
+			"fps": 24,
 			"anim": "singRIGHT-alt",
-			"fps": 24,
-			"name": "BIDU NOTE RIGHT ALT",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE RIGHT ALT"
 		},
 		{
+			"offsets": [-50, 77],
 			"loop": false,
-			"offsets": [
-				-50,
-				77
-			],
+			"fps": 24,
 			"anim": "singUPlol",
-			"fps": 24,
-			"name": "BIDU NOTE UP COOL",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE UP COOL"
 		},
 		{
+			"offsets": [5, 8],
 			"loop": false,
-			"offsets": [
-				5,
-				8
-			],
+			"fps": 24,
 			"anim": "dodge",
-			"fps": 24,
-			"name": "BIDU NOTE LEFT DODGE",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE LEFT DODGE"
 		},
 		{
+			"offsets": [58, 270],
 			"loop": false,
-			"offsets": [
-				58,
-				270
-			],
+			"fps": 24,
 			"anim": "dodgeUP",
-			"fps": 24,
-			"name": "BIDU NOTE UP DODGE",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE UP DODGE"
 		},
 		{
+			"offsets": [48, 0],
 			"loop": false,
-			"offsets": [
-				48,
-				0
-			],
+			"fps": 24,
 			"anim": "dodgeDOWN",
-			"fps": 24,
-			"name": "BIDU NOTE DOWN DODGE",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE DOWN DODGE"
 		},
 		{
+			"offsets": [3, 7],
 			"loop": false,
-			"offsets": [
-				3,
-				7
-			],
+			"fps": 24,
 			"anim": "dodgeLEFT",
-			"fps": 24,
-			"name": "BIDU NOTE LEFT DODGE",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE LEFT DODGE"
 		},
 		{
+			"offsets": [-58, -16],
 			"loop": false,
-			"offsets": [
-				-58,
-				-16
-			],
+			"fps": 24,
 			"anim": "dodgeRIGHT",
-			"fps": 24,
-			"name": "BIDU NOTE RIGHT DODGE",
-			"indices": []
+			"indices": [],
+			"name": "BIDU NOTE RIGHT DODGE"
 		},
 		{
+			"offsets": [11, -25],
 			"loop": false,
-			"offsets": [
-				11,
-				-25
-			],
+			"fps": 24,
 			"anim": "singDOWN-beat",
-			"fps": 24,
-			"name": "BIDU BEATBOX DOWN",
-			"indices": []
+			"indices": [],
+			"name": "BIDU BEATBOX DOWN"
 		},
 		{
+			"offsets": [-55, 13],
 			"loop": false,
-			"offsets": [
-				-55,
-				13
-			],
+			"fps": 24,
 			"anim": "singRIGHT-beat",
+			"indices": [],
+			"name": "BIDU BEATBOX RIGHT"
+		},
+		{
+			"loop": false,
+			"offsets": [-19, 95],
+			"anim": "singUP-beat",
 			"fps": 24,
-			"name": "BIDU BEATBOX RIGHT",
+			"name": "BIDU BEATBOX UP",
 			"indices": []
 		},
 		{
-			"offsets": [
-				-19,
-				95
-			],
 			"loop": false,
-			"fps": 24,
-			"anim": "singUP-beat",
-			"indices": [],
-			"name": "BIDU BEATBOX UP"
-		},
-		{
-			"offsets": [
-				-19,
-				95
-			],
-			"loop": false,
-			"fps": 24,
+			"offsets": [-19, 95],
 			"anim": "singLEFT-beat",
-			"indices": [],
-			"name": "BIDU BEATBOX UP"
+			"fps": 24,
+			"name": "BIDU BEATBOX UP",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-31,
-				71
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [-31, 71],
 			"anim": "singUP-alt",
-			"indices": [],
-			"name": "BIDU NOTE UP ALT"
+			"fps": 24,
+			"name": "BIDU NOTE UP ALT",
+			"indices": []
 		},
 		{
-			"offsets": [
-				100,
-				19
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [100, 19],
 			"anim": "singLEFT-alt",
-			"indices": [],
-			"name": "BIDU NOTE LEFT ALT"
+			"fps": 24,
+			"name": "BIDU NOTE LEFT ALT",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
-	"noteSplashes": "arrow",
 	"no_antialiasing": false,
+	"useNoteSkin": false,
 	"image": "unlockable characters/BIDU",
-	"position": [
-		0,
-		350
-	],
-	"strumCovers": "bidu",
-	"noteAssets": "bidu",
+	"position": [0, 350],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "bidu",
 	"flip_x": true,
-	"healthbar_colors": [
-		160,
-		255,
-		33
-	],
-	"camera_position": [
-		130,
-		-40
-	],
-	"notePath": "torchs_assets",
+	"healthbar_colors": [160, 255, 33],
+	"disableNoteRGB": false,
+	"camera_position": [130, -40],
+	"noteSkin": "",
+	"noteColors": {
+		"right": [
+			-6603788,
+			-1,
+			-12837470
+		],
+		"up": [
+			-58709,
+			-1,
+			-11991185
+		],
+		"down": [
+			-11470331,
+			-1,
+			-15642541
+		],
+		"left": [
+			-24064,
+			-1,
+			-8187831
+		]
+	},
 	"sing_duration": 4,
+	"hasAltColors": false,
 	"scale": 1,
 	"_editor_isPlayer": true
 }
