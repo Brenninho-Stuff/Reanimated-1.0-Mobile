@@ -51,6 +51,7 @@ class PauseSubState extends MusicBeatSubstate
 		['Roxy', '700', '70', '0.2', "SaNicbOom", '12'],
 		['Jeyzel', '650', '80', '0.3', "Jeyzel Arts", '12'],
 		['Jeyzel2', '650', '80', '0.3', "Jeyzel Arts", '12'],
+		['Jeyzeline_Chan_Arts', '650', '80', '0.3', "Jeyzeline Chan Arts", '12'],
 		['Torch', '750', '180', '1.4', "Callisto", '3'],
 		['olaa uwu', '350', '180', '0.8', "z3mp", '6'],
 		['BFRock', '750', '320', '0.9', "Phantom Arcade", '4'],
