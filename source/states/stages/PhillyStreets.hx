@@ -135,18 +135,18 @@ class PhillyStreets extends BaseStage
 		scrollingSky.antialiasing = ClientPrefs.data.antialiasing;
 		addAndDark(scrollingSky);
 
-        skyline = new BGSprite('phillyStreets/phillySkyline', -545, -273, 0.2, 0.2);
+        skyline = new BGSprite('phillyStreets/phillySkyline', -245, -173, 0.2, 0.2);
         skyline.setGraphicSize(Std.int(skyline.width * 1));
 		skyline.updateHitbox();
 		addAndDark(skyline);
 
-        foregroundcity = new BGSprite('phillyStreets/phillyForegroundCity', 625, 94, 0.3, 0.3);
+        foregroundcity = new BGSprite('phillyStreets/phillyForegroundCity', 825, 94, 0.3, 0.3);
         foregroundcity.setGraphicSize(Std.int(foregroundcity.width * 1));
 		foregroundcity.updateHitbox();
 		addAndDark(foregroundcity);
 
-        highwaylight = new BGSprite('phillyStreets/phillyHighwayLights', 284, 305, 1.0, 1.0);
-        highwaylight.setGraphicSize(Std.int(highwaylight.width * 1));
+        highwaylight = new BGSprite('phillyStreets/phillyHighwayLights', 284, 185, 1.0, 1.0);
+        highwaylight.setGraphicSize(Std.int(highwaylight.width * 1.1));
 		highwaylight.updateHitbox();
 		addAndDark(highwaylight);
 
@@ -199,9 +199,8 @@ class PhillyStreets extends BaseStage
 		phillyTrafficLightmap.updateHitbox();
 		addAndDark(phillyTrafficLightmap);
         
-        var foreground = new BGSprite('phillyStreets/phillyForeground', 88, 317, 1.0, 1.0);
-        foreground.setGraphicSize(Std.int(foreground.width * 1));
-		foreground.updateHitbox();
+        var foreground = new BGSprite('phillyStreets/phillyForeground', 380, 380, 1.0, 1.0);
+		foreground.scale.set(1.3, 1.2);
 		addAndDark(foreground);
 
         phillySpray = new BGSprite('phillyStreets/SpraycanPile', 920, 1045, 1, 1);
@@ -215,9 +214,10 @@ class PhillyStreets extends BaseStage
 
         //Adding Speaker
        // abot = new ABot(1100, 740);
-		//add(abot);
-
+		//add(abot); 
         //Adding picoFade
+		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+
         picoFade = new FlxSprite();
 		picoFade.antialiasing = ClientPrefs.data.antialiasing;
 		picoFade.alpha = 0;
@@ -300,7 +300,22 @@ class PhillyStreets extends BaseStage
 		//	reflectedBF = new ReflectedChar(boyfriend, 0.35);
 			//addBehindBF(reflectedBF);
 		//}
+		reflectedBF = new ReflectedChar(boyfriend, 0.35);
+		addBehindBF(reflectedBF);
 		addAbot();
+		super.createPost();
+		var colorShader = new AdjustColorShader();
+        colorShader.hue = -16;
+        colorShader.saturation = -3;
+        colorShader.contrast = 10;
+        colorShader.brightness = -20;
+
+        boyfriend.shader = colorShader;
+        gf.shader = colorShader;
+        dad.shader = colorShader;
+        spraycan.shader = colorShader;
+        abot.setShader(colorShader);
+		phillySpray.shader = colorShader;
 
         add(phillySpray);
         add(spraycan);

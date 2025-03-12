@@ -85,8 +85,7 @@ class PhillyErect extends BaseStage
         gf.shader = colorShader;
         dad.shader = colorShader;
         car.shader = colorShader;
-        abot.shader = colorShader;
-        //abot.setShader(colorShader);
+        abot.setShader(colorShader);
     }
     
     override function sectionHit() {
