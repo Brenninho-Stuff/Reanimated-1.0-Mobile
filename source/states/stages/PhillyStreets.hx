@@ -32,6 +32,7 @@ class PhillyStreets extends BaseStage
     var foreground:BGSprite;
     var puddle:BGSprite;
 	var phillyTrafficLightmap:BGSprite;
+	var periodicoRandom:FlxSprite;
 
     //Cars And Traffic Lights
     var phillyTraffic:FlxSprite;
@@ -212,6 +213,12 @@ class PhillyStreets extends BaseStage
         casingFrames = Paths.getSparrowAtlas('PicoBullet'); //precache
 		casingGroup = new FlxSpriteGroup();
 
+		periodicoRandom = new FlxSprite(30, 350);
+        periodicoRandom.frames = Paths.getSparrowAtlas("phillyStreets/periodico");
+        periodicoRandom.animation.addByPrefix('volandoAndo', 'Paper Blowing instancia 1', 24, false);
+        periodicoRandom.antialiasing = ClientPrefs.data.antialiasing;
+        periodicoRandom.visible = false;
+
         //Adding Speaker
        // abot = new ABot(1100, 740);
 		//add(abot); 
@@ -316,10 +323,13 @@ class PhillyStreets extends BaseStage
         spraycan.shader = colorShader;
         abot.setShader(colorShader);
 		phillySpray.shader = colorShader;
+		periodicoRandom.shader = colorShader;
 
         add(phillySpray);
         add(spraycan);
         add(casingGroup);
+        add(periodicoRandom);
+
 		createCan();
 
     }
@@ -598,7 +608,8 @@ class PhillyStreets extends BaseStage
 			}
 		}
 	}
-
+	var paperBeat:Int = 0;
+	var paperOffset:Int = 12;
     override function beatHit() 
 	{
 		abotBeatHit();
@@ -619,6 +630,11 @@ class PhillyStreets extends BaseStage
 	
 		// After the interval has been hit, change the light state.
 		if (curBeat == (lastChange + changeInterval)) changeLights(curBeat);
+
+		if (FlxG.random.bool(5) && curBeat > paperBeat + paperOffset) {
+            if(periodicoRandom.visible == false) periodicoRandom.visible = true;
+            periodicoRandom.animation.play('volandoAndo');
+		}
 
 		if(PlayState.SONG.song.toLowerCase() != "blazin"){
             if(game.health < 0.4 && !knifeRaised){
