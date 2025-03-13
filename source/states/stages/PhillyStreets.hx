@@ -312,10 +312,10 @@ class PhillyStreets extends BaseStage
 		addAbot();
 		super.createPost();
 		var colorShader = new AdjustColorShader();
-        colorShader.hue = -16;
-        colorShader.saturation = -3;
-        colorShader.contrast = 10;
-        colorShader.brightness = -20;
+        colorShader.hue = -26;
+        colorShader.saturation = -23;
+        colorShader.contrast = 15;
+        colorShader.brightness = -30;
 
         boyfriend.shader = colorShader;
         gf.shader = colorShader;
