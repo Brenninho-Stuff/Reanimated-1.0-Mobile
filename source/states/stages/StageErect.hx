@@ -114,7 +114,7 @@ class StageErect extends BaseStage
             gf.shader = makeCoolShader(-9,0,-30,-4);
             dad.shader = makeCoolShader(-32,0,-33,-23);
             boyfriend.shader = makeCoolShader(12,0,-23,7);
-            abot.setShader(colorShader);
+            if (abot != null) abot.setShader(colorShader);
 
             if (!offsetState) {
                 switch(PlayState.SONG.song.toLowerCase()) {

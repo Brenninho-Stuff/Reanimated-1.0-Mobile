@@ -186,7 +186,7 @@ class PhillyStreetsErect extends BaseStage
         boyfriend.shader = colorShader;
         gf.shader = colorShader;
         dad.shader = colorShader;
-        abot.setShader(colorShader);
+        if (abot != null) abot.setShader(colorShader);
 
         if (useShader) 
         {

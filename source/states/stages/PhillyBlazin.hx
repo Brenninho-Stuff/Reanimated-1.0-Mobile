@@ -126,7 +126,7 @@ class PhillyBlazin extends BaseStage
         boyfriend.shader = colorShader;
         gf.shader = colorShader;
         dad.shader = colorShader;
-        abot.setShader(colorShader);
+        if (abot != null) abot.setShader(colorShader);
 		{
 			// Move player notes to center
 			for (i in 0...4)

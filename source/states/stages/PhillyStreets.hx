@@ -323,7 +323,7 @@ class PhillyStreets extends BaseStage
         gf.shader = colorShader;
         dad.shader = colorShader;
         spraycan.shader = colorShader;
-        abot.setShader(colorShader);
+        if (abot != null) abot.setShader(colorShader);
 		phillySpray.shader = colorShader;
 
         add(phillySpray);
