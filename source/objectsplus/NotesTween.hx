@@ -11,21 +11,13 @@ class NotesTween
 {
     public static var returnStep2:Int = 1;
 
-    public static function onCreatePost():Void
+    public static function setStrumsY():Void
     {
-        var go:Float = 0;
-        if (ClientPrefs.data.downScroll) 
-        {
-            go = FlxG.height + 200;
-        } 
-        else 
-        {
-            go = -200; // Ajusta este valor según sea necesario
-        }
+        var go:Float = ClientPrefs.data.downScroll ? FlxG.height + 200 : -200;
         for (i in 0...4)
         {
-            Reflect.setField(PlayState.instance.playerStrums.members[i], "y", go);
-            Reflect.setField(PlayState.instance.opponentStrums.members[i], "y", go);
+            PlayState.instance.playerStrums.members[i].y = go;
+            PlayState.instance.opponentStrums.members[i].y = go;
         }
 
         // Add a timer to delay the movement of the notes
@@ -37,19 +29,10 @@ class NotesTween
 
     private static function moveNotes():Void
     {
-        var strumLine = Reflect.field(PlayState.instance, "strumLine");
-        var strumLineY:Float;
-        if (ClientPrefs.data.downScroll) 
-        {
-            strumLineY = Reflect.field(strumLine, "y") + 570; // Adjust this value as needed
-        } 
-        else 
-        {
-            strumLineY = Reflect.field(strumLine, "y") + 60; // Adjust this value as needed
-        }
+        var strumLineY:Float = ClientPrefs.data.downScroll ? (FlxG.height - 150) : 50;
         
         for (i in 0...4)
-        {
+        {   
             FlxTween.tween(PlayState.instance.playerStrums.members[i], {y: strumLineY}, 0.3 + (0.2 + (0.1 * i)), {ease: FlxEase.backOut}).onComplete = function(twn:FlxTween):Void {
                 moveNotesAfterAppearance();
             };
@@ -61,16 +44,7 @@ class NotesTween
 
     private static function moveNotesAfterAppearance():Void
     {
-        var strumLine = Reflect.field(PlayState.instance, "strumLine");
-        var strumLineY:Float;
-        if (ClientPrefs.data.downScroll) 
-        {
-            strumLineY = Reflect.field(strumLine, "y") + 570; // Adjust this value as needed
-        } 
-        else 
-        {
-            strumLineY = Reflect.field(strumLine, "y") + 60; // Adjust this value as needed
-        }
+        var strumLineY:Float = ClientPrefs.data.downScroll ? (FlxG.height - 150) : 50;
         
         for (i in 0...4)
         {
@@ -81,9 +55,7 @@ class NotesTween
 
     public static function onUpdatePost(elapsed:Float):Void
     {
-        if (Reflect.field(PlayState.instance, "curStep") == returnStep2)
-        {
-            moveNotes();
-        }
+        @:privateAccess
+        if (PlayState.instance.curStep == returnStep2) {moveNotes();}
     }
 }
