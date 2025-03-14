@@ -17,6 +17,7 @@ import openfl.filters.ShaderFilter;
 import shaders.RainShader;
 import flixel.addons.display.FlxTiledSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
+import torchsthings.shaders.AdjustColorShader;
 
 class PhillyStreets extends BaseStage
 {
@@ -156,7 +157,7 @@ class PhillyStreets extends BaseStage
 		construction.updateHitbox();
 		addAndDark(construction);
 
-        var smog = new BGSprite('phillyStreets/phillySmog',  -6, 245, 1.0, 1.0);
+        var smog = new BGSprite('phillyStreets/phillySmog',  -6, 145, 1.0, 1.0);
         smog.setGraphicSize(Std.int(smog.width * 1));
 		smog.updateHitbox();
 		addAndDark(smog);
@@ -314,7 +315,7 @@ class PhillyStreets extends BaseStage
 		var colorShader = new AdjustColorShader();
         colorShader.hue = -26;
         colorShader.saturation = -23;
-        colorShader.contrast = 15;
+        colorShader.contrast = 1;
         colorShader.brightness = -30;
 
         boyfriend.shader = colorShader;
@@ -323,7 +324,6 @@ class PhillyStreets extends BaseStage
         spraycan.shader = colorShader;
         abot.setShader(colorShader);
 		phillySpray.shader = colorShader;
-		periodicoRandom.shader = colorShader;
 
         add(phillySpray);
         add(spraycan);

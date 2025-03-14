@@ -9,6 +9,7 @@ import flixel.addons.display.FlxTiledSprite;
 import substates.GameOverSubstate;
 import states.stages.objects.*;
 import objects.Note;
+import torchsthings.shaders.AdjustColorShader;
 
 class PhillyBlazin extends BaseStage
 {
@@ -34,7 +35,7 @@ class PhillyBlazin extends BaseStage
 		FlxTransitionableState.skipNextTransOut = true; //skip the original transition fade
 		function setupScale(spr:BGSprite)
 		{
-			spr.scale.set(1.75, 1.75);
+			spr.scale.set(1.8, 1.83);
 			spr.updateHitbox();
 		}
 
@@ -43,7 +44,7 @@ class PhillyBlazin extends BaseStage
 			var skyImage = Paths.image('phillyBlazin/skyBlur');
 			scrollingSky = new FlxTiledSprite(skyImage, Std.int(skyImage.width * 1.1) + 475, Std.int(skyImage.height / 1.1), true, false);
 			scrollingSky.antialiasing = ClientPrefs.data.antialiasing;
-			scrollingSky.setPosition(-500, -120);
+			scrollingSky.setPosition(-500, -320);
 			scrollingSky.scrollFactor.set();
 			add(scrollingSky);
 
@@ -58,19 +59,19 @@ class PhillyBlazin extends BaseStage
 			add(lightning);
 		}
 		
-		var phillyForegroundCity:BGSprite = new BGSprite('phillyBlazin/streetBlur', -600, -175, 0.0, 0.0);
+		var phillyForegroundCity:BGSprite = new BGSprite('phillyBlazin/streetBlur', -300, -120, 0.0, 0.0);
 		setupScale(phillyForegroundCity);
 		add(phillyForegroundCity);
 		
 		if(!ClientPrefs.data.lowQuality)
 		{
-			foregroundMultiply = new BGSprite('phillyBlazin/streetBlur', -600, -175, 0.0, 0.0);
+			foregroundMultiply = new BGSprite('phillyBlazin/streetBlur', -300, -120, 0.0, 0.0);
 			setupScale(foregroundMultiply);
 			foregroundMultiply.blend = MULTIPLY;
 			foregroundMultiply.visible = false;
 			add(foregroundMultiply);
 			
-			additionalLighten = new FlxSprite(-600, -175).makeGraphic(1, 1, FlxColor.WHITE);
+			additionalLighten = new FlxSprite(-300, -120).makeGraphic(1, 1, FlxColor.WHITE);
 			additionalLighten.scrollFactor.set();
 			additionalLighten.scale.set(2500, 2500);
 			additionalLighten.updateHitbox();
@@ -116,6 +117,16 @@ class PhillyBlazin extends BaseStage
 	
 	override function createPost()
 	{
+		var colorShader = new AdjustColorShader();
+        colorShader.hue = -26;
+        colorShader.saturation = -23;
+        colorShader.contrast = 1;
+        colorShader.brightness = -30;
+
+        boyfriend.shader = colorShader;
+        gf.shader = colorShader;
+        dad.shader = colorShader;
+        abot.setShader(colorShader);
 		{
 			// Move player notes to center
 			for (i in 0...4)

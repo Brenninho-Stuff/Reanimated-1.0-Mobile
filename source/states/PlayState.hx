@@ -860,7 +860,7 @@ class PlayState extends MusicBeatState
 		stagesFunc(function(stage:BaseStage) stage.createPost());
 		callOnScripts('onCreatePost');
 		
-		NotesTween.onCreatePost();
+		//NotesTween.onCreatePost();
 		
 		var splash:NoteSplash = new NoteSplash();
 		grpNoteSplashes.add(splash);
@@ -2504,7 +2504,7 @@ class PlayState extends MusicBeatState
 
 		setOnScripts('botPlay', cpuControlled);
 		callOnScripts('onUpdatePost', [elapsed]);
-        NotesTween.onUpdatePost(elapsed);
+        //NotesTween.onUpdatePost(elapsed);
 
 		playerCovers.forEach(function(c:StrumCover) {
 			for (i in 0...keysArray.length) {

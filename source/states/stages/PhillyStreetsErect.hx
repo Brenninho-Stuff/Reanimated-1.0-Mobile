@@ -39,6 +39,7 @@ class PhillyStreetsErect extends BaseStage
 	var carInterruptable:Bool = true; // if the car can be reset
 	var car2Interruptable:Bool = true;
     var lightsStop:Bool = false; // state of the traffic lights
+    var greyGradient:BGSprite;
 
     //Shader
 	var rain:Rain;
@@ -64,17 +65,17 @@ class PhillyStreetsErect extends BaseStage
         scrollingSky.antialiasing = ClientPrefs.data.antialiasing;
         add(scrollingSky);
  
-        skyline = new BGSprite('phillyStreets/erect/phillySkyline', -545, -273, 0.2, 0.2);
+        skyline = new BGSprite('phillyStreets/erect/phillySkyline', -245, -173, 0.2, 0.2);
         skyline.setGraphicSize(Std.int(skyline.width * 1));
         skyline.updateHitbox();
         add(skyline);
  
-        foregroundcity = new BGSprite('phillyStreets/erect/phillyForegroundCity', 625, 94, 0.3, 0.3);
+        foregroundcity = new BGSprite('phillyStreets/erect/phillyForegroundCity', 825, 94, 0.3, 0.3);
         foregroundcity.setGraphicSize(Std.int(foregroundcity.width * 1));
         foregroundcity.updateHitbox();
         add(foregroundcity);
  
-        highwaylight = new BGSprite('phillyStreets/erect/phillyHighwayLights', 284, 305, 1.0, 1.0);
+        highwaylight = new BGSprite('phillyStreets/erect/phillyHighwayLights', 284, 185, 1.0, 1.0);
         highwaylight.setGraphicSize(Std.int(highwaylight.width * 1));
         highwaylight.updateHitbox();
         add(highwaylight);
@@ -98,7 +99,7 @@ class PhillyStreetsErect extends BaseStage
 		add(degradado);
 
         phillyCarsBack = new FlxSprite(1748, 818);
-		phillyCarsBack.frames = Paths.getSparrowAtlas("phillyStreets/phillyCars");
+		phillyCarsBack.frames = Paths.getSparrowAtlas("phillyStreets/erect/phillyCars");
 		phillyCarsBack.scrollFactor.set(0.9, 1);
 		phillyCarsBack.antialiasing = true;
 		phillyCarsBack.flipX = true;
@@ -109,7 +110,7 @@ class PhillyStreetsErect extends BaseStage
 		add(phillyCarsBack);
 
         phillyCars = new FlxSprite(1748, 818);
-		phillyCars.frames = Paths.getSparrowAtlas("phillyStreets/phillyCars");
+		phillyCars.frames = Paths.getSparrowAtlas("phillyStreets/erect/phillyCars");
 		phillyCars.scrollFactor.set(0.9, 1);
 		phillyCars.antialiasing = true;
 		phillyCars.animation.addByPrefix("car1", "car1", 0, false);
@@ -132,10 +133,10 @@ class PhillyStreetsErect extends BaseStage
 		phillyTrafficLightmap.updateHitbox();
 		add(phillyTrafficLightmap);
 
-        var greyGradient = new BGSprite('phillyStreets/erect/greyGradient', 150, 100, 0.9, 1.0);
+        greyGradient = new BGSprite('phillyStreets/erect/greyGradient', -150, 100, 0.9, 1.0);
 		greyGradient.setGraphicSize(Std.int(greyGradient.width * 1));
 		greyGradient.updateHitbox();
-		add(greyGradient);
+        greyGradient.alpha = 0.8;
 
         mistBack = new FlxBackdrop(Paths.image("phillyStreets/erect/mistBack"), X);
         mistBack.setPosition(0, 205);
@@ -146,9 +147,8 @@ class PhillyStreetsErect extends BaseStage
         mistBack.antialiasing = ClientPrefs.data.antialiasing;
         add(mistBack);
 		
-        var foreground = new BGSprite('phillyStreets/erect/phillyForeground', 88, 317, 1.0, 1.0);
-        foreground.setGraphicSize(Std.int(foreground.width * 1));
-        foreground.updateHitbox();
+        var foreground = new BGSprite('phillyStreets/erect/phillyForeground', 380, 380, 1.0, 1.0);
+        foreground.scale.set(1.3, 1.2);
         add(foreground);
 
         mistMid = new FlxBackdrop(Paths.image("phillyStreets/erect/mistMid"), X);
@@ -173,14 +173,14 @@ class PhillyStreetsErect extends BaseStage
     }
 
     override function createPost()
-    {
+    {   
         addAbot();
         super.createPost();
         var colorShader = new AdjustColorShader();
-        colorShader.hue = -5;
-        colorShader.saturation = -40;
-        colorShader.contrast = -25;
-        colorShader.brightness = -20;
+        colorShader.hue = -10;
+        colorShader.saturation = 5;
+        colorShader.contrast = -30;
+        colorShader.brightness = -3;
 
         boyfriend.shader = colorShader;
         gf.shader = colorShader;
@@ -216,6 +216,8 @@ class PhillyStreetsErect extends BaseStage
         periodicoRandom.antialiasing = ClientPrefs.data.antialiasing;
         periodicoRandom.visible = false;
         add(periodicoRandom);
+        add(greyGradient);
+
     }
     override function sectionHit() {
 		updateABotEye();
