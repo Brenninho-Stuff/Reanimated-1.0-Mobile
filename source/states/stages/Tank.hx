@@ -122,7 +122,9 @@ class Tank extends BaseStage
 		// Default GFs
 		if(songName == 'stress') setDefaultGF('pico-speaker');
 		else setDefaultGF('gf-tankmen');
-		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+		
+		addAbot(0, 310);
+		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
 
 		
 		if (isStoryMode && !seenCutscene)
@@ -140,8 +142,6 @@ class Tank extends BaseStage
 	}
 	override function createPost()
 	{
-		addAbot();
-
 		add(tankleft1);
 		add(tankleft2);
 		add(tankmid);
@@ -174,6 +174,7 @@ class Tank extends BaseStage
 				}
 			}
 		}
+		addAbotPost();
 	}
 	override function sectionHit() {
 		updateABotEye();

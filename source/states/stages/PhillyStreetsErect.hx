@@ -160,7 +160,8 @@ class PhillyStreetsErect extends BaseStage
         mistMid.alpha = 0.8;
         mistMid.antialiasing = ClientPrefs.data.antialiasing;
 
-        abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+        addAbot(0, 310);
+        //abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
 
         if(ClientPrefs.data.shaders)
         {
@@ -174,8 +175,8 @@ class PhillyStreetsErect extends BaseStage
 
     override function createPost()
     {   
-        addAbot();
         super.createPost();
+        addAbotPost();
         var colorShader = new AdjustColorShader();
         colorShader.hue = -10;
         colorShader.saturation = 5;

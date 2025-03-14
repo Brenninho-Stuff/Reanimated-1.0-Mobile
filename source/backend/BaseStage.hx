@@ -218,21 +218,28 @@ class BaseStage extends FlxBasic
 	final MAX_BLINK_DELAY:Int = 7;
 	var animationFinished:Bool = false;
 
-	// As I can't make this permanently be in every stage, you will have to at least throw this function into createPost.
-	// Yes, it has to be in createPost otherwise it will mess up trying to figure out the character name from the gf object.
+	// As I can't make this permanently be in every stage, you will have to at least throw this function into createP.
 	/* Example:
-	override function createPost() {
+	override function create() {
 		addAbot();
 	}
 	*/
-	function addAbot() {
+	function addAbot(?xOffset:Float = 0.0, ?yOffset:Float = 550.0) {
+		if (PlayState.SONG.gfVersion == 'nene' || PlayState.SONG.gfVersion == 'nene-opp') {
+			abot = new ABotSpeaker(gfGroup.x + xOffset, gfGroup.y + yOffset);
+			updateABotEye(true);
+			add(abot);
+		}
+	}
+	
+	// Small changes after abot is made.
+	/* Example:
+	override function createPost() {
+		addAbotPost();
+	}
+	*/
+	function addAbotPost() {
 		if(gf != null) {
-			if (gf.curCharacter.toLowerCase() == 'nene' || gf.curCharacter.toLowerCase() == 'nene-opp') {
-				abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 350 /*+ 550*/);
-				updateABotEye(true);
-				addBehindGF(abot);
-			}
-
 			gf.animation.callback = function(name:String, frameNumber:Int, frameIndex:Int) {
 				switch(currentNeneState) {
 					case STATE_PRE_RAISE:
@@ -246,7 +253,6 @@ class BaseStage extends FlxBasic
 			}
 		}
 	}
-
 	// Put this in sectionHit
 	/*
 	override function sectionHit() {

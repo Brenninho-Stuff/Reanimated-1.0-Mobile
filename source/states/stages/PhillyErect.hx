@@ -68,13 +68,14 @@ class PhillyErect extends BaseStage
         car.setGraphicSize(Std.int(car.width * 1.2));
         car.updateHitbox();
     
-		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+        addAbot(0, 310);
+		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
     }
 
     override function createPost() {
         add(car);
-        addAbot();
         super.createPost();
+        addAbotPost();
 		var colorShader = new AdjustColorShader();
         colorShader.hue = -26;
         colorShader.saturation = -16;

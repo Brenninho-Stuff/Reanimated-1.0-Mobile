@@ -85,7 +85,8 @@ class StageErect extends BaseStage
         lightAbove.setGraphicSize(Std.int(lightAbove.width * 1.2));
         lightAbove.updateHitbox();
         
-        abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+        addAbot(0, 310);
+        //abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
 
         if (!offsetState) {
             switch(PlayState.SONG.song.toLowerCase()) {
@@ -103,8 +104,8 @@ class StageErect extends BaseStage
         add(lightsmall);
         add(light);
         add(lightAbove);
-        addAbot();
         super.createPost();
+        addAbotPost();
         var colorShader = new AdjustColorShader();
         colorShader.hue = -9;
         colorShader.saturation = 0;

@@ -224,7 +224,8 @@ class PhillyStreets extends BaseStage
        // abot = new ABot(1100, 740);
 		//add(abot); 
         //Adding picoFade
-		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+		addAbot(0, 310);
+		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
 
         picoFade = new FlxSprite();
 		picoFade.antialiasing = ClientPrefs.data.antialiasing;
@@ -310,8 +311,8 @@ class PhillyStreets extends BaseStage
 		//}
 		reflectedBF = new ReflectedChar(boyfriend, 0.35);
 		addBehindBF(reflectedBF);
-		addAbot();
 		super.createPost();
+		addAbotPost();
 		var colorShader = new AdjustColorShader();
         colorShader.hue = -26;
         colorShader.saturation = -23;
