@@ -59,19 +59,19 @@ class PhillyBlazin extends BaseStage
 			add(lightning);
 		}
 		
-		var phillyForegroundCity:BGSprite = new BGSprite('phillyBlazin/streetBlur', -300, -120, 0.0, 0.0);
+		var phillyForegroundCity:BGSprite = new BGSprite('phillyBlazin/streetBlur', -900, -320, 0.0, 0.0);
 		setupScale(phillyForegroundCity);
 		add(phillyForegroundCity);
 		
 		if(!ClientPrefs.data.lowQuality)
 		{
-			foregroundMultiply = new BGSprite('phillyBlazin/streetBlur', -300, -120, 0.0, 0.0);
+			foregroundMultiply = new BGSprite('phillyBlazin/streetBlur', -900, -320, 0.0, 0.0);
 			setupScale(foregroundMultiply);
 			foregroundMultiply.blend = MULTIPLY;
 			foregroundMultiply.visible = false;
 			add(foregroundMultiply);
 			
-			additionalLighten = new FlxSprite(-300, -120).makeGraphic(1, 1, FlxColor.WHITE);
+			additionalLighten = new FlxSprite(-900, -320).makeGraphic(1, 1, FlxColor.WHITE);
 			additionalLighten.scrollFactor.set();
 			additionalLighten.scale.set(2500, 2500);
 			additionalLighten.updateHitbox();
@@ -82,7 +82,7 @@ class PhillyBlazin extends BaseStage
 
 		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
 		//add(abot);
-		addAbot(0,550);
+		addAbot(0,345);
 		
 		if(ClientPrefs.data.shaders)
 			setupRainShader();
@@ -123,7 +123,7 @@ class PhillyBlazin extends BaseStage
         colorShader.hue = -26;
         colorShader.saturation = -23;
         colorShader.contrast = 1;
-        colorShader.brightness = -30;
+        colorShader.brightness = -20;
 
         boyfriend.shader = colorShader;
         gf.shader = colorShader;

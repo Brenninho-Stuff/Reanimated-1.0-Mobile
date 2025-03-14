@@ -27,7 +27,7 @@ enum MainMenuColumn {
 
 class MainMenuState extends MusicBeatState
 {
-	public static var fnfReaniV:String = 'Alpha 1.5';
+	public static var fnfReaniV:String = 'V2.0';
 	public static var psychEngineVersion:String = '1.0'; // This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 	public static var curColumn:MainMenuColumn = CENTER;
@@ -48,6 +48,7 @@ class MainMenuState extends MusicBeatState
 		["LOCKIN", "fuck-you"],
 		["DUPLEX", "blammed-remix"],
 		["CHRISTMAS", "erect-eggnog"],
+		["MEAREST","satin-panties-remix"],
 		//["ICONOCLAST", "robin"],
 		["HENRY", "cg5"],
 		//["BFMIX", "Darnell-bf-mix"],

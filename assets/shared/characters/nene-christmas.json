@@ -1,91 +1,91 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
 			"anim": "danceLeft",
-			"fps": 24,
-			"name": "Nene Idle xmas",
-			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+			"name": "Nene Idle xmas"
 		},
 		{
-			"loop": false,
 			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
 			"anim": "danceRight",
-			"fps": 24,
-			"name": "Nene Idle xmas",
-			"indices": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+			"indices": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+			"name": "Nene Idle xmas"
 		},
 		{
-			"loop": false,
 			"offsets": [1, 51],
+			"loop": false,
+			"fps": 24,
 			"anim": "raiseKnife",
-			"fps": 24,
-			"name": "knife raise xmas",
-			"indices": []
+			"indices": [],
+			"name": "knife raise xmas"
 		},
 		{
-			"loop": false,
 			"offsets": [-110, 51],
+			"loop": false,
+			"fps": 24,
 			"anim": "idle-alt",
-			"fps": 24,
-			"name": "knife high held xmas",
-			"indices": []
+			"indices": [],
+			"name": "knife high held xmas"
 		},
 		{
-			"loop": false,
 			"offsets": [-37, 51],
+			"loop": false,
+			"fps": 24,
 			"anim": "lowerKnife",
-			"fps": 24,
-			"name": "knife lower xmas",
-			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+			"name": "knife lower xmas"
 		},
 		{
-			"loop": false,
 			"offsets": [-108, 59],
+			"loop": false,
+			"fps": 24,
 			"anim": "cheer",
-			"fps": 24,
-			"name": "combo celebration 1 nene xmas",
-			"indices": []
+			"indices": [],
+			"name": "combo celebration 1 nene xmas"
 		},
 		{
-			"loop": false,
 			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
 			"anim": "sad",
-			"fps": 24,
-			"name": "laughing nene xmas",
-			"indices": []
+			"indices": [],
+			"name": "laughing nene xmas"
 		},
 		{
-			"loop": false,
 			"offsets": [-108, 59],
+			"loop": false,
+			"fps": 24,
 			"anim": "comboCheer",
-			"fps": 24,
-			"name": "combo celebration 1 nene xmas",
-			"indices": []
+			"indices": [],
+			"name": "combo celebration 1 nene xmas"
 		},
 		{
-			"loop": false,
 			"offsets": [-108, 59],
-			"anim": "drop70",
+			"loop": false,
 			"fps": 24,
-			"name": "combo celebration 1 nene xmas",
-			"indices": []
+			"anim": "drop70",
+			"indices": [],
+			"name": "combo celebration 1 nene xmas"
 		},
 		{
-			"loop": false,
 			"offsets": [-40, -20],
-			"anim": "comboCheerHigh",
+			"loop": false,
 			"fps": 24,
-			"name": "fawn nene xmas",
-			"indices": [0, 1, 2, 3, 4, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6]
+			"anim": "comboCheerHigh",
+			"indices": [0, 1, 2, 3, 4, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6],
+			"name": "fawn nene xmas"
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
 	"useNoteSkin": false,
 	"image": "characters/Nene christmas assets",
-	"position": [-15, -5],
+	"position": [15, -5],
 	"noteSkinLib": "shared",
 	"altNoteColors": {
 		"right": [

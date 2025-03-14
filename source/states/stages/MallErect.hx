@@ -83,6 +83,8 @@ class MallErect extends BaseStage
 		add(santaDead);
 		setDefaultGF('gf-christmas');
 
+		addAbot(-70, 310, 0.95, 0.9);
+
 		if (!isStoryMode)
 			if (PlayState.SONG.song.toLowerCase() == "eggnog")
 			{
@@ -97,6 +99,7 @@ class MallErect extends BaseStage
 			add(santa);
 			add(snowfallin);
 			super.createPost();
+			addAbotPost();
 			var colorShader = new AdjustColorShader();
 			colorShader.hue = 5;
 			colorShader.saturation = 20;
@@ -104,11 +107,19 @@ class MallErect extends BaseStage
 			boyfriend.shader = colorShader;
 			gf.shader = colorShader;
 			dad.shader = colorShader;
+			if (abot != null) abot.setShader(colorShader);
 			santa.shader = colorShader;
 			santaDead.shader = colorShader;
 			parentsCutscene.shader = colorShader;
 		}
-
+	
+		override function sectionHit() {
+			updateABotEye();
+		}
+	
+		override function startSong() {
+			abotSongStart();
+		}
 	override function countdownTick(count:Countdown, num:Int) everyoneDance();
 	override function beatHit() everyoneDance();
 

@@ -196,10 +196,10 @@ class PhillyStreets extends BaseStage
 		phillyTraffic.animation.addByPrefix("tored", "greentored", 24, false);
 		addAndDark(phillyTraffic);
 
-        phillyTrafficLightmap = new BGSprite('phillyStreets/phillyTraffic_lightmap', 1840, 608, 0.9, 1.0, "add");
+        /*phillyTrafficLightmap = new BGSprite('phillyStreets/phillyTraffic_lightmap', 1840, 608, 0.9, 1.0, "add");
 		phillyTrafficLightmap.setGraphicSize(Std.int(phillyTrafficLightmap.width * 1));
 		phillyTrafficLightmap.updateHitbox();
-		addAndDark(phillyTrafficLightmap);
+		addAndDark(phillyTrafficLightmap);*/
         
         var foreground = new BGSprite('phillyStreets/phillyForeground', 380, 380, 1.0, 1.0);
 		foreground.scale.set(1.3, 1.2);
@@ -224,7 +224,7 @@ class PhillyStreets extends BaseStage
        // abot = new ABot(1100, 740);
 		//add(abot); 
         //Adding picoFade
-		addAbot(0, 310);
+        addAbot(0, 340);
 		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
 
         picoFade = new FlxSprite();

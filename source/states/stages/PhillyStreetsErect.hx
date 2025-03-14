@@ -127,11 +127,11 @@ class PhillyStreetsErect extends BaseStage
 		phillyTraffic.animation.addByPrefix("tored", "greentored", 24, false);
 		add(phillyTraffic);
 
-        phillyTrafficLightmap = new BGSprite('phillyStreets/phillyTraffic_lightmap', 1840, 608, 0.9, 1.0);
+        /*phillyTrafficLightmap = new BGSprite('phillyStreets/phillyTraffic_lightmap', 1840, 608, 0.9, 1.0);
         phillyTrafficLightmap.blend = ADD;
 		phillyTrafficLightmap.setGraphicSize(Std.int(phillyTrafficLightmap.width * 1));
 		phillyTrafficLightmap.updateHitbox();
-		add(phillyTrafficLightmap);
+		add(phillyTrafficLightmap);*/
 
         greyGradient = new BGSprite('phillyStreets/erect/greyGradient', -150, 100, 0.9, 1.0);
 		greyGradient.setGraphicSize(Std.int(greyGradient.width * 1));
@@ -160,7 +160,7 @@ class PhillyStreetsErect extends BaseStage
         mistMid.alpha = 0.8;
         mistMid.antialiasing = ClientPrefs.data.antialiasing;
 
-        addAbot(0, 310);
+        addAbot(0, 340);
         //abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
 
         if(ClientPrefs.data.shaders)

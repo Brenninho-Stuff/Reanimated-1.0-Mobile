@@ -52,14 +52,25 @@ class Mall extends BaseStage
 		Paths.sound('Lights_Shut_off');
 		setDefaultGF('gf-christmas');
 
+		addAbot(-70, 310, 0.95, 0.9);
+
 		if(isStoryMode && !seenCutscene)
 			setEndCallback(eggnogEndCutscene);
 	}
 
 	override function createPost() {
 		addBehindBlackSceen(santa);
+		addAbotPost();
+
 	}
 
+	override function sectionHit() {
+		updateABotEye();
+	}
+
+	override function startSong() {
+		abotSongStart();
+	}
 	override function countdownTick(count:Countdown, num:Int) everyoneDance();
 	override function beatHit() everyoneDance();
 
