@@ -66,11 +66,11 @@ class CharacterMenu extends MusicBeatState{
     // The Non-Pixel characters, used for the normal stages
     var standardCharacters:Array<Array<String>> = [
         // BF characters
-        [PlayState.SONG.player1, 'pico-player', 'torch', 'bf-pixel', 'axylus-playable'],
+        [PlayState.SONG.player1, 'pico-player', 'noah', 'jeys-bf', 'bf-z3mp', 'bidu', 'Compota-Hyper', 'bf-iandee', 'torch', 'bf-pixel', "bf-femboy", 'pico-playerZ3mp', 'pico-z3mp-v2'],
         // GF characters
-        [PlayState.SONG.gfVersion],
+        [PlayState.SONG.gfVersion, 'gf-soleil', 'gf-z3mp', 'gf-iandee', 'gf-carZ3mp', 'gf-car-iandee'],
         // Enemy characters
-        [PlayState.SONG.player2, 'tankman', 'axylus'] 
+        [PlayState.SONG.player2, 'tankman', 'picoZ3mp'] 
     ];
 
     // The Pixel characters, used for the pixel stages
@@ -86,14 +86,36 @@ class CharacterMenu extends MusicBeatState{
     // Do not remove these variables, used to grab ALL characters in the build
     var characterList:Array<String> = [];
     var unlistedCharacters:Array<String> = [ // Put specific mod characters here (that are not in the "characterList.txt" file)
+        'Robin', 
         "darnell",
         "nene", 
+        "bf-z3mp", 
+        "Compota-Hyper", 
+        "noah", 
+        "gf-z3mp",
+        "gf-soleil",
+        "gf-iandee",
+        "gf-carZ3mp",
+        "gf-car-iandee",
+        "pico-playerZ3mp",
+        "picoZ3mp",
+        "bidu",
+        "jeys-bf",
+        "bf-iandee",
+        "pico-z3mp-v2",
+        "bf-femboy",
         'torch'
     ]; // PLEASE KEEP TRACK IF YOU ADD NEW CHARACTERS, IT GETS ANNOYING WHEN SOMETHING CRASHES HERE BECAUSE A CHARACTER WASN'T ADDED TO THIS LIST HERE
 
     // This blocks specific characters depending on the song
     // Order is ['Song Name', ["Each", "Character"]]
     var blockedCharactersPerSong:Array<Array<Dynamic>> = [
+        ['satin-panties', ['gf-z3mp', 'gf-iandee','gf-soleil']], 
+        ['high', ['gf-z3mp', 'gf-iandee','gf-soleil']], 
+        ['darnell', ['bf-z3mp', 'noah','Compota-Hyper']], 
+        ['score', ['bf-z3mp', 'noah','Compota-Hyper']], 
+        ['lit up', ['bf-z3mp', 'noah','Compota-Hyper']], 
+        ['2hot', ['bf-z3mp', 'noah','Compota-Hyper']]
     ];
 
     // Unlocks chars based on if an achievement has been unlocked or not, can be null if you want the character to still have a locked description (not implemented) but be unlocked by other methods
@@ -103,8 +125,25 @@ class CharacterMenu extends MusicBeatState{
     Slot 3: Description to unlock character
     */
     var charsToUnlock:Array<Array<String>> = [
-        ['torch', null, "Idk how to unlock this guy..."],
-        ['pico-player', 'week3_nomiss', "Beat week 3 without a single miss"]
+        ['noah', 'week1_nomiss', "Unlock this character\nby beating Week 1\nwith no misses."],
+        ['gf-soleil', 'week1_nomiss', "Unlock this character\nby beating Week 1\nwith no misses."],
+        ['jeys-bf', 'week2_nomiss', "Unlock this character\nby beating Week 2\nwith no misses."],
+        //['jeys-gf', 'week2_nomiss', "Unlock this character\nby beating Week 2\nwith no misses."],
+        //['jeys-pico', 'week2_nomiss', "Unlock this character\nby beating Week 2\nwith no misses."],
+        ['bf-z3mp', 'week3_nomiss', "Unlock this character\nby beating Week 3\nwith no misses."],
+        ['gf-z3mp', 'week3_nomiss', "Unlock this character\nby beating Week 3\nwith no misses."],
+        ['picoZ3mp', 'week3_nomiss', "Unlock this character\nby beating Week 3\nwith no misses."],
+        ['gf-carZ3mp', 'week4_nomiss', "Unlock this character\nby beating Week 4\nwith no misses."],
+        ['gf-car-iandee', 'week4_nomiss', "Unlock this character\nby beating Week 4\nwith no misses."],
+        ['bidu', 'week5_nomiss', "Unlock this character\nby beating Week 5\nwith no misses."],
+        ['Compota-Hyper', 'week7_nomiss', "Unlock this character\nby beating Week 7\nwith no misses."],
+        ['pico-z3mp-v2', 'week7_nomiss', "Unlock this character\nby beating Week 7\nwith no misses."],
+        ['bf-femboy', 'week7_nomiss', "Unlock this character\nby beating Week 7\nwith no misses."],
+       // ['', 'week7_nomiss', "Unlock this character\nby beating Week 7\nwith no misses."],
+        ['bf-iandee', 'weekend1_nomiss', "Unlock this character\nby beating WeekEnd 1\nwith no misses."],
+        ['gf-iandee', 'weekend1_nomiss', "Unlock this character\nby beating WeekEnd 1\nwith no misses."],
+       //['pico-Iandee', 'weekend1_nomiss', "Unlock this character\nby beating WeekEnd 1\nwith no misses."]
+       //['bf-iandee', 'week1_nomiss', "Unlock this character\nby beating Week 1\nwith no misses."]
     ];
 
     // Default Unlocked Characters
@@ -112,15 +151,12 @@ class CharacterMenu extends MusicBeatState{
         'bf', 
         'bf-car', 
         'bf-christmas', 
-        'bf-pixel'
+        'bf-pixel',
+        "pico-z3mp-v2"
     ];
 
-    // Character Scaling
-    var charScale:Float = 0.6;
-    /*
     // Character Scaling [Default, Pixel]
     var charScales:Array<Float> = [0.6, 4.125];
-    */
 
     // You can edit charYOffset and tweenTime to change the height after the tween, and how fast the tween is
     var charYOffset:Float = 600;
@@ -204,9 +240,9 @@ class CharacterMenu extends MusicBeatState{
     var saveButton:FlxButton;
     var bgColorText:FlxText;
     var backgroundColor:Array<Int> = [0, 0, 0];
-    var bgColorR:PsychUINumericStepper;
-    var bgColorG:PsychUINumericStepper;
-    var bgColorB:PsychUINumericStepper;
+    var bgColorR:FlxUINumericStepper;
+    var bgColorG:FlxUINumericStepper;
+    var bgColorB:FlxUINumericStepper;
     var testColors:FlxButton;
     #end
 
@@ -351,9 +387,9 @@ class CharacterMenu extends MusicBeatState{
 
         backgroundColor = charData.color;
 
-        bgColorR = new PsychUINumericStepper(saveButton.x, saveButton.y - 40, 20, backgroundColor[0], 0, 255, 0);
-        bgColorG = new PsychUINumericStepper(bgColorR.x + 65, bgColorR.y, 20, backgroundColor[1], 0, 255, 0);
-        bgColorB = new PsychUINumericStepper(bgColorG.x + 65, bgColorG.y, 20, backgroundColor[2], 0, 255, 0);
+        bgColorR = new FlxUINumericStepper(saveButton.x, saveButton.y - 40, 20, backgroundColor[0], 0, 255, 0);
+        bgColorG = new FlxUINumericStepper(bgColorR.x + 65, bgColorR.y, 20, backgroundColor[1], 0, 255, 0);
+        bgColorB = new FlxUINumericStepper(bgColorG.x + 65, bgColorG.y, 20, backgroundColor[2], 0, 255, 0);
         add(bgColorR);
         add(bgColorG);
         add(bgColorB);
@@ -625,9 +661,14 @@ class CharacterMenu extends MusicBeatState{
                         locked = true;
                     }
                 }
-
+                if (ClientPrefs.data.loadLockedChars == false && locked) {
+                    removeChars.push(charArray[i]);
+                    continue;
+                }
                 var characterImage:Character = new Character(0, 0, charArray[i]);
-                characterImage.scale.set(charScale * characterImage.scale.x, charScale * characterImage.scale.y);
+                if (StringTools.endsWith(charArray[i], '-pixel') || charArray[i].toLowerCase() == 'spirit' || StringTools.startsWith(charArray[i], 'senpai'))
+                    characterImage.scale.set(charScales[1], charScales[1]);
+                else characterImage.scale.set(charScales[0], charScales[0]);
     
                 if (locked) {characterImage.color = lockedColor;}
     
@@ -666,9 +707,14 @@ class CharacterMenu extends MusicBeatState{
                         locked = true;
                     }
                 }
-
+                if (ClientPrefs.data.loadLockedChars == false && locked) {
+                    removeChars.push(charArray[i]);
+                    continue;
+                }
                 var characterImage:Character = new Character(0, 0, charArray[i], true);
-                characterImage.scale.set(charScale * characterImage.scale.x, charScale * characterImage.scale.y);
+                if (StringTools.endsWith(charArray[i], '-pixel') || charArray[i].toLowerCase() == 'spirit' || StringTools.startsWith(charArray[i], 'senpai'))
+                    characterImage.scale.set(charScales[1], charScales[1]);
+                else characterImage.scale.set(charScales[0], charScales[0]);
 
                 if (locked) {characterImage.color = lockedColor;}
     
@@ -701,9 +747,14 @@ class CharacterMenu extends MusicBeatState{
                         locked = true;
                     }
                 }
-
+                if (ClientPrefs.data.loadLockedChars == false && locked) {
+                    removeChars.push(charArray[i]);
+                    continue;
+                }
                 var characterImage:Character = new Character(0, 0, charArray[i]);
-                characterImage.scale.set(charScale * characterImage.scale.x, charScale * characterImage.scale.y);
+                if (StringTools.endsWith(charArray[i], '-pixel') || charArray[i].toLowerCase() == 'spirit' || StringTools.startsWith(charArray[i], 'senpai'))
+                    characterImage.scale.set(charScales[1], charScales[1]);
+                else characterImage.scale.set(charScales[0], charScales[0]);
     
                 if (locked) {characterImage.color = lockedColor;}
     
@@ -1534,27 +1585,5 @@ class CharacterMenu extends MusicBeatState{
         if (FlxG.save.data.unlockedCharacters == null) FlxG.save.data.unlockedCharacters = getUnlockedChars();
         if (FlxG.save.data.charactersAvailable == null || characterList == null || characterList == [] || characterLocks == [] || characterLocks == null || characterLocks != FlxG.save.data.charactersAvailable || FlxG.save.data.maxCharacters != characterList.length  || FlxG.save.data.unlockedCharacters != defaultUnlocked) 
             forceCharUnlockSaveUpdate();
-    }
-
-    public static function newMenu(menu:Int) {
-        // Putting any number higher than 6 or lower than 0 will provide the default menu;
-        switch (menu) {
-            case 0:
-                LoadingState.loadAndSwitchState(new CharacterMenu(['bf', 'gf', 'enemy']));
-            case 1:
-                LoadingState.loadAndSwitchState(new CharacterMenu(['bf', 'gf']));
-            case 2:
-                LoadingState.loadAndSwitchState(new CharacterMenu(['bf', 'enemy']));
-            case 3:
-                LoadingState.loadAndSwitchState(new CharacterMenu(['gf', 'enemy']));
-            case 4:
-                LoadingState.loadAndSwitchState(new CharacterMenu(['bf']));
-            case 5:
-                LoadingState.loadAndSwitchState(new CharacterMenu(['gf']));
-            case 6:
-                LoadingState.loadAndSwitchState(new CharacterMenu(['enemy']));
-            default:
-                LoadingState.loadAndSwitchState(new CharacterMenu(null));
-        }
     }
 }

@@ -227,9 +227,6 @@ class PhillyStreetsErect extends BaseStage
 	override function startSong() {
 		abotSongStart();
 	}
-    function everyoneDance()
-        { 
-        }
     override function update(elapsed:Float)
     {
         //rain.shader.update(elapsed * rainTimeScale);
