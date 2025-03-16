@@ -86,8 +86,6 @@ import states.TitleState;
 	public var language:String = 'en-US';
 
 	public var characterNoteColors:String = 'Enabled';
-
-	public var loadLockedChars:Bool = false;
 }
 
 class ClientPrefs {
