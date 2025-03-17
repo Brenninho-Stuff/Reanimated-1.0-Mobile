@@ -460,6 +460,7 @@ class PlayState extends MusicBeatState
 			case 'stage': new StageWeek1(); 			//Week 1
 			case "stageErect": new StageErect();		//Week 1 - Erect
 			case 'spooky': new Spooky();				//Week 2
+			//case "spookyErect": new SpookyErect();		//Week 2 - Erect
 			case 'philly': new Philly();				//Week 3
 			case "phillyErect": new PhillyErect();		//Week 3 - Erect
 			case 'limo': new Limo();					//Week 4
@@ -3425,7 +3426,7 @@ class PlayState extends MusicBeatState
 
 		var placement:Float = FlxG.width * 0.35;
 		var rating:FlxSprite = new FlxSprite();
-		var score:Int = 350;
+		var score:Int = 300;
 
 		//tryna do MS based judgment due to popular demand
 		var daRating:Rating = Conductor.judgeNote(ratingsData, noteDiff / playbackRate);
@@ -3754,23 +3755,32 @@ class PlayState extends MusicBeatState
 				invalidateNote(note);
 		});
 
-		if(daNote.noteType == "Shoot Note")
-			{
-				if (boyfriend.animOffsets.exists('hurt')) {
-					boyfriend.playAnim('hurt', true);
-					boyfriend.specialAnim = true;
+		if (daNote.noteType == "Shoot Note") {
+			if (boyfriend.animOffsets.exists('hurt')) {
+				boyfriend.playAnim('hurt', true);
+				boyfriend.specialAnim = true;
+				if (gf.animation.exists('shoot')) {
 					gf.playAnim('shoot', true);
 					gf.specialAnim = true;
 				}
-				var dadAnim:String = singAnimations[Std.int(Math.abs(daNote.noteData))] + '-shoot';
-				if (dad.animOffsets.exists(dadAnim)) {
-					dad.playAnim(dadAnim);
+			}
+		
+			var dadAnimOptions:Array<String> = [
+				singAnimations[Std.int(Math.abs(daNote.noteData))] + '-shoot', //First animation
+				'shoot' //Second animation
+
+			];
+		
+			for (anim in dadAnimOptions) { //remove this "if (dad.get Animation Name() != anime) {" so you can use the note repeatedly on one side xd
+				if (dad.animOffsets.exists(anim)) {
+					dad.playAnim(anim, true);
 					dad.specialAnim = true;
 					FlxG.sound.play(Paths.sound('shoot'));
-					FlxG.camera.shake(0.01, 0.2);
+					FlxG.camera.shake(0.01, 0.2);				
 				}
-				health -= 0.35;
 			}
+			health -= 0.35;
+		}
 
 		noteMissCommon(daNote.noteData, daNote);
 		stagesFunc(function(stage:BaseStage) stage.noteMiss(daNote));
@@ -3917,7 +3927,7 @@ class PlayState extends MusicBeatState
 				}
 		}
 
-		if(healthDraining * healthGain > 0 && health > healthDraining * healthGain + 0.2 && !note.isSustainNote) 
+		if(healthDraining * healthGain > 0 && health > healthDraining * healthGain + 0.2) 
 		{
 			health -= healthDraining * healthGain;
 		}
@@ -4043,15 +4053,20 @@ class PlayState extends MusicBeatState
 					var animToPlay:String = dodgeAnimations[Std.int(Math.abs(note.noteData))];
 					boyfriend.playAnim(animToPlay, true);
 					boyfriend.specialAnim = true;
-					gf.playAnim('shoot', true);
-					gf.specialAnim = true;
+					if (gf.animation.exists('shoot')) {
+						gf.playAnim('shoot', true);
+						gf.specialAnim = true;
+					}
 
-					var dadAnim:String = singAnimations[Std.int(Math.abs(note.noteData))] + '-shoot';
-					if (dad.animOffsets.exists(dadAnim)) {
-						dad.playAnim(dadAnim);
-						dad.specialAnim = true;
-						FlxG.sound.play(Paths.sound('shoot'));
-						FlxG.camera.shake(0.01, 0.2);
+					var dadAnimOptions:Array<String> = [
+						singAnimations[Std.int(Math.abs(note.noteData))] + '-shoot', //First animation
+						'shoot', //Second animation
+					];	
+					for (anim in dadAnimOptions) { //remove this "if (dad.get Animation Name() != anime) {" so you can use the note repeatedly on one side xd
+							dad.playAnim(anim, true);
+							dad.specialAnim = true;
+							FlxG.sound.play(Paths.sound('shoot'));
+							FlxG.camera.shake(0.01, 0.2);
 					}
 				case "Duo Sing":
 					var singsAnimations:Array<String> = ['singLEFT', 'singDOWN', 'singUP', 'singRIGHT'];

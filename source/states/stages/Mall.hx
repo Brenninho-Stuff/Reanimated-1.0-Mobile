@@ -49,7 +49,7 @@ class Mall extends BaseStage
 
 		santa = new BGSprite('christmas/santa', -840, 150, 1, 1, ['santa idle in fear']);
 
-		Paths.sound('Lights_Shut_off');
+		Paths.sound('mall/Lights_Shut_off');
 		setDefaultGF('gf-christmas');
 
 		addAbot(-70, 310, 0.95, 0.9);
