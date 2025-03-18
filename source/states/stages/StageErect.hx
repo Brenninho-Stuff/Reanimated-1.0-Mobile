@@ -106,15 +106,16 @@ class StageErect extends BaseStage
         add(lightAbove);
         super.createPost();
         addAbotPost();
-        var colorShader = new AdjustColorShader();
-        colorShader.hue = -9;
-        colorShader.saturation = 0;
-        colorShader.contrast = 30;
-        colorShader.brightness = -4;
+        //Color Shader2 es Para el Abot lol
+        var colorShader2 = new AdjustColorShader();
+        colorShader2.hue = -9;
+        colorShader2.saturation = 0;
+        colorShader2.contrast = -4;
+        colorShader2.brightness = -30;
             gf.shader = makeCoolShader(-9,0,-30,-4);
             dad.shader = makeCoolShader(-32,0,-33,-23);
             boyfriend.shader = makeCoolShader(12,0,-23,7);
-            if (abot != null) abot.setShader(colorShader);
+            if (abot != null) abot.setShader(colorShader2);
 
             if (!offsetState) {
                 switch(PlayState.SONG.song.toLowerCase()) {

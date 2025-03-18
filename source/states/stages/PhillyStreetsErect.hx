@@ -230,42 +230,45 @@ class PhillyStreetsErect extends BaseStage
     function everyoneDance()
         { 
         }
-    override function update(elapsed:Float)
-    {
-        //rain.shader.update(elapsed * rainTimeScale);
-        if(ClientPrefs.data.shaders)
-        rain.update(elapsed * rainTimeScale);
-        rain.lerpRatio = Math.max(0, Conductor.songPosition - ClientPrefs.data.noteOffset) / FlxG.sound.music.length;
-        rainTimeScale = MathUtil.coolLerp(rainTimeScale, rainScaler, 0.05);
+    override function update(elapsed:Float) {
+        // Actualizar el shader solo si está habilitado
+        if (ClientPrefs.data.shaders) {
+            rain.update(elapsed * rainTimeScale);
+            rain.lerpRatio = Math.max(0, Conductor.songPosition - ClientPrefs.data.noteOffset) / FlxG.sound.music.length;
+            rainTimeScale = MathUtil.coolLerp(rainTimeScale, rainScaler, 0.05);
+        }
     }
 
     var paperBeat:Int = 0;
 	var paperOffset:Int = 12;
-    override function beatHit() 
-    {
+    override function beatHit() {
         abotBeatHit();
-        // Try driving a car when its possible
-        if (FlxG.random.bool(10) && curBeat != (lastChange + changeInterval) && carInterruptable == true)
-        {
-            if(lightsStop == false){
+
+        // Reducir la probabilidad de eventos para mejorar el rendimiento
+        if (FlxG.random.bool(5) && curBeat != (lastChange + changeInterval) && carInterruptable) {
+            if (!lightsStop) {
                 driveCar(phillyCars);
-            }
-            else{
+            } else {
                 driveCarLights(phillyCars);
             }
         }
-                
-            // try driving one on the right too. in this case theres no red light logic, it just can only spawn on green lights
-        if(FlxG.random.bool(10) && curBeat != (lastChange + changeInterval) && car2Interruptable == true && lightsStop == false) driveCarBack(phillyCarsBack);
-            
-        // After the interval has been hit, change the light state.
-        if (curBeat == (lastChange + changeInterval)) changeLights(curBeat);
 
-        if (FlxG.random.bool(5) && curBeat > paperBeat + paperOffset) {
-            if(periodicoRandom.visible == false) periodicoRandom.visible = true;
+        if (FlxG.random.bool(5) && curBeat != (lastChange + changeInterval) && car2Interruptable && !lightsStop) {
+            driveCarBack(phillyCarsBack);
+        }
+
+        // Cambiar luces solo cuando sea necesario
+        if (curBeat == (lastChange + changeInterval)) {
+            changeLights(curBeat);
+        }
+
+        // Mostrar el periódico con menos frecuencia
+        if (FlxG.random.bool(3) && curBeat > paperBeat + paperOffset) {
+            if (!periodicoRandom.visible) periodicoRandom.visible = true;
             periodicoRandom.animation.play('volandoAndo');
-		}
+        }
     }
+
     function changeLights(beat:Int):Void{
         lastChange = beat;
         lightsStop = !lightsStop;
@@ -375,37 +378,32 @@ class PhillyStreetsErect extends BaseStage
     function driveCar(sprite:FlxSprite):Void {
         carInterruptable = false;
         FlxTween.cancelTweensOf(sprite);
+
+        // Reducir cálculos innecesarios en el switch
         var variant:Int = FlxG.random.int(1, 4);
         sprite.animation.play('car' + variant);
+
         var extraOffset:Array<Int> = [0, 0];
         var duration:Float = 2;
-    
-        switch(variant) {
-            case 1:
-                duration = FlxG.random.float(1, 1.7);
-            case 2:
-                extraOffset = [20, -15];
-                duration = FlxG.random.float(0.6, 1.2);
-            case 3:
-                extraOffset = [30, 50];
-                duration = FlxG.random.float(1.5, 2.5);
-            case 4:
-                extraOffset = [10, 60];
-                duration = FlxG.random.float(1.5, 2.5);
+
+        switch (variant) {
+            case 1: duration = FlxG.random.float(1, 1.7);
+            case 2: extraOffset = [20, -15]; duration = FlxG.random.float(0.6, 1.2);
+            case 3: extraOffset = [30, 50]; duration = FlxG.random.float(1.5, 2.5);
+            case 4: extraOffset = [10, 60]; duration = FlxG.random.float(1.5, 2.5);
         }
-    
+
         var offset:Array<Float> = [306.6, 168.3];
         sprite.offset.set(extraOffset[0], extraOffset[1]);
-        var rotations:Array<Int> = [-8, 18];
+
         var path:Array<FlxPoint> = [
             FlxPoint.get(1570 - offset[0], (1049 - offset[1] - 30) - 265),
             FlxPoint.get(2400 - offset[0], (980 - offset[1] - 50) - 265),
             FlxPoint.get(3102 - offset[0], (1127 - offset[1] + 40) - 265)
         ];
-    
-        FlxTween.angle(sprite, rotations[0], rotations[1], duration, null);
-        FlxTween.quadPath(sprite, path, duration, true,
-        {
+
+        FlxTween.angle(sprite, -8, 18, duration, null);
+        FlxTween.quadPath(sprite, path, duration, true, {
             ease: null,
             onComplete: function(_) {
                 carInterruptable = true;

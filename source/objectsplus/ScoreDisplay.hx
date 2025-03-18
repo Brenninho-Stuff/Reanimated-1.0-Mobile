@@ -13,9 +13,9 @@ class ScoreDisplay extends FlxText
 
     public function new()
     {
-        posY = ClientPrefs.data.downScroll ? 105 : 675;
+        posY = ClientPrefs.data.downScroll ? 65 : 635;
         
-        super(750, posY, 200, "Score: 0");
+        super(920, posY, 200, "Score: 0");
         
         setFormat(Paths.font(PlayState.isPixelStage ? "pixel.otf" : 'vcr.ttf'), 
                  PlayState.isPixelStage ? 14 : 20,
@@ -38,10 +38,12 @@ class ScoreDisplay extends FlxText
         
         var targetScore:Float = PlayState.instance.songScore;
         displayedScore = FlxMath.lerp(displayedScore, targetScore, lerpSpeed * elapsed); 
-        //displayedScore = FlxMath.lerp(displayedScore, targetScore, 1); // testing only
         
         var roundedScore:Int = Math.round(displayedScore);
-        text = 'Score: ${formatNumber(roundedScore)}';
+        var misses:Int = PlayState.instance.songMisses; // Obtener los misses
+        var rating:String = PlayState.instance.ratingName; // Obtener el rating actual
+
+        text = 'Score: ${formatNumber(roundedScore)}\nMisses: ${misses}\nRating: ${rating}';
     }
 
     function formatNumber(n:Int):String
