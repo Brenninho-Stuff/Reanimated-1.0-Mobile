@@ -4303,6 +4303,8 @@ class PlayState extends MusicBeatState
 			resetSubState();
 		}
 
+		healthBarSettings = null;
+
 		#if LUA_ALLOWED
 		for (lua in luaArray)
 		{

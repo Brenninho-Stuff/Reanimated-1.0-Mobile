@@ -30,7 +30,4 @@ class Wait extends BaseStage
         }
         PlayState.instance.iconP2.visible = false;
     }
-    override function destroy() {
-        PlayState.healthBarSettings = null;
-    }
 }
