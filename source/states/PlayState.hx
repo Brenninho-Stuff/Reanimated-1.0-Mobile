@@ -343,6 +343,7 @@ class PlayState extends MusicBeatState
 	public var endCallback:Void->Void = null;
 
 	public static var nextReloadAll:Bool = false;
+	public static var healthBarSettings:BarSettings = null;
 	override public function create()
 	{
 		//trace('Playback Rate: ' + playbackRate);
@@ -627,7 +628,7 @@ class PlayState extends MusicBeatState
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 		moveCameraSection();
 
-		var healthBarSettings:BarSettings = switch (ClientPrefs.data.healthBarSkin) {
+		if (healthBarSettings == null) healthBarSettings = switch (ClientPrefs.data.healthBarSkin) {
 			case "Char Based":
 				var temp:String = '
 				{

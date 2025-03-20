@@ -1,6 +1,9 @@
 package states.stages;
 
+import lime.utils.Assets;
 import states.stages.objects.*;
+import torchsthings.objects.ImageBar;
+import torchsthings.objects.ImageBar.BarSettings;
 
 class Wait extends BaseStage 
 {
@@ -13,6 +16,9 @@ class Wait extends BaseStage
         var blackScreen:FlxSprite = new FlxSprite(-900, -500).makeGraphic(Std.int(FlxG.width * 10), Std.int(FlxG.height * 10), FlxColor.WHITE);
 		blackScreen.scrollFactor.set();
 		add(blackScreen);
+        
+        var settings:BarSettings = haxe.Json.parse(Assets.getText(Paths.json("healthbars/5peso", "shared").replace("data", "images")));
+        PlayState.healthBarSettings = settings;
     }
     override function createPost()
     { 
@@ -22,6 +28,9 @@ class Wait extends BaseStage
             PlayState.instance.opponentStrums.members[i].visible = false;
             PlayState.instance.opponentStrums.members[i].x = -5000;
         }
+        PlayState.instance.iconP2.visible = false;
     }
-    
+    override function destroy() {
+        PlayState.healthBarSettings = null;
+    }
 }
