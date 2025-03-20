@@ -42,6 +42,8 @@ class PauseSubState extends MusicBeatSubstate
 	var cancionpolla:String = PlayState.SONG.song;
 
 	var charactersData:Array<Array<String>> = [
+	// X: lower number -> left, higher number -> right
+	// Y: lower number -> up, higher number -> down
 	//	['characterAssetName', 'x', 'y', 'graphicScale', 'Artist', 'PixelBlockSize' (for shader, 6 is default)],
 		['Sentao', '750', '250', '0.9', 'Law', '6'],
 		['jorge', '675', '0', '0.7', 'Dafne', '8'],
@@ -59,6 +61,7 @@ class PauseSubState extends MusicBeatSubstate
 		['Junio Sonic', '700', '180', '0.25', "SaNicbOom", '6'],
 		['keit', '800', '90', '0.7', "Keit", '6'],
 		['Snax2', '750', '210', '0.20', "ImSnax", '10'],
+		['SamCool', '800', '210', '1', 'TorchTheDragon', '6']
 	];
 	var randomCharacternum:Int;
 	var character:BGSprite;
