@@ -61,7 +61,11 @@ class PauseSubState extends MusicBeatSubstate
 		['Junio Sonic', '700', '180', '0.25', "SaNicbOom", '6'],
 		['keit', '800', '90', '0.7', "Keit", '6'],
 		['Snax2', '750', '210', '0.20', "ImSnax", '10'],
-		['SamCool', '800', '210', '1', 'TorchTheDragon', '6']
+		['SamCool', '800', '210', '1', 'TorchTheDragon', '6'],
+		['BF-Night', '650', '80', '0.3', "Nightmare Moon", '16'],
+		['BF-Pose', '650', '80', '0.3', "Nightmare Moon", '16'],
+		['GF-Pose', '650', '80', '0.3', "Nightmare Moon", '16'],
+		['Pico-Pose', '650', '80', '0.3', "Nightmare Moon", '16']
 	];
 	var randomCharacternum:Int;
 	var character:BGSprite;

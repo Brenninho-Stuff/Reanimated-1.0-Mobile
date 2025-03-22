@@ -491,9 +491,12 @@ class PlayState extends MusicBeatState
 		add(luaDebugGroup);
 		#end
 
-		blackScreen = new FlxSprite(-1000,-200).makeGraphic(FlxG.width * 10, FlxG.height * 10, 0xFF000000);
+		blackScreen = new FlxSprite(-4000, -2000).makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
 		blackScreen.alpha = 0;
 		blackScreen.cameras = [camBlack];
+		blackScreen.setGraphicSize(FlxG.width * 10, FlxG.height * 10);
+		blackScreen.updateHitbox();
+		blackScreen.scrollFactor.set(0.9, 0.9);
 		blackGroup.add(blackScreen);
 
 		if (!stageData.hide_girlfriend)

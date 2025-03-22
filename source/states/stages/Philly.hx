@@ -6,6 +6,7 @@ import objects.Character;
 import backend.MathUtil;
 import torchsthings.shaders.*;
 import torchsfunctions.functions.ShaderUtils;
+import shaders.RainShader;
 import openfl.filters.ShaderFilter;
 import torchsthings.objects.ReflectedChar;
 
@@ -28,9 +29,9 @@ class Philly extends BaseStage
 	var phillyWindowEvent:BGSprite;
 	var curLightEvent:Int = -1;
 
-	var rain:Rain = new Rain();
-	var rainFilter:ShaderFilter;
-	var useShader:Bool = false;
+	var rainShader:RainShader;
+	var rainShaderStartIntensity:Float = 0;
+	var rainShaderEndIntensity:Float = 0;
 
 	override function create()
 	{
@@ -91,44 +92,42 @@ class Philly extends BaseStage
 		phillyStreet.updateHitbox();
 		add(phillyStreet);
 
-		switch(PlayState.SONG.song.toLowerCase()) {
-			case 'verbal smash':
-			rain.setIntenseValues(0.0, 0.3);
-			useShader = true;
-			case 'pico':
-			rain.setIntenseValues(0.1, 0.2);
-			useShader = true;
-			case 'philly-nice':
-			rain.setIntenseValues(0.2, 0.3);
-			useShader = true;
-			case 'blammed':
-			defaultCamZoom = 0.67;
-			rain.setIntenseValues(0.3, 0.5);
-			useShader = true;
-			case 'blammed-erect':
-			rain.setIntenseValues(0.0, 0.7);
-			useShader = true;
-			case 'blammed-remix':
-			rain.setIntenseValues(0.0, 0.4);
-			useShader = true;
-		}
+		if(ClientPrefs.data.shaders)
+			setupRainShader();
 	}
 
 	override function createPost()
 		{
 			add(phillyPmg);	
-			if (useShader) {
-			rainFilter = new ShaderFilter(rain);
 			//FlxG.camera.setFilters([new ShaderFilter(rain)]); //I don't know what I did but it worked lol (I do know xd)
-			ShaderUtils.applyFiltersToCams([camGame, camHUD], [rainFilter]);
 			reflectedBF = new ReflectedChar(boyfriend, 0.35);
 			addBehindBF(reflectedBF);
 			reflectedGF = new ReflectedChar(gf, 0.35);
 			addBehindGF(reflectedGF);
 			reflectedDad = new ReflectedChar(dad, 0.35);
 			addBehindDad(reflectedDad);
-		}
+		
 	}
+
+	function setupRainShader()
+		{
+			rainShader = new RainShader();
+			rainShader.scale = FlxG.height / 200;
+			switch (songName)
+			{
+				case 'pico':
+					rainShaderStartIntensity = 0.05;
+					rainShaderEndIntensity = 0.1;
+				case 'philly-nice':
+					rainShaderStartIntensity = 0.1;
+					rainShaderEndIntensity = 0.2;
+				case 'blammed':
+					rainShaderStartIntensity = 0.2;
+					rainShaderEndIntensity = 0.35;
+			}
+			rainShader.intensity = rainShaderStartIntensity;
+			FlxG.camera.setFilters([new ShaderFilter(rainShader)]);
+		}
 
 	override function eventPushed(event:objects.Note.EventNote)
 	{
@@ -179,9 +178,13 @@ class Philly extends BaseStage
 			}
 		}
 		
-		rain.update(elapsed * rainTimeScale);
-		rain.lerpRatio = Math.max(0, Conductor.songPosition - ClientPrefs.data.noteOffset) / FlxG.sound.music.length;
-		rainTimeScale = MathUtil.coolLerp(rainTimeScale, rainScaler, 0.05);
+		if(rainShader != null)
+			{
+				var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 0, (FlxG.sound.music != null ? FlxG.sound.music.length : 0), rainShaderStartIntensity, rainShaderEndIntensity);
+				rainShader.intensity = remappedIntensityValue;
+				rainShader.updateViewInfo(FlxG.width, FlxG.height, FlxG.camera);
+				rainShader.update(elapsed);
+			}
 
 	}
 

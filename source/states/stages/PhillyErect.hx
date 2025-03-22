@@ -3,6 +3,7 @@ package states.stages;
 import states.stages.objects.*;
 import objects.Character;
 import torchsthings.shaders.AdjustColorShader;
+import torchsthings.objects.ReflectedChar;
 
 class PhillyErect extends BaseStage
 {
@@ -75,6 +76,12 @@ class PhillyErect extends BaseStage
     override function createPost() {
         add(car);
         super.createPost();
+        reflectedBF = new ReflectedChar(boyfriend, 0.35);
+		addBehindBF(reflectedBF);
+		reflectedGF = new ReflectedChar(gf, 0.35);
+		addBehindGF(reflectedGF);
+		reflectedDad = new ReflectedChar(dad, 0.35);
+		addBehindDad(reflectedDad);
         addAbotPost();
 		var colorShader = new AdjustColorShader();
         colorShader.hue = -26;

@@ -1,5 +1,5 @@
 {
-	"player1": "bf-z3mp",
+	"player1": "bf-hev-v3",
 	"events": [
 		[
 			0,
@@ -74,7 +74,8 @@
 			16000,
 			[
 				["Camera Follow Pos", "700", "400"],
-				["Cinematics", "1,12", "120"]
+				["Cinematics", "1,12", "120"],
+				["Color Transform", "1", "12.5,nocolor"]
 			]
 		],
 		[
@@ -956,7 +957,8 @@
 		[
 			86390,
 			[
-				["Cinematics", "1", "120"]
+				["Cinematics", "1", "120"],
+				["Color Transform", "1", "12.5,nocolor"]
 			]
 		],
 		[

@@ -26,7 +26,7 @@ class ReflectedChar extends Character {
 
     function checkCharacter(name:String):Float { // Will eventually try to make this into the character file
         switch (name) {
-            case 'pico-player' | 'pico' | 'pico-playable' | 'pico-blazin':
+            case 'pico-player' | 'pico' |'pico-erect'| 'pico-playable' | 'pico-blazin':
                 return -65;
             case 'jeys-bf':
                 return -225;
@@ -34,6 +34,10 @@ class ReflectedChar extends Character {
                 return -285;
             case 'gf':
                 return -10;
+            case 'nene' | 'nene-christmas':
+                return 280;
+            case 'bf-Nightmare':
+                return -205;
             case 'bf-pixel-opponent':
                 return -325;
             case 'torch' | 'torch-dead':

@@ -28,13 +28,13 @@ class StageWeek1 extends BaseStage
 		comboImage.set( 0, 550);
 
 		offsetState = Std.isOfType(FlxG.state, options.NoteOffsetState);
-		var bg:BGSprite = new BGSprite('rework/stageback', -850, -580, 0.9, 0.9);
-		bg.setGraphicSize(Std.int(bg.width * 2.3));
+		var bg:BGSprite = new BGSprite('rework/stageback', -650, -300, 0.9, 0.9);
+		bg.setGraphicSize(Std.int(bg.width * 1.5));
 		bg.updateHitbox();
 		add(bg);
 
-		var stageFront:BGSprite = new BGSprite('rework/stagefront', -900, 600, 0.9, 0.9);
-		stageFront.setGraphicSize(Std.int(stageFront.width * 2.3));
+		var stageFront:BGSprite = new BGSprite('rework/stagefront', -650, -300, 0.9, 0.9);
+		stageFront.setGraphicSize(Std.int(stageFront.width * 1.5));
 		stageFront.updateHitbox();
 		add(stageFront);
 		if(!ClientPrefs.data.lowQuality) {
@@ -43,16 +43,21 @@ class StageWeek1 extends BaseStage
 					stageHorns.updateHitbox();
 					add(stageHorns);*/
 
-					var stagelittlelights:BGSprite = new BGSprite('rework/stage_light',  -300, -400, 1.2, 1.2);
-					stagelittlelights.setGraphicSize(Std.int(stagelittlelights.width * 2.1));
+					var stagelittlelights:BGSprite = new BGSprite('rework/stage_light',  -550, -500, 1.0, 1.0);
+					stagelittlelights.scale.set(1.45, 1.5);
 					stagelittlelights.updateHitbox();
 					add(stagelittlelights);
 
-					var stageCurtains:BGSprite = new BGSprite('rework/stagecurtains',  -800, -750, 1.2, 1.2);
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 2.2));
+					var stageCurtains:BGSprite = new BGSprite('rework/stagecurtains',  -550, -460, 1.1, 1.1);
+					stageCurtains.scale.set(1.4, 1.5);
 					stageCurtains.updateHitbox();
 					add(stageCurtains);
 		}
+		var stageColumns:BGSprite = new BGSprite('rework/stagecolumns', -550, -250, 1.2, 1.2);
+		stageColumns.scale.set(1.4, 1.3);
+		stageColumns.updateHitbox();
+		add(stageColumns);
+
 		if (!offsetState) {
 			switch(PlayState.SONG.song.toLowerCase()) {
 				case 'test':

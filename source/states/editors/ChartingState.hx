@@ -98,10 +98,9 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Camera Flash', "You know what it is.\nValue 1: white/gray/black/green/lime/yellow/orange/\nred/purple/blue/pink/magenta/cyan\nValue 2: Flash duration"],
 		['HUD Fade', "Value 1: Opaticity\nValue 2: Duration"],
 		['Show Lyrics', "Value 1: Show lyrics\nValue 2: Fade Lyrics(This is optional, this is the same as fade hud [1,1]) \nAn example of how to use it when it is a lyrics with fade,\nValue1: [Hi!!]\nValue2: [0,1]\nTo return it to normal it would be like this\nValue1: [Surprise]\nValue2: [1,0.1]\nThis is used in case you use the fade lyrics"],
-		['Cinematics', "aun no terminado"],
+		['Cinematics',"Value 1: The speed the bars move on screen \nand how long until they leave (ex. [2,4] [(speed),(wait)])\n\nValue 2: The distance the bars move"],
 		['Camera Fade', "Value 1: Duration \nValue 2: Camera to switch to (off / on)"],
-		['Stage Lights', "aun no terminado"],
-		['Color Transform', "Value 1: Time in seconds to apply the color transform effect.\nValue 2: (Optional) Time in seconds to wait before reverting the effect, or 'reverse' to immediately revert the effect. If left empty, the effect will not revert automatically."]
+		['Color Transform', "Value 1: Time in seconds to apply the color transform effect.\nValue 2: (Optional) If you don't want the color to be applied, just put 'nocolor' and that's it"]
 
 	];
 	
