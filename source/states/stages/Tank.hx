@@ -123,7 +123,7 @@ class Tank extends BaseStage
 		if(songName == 'stress') setDefaultGF('pico-speaker');
 		else setDefaultGF('gf-tankmen');
 		
-		addAbot(0, 310);
+        addAbot(100, 355);
 		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
 
 		

@@ -89,43 +89,43 @@
 			"name": "Animations/GF Dancing Beat-alt"
 		},
 		{
-			"loop": false,
 			"offsets": [-209, 94],
+			"loop": false,
+			"fps": 20,
 			"anim": "three",
-			"fps": 24,
-			"name": "Jeys CountDown/Three",
-			"indices": []
+			"indices": [],
+			"name": "Jeys CountDown/Three"
 		},
 		{
-			"loop": false,
 			"offsets": [-210, 96],
+			"loop": false,
+			"fps": 20,
 			"anim": "two",
-			"fps": 24,
-			"name": "Jeys CountDown/Two",
-			"indices": []
+			"indices": [],
+			"name": "Jeys CountDown/Two"
 		},
 		{
-			"loop": false,
 			"offsets": [-207, 95],
+			"loop": false,
+			"fps": 20,
 			"anim": "one",
-			"fps": 24,
-			"name": "Jeys CountDown/One",
-			"indices": []
+			"indices": [],
+			"name": "Jeys CountDown/One"
 		},
 		{
-			"loop": false,
 			"offsets": [390, 22],
-			"anim": "Go!",
+			"loop": false,
 			"fps": 24,
-			"name": "Jeys CountDown/Go",
-			"indices": []
+			"anim": "Go!",
+			"indices": [],
+			"name": "Jeys CountDown/Go"
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
 	"useNoteSkin": false,
 	"image": "characters/JeysGF",
-	"position": [150, 380],
+	"position": [240, 370],
 	"noteSkinLib": "shared",
 	"altNoteColors": {
 		"right": [

@@ -1,46 +1,6 @@
 {
 	"animations": [
 		{
-			"offsets": [35, -6],
-			"loop": false,
-			"fps": 24,
-			"anim": "singLEFT",
-			"indices": [],
-			"name": "left"
-		},
-		{
-			"offsets": [-57, 3],
-			"loop": false,
-			"fps": 24,
-			"anim": "singDOWN",
-			"indices": [],
-			"name": "down"
-		},
-		{
-			"offsets": [-80, 20],
-			"loop": false,
-			"fps": 24,
-			"anim": "singUP",
-			"indices": [],
-			"name": "Up"
-		},
-		{
-			"offsets": [-50, -10],
-			"loop": false,
-			"fps": 24,
-			"anim": "singRIGHT",
-			"indices": [],
-			"name": "Right"
-		},
-		{
-			"loop": true,
-			"offsets": [0, 0],
-			"anim": "intro",
-			"fps": 20,
-			"name": "Idle0",
-			"indices": []
-		},
-		{
 			"offsets": [0, 0],
 			"loop": false,
 			"fps": 24,
@@ -127,13 +87,45 @@
 			"anim": "lowerKnife",
 			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
 			"name": "knife lower0"
+		},
+		{
+			"loop": false,
+			"offsets": [25, -4],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Nene Left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-66, -19],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Nene Right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-91, 3],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Nene Down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-13, 9],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Nene Up",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
 	"useNoteSkin": false,
 	"image": "characters/nene",
-	"position": [20, -10],
+	"position": [170, 30],
 	"noteSkinLib": "shared",
 	"altNoteColors": {
 		"right": [
@@ -161,7 +153,7 @@
 	"flip_x": false,
 	"healthbar_colors": [250, 105, 146],
 	"disableNoteRGB": false,
-	"camera_position": [0, 110],
+	"camera_position": [100, -10],
 	"noteSkin": "",
 	"noteColors": {
 		"right": [

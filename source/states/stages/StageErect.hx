@@ -85,7 +85,7 @@ class StageErect extends BaseStage
         lightAbove.setGraphicSize(Std.int(lightAbove.width * 1.2));
         lightAbove.updateHitbox();
         
-        addAbot(0, 310);
+        addAbot(100, 355);
         //abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
 
         if (!offsetState) {

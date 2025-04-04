@@ -79,6 +79,12 @@ class Character extends FlxSprite
 
 	public var holdTimer:Float = 0;
 	public var heyTimer:Float = 0;
+	//para el count lol
+	public var threeTimer:Float = 0;
+	public var twoTimer:Float = 0;
+	public var oneTimer:Float = 0;
+	public var goTimer:Float = 0;
+
 	public var specialAnim:Bool = false;
 	public var animationNotes:Array<Dynamic> = [];
 	public var stunned:Bool = false;

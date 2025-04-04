@@ -69,8 +69,7 @@ class PhillyErect extends BaseStage
         car.setGraphicSize(Std.int(car.width * 1.2));
         car.updateHitbox();
     
-        addAbot(0, 310);
-		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
     }
 
     override function createPost() {
@@ -84,10 +83,10 @@ class PhillyErect extends BaseStage
 		addBehindDad(reflectedDad);
         addAbotPost();
 		var colorShader = new AdjustColorShader();
-        colorShader.hue = -26;
-        colorShader.saturation = -16;
+        colorShader.hue = -40;
+        colorShader.saturation = -25;
         colorShader.contrast = 0;
-        colorShader.brightness = -5;
+        colorShader.brightness = -20;
 
         boyfriend.shader = colorShader;
         gf.shader = colorShader;

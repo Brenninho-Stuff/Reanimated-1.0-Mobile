@@ -471,6 +471,7 @@ class PlayState extends MusicBeatState
 			case 'mallErect': new MallErect();			//Week 5 - Erect
 			case 'mallEvil': new MallEvil();			//Week 5 - Winter Horrorland
 			case 'school': new School();				//Week 6 - Senpai, Roses
+			case "schoolErect": new SchoolErect();		//Week 6 - Erect
 			case 'schoolEvil': new SchoolEvil();		//Week 6 - Thorns
 			case 'tank': new Tank();					//Week 7 - Ugh, Guns, Stress
 			case 'phillyStreets': new PhillyStreets(); 	//Weekend 1 - Darnell, Lit Up, 2Hot
@@ -504,7 +505,7 @@ class PlayState extends MusicBeatState
 			if(SONG.gfVersion == null || SONG.gfVersion.length < 1) SONG.gfVersion = 'gf'; //Fix for the Chart Editor
 			gf = new Character(0, 0, SONG.gfVersion);
 			startCharacterPos(gf);
-			gfGroup.scrollFactor.set(0.95, 0.95);
+			//gfGroup.scrollFactor.set(0.95, 0.95);
 			gfGroup.add(gf);
 		}
 
@@ -1297,18 +1298,38 @@ class PlayState extends MusicBeatState
 						countdownThree = createCountdownSprite(introAlts[3], antialias);
 						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
 						tick = THREE;
+						if (gf.curCharacter == "jeys-gf") {
+							gf.playAnim("three", true);
+							gf.specialAnim = true;
+							gf.threeTimer = 0.6;
+						}
 					case 1:
 						countdownReady = createCountdownSprite(introAlts[0], antialias);
 						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
 						tick = TWO;
+						if (gf.curCharacter == "jeys-gf") {
+							gf.playAnim("two", true);
+							gf.specialAnim = true;
+							gf.twoTimer = 0.6;
+						}
 					case 2:
 						countdownSet = createCountdownSprite(introAlts[1], antialias);
 						FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
 						tick = ONE;
+						if (gf.curCharacter == "jeys-gf") {
+						gf.playAnim("one", true);
+						gf.specialAnim = true;
+						gf.oneTimer = 0.6;
+						}
 					case 3:
 						countdownGo = createCountdownSprite(introAlts[2], antialias);
 						FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
 						tick = GO;
+						if (gf.curCharacter == "jeys-gf") {
+    					gf.playAnim("Go!", true);
+    					gf.specialAnim = true;
+						gf.goTimer = 0.6;
+						}
 					case 4:
 						tick = START;
 				}
@@ -2352,16 +2373,29 @@ class PlayState extends MusicBeatState
 
 		if(FlxG.keys.justPressed.SHIFT)
 			{
-				if(boyfriend.animOffsets.exists('hey')) {
-					boyfriend.playAnim('hey', true);
-					boyfriend.specialAnim = true;
-					boyfriend.heyTimer = 0.6;
-					gf.playAnim('cheer', true);
-					gf.specialAnim = true;
-					var num = FlxG.random.int(1,3);
-					var thesound = "heysound" + num;
-					FlxG.sound.play(Paths.sound(thesound));
-					trace(thesound);
+				if (boyfriend.animOffsets.exists('hey')) {
+					var chance = FlxG.random.float(0, 1); // Genera un número aleatorio entre 0 y 1
+					if (chance < 0.05) { // 5% de probabilidad para la animación alternativa
+						boyfriend.playAnim('hey-alt', true);
+						boyfriend.specialAnim = true;
+						boyfriend.heyTimer = 0.6;
+						gf.playAnim('cheer', true);
+						gf.specialAnim = true;
+						var num = FlxG.random.int(1, 3);
+						var thesound = "heysound" + num;
+						FlxG.sound.play(Paths.sound(thesound));
+						trace(thesound);
+					} else { // 90% de probabilidad para la animación original
+						boyfriend.playAnim('hey', true);
+						boyfriend.specialAnim = true;
+						boyfriend.heyTimer = 0.6;
+						gf.playAnim('cheer', true);
+						gf.specialAnim = true;
+						var num = FlxG.random.int(1, 3);
+						var thesound = "heysound" + num;
+						FlxG.sound.play(Paths.sound(thesound));
+						trace(thesound);
+					}
 				}
 			}
 			if(FlxG.keys.justPressed.SPACE && canDodge)
@@ -2792,10 +2826,17 @@ class PlayState extends MusicBeatState
 						gf.heyTimer = flValue2;
 					}
 				}
-				if(value != 1) {
-					boyfriend.playAnim('hey', true);
-					boyfriend.specialAnim = true;
-					boyfriend.heyTimer = flValue2;
+				if (value != 1) {
+					var chance = FlxG.random.float(0, 1); // Genera un número aleatorio entre 0 y 1
+					if (chance < 0.1) { // 10% de probabilidad para la animación alternativa
+						boyfriend.playAnim('hey-alt', true);
+						boyfriend.specialAnim = true;
+						boyfriend.heyTimer = flValue2;
+					} else { // 90% de probabilidad para la animación original
+						boyfriend.playAnim('hey', true);
+						boyfriend.specialAnim = true;
+						boyfriend.heyTimer = flValue2;
+					}
 				}
 
 			case 'Set GF Speed':
@@ -4082,11 +4123,15 @@ class PlayState extends MusicBeatState
 
 					if(note.noteType == 'Hey!')
 					{
-						if(char.hasAnimation(animCheck))
-						{
+					if (char.hasAnimation(animCheck)) {
+						var chance = FlxG.random.float(0, 1); // Genera un número aleatorio entre 0 y 1
+						if (chance < 0.1) { // 10% de probabilidad para la animación alternativa
+							char.playAnim(animCheck + "-alt", true); // Supone que la animación alternativa tiene el sufijo "-alt"
+						} else { // 90% de probabilidad para la animación original
 							char.playAnim(animCheck, true);
-							char.specialAnim = true;
-							char.heyTimer = 0.6;
+						}
+						char.specialAnim = true;
+						char.heyTimer = 0.6;
 						}
 
 					}

@@ -111,12 +111,20 @@
 			"fps": 24,
 			"name": "right",
 			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-3, 1],
+			"anim": "hey",
+			"fps": 24,
+			"name": "hey0",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
 	"useNoteSkin": false,
-	"image": "unlockable characters/bf-hev-v3",
+	"image": "unlockable characters/bfChristmas-hev",
 	"position": [10, 330],
 	"noteSkinLib": "shared",
 	"altNoteColors": {

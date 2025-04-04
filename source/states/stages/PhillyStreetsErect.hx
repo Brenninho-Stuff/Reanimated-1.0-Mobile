@@ -160,8 +160,7 @@ class PhillyStreetsErect extends BaseStage
         mistMid.alpha = 0.8;
         mistMid.antialiasing = ClientPrefs.data.antialiasing;
 
-        addAbot(0, 340);
-        //abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+addAbot(100, 355);        //abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
 
         if(ClientPrefs.data.shaders)
         {

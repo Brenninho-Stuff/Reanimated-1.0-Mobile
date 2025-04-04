@@ -83,8 +83,7 @@ class MallErect extends BaseStage
 		add(santaDead);
 		setDefaultGF('gf-christmas');
 
-		addAbot(-70, 310, 0.95, 0.9);
-
+addAbot(100, 355);
 		if (!isStoryMode)
 			if (PlayState.SONG.song.toLowerCase() == "eggnog")
 			{
