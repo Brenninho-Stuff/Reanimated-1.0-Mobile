@@ -105,6 +105,8 @@ class ClientPrefs {
 		'ui_down'		=> [S, DOWN],
 		'ui_right'		=> [D, RIGHT],
 		
+		'special_action'=> [SHIFT],
+	
 		'accept'		=> [SPACE, ENTER],
 		'back'			=> [BACKSPACE, ESCAPE],
 		'pause'			=> [ENTER, ESCAPE],
@@ -127,6 +129,8 @@ class ClientPrefs {
 		'ui_left'		=> [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT],
 		'ui_down'		=> [DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN],
 		'ui_right'		=> [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT],
+
+		'special_action'=> [A],
 		
 		'accept'		=> [A, START],
 		'back'			=> [B],
