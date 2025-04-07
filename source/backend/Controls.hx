@@ -45,6 +45,7 @@ class Controls
 	public var NOTE_LEFT(get, never):Bool;
 	public var NOTE_RIGHT(get, never):Bool;
 	public var SPECIAL_ACTION(get, never):Bool;
+	public var DODGE_ACTION(get, never):Bool;
 	private function get_UI_UP() return pressed('ui_up');
 	private function get_UI_DOWN() return pressed('ui_down');
 	private function get_UI_LEFT() return pressed('ui_left');
@@ -54,6 +55,7 @@ class Controls
 	private function get_NOTE_LEFT() return pressed('note_left');
 	private function get_NOTE_RIGHT() return pressed('note_right');
 	private function get_SPECIAL_ACTION() return justPressed('special_action');
+	private function get_DODGE_ACTION() return justPressed('dodge_action');
 
 	// Released buttons (directions)
 	public var UI_UP_R(get, never):Bool;

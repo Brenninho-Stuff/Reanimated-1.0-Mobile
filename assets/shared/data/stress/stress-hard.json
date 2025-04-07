@@ -1,8 +1,133 @@
 {
 	"player1": "bf-holding-gf",
+	"events": [
+		[
+			10666.6666666667,
+			[
+				["Play Animation", "Idle", "gf"]
+			]
+		],
+		[
+			12333.3333333333,
+			[
+				["Play Animation", "Animation", "gf"]
+			]
+		],
+		[
+			13666.6666666667,
+			[
+				["Play Animation", "shoot4-loop", "gf"]
+			]
+		],
+		[
+			34666.6666666667,
+			[
+				["Screen Shake", "0.7, 0.01", ""]
+			]
+		],
+		[
+			40000,
+			[
+				["Screen Shake", "0.7, 0.01", ""]
+			]
+		],
+		[
+			45333.3333333333,
+			[
+				["Screen Shake", "0.7, 0.01", ""]
+			]
+		],
+		[
+			50666.6666666667,
+			[
+				["Screen Shake", "0.7, 0.01", ""]
+			]
+		],
+		[
+			61333.3333333334,
+			[
+				["Play Animation", "singDOWN-alt", "dad"]
+			]
+		],
+		[
+			64000,
+			[
+				["Set Health Drain", "0.03", ""],
+				["Enemy Splashes", "true", "true"]
+			]
+		],
+		[
+			80000,
+			[
+				["Camera Follow Pos", "600", "350"]
+			]
+		],
+		[
+			85333.3333333333,
+			[
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			90666.6666666666,
+			[
+				["Camera Follow Pos", "600", "350"]
+			]
+		],
+		[
+			95916.6666666666,
+			[
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			97999.9999999999,
+			[
+				["Screen Shake", "0.7, 0.01", ""],
+				["Camera Follow Pos", "600", "240"],
+				["Set Property", "defaultCamZoom", "1"]
+			]
+		],
+		[
+			98666.6666666666,
+			[
+				["Set Property", "defaultCamZoom", "0.7"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			112000,
+			[
+				["Camera Follow Pos", "500", "440"]
+			]
+		],
+		[
+			117250,
+			[
+				["Camera Follow Pos", "", ""],
+				["HUD Fade", "0", "1"]
+			]
+		],
+		[
+			117416.666666667,
+			[
+				["Change Character", "dad", "tankman-die"],
+				["Play Animation", "die", "dad"],
+				["Screen Shake", "0.01, 0.2", ""],
+				["Play Animation", "shootTankman", "gf"]
+			]
+		],
+		[
+			117750,
+			[
+				["Play Animation", "Idle", "gf"]
+			]
+		]
+	],
+	"gfVersion": "pico-speaker",
+	"player2": "tankman",
 	"notes": [
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[0, 4, 0],
 				[166.666666666667, 7, 0],
@@ -13,10 +138,10 @@
 				[1000, 6, 0],
 				[1166.66666666667, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[1333.33333333333, 6, 0],
 				[1500, 5, 0],
@@ -29,10 +154,10 @@
 				[2416.66666666667, 6, 0],
 				[2500, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[2666.66666666667, 4, 0],
 				[2833.33333333333, 7, 0],
@@ -43,10 +168,10 @@
 				[3666.66666666667, 6, 0],
 				[3833.33333333333, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[4000, 6, 0],
 				[4166.66666666667, 5, 0],
@@ -58,10 +183,10 @@
 				[5000, 4, 0],
 				[5166.66666666667, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[5333.33333333333, 0, 0],
 				[5500, 3, 0],
@@ -72,10 +197,10 @@
 				[6333.33333333333, 2, 0],
 				[6500, 3, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[6666.66666666667, 2, 0],
 				[6833.33333333333, 1, 0],
@@ -88,10 +213,10 @@
 				[7750, 2, 0],
 				[7833.33333333333, 3, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[8000, 0, 0],
 				[8166.66666666667, 3, 0],
@@ -102,10 +227,10 @@
 				[9000, 2, 0],
 				[9166.66666666667, 3, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[9333.33333333333, 2, 0],
 				[9500, 1, 0],
@@ -116,20 +241,20 @@
 				[10333.3333333333, 0, 0],
 				[10500, 3, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[11000, 5, 0],
 				[11166.6666666667, 7, 0],
 				[11333.3333333333, 6, 250],
 				[11666.6666666667, 4, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[12000, 7, 0],
 				[12166.6666666667, 5, 0],
@@ -141,10 +266,10 @@
 				[13083.3333333333, 4, 0],
 				[13166.6666666667, 6, 83.3333333333333]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[13333.3333333333, 5, 0],
 				[13500, 6, 0],
@@ -156,10 +281,11 @@
 				[14416.6666666667, 6, 0],
 				[14500, 4, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": false,
 			"sectionNotes": [
 				[14666.6666666667, 0, 0],
 				[14666.6666666667, 5, 0],
@@ -182,11 +308,11 @@
 				[15833.3333333333, 2, 83.3333333333333],
 				[15833.3333333333, 7, 0]
 			],
-			"gfSection": false,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[16000, 0, 250],
 				[16000, 6, 0],
@@ -196,11 +322,11 @@
 				[17000, 1, 250],
 				[17000, 6, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[17333.3333333333, 0, 250],
 				[17500, 4, 0],
@@ -211,11 +337,11 @@
 				[18333.3333333333, 2, 250],
 				[18333.3333333333, 4, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[18666.6666666667, 0, 250],
 				[18666.6666666667, 6, 0],
@@ -230,11 +356,11 @@
 				[19666.6666666667, 6, 0],
 				[19833.3333333333, 6, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[20000, 0, 0],
 				[20000, 4, 0],
@@ -246,11 +372,10 @@
 				[20666.6666666667, 7, 0],
 				[21000, 4, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[21333.3333333333, 0, 0],
 				[21333.3333333333, 7, 0, "Duo Sing"],
@@ -269,10 +394,10 @@
 				[22500, 4, 0],
 				[22500, 2, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[22666.6666666667, 7, 0, "Duo Sing"],
 				[22666.6666666667, 0, 0],
@@ -292,10 +417,10 @@
 				[23833.3333333333, 5, 0],
 				[23833.3333333333, 2, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[24000, 7, 0, "Duo Sing"],
 				[24000, 0, 0],
@@ -312,10 +437,10 @@
 				[25000, 7, 0, "GF Sing"],
 				[25166.6666666667, 1, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[25333.3333333333, 0, 0],
 				[25333.3333333333, 7, 0, "Duo Sing"],
@@ -334,10 +459,10 @@
 				[26333.3333333333, 7, 0, "GF Sing"],
 				[26500, 1, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[26666.6666666667, 4, 0, "Duo Sing"],
 				[26666.6666666667, 0, 583.333333333333],
@@ -350,10 +475,10 @@
 				[27666.6666666667, 5, 0, "Duo Sing"],
 				[27833.3333333333, 6, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[28000, 4, 0, "Duo Sing"],
 				[28000, 1, 583.333333333333],
@@ -369,10 +494,10 @@
 				[29166.6666666667, 5, 0, "Duo Sing"],
 				[29250, 5, 0, "GF Sing"]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[29333.3333333333, 3, 0],
 				[29333.3333333333, 4, 0, "Dodge Tankman"],
@@ -387,10 +512,10 @@
 				[30333.3333333333, 4, 0, "Dodge Tankman"],
 				[30500, 1, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[30666.6666666667, 4, 0, "Duo Sing"],
 				[30666.6666666667, 3, 0],
@@ -412,10 +537,10 @@
 				[31833.3333333333, 4, 0, "Duo Sing"],
 				[31916.6666666667, 5, 0, "GF Sing"]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[32000, 1, 583.333333333333],
 				[32000, 4, 0],
@@ -428,10 +553,10 @@
 				[33166.6666666667, 5, 0],
 				[33250, 5, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[33333.3333333333, 7, 0],
 				[33500, 6, 0],
@@ -443,10 +568,10 @@
 				[34500, 7, 0],
 				[34583.3333333333, 6, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[34666.6666666667, 4, 0],
 				[34833.3333333333, 5, 0],
@@ -458,10 +583,10 @@
 				[35750, 7, 0],
 				[35833.3333333333, 4, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[36000, 5, 0],
 				[36166.6666666667, 6, 0],
@@ -473,10 +598,11 @@
 				[37166.6666666667, 4, 0],
 				[37250, 4, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[37333.3333333333, 3, 583.333333333333],
 				[37333.3333333333, 5, 0, "Dodge Tankman"],
@@ -489,11 +615,11 @@
 				[38166.6666666667, 4, 0],
 				[38333.3333333333, 5, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[38666.6666666667, 0, 583.333333333333],
 				[38666.6666666667, 4, 0],
@@ -507,11 +633,11 @@
 				[39666.6666666667, 7, 250],
 				[39708.3333333333, 5, 166.666666666667]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[40000, 3, 250],
 				[40000, 4, 0],
@@ -525,11 +651,11 @@
 				[41000, 2, 250],
 				[41000, 4, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[41333.3333333333, 3, 250],
 				[41333.3333333333, 6, 0],
@@ -540,11 +666,10 @@
 				[42333.3333333333, 0, 250],
 				[42333.3333333333, 4, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[42666.6666666667, 5, 0],
 				[42750, 7, 0],
@@ -558,10 +683,10 @@
 				[43833.3333333333, 5, 0],
 				[43916.6666666667, 5, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[44000, 7, 0],
 				[44166.6666666667, 6, 0],
@@ -574,10 +699,10 @@
 				[45166.6666666667, 5, 0],
 				[45250, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[45333.3333333333, 4, 0],
 				[45500, 5, 0],
@@ -589,10 +714,10 @@
 				[46416.6666666667, 5, 0],
 				[46500, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[46666.6666666667, 5, 0],
 				[46833.3333333333, 6, 0],
@@ -603,10 +728,11 @@
 				[47666.6666666667, 4, 0],
 				[47833.3333333333, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[48000, 0, 250],
 				[48000, 5, 0, "Dodge Tankman"],
@@ -621,11 +747,11 @@
 				[49000, 3, 250],
 				[49166.6666666667, 5, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[49333.3333333334, 6, 0],
 				[49333.3333333334, 1, 250],
@@ -641,11 +767,11 @@
 				[50333.3333333334, 1, 250],
 				[50375, 5, 166.666666666667]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[50666.6666666667, 4, 0],
 				[50666.6666666667, 0, 0],
@@ -664,11 +790,11 @@
 				[51833.3333333334, 7, 0],
 				[51833.3333333334, 3, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[52000, 6, 0],
 				[52000, 0, 0],
@@ -689,11 +815,10 @@
 				[53166.6666666667, 3, 0],
 				[53250, 5, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[53333.3333333334, 4, 0],
 				[53333.3333333334, 1, 750],
@@ -705,10 +830,10 @@
 				[54333.3333333333, 6, 0],
 				[54500, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[54666.6666666667, 6, 0],
 				[54833.3333333333, 5, 0],
@@ -720,10 +845,10 @@
 				[55666.6666666667, 6, 0],
 				[55833.3333333333, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[56000, 4, 0],
 				[56000, 1, 750],
@@ -735,10 +860,10 @@
 				[57000, 6, 0],
 				[57166.6666666667, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[57333.3333333334, 6, 0],
 				[57500, 5, 0],
@@ -751,10 +876,10 @@
 				[58333.3333333334, 6, 0],
 				[58500, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[58666.6666666667, 0, 0],
 				[58666.6666666667, 4, 0],
@@ -769,10 +894,10 @@
 				[59750, 2, 0],
 				[59833.3333333334, 1, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[60000, 4, 0],
 				[60000, 3, 0],
@@ -786,10 +911,11 @@
 				[61000, 1, 0],
 				[61166.6666666667, 3, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"altAnim": false,
 			"sectionNotes": [
 				[61333.3333333334, 7, 0, "GF Sing"],
 				[61500, 5, 0, "GF Sing"],
@@ -800,11 +926,10 @@
 				[62333.3333333334, 4, 0, "GF Sing"],
 				[62500, 6, 0, "GF Sing"]
 			],
-			"altAnim": false,
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[62666.6666666667, 5, 0, "GF Sing"],
 				[62666.6666666667, 2, 583.333333333333],
@@ -817,10 +942,10 @@
 				[63666.6666666667, 7, 0, "GF Sing"],
 				[63833.3333333334, 5, 0, "GF Sing"]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[64000, 4, 250],
 				[64333.3333333334, 5, 0],
@@ -833,10 +958,10 @@
 				[65000, 3, 0],
 				[65166.6666666667, 0, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[65333.3333333334, 7, 0],
 				[65333.3333333334, 3, 0],
@@ -854,10 +979,10 @@
 				[66500, 6, 0],
 				[66500, 0, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[66666.6666666667, 5, 0],
 				[66833.3333333334, 6, 0],
@@ -875,10 +1000,10 @@
 				[67833.3333333334, 4, 0],
 				[67833.3333333334, 3, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[68000, 5, 0],
 				[68000, 0, 0],
@@ -895,10 +1020,10 @@
 				[69000, 0, 250],
 				[69166.6666666667, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[69333.3333333334, 3, 0],
 				[69500, 1, 0],
@@ -909,10 +1034,10 @@
 				[70333.3333333334, 3, 0],
 				[70500, 2, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[70666.6666666667, 2, 0],
 				[70750, 1, 0],
@@ -925,10 +1050,10 @@
 				[71666.6666666667, 0, 0],
 				[71833.3333333334, 3, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[72000, 1, 0],
 				[72083.3333333334, 3, 0],
@@ -947,10 +1072,10 @@
 				[73166.6666666667, 0, 0],
 				[73250, 2, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[73333.3333333334, 3, 0],
 				[73333.3333333334, 4, 0, "GF Sing"],
@@ -976,10 +1101,10 @@
 				[74500, 5, 0, "GF Sing"],
 				[74583.3333333334, 5, 0, "GF Sing"]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[74666.6666666667, 4, 0],
 				[74833.3333333334, 4, 0],
@@ -991,10 +1116,10 @@
 				[75666.6666666667, 7, 0],
 				[75833.3333333334, 5, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[76000, 5, 0],
 				[76083.3333333333, 4, 0],
@@ -1005,10 +1130,10 @@
 				[77000, 4, 0],
 				[77166.6666666667, 4, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[77333.3333333333, 5, 0],
 				[77500, 4, 0],
@@ -1023,10 +1148,10 @@
 				[78500, 5, 0],
 				[78583.3333333333, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[78666.6666666667, 5, 0],
 				[78750, 4, 0],
@@ -1039,10 +1164,11 @@
 				[79666.6666666667, 4, 0],
 				[79833.3333333333, 6, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[80000, 2, 0],
 				[80166.6666666667, 3, 0],
@@ -1054,11 +1180,11 @@
 				[81000, 2, 0],
 				[81166.6666666667, 3, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[81333.3333333333, 2, 0],
 				[81500, 2, 0],
@@ -1070,11 +1196,11 @@
 				[82166.6666666667, 3, 0],
 				[82333.3333333333, 1, 250]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[82666.6666666667, 2, 0],
 				[82833.3333333333, 0, 0],
@@ -1087,11 +1213,11 @@
 				[83750, 0, 0],
 				[83833.3333333333, 2, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[84000, 3, 0],
 				[84166.6666666667, 3, 0],
@@ -1102,11 +1228,10 @@
 				[85000, 0, 250],
 				[85041.6666666667, 1, 166.666666666667]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[85333.3333333333, 4, 0],
 				[85416.6666666666, 7, 0],
@@ -1119,10 +1244,10 @@
 				[86333.3333333333, 4, 0],
 				[86500, 5, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[86666.6666666666, 4, 0],
 				[86750, 7, 0],
@@ -1135,10 +1260,10 @@
 				[87666.6666666666, 4, 0],
 				[87833.3333333333, 5, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[88000, 4, 0],
 				[88083.3333333333, 5, 0],
@@ -1152,10 +1277,10 @@
 				[89000, 7, 0],
 				[89166.6666666666, 5, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[89333.3333333333, 7, 0],
 				[89416.6666666666, 6, 0],
@@ -1169,10 +1294,11 @@
 				[90250, 4, 0],
 				[90333.3333333333, 5, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[90666.6666666666, 2, 0],
 				[90833.3333333333, 3, 0],
@@ -1185,11 +1311,11 @@
 				[91833.3333333333, 1, 0],
 				[91916.6666666666, 1, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[92000, 2, 0],
 				[92166.6666666666, 0, 0],
@@ -1201,11 +1327,11 @@
 				[93000, 1, 250],
 				[93041.6666666666, 2, 166.666666666667]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[93333.3333333333, 3, 0],
 				[93416.6666666666, 0, 0],
@@ -1220,11 +1346,11 @@
 				[94416.6666666666, 3, 0],
 				[94500, 2, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[94666.6666666666, 0, 0],
 				[94833.3333333333, 0, 0],
@@ -1235,11 +1361,10 @@
 				[95666.6666666666, 2, 0],
 				[95833.3333333333, 3, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[95999.9999999999, 4, 0],
 				[96083.3333333333, 6, 0],
@@ -1253,10 +1378,10 @@
 				[97083.3333333333, 6, 0],
 				[97166.6666666666, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[97333.3333333333, 5, 0],
 				[97499.9999999999, 4, 0],
@@ -1268,10 +1393,10 @@
 				[98333.3333333333, 7, 0],
 				[98499.9999999999, 6, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[98666.6666666666, 4, 0],
 				[98749.9999999999, 6, 0],
@@ -1285,10 +1410,10 @@
 				[99749.9999999999, 6, 0],
 				[99833.3333333333, 7, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[99999.9999999999, 5, 0],
 				[100166.666666667, 4, 0],
@@ -1300,10 +1425,10 @@
 				[101000, 7, 0],
 				[101166.666666667, 6, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[101333.333333333, 7, 0],
 				[101416.666666667, 5, 0],
@@ -1317,10 +1442,10 @@
 				[102416.666666667, 5, 0],
 				[102500, 4, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[102666.666666667, 6, 0],
 				[102833.333333333, 7, 0],
@@ -1332,10 +1457,10 @@
 				[103666.666666667, 4, 0],
 				[103833.333333333, 5, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[104000, 7, 0],
 				[104083.333333333, 5, 0],
@@ -1349,10 +1474,10 @@
 				[105083.333333333, 5, 0],
 				[105166.666666667, 4, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[105333.333333333, 6, 0],
 				[105500, 7, 0],
@@ -1364,10 +1489,11 @@
 				[106333.333333333, 4, 0],
 				[106500, 5, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": false,
 			"sectionNotes": [
 				[106666.666666667, 4, 0],
 				[106666.666666667, 1, 0],
@@ -1391,11 +1517,10 @@
 				[107833.333333333, 7, 0],
 				[107833.333333333, 1, 0]
 			],
-			"gfSection": false,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[108000, 5, 0],
 				[108000, 0, 0],
@@ -1417,10 +1542,10 @@
 				[109166.666666667, 6, 0],
 				[109166.666666667, 3, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[109333.333333333, 4, 0],
 				[109333.333333333, 0, 0],
@@ -1444,10 +1569,10 @@
 				[110500, 7, 0],
 				[110500, 0, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [
 				[110666.666666667, 5, 0],
 				[110666.666666667, 1, 0],
@@ -1471,10 +1596,11 @@
 				[111833.333333333, 6, 0],
 				[111833.333333333, 3, 0]
 			],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[112000, 7, 0],
 				[112000, 3, 0],
@@ -1498,11 +1624,11 @@
 				[113166.666666667, 4, 0],
 				[113166.666666667, 2, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[113333.333333333, 6, 0],
 				[113333.333333333, 1, 0],
@@ -1525,11 +1651,11 @@
 				[114500, 5, 0],
 				[114500, 0, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[114666.666666667, 7, 0],
 				[114666.666666667, 2, 0],
@@ -1556,11 +1682,11 @@
 				[115833.333333333, 0, 0],
 				[115916.666666667, 3, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"gfSection": true,
 			"sectionNotes": [
 				[116000, 6, 0],
 				[116000, 1, 0],
@@ -1580,1764 +1706,36 @@
 				[117166.666666667, 5, 0],
 				[117166.666666667, 1, 0]
 			],
-			"gfSection": true,
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [],
+			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
 			"sectionNotes": [],
+			"sectionBeats": 4,
 			"mustHitSection": true
 		}
 	],
-	"player2": "tankman",
-	"gfVersion": "pico-speaker",
-	"events": [
-		[
-			0,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			166.666666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			250,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			333.333333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			750,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			833.333333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			1000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			1166.66666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			1250,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			1333.33333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			1500,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			1583.33333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			1666.66666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			1833.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			2083.33333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			2166.66666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			2333.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			2500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			2666.66666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			2833.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			2916.66666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			3000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			3166.66666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			3416.66666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			3500,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			3666.66666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			3916.66666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			4000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			4166.66666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			4250,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			4333.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			4500,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			4750,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			4833.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			5000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			5333.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			5500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			5583.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			5666.66666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			5833.33333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			6083.33333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			6166.66666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			6333.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			6500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			6583.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			6666.66666666666,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			6833.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			6916.66666666666,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			7000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			7166.66666666666,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			7416.66666666666,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			7500,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			7666.66666666666,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			7833.33333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			8000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			8166.66666666666,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			8250,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			8333.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			8500,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			8750,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			8833.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			9000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			9250,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			9333.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			9500,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			9583.33333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			9666.66666666666,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			9833.33333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			32666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			33666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			34000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			34666.6666666667,
-			[
-				["Tankman Note", "left", ""],
-				["Screen Shake", "0.7, 0.01", ""]
-			]
-		],
-		[
-			35333.3333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			35833.3333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			36333.3333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			36666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			40000,
-			[
-				["Screen Shake", "0.7, 0.01", ""]
-			]
-		],
-		[
-			42666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			43333.3333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			44333.3333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			44666.6666666666,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			45333.3333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			45333.3333333333,
-			[
-				["Screen Shake", "0.7, 0.01", ""]
-			]
-		],
-		[
-			46000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			46500,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			47000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			47333.3333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			50666.6666666667,
-			[
-				["Screen Shake", "0.7, 0.01", ""]
-			]
-		],
-		[
-			53333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			53666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			54000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			54333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			54666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			55000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			55333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			55666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			55750,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			55833.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			55916.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			56000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			56333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			56666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			57000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			57333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			57666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			58000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			58083.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			58166.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			58333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			58416.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			58500,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			58541.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			58583.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			58625,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			58666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			59000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			59333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			59666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			60000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			60000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			60333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			60666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			61000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			61166.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			64000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			64166.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			64333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			64500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			64583.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			64666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			64750,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			64833.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			65000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			65166.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			65250,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			65333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			65500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			65666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			65833.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			65916.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			66000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			66083.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			66166.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			66333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			66500,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			66583.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			66666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			66833.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			67000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			67166.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			67250,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			67333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			67416.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			67500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			67666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			67833.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			67916.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			68000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			68166.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			68333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			68500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			68583.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			68666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			68750,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			68833.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			69000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			69333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			69500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			69666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			69833.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			69916.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			70000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			70083.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			70166.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			70333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			70500,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			70583.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			70666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			70833.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			71000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			71166.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			71250,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			71333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			71416.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			71500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			71666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			71833.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			71916.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			72000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			72166.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			72333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			72500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			72583.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			72666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			72750,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			72833.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			73000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			73166.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			73250,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			74666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			74916.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			75083.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			75250,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			75666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			76333.3333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			76666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			76833.3333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			77000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			77166.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			77333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			77583.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			77750,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			77916.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			78333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			79000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			79333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			79500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			79666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			85333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			85583.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			85750,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			85916.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			86333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			87000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			87333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			87500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			87666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			87833.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			88000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			88250,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			88416.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			88583.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			89000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			89333.3333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			89666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			90000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			90166.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			90333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			96000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			96166.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			96333.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			96500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			96583.3333333334,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			96666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			96750,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			96833.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			97000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			97166.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			97333.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			97500,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			97666.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			97833.3333333334,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			97916.6666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			98000,
-			[
-				["Tankman Note", "left", ""],
-				["Screen Shake", "0.58, 0.01", ""]
-			]
-		],
-		[
-			98041.6666666666,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			98083.3333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			98124.9999999999,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			98166.6666666666,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			98208.3333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			98249.9999999999,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			98291.6666666666,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			98333.3333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			98374.9999999999,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			98416.6666666666,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			98458.3333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			98499.9999999999,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			98666.6666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			99333.3333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			100333.333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			100666.666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			101333.333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			102000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			103000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			103333.333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			104000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			104666.666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			105666.666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			106000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			106666.666666667,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			107333.333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			108333.333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			108666.666666667,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			109333.333333333,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			110000,
-			[
-				["Tankman Note", "right", ""]
-			]
-		],
-		[
-			111000,
-			[
-				["Tankman Note", "left", ""]
-			]
-		],
-		[
-			111333.333333333,
-			[
-				["Tankman Note", "right", ""]
-			]
-		]
-	],
 	"player3": null,
 	"song": "Stress",
-	"validScore": true,
-	"needsVoices": true,
 	"stage": "tank",
-	"format": "psych_v1_convert",
+	"needsVoices": true,
+	"validScore": true,
+	"speed": 3.2,
 	"bpm": 180,
-	"speed": 3.2
+	"format": "psych_v1_convert"
 }

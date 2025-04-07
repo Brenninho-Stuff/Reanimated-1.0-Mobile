@@ -9,70 +9,6 @@
 			"name": "Pico Dual Wield on Speaker idle"
 		},
 		{
-			"offsets": [-10, 1],
-			"loop": false,
-			"fps": 24,
-			"anim": "shoot1",
-			"indices": [],
-			"name": "Pico shoot 1"
-		},
-		{
-			"offsets": [-10, -127],
-			"loop": false,
-			"fps": 24,
-			"anim": "shoot2",
-			"indices": [],
-			"name": "Pico shoot 2"
-		},
-		{
-			"offsets": [404, -62],
-			"loop": false,
-			"fps": 24,
-			"anim": "shoot3",
-			"indices": [],
-			"name": "Pico shoot 3"
-		},
-		{
-			"offsets": [431, -18],
-			"loop": false,
-			"fps": 24,
-			"anim": "shoot4",
-			"indices": [],
-			"name": "Pico shoot 4"
-		},
-		{
-			"offsets": [-10, 1],
-			"loop": true,
-			"fps": 24,
-			"anim": "shoot1-loop",
-			"indices": [5, 6, 7],
-			"name": "Pico shoot 1"
-		},
-		{
-			"offsets": [-10, -127],
-			"loop": true,
-			"fps": 24,
-			"anim": "shoot2-loop",
-			"indices": [5, 6, 7],
-			"name": "Pico shoot 2"
-		},
-		{
-			"offsets": [404, -62],
-			"loop": true,
-			"fps": 24,
-			"anim": "shoot3-loop",
-			"indices": [5, 6, 7],
-			"name": "Pico shoot 3"
-		},
-		{
-			"offsets": [431, -18],
-			"loop": true,
-			"fps": 24,
-			"anim": "shoot4-loop",
-			"indices": [5, 6, 7],
-			"name": "Pico shoot 4"
-		},
-		{
 			"offsets": [-9, -16],
 			"loop": false,
 			"fps": 24,
@@ -111,16 +47,114 @@
 			"fps": 24,
 			"name": "shoot tankman0",
 			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [431, -18],
+			"anim": "shoot1",
+			"fps": 24,
+			"name": "Pico shoot 4",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [404, -62],
+			"anim": "shoot2",
+			"fps": 24,
+			"name": "Pico shoot 3",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-10, -127],
+			"anim": "shoot3",
+			"fps": 24,
+			"name": "Pico shoot 2",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-10, 1],
+			"anim": "shoot4",
+			"fps": 24,
+			"name": "Pico shoot 1",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [431, -18],
+			"anim": "shoot1-loop",
+			"fps": 24,
+			"name": "Pico shoot 4",
+			"indices": [5, 6, 7]
+		},
+		{
+			"loop": true,
+			"offsets": [404, -62],
+			"anim": "shoot2-loop",
+			"fps": 24,
+			"name": "Pico shoot 3",
+			"indices": [5, 6, 7]
+		},
+		{
+			"loop": true,
+			"offsets": [-10, -127],
+			"anim": "shoot3-loop",
+			"fps": 24,
+			"name": "Pico shoot 2",
+			"indices": [5, 6, 7]
+		},
+		{
+			"loop": true,
+			"offsets": [-10, 1],
+			"anim": "shoot4-loop",
+			"fps": 24,
+			"name": "Pico shoot 1",
+			"indices": [5, 6, 7]
+		},
+		{
+			"offsets": [-12, -35],
+			"indices": [],
+			"fps": 24,
+			"anim": "Animation",
+			"loop": false,
+			"name": "Animation"
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
+	"useNoteSkin": false,
 	"image": "characters/picoSpeaker",
 	"position": [65, -144],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "pico",
 	"flip_x": false,
 	"healthbar_colors": [183, 216, 85],
+	"disableNoteRGB": false,
 	"camera_position": [-60, 40],
+	"noteSkin": "",
 	"noteColors": {
 		"right": [
 			-444097,
@@ -144,6 +178,7 @@
 		]
 	},
 	"sing_duration": 4,
+	"hasAltColors": false,
 	"scale": 1,
 	"_editor_isPlayer": false
 }

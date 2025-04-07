@@ -32,6 +32,7 @@ class ControlsSubState extends MusicBeatSubstate
 		[true],
 		[true, 'SPECIAL ACTIONS'],
 		[true, 'Hey', 'special_action', 'Debug Key #1'],
+		[true, 'Dodge', 'dodge_action', 'Debug Key #2'],
 		[true],
 		[true, 'Reset', 'reset', 'Reset'],
 		[true, 'Accept', 'accept', 'Accept'],

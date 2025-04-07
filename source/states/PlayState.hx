@@ -2414,7 +2414,7 @@ class PlayState extends MusicBeatState
 				}
 				
 			}
-			if(FlxG.keys.justPressed.SPACE && canDodge)
+			if (controls.DODGE_ACTION && canDodge)
 				{
 					boyfriend.animation.finishCallback = function(name:String) {
 						if (name == 'dodge')
