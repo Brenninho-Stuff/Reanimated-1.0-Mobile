@@ -229,6 +229,9 @@ class Philly extends BaseStage
 								who.color = FlxColor.WHITE;
 							}
 							phillyStreet.color = FlxColor.WHITE;
+							reflectedBF.color = FlxColor.WHITE;
+                            reflectedGF.color = FlxColor.WHITE;
+                            reflectedDad.color = FlxColor.WHITE;
 							if(!ClientPrefs.data.lowQuality){
 							phillyPmg.color = FlxColor.WHITE;
 						}
@@ -276,6 +279,9 @@ class Philly extends BaseStage
 
 						color.brightness *= 0.5;
 						phillyStreet.color = color;
+						reflectedBF.color = color;
+                        reflectedGF.color = color;
+                        reflectedDad.color = color;
 						if(!ClientPrefs.data.lowQuality){
 						phillyPmg.color = color;
 					}

@@ -187,6 +187,9 @@ addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*
                                 who.color = FlxColor.WHITE;
                             }
                             street.color = FlxColor.WHITE;
+                            reflectedBF.color = FlxColor.WHITE;
+                            reflectedGF.color = FlxColor.WHITE;
+                            reflectedDad.color = FlxColor.WHITE;
                             if(!ClientPrefs.data.lowQuality) {
                                 car.color = FlxColor.WHITE;
                             }
@@ -228,6 +231,9 @@ addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*
 
                         color.brightness *= 0.5;
                         street.color = color;
+                        reflectedBF.color = color;
+                        reflectedGF.color = color;
+                        reflectedDad.color = color;
                         if(!ClientPrefs.data.lowQuality) {
                             car.color = color;
                         }
