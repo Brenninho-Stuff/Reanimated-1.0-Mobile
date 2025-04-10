@@ -224,7 +224,7 @@ class PhillyStreets extends BaseStage
        // abot = new ABot(1100, 740);
 		//add(abot); 
         //Adding picoFade
-addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+		addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
 
         picoFade = new FlxSprite();
 		picoFade.antialiasing = ClientPrefs.data.antialiasing;

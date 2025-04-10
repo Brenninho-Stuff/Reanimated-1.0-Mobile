@@ -58,6 +58,7 @@ class GhostEffect extends FlxSprite
         var ghostSprite = new FlxSprite(character.x, character.y);
         
         ghostSprite.frames = character.frames;
+        ghostSprite.animation.add(character.animation.curAnim.name, character.animation.curAnim.frames, character.animation.curAnim.frameRate, character.animation.curAnim.looped);
         ghostSprite.scale.set(character.scale.x, character.scale.y);
         ghostSprite.flipX = character.flipX;
         ghostSprite.alpha = 1;
@@ -67,6 +68,8 @@ class GhostEffect extends FlxSprite
         ghostSprite.animation.frameName = ghostData.frameName;
         ghostSprite.offset.set(ghostData.offsetX, ghostData.offsetY);
         
+        ghostSprite.animation.play(character.animation.curAnim.name, true);
+
         // Apply the same shader as the character
         ghostSprite.shader = character.shader;
         

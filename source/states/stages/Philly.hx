@@ -156,8 +156,6 @@ class Philly extends BaseStage
 		}
 	}
 
-	var rainTimeScale:Float = 1.0;
-	var rainScaler:Float = 0.55;
 
 	override function update(elapsed:Float)
 	{

@@ -142,19 +142,59 @@ class MainMenuState extends MusicBeatState
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
-		for (num => option in optionShit)
-		{
-			var item:FlxSprite = createMenuItem(option, 110, (num * 120) + 50);
-			item.y += (4 - optionShit.length) * 70; // Offsets for when you have anything other than 4 items
-			//item.screenCenter(X);
-
-		}
+		for (i in 0...optionShit.length)
+			{
+				if (optionShit[i] == 'nothing') {continue;}
+				var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 140;
+				var menuItem:FlxSprite = new FlxSprite(0, (i * 140) + offset);
+				menuItem.antialiasing = ClientPrefs.data.antialiasing;
+				menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
+				menuItem.animation.addByPrefix('idle', optionShit[i] + " idle", 24);
+				menuItem.animation.addByPrefix('selected', optionShit[i] + " selected", 24);
+				menuItem.animation.play('idle');
+				menuItems.add(menuItem);
+				var scr:Float = (optionShit.length - 4) * 0.135;
+				if (optionShit.length < 6)
+					scr = 0;
+				menuItem.scrollFactor.set(0, scr);
+				menuItem.setGraphicSize(Std.int(menuItem.width * 1));
+				menuItem.updateHitbox();
+				//menuItem.screenCenter(X);
+			
+				switch (i)
+				{
+					case 0: 
+						//menuItem.x = 99.4;
+						menuItem.x -= 570;
+						menuItem.y = 4.95;
+						FlxTween.tween(menuItem, { x: menuItem.x + 570}, 0.7, {startDelay: 0.3 * i, ease: FlxEase.smoothStepOut});
+					case 1:
+						//menuItem.x = 100;
+						menuItem.x -= 670;
+						menuItem.y = 180;
+						FlxTween.tween(menuItem, { x: menuItem.x + 700}, 0.7, {startDelay: 0.3 * i, ease: FlxEase.smoothStepOut});
+					case 2:
+						//menuItem.x = 100;
+						menuItem.x -= 670;
+						menuItem.y = 370;
+						FlxTween.tween(menuItem, {x: menuItem.x + 700}, 0.7, {startDelay: 0.3 * i, ease: FlxEase.smoothStepOut});
+					case 3:
+						//menuItem.x = 100;
+						menuItem.x -= 670;
+						menuItem.y = 550;
+						FlxTween.tween(menuItem, {x: menuItem.x + 700}, 0.7, {startDelay: 0.3 * i, ease: FlxEase.smoothStepOut});
+				}
+			}
 
 		if (leftOption != null)
-			leftItem = createMenuItem(leftOption, 60, 540);
+			leftItem = createMenuItem(leftOption, 1560, 40);
+			FlxTween.tween(leftItem, {x: leftItem.x + -500}, 0.7, {startDelay: 0.3, ease: FlxEase.smoothStepOut});
+
 		if (rightOption != null)
 		{
-			rightItem = createMenuItem(rightOption, 350, 540);
+			rightItem = createMenuItem(rightOption, 1560, 220);
+			FlxTween.tween(rightItem, {x: rightItem.x + -500}, 0.7, {startDelay: 0.3, ease: FlxEase.smoothStepOut});
+
 		}
 
 		var rVer:FlxText = new FlxText(12, FlxG.height - 64, 0, "Reanimated " + fnfReaniV, 12);
@@ -216,12 +256,6 @@ class MainMenuState extends MusicBeatState
 
 		if (!selectedSomethin)
 		{
-			if (controls.UI_UP_P)
-				changeItem(-1);
-
-			if (controls.UI_DOWN_P)
-				changeItem(1);
-
 			var allowMouse:Bool = allowMouse;
 			if (allowMouse && ((FlxG.mouse.deltaScreenX != 0 && FlxG.mouse.deltaScreenY != 0) || FlxG.mouse.justPressed)) //FlxG.mouse.deltaScreenX/Y checks is more accurate than FlxG.mouse.justMoved
 			{
@@ -291,35 +325,6 @@ class MainMenuState extends MusicBeatState
 				if(timeNotMoving > 2) FlxG.mouse.visible = false;
 			}
 
-			switch(curColumn)
-			{
-				case CENTER:
-					if(controls.UI_LEFT_P && leftOption != null)
-					{
-						curColumn = LEFT;
-						changeItem();
-					}
-					else if(controls.UI_RIGHT_P && rightOption != null)
-					{
-						curColumn = RIGHT;
-						changeItem();
-					}
-
-				case LEFT:
-					if(controls.UI_RIGHT_P)
-					{
-						curColumn = CENTER;
-						changeItem();
-					}
-
-				case RIGHT:
-					if(controls.UI_LEFT_P)
-					{
-						curColumn = CENTER;
-						changeItem();
-					}
-			}
-
 			if (controls.BACK)
 			{
 				selectedSomethin = true;
@@ -328,11 +333,10 @@ class MainMenuState extends MusicBeatState
 				MusicBeatState.switchState(new TitleState());
 			}
 
-			if (controls.ACCEPT || (FlxG.mouse.justPressed && allowMouse))
+			if (FlxG.mouse.justPressed && allowMouse)
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				if (optionShit[curSelected] != 'donate')
-				
 				{
 					selectedSomethin = true;
 
@@ -342,11 +346,10 @@ class MainMenuState extends MusicBeatState
 
 					if (ClientPrefs.data.flashing)
 						FlxFlicker.flicker(magenta, 1.1, 0.15, false);
-				
 
 					var item:FlxSprite;
 					var option:String;
-					switch(curColumn)
+					switch (curColumn)
 					{
 						case CENTER:
 							option = optionShit[curSelected];
@@ -361,12 +364,30 @@ class MainMenuState extends MusicBeatState
 							item = rightItem;
 					}
 
-					FlxFlicker.flicker(item, 1, 0.06, false, false, function(flick:FlxFlicker)
+					FlxTween.tween(item, {
+						x: (FlxG.width - item.width) / 3.2,
+						y: (FlxG.height - item.height) / 2
+					}, 0.5, {ease: FlxEase.quadOut});
+
+					for (memb in menuItems.members)
+						{
+							if (memb != item)
+							{
+								FlxTween.tween(memb, {alpha: 0}, 0.4, {ease: FlxEase.quadOut});
+							}
+						}
+
+					FlxTween.tween(FlxG.camera, {zoom: 1.2}, 0.5, {
+						ease: FlxEase.quadOut,
+					});
+
+					FlxG.camera.fade(FlxColor.BLACK, 1.1, false, function() {
 					{
 						switch (option)
 						{
 							case 'story_mode':
 								MusicBeatState.switchState(new StoryMenuState());
+
 							case 'freeplay':
 								MusicBeatState.switchState(new FreeplayState());
 
@@ -392,11 +413,12 @@ class MainMenuState extends MusicBeatState
 									PlayState.stageUI = 'normal';
 								}
 						}
-					});
-					
+					}
+				});
+
 					for (memb in menuItems)
 					{
-						if(memb == item)
+						if (memb == item)
 							continue;
 
 						FlxTween.tween(memb, {alpha: 0}, 0.4, {ease: FlxEase.quadOut});

@@ -2383,6 +2383,7 @@ class PlayState extends MusicBeatState
 						boyfriend.heyTimer = 0.6;
 						gf.playAnim('cheer', true);
 						gf.specialAnim = true;
+						gf.heyTimer = 0.6;
 				
 						var thesound = "";
 						switch (boyfriend.curCharacter) {
@@ -2399,6 +2400,7 @@ class PlayState extends MusicBeatState
 						boyfriend.heyTimer = 0.6;
 						gf.playAnim('cheer', true);
 						gf.specialAnim = true;
+						gf.heyTimer = 0.6;
 				
 						var num = FlxG.random.int(1, 3);
 						var thesound = "";
