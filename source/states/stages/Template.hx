@@ -9,10 +9,6 @@ class Template extends BaseStage
 
 	override function create()
 	{
-		//ratingPos.set(0, 0); //This is useful when you want to move the ratings, numbers and the combo in a special place for the stage
-        //comboCountPos.set(0, 0);
-		//comboImage.set(0, 0);
-
 		// Spawn your stage sprites here.
 		// Characters are not ready yet on this function, so you can't add things above them yet.
 		// Use createPost() if that's what you want to do.

@@ -14,8 +14,8 @@ import options.ModSettingsSubState;
 
 import openfl.display.BitmapData;
 import lime.utils.Assets;
+import torchsthings.utils.WindowUtils;
 
-import torchsthings.utils.WindowTitleUtils;
 class ModsMenuState extends MusicBeatState
 {
 	var bg:FlxSprite;
@@ -56,8 +56,7 @@ class ModsMenuState extends MusicBeatState
 	}
 	override function create()
 	{
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Mods");
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Mods");
 
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
@@ -333,19 +332,20 @@ class ModsMenuState extends MusicBeatState
 
 			persistentUpdate = false;
 			FlxG.autoPause = ClientPrefs.data.autoPause;
-			FlxG.mouse.visible = false;
+			//FlxG.mouse.visible = false;
+			Cursor.hide();
 			return;
 		}
 
 		if(Math.abs(FlxG.mouse.deltaX) > 10 || Math.abs(FlxG.mouse.deltaY) > 10)
 		{
 			controls.controllerMode = false;
-			if(!FlxG.mouse.visible) FlxG.mouse.visible = true;
+			if(!FlxG.mouse.visible) /*FlxG.mouse.visible = true;*/ Cursor.show();
 		}
 		
 		if(controls.controllerMode != _lastControllerMode)
 		{
-			if(controls.controllerMode) FlxG.mouse.visible = false;
+			if(controls.controllerMode) /*FlxG.mouse.visible = false;*/ Cursor.hide();
 			_lastControllerMode = controls.controllerMode;
 		}
 
@@ -795,6 +795,11 @@ class ModsMenuState extends MusicBeatState
 		Mods.parseList();
 		Mods.loadTopMod();
 	}
+
+	override function closeSubState() {
+		super.closeSubState();
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Mods");
+	}
 }
 
 class ModItem extends FlxSpriteGroup
@@ -964,7 +969,7 @@ class MenuButton extends FlxSpriteGroup
 			return;
 		}
 
-		if(!ignoreCheck && !Controls.instance.controllerMode && FlxG.mouse.justMoved && FlxG.mouse.visible)
+		if(!ignoreCheck && !Controls.instance.controllerMode && (FlxG.mouse.justPressed || FlxG.mouse.justMoved) && FlxG.mouse.visible)
 			onFocus = FlxG.mouse.overlaps(this);
 
 		if(onFocus && onClick != null && FlxG.mouse.justPressed)

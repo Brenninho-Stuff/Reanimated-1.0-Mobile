@@ -18,10 +18,12 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import openfl.utils.Assets;
 import openfl.net.FileReference;
+/*
 #if debug
 import flixel.ui.FlxButton;
 import flixel.addons.ui.*;
 #end
+*/
 
 // To add these libraries below, just do "haxelib install torchsfunctions"
 import torchsfunctions.functions.KeyboardTools;
@@ -201,13 +203,13 @@ class CharacterMenu extends MusicBeatState{
     var offsets:FlxText;
     var testOffsets:Array<Int> = [0, 0];
     var curChar:FlxText;
-    var saveButton:FlxButton;
+    var saveButton:PsychUIButton;
     var bgColorText:FlxText;
     var backgroundColor:Array<Int> = [0, 0, 0];
     var bgColorR:PsychUINumericStepper;
     var bgColorG:PsychUINumericStepper;
     var bgColorB:PsychUINumericStepper;
-    var testColors:FlxButton;
+    var testColors:PsychUIButton;
     #end
 
     var charData:CharInfoData = {
@@ -344,7 +346,7 @@ class CharacterMenu extends MusicBeatState{
         curChar.setFormat('assets/fonts/vcr.ttf', 32, FlxColor.WHITE, RIGHT);
         add(curChar);
 
-        saveButton = new FlxButton(FlxG.width * 0.7, FlxG.height * 0.95, "Save Info", function() {
+        saveButton = new PsychUIButton(FlxG.width * 0.7, FlxG.height * 0.95, "Save Info", function() {
             saveCharInfo();
         });
         add(saveButton);
@@ -360,7 +362,7 @@ class CharacterMenu extends MusicBeatState{
         bgColorText = new FlxText(bgColorR.x, bgColorR.y - 18, 0, "Background R/G/B:");
         add(bgColorText);
 
-        testColors = new FlxButton(saveButton.x, saveButton.y - 20, "Test BG Colors", function() {
+        testColors = new PsychUIButton(saveButton.x, saveButton.y - 20, "Test BG Colors", function() {
             backgroundColor = [Math.round(bgColorR.value), Math.round(bgColorG.value), Math.round(bgColorB.value)];
             switch (selectedColumn) {
                 case 'enemy':
@@ -625,7 +627,10 @@ class CharacterMenu extends MusicBeatState{
                         locked = true;
                     }
                 }
-
+                if (ClientPrefs.data.loadLockedChars == false && locked) {
+                    removeChars.push(charArray[i]);
+                    continue;
+                }
                 var characterImage:Character = new Character(0, 0, charArray[i]);
                 characterImage.scale.set(charScale * characterImage.scale.x, charScale * characterImage.scale.y);
     
@@ -666,7 +671,10 @@ class CharacterMenu extends MusicBeatState{
                         locked = true;
                     }
                 }
-
+                if (ClientPrefs.data.loadLockedChars == false && locked) {
+                    removeChars.push(charArray[i]);
+                    continue;
+                }
                 var characterImage:Character = new Character(0, 0, charArray[i], true);
                 characterImage.scale.set(charScale * characterImage.scale.x, charScale * characterImage.scale.y);
 
@@ -701,7 +709,10 @@ class CharacterMenu extends MusicBeatState{
                         locked = true;
                     }
                 }
-
+                if (ClientPrefs.data.loadLockedChars == false && locked) {
+                    removeChars.push(charArray[i]);
+                    continue;
+                }
                 var characterImage:Character = new Character(0, 0, charArray[i]);
                 characterImage.scale.set(charScale * characterImage.scale.x, charScale * characterImage.scale.y);
     
@@ -948,7 +959,8 @@ class CharacterMenu extends MusicBeatState{
                 // I can't get it to hide all items sadly, so buttons and random black boxes from text fields stay - Torch
                 changeActive([bgColorR, bgColorG, bgColorB, saveButton, testColors], true);
                 changeAlpha([offsets, curChar, bgColorText, bgColorR, bgColorG, bgColorB, saveButton, saveButton.label, testColors, testColors.label], 1);
-                FlxG.mouse.visible = true;
+                //FlxG.mouse.visible = true;
+                Cursor.show();
                 disableUIKeys = true;
 
                 @:privateAccess
@@ -1103,7 +1115,8 @@ class CharacterMenu extends MusicBeatState{
             } else {
                 changeActive([bgColorR, bgColorG, bgColorB, saveButton, testColors], false);
                 changeAlpha([offsets, curChar, bgColorText, bgColorR, bgColorG, bgColorB, saveButton, saveButton.label, testColors, testColors.label], 0);
-                FlxG.mouse.visible = false;
+                //FlxG.mouse.visible = false;
+                Cursor.hide();
                 disableUIKeys = false;
 
                 @:privateAccess 

@@ -3,8 +3,9 @@ package options;
 import objects.Note;
 import objects.StrumNote;
 import objects.NoteSplash;
+import objects.Alphabet;
 import torchsthings.objects.StrumCover;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class VisualsSettingsSubState extends BaseOptionsMenu
 {
@@ -15,11 +16,10 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 	var noteY:Float = 90;
 	public function new()
 	{
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Visual Settings");
-
 		title = Language.getPhrase('visuals_menu', 'Visuals Settings');
 		rpcTitle = 'Visuals Settings Menu'; //for Discord Rich Presence
+
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Visual Settings");
 
 		// for note skins and splash skins
 		notes = new FlxTypedGroup<StrumNote>();
@@ -28,18 +28,14 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		for (i in 0...Note.colArray.length)
 		{
 			var note:StrumNote = new StrumNote(370 + (560 / Note.colArray.length) * i, -200, i, 0);
-			note.centerOffsets();
-			note.centerOrigin();
-			note.playAnim('static');
+			changeNoteSkin(note);
 			notes.add(note);
 			
-			var splash:NoteSplash = new NoteSplash();
-			splash.noteData = i;
-			splash.setPosition(note.x, noteY);
-			splash.loadSplash();
-			splash.visible = false;
-			splash.alpha = ClientPrefs.data.splashAlpha;
-			splash.animation.finishCallback = function(name:String) splash.visible = false;
+			var splash:NoteSplash = new NoteSplash(0, 0, NoteSplash.defaultNoteSplash + NoteSplash.getSplashSkinPostfix());
+			splash.inEditor = true;
+			splash.babyArrow = note;
+			splash.ID = i;
+			splash.kill();
 			splashes.add(splash);
 
 			var strum:StrumCover = new StrumCover(note);
@@ -117,7 +113,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			"Should characters override the default Note Skin and Colors?\nIf the character contains a noteskin or note colors\nthis will override them if enabled.",
 			'characterNoteColors',
 			STRING,
-			['Enabled', 'Opponent Only', 'Disabled']);
+			['Enabled', 'Opponent\nOnly', 'Disabled']);
 		addOption(option);
 
 		var healthSkins:Array<String> = Mods.mergeAllTextsNamed('images/healthbars/list.txt');
@@ -137,22 +133,10 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			healthSkins);
 		addOption(option);
 
-		var option:Option = new Option('Hide HUD',
-			'If checked, hides most HUD elements.',
-			'hideHud',
-			BOOL);
-		addOption(option);
-
 		var option:Option = new Option('Show Credits',
 			'Uncheck this if you dont want to see the credits on song start',
 			'showSongCredits',
 			'bool');
-		addOption(option);
-
-		var option:Option = new Option('Skip CountDown',
-		'if checked, skips the countdown in song start',
-		'skipCountdown',
-		'bool');
 		addOption(option);
 
 		var option:Option = new Option('Dynamic Cam. Move Amount',
@@ -195,10 +179,10 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		);
 		addOption(option);
 
-		var option:Option = new Option('Smooth health bar',
-			'If enabled makes health bar move more smoothly',
-			'vsliceSmoothBar',
-			'bool');
+		var option:Option = new Option('Hide HUD',
+			'If checked, hides most HUD elements.',
+			'hideHud',
+			BOOL);
 		addOption(option);
 		
 		var option:Option = new Option('Time Bar:',
@@ -348,16 +332,24 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 
 	function onChangeSplashSkin()
 	{
+		var skin:String = NoteSplash.defaultNoteSplash + NoteSplash.getSplashSkinPostfix();
 		for (splash in splashes)
-			splash.loadSplash();
+			splash.loadSplash(skin);
 
 		playNoteSplashes();
 	}
 
 	function playNoteSplashes()
 	{
+		var rand:Int = 0;
+		if (splashes.members[0] != null && splashes.members[0].maxAnims > 1) rand = FlxG.random.int(0, splashes.members[0].maxAnims - 1);
+
 		for (splash in splashes)
 		{
+			splash.revive();
+			splash.spawnSplashNote(0, 0, splash.ID, null, false);
+			if (splash.maxAnims > 1) splash.noteData = splash.noteData % Note.colArray.length + (rand * Note.colArray.length);
+
 			var anim:String = splash.playDefaultAnim();
 			splash.visible = true;
 			splash.alpha = ClientPrefs.data.splashAlpha;
@@ -365,14 +357,25 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			var conf = splash.config.animations.get(anim);
 			var offsets:Array<Float> = [0, 0];
 
-			if (conf != null)
+			var minFps:Int = 22;
+			var maxFps:Int = 26;
+			if (conf != null) {
 				offsets = conf.offsets;
+
+				minFps = conf.fps[0];
+				if (minFps < 0) minFps = 0;
+
+				maxFps = conf.fps[1];
+				if (maxFps < 0) maxFps = 0;
+			}
 
 			if (offsets != null)
 			{
-				splash.centerOffsets();
-				splash.offset.set(offsets[0], offsets[1]);
+				splash.offset.x += offsets[0];
+				splash.offset.y += offsets[1];
 			}
+
+			if (splash.animation.curAnim != null) splash.animation.curAnim.frameRate = FlxG.random.int(minFps, maxFps);
 		}
 	}
 
@@ -396,6 +399,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 	{
 		if(changedMusic && !OptionsState.onPlayState) FlxG.sound.playMusic(Paths.music('freakyMenu'), 1, true);
 		if (strumTime != null) strumTime.cancel();
+		Note.globalRgbShaders = [];
 		super.destroy();
 	}
 
@@ -406,4 +410,9 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			Main.fpsVar.visible = ClientPrefs.data.showFPS;
 	}
 	#end
+
+	override function closeSubState() {
+		super.closeSubState();
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Visual Settings");
+	}
 }

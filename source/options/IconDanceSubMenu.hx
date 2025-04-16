@@ -10,7 +10,8 @@ import flixel.tweens.FlxEase;
 import flixel.util.FlxTimer;
 import objects.Alphabet;
 import objects.HealthIcon;
-import objectsplus.IconsAnimator;
+import lawsthings.objects.IconsAnimator;
+import torchsthings.utils.WindowUtils;
 
 class IconDanceSubMenu extends MusicBeatSubstate
 {
@@ -35,6 +36,7 @@ class IconDanceSubMenu extends MusicBeatSubstate
 
     public function new(availableAnims:Array<String>, currentPrimary:Int, currentSecondary:Int, onConfirm:Void->Void)
     {
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Icon Dance Menu");
         super();
         this.availableAnims = availableAnims;
         primaryIndex = currentPrimary;
@@ -233,8 +235,9 @@ class IconDanceSubMenu extends MusicBeatSubstate
 	
 		if (attempts >= maxAttempts)
 		{
+			//FlxG.log.warn("No se encontró animación secundaria compatible.");
             FlxG.log.warn("No compatible secondary animation found.");
-        }
+		}
 	
 		secondaryText.text = "Secondary: " + secondaryAnim;
 	
@@ -242,7 +245,7 @@ class IconDanceSubMenu extends MusicBeatSubstate
 		{
 			//showConflictMessage("Conflicto detectado. Ajustando animación primaria.");
             showConflictMessage('Animation conflict detected. Adjusting primary animation.');
-    		primaryIndex = (primaryIndex + 1) % availableAnims.length;
+			primaryIndex = (primaryIndex + 1) % availableAnims.length;
 			primaryText.text = "Primary: " + availableAnims[primaryIndex];
 		}
 	}
@@ -303,10 +306,12 @@ class IconDanceSubMenu extends MusicBeatSubstate
         FlxTween.tween(instructions, {alpha: 0}, 0.5, {ease: FlxEase.quadIn, startDelay: 0.3, onComplete: function(t:FlxTween) {
             close();
         }});
+    
         /*
         var timer = new FlxTimer();
-        timer.start(0.6, function(timer:FlxTimer) {
+        timer.start(1, function(timer:FlxTimer) {
             close();
-        });*/
+        });
+        */
     }
 }

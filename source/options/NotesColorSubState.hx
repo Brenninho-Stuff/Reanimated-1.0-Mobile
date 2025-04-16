@@ -13,7 +13,8 @@ import objects.Note;
 import shaders.RGBPalette;
 import shaders.RGBPalette.RGBShaderReference;
 
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
+
 class NotesColorSubState extends MusicBeatSubstate
 {
 	var onModeColumn:Bool = true;
@@ -49,14 +50,13 @@ class NotesColorSubState extends MusicBeatSubstate
 	var tipTxt:FlxText;
 
 	public function new() {
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Note Colors");
-
 		super();
 		
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Note Colors Menu", null);
 		#end
+
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Note Colors Menu");
 		
 		onPixel = PlayState.isPixelStage;
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
@@ -168,7 +168,8 @@ class NotesColorSubState extends MusicBeatSubstate
 		controllerPointer.alpha = 0.6;
 		add(controllerPointer);
 		
-		FlxG.mouse.visible = !controls.controllerMode;
+		//FlxG.mouse.visible = !controls.controllerMode;
+		Cursor.toggle(!controls.controllerMode);
 		controllerPointer.visible = controls.controllerMode;
 		_lastControllerMode = controls.controllerMode;
 	}
@@ -189,7 +190,8 @@ class NotesColorSubState extends MusicBeatSubstate
 
 	override function update(elapsed:Float) {
 		if (controls.BACK) {
-			FlxG.mouse.visible = false;
+			//FlxG.mouse.visible = false;
+			Cursor.hide();
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			close();
 			return;
@@ -206,7 +208,8 @@ class NotesColorSubState extends MusicBeatSubstate
 		if(controls.controllerMode != _lastControllerMode)
 		{
 			//trace('changed controller mode');
-			FlxG.mouse.visible = !controls.controllerMode;
+			//FlxG.mouse.visible = !controls.controllerMode;
+			Cursor.toggle(!controls.controllerMode);
 			controllerPointer.visible = controls.controllerMode;
 
 			// changed to controller mid state
@@ -711,4 +714,9 @@ class NotesColorSubState extends MusicBeatSubstate
 	function setShaderColor(value:FlxColor) dataArray[curSelectedNote][curSelectedMode] = value;
 	function getShaderColor() return dataArray[curSelectedNote][curSelectedMode];
 	function getShader() return Note.globalRgbShaders[curSelectedNote];
+
+	override function destroy() {
+		Note.globalRgbShaders = [];
+		super.destroy();
+	}
 }

@@ -4,10 +4,10 @@ import backend.StageData;
 import objects.Character;
 import objects.Bar;
 import flixel.addons.display.shapes.FlxShapeCircle;
+import torchsthings.utils.WindowUtils;
 
 import states.stages.StageWeek1 as BackgroundStage;
 
-import torchsthings.utils.WindowTitleUtils;
 class NoteOffsetState extends MusicBeatState
 {
 	var stageDirectory:String = 'week1';
@@ -38,12 +38,10 @@ class NoteOffsetState extends MusicBeatState
 
 	override public function create()
 	{
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Delay/Combo Offset");
-
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Delay/Combo Offset Menu", null);
 		#end
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Delay/Combo Offset Menu");
 
 		// Cameras
 		camGame = initPsychCamera();
@@ -201,7 +199,8 @@ class NoteOffsetState extends MusicBeatState
 		if(controls.controllerMode != _lastControllerMode)
 		{
 			//trace('changed controller mode');
-			FlxG.mouse.visible = !controls.controllerMode;
+			//FlxG.mouse.visible = !controls.controllerMode;
+			Cursor.toggle(!controls.controllerMode);
 			controllerPointer.visible = controls.controllerMode;
 
 			// changed to controller mid state
@@ -418,7 +417,8 @@ class NoteOffsetState extends MusicBeatState
 					FlxG.sound.music.volume = 0;
 			}
 			else FlxG.sound.playMusic(Paths.music('freakyMenu'));
-			FlxG.mouse.visible = false;
+			//FlxG.mouse.visible = false;
+			Cursor.hide();
 		}
 
 		Conductor.songPosition = FlxG.sound.music.time;
@@ -528,10 +528,12 @@ class NoteOffsetState extends MusicBeatState
 		beatText.visible = !onComboMenu;
 
 		controllerPointer.visible = false;
-		FlxG.mouse.visible = false;
+		//FlxG.mouse.visible = false;
+		Cursor.hide();
 		if(onComboMenu)
 		{
-			FlxG.mouse.visible = !controls.controllerMode;
+			//FlxG.mouse.visible = !controls.controllerMode;
+			Cursor.toggle(!controls.controllerMode);
 			controllerPointer.visible = controls.controllerMode;
 		}
 

@@ -15,7 +15,7 @@ import substates.ResetScoreSubState;
 
 import backend.StageData;
 
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class StoryMenuState extends MusicBeatState
 {
@@ -47,9 +47,9 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Story Menu");
-		
+		WindowUtils.changeDefaultTitle(WindowUtils.DEFAULT_TITLE);
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Story Menu");
+
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
@@ -353,6 +353,12 @@ class StoryMenuState extends MusicBeatState
 			LoadingState.loadNextDirectory();
 			StageData.forceNextDirectory = directory;
 
+			@:privateAccess
+			if(PlayState._lastLoadedModDirectory != Mods.currentModDirectory)
+			{
+				trace('CHANGED MOD DIRECTORY, RELOADING STUFF');
+				Paths.freeGraphicsFromMemory();
+			}
 			LoadingState.prepareToSong();
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{

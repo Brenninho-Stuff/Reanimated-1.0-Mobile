@@ -7,11 +7,16 @@ import flixel.group.FlxGroup;
 
 import objects.Note;
 import objects.Character;
-import torchsthings.objects.ReflectedChar;
+import torchsthings.objects.effects.ReflectedChar;
 import states.stages.objects.ABotSpeaker;
 
-enum Countdown
-{
+/*
+import lime.utils.Assets;
+import torchsthings.objects.ImageBar;
+import torchsthings.objects.ImageBar.BarSettings;*/ 
+//This is used to add a custom healthbar for certain Stages 
+
+enum Countdown {
 	THREE;
 	TWO;
 	ONE;
@@ -19,8 +24,7 @@ enum Countdown
 	START;
 }
 
-enum NeneState
-{
+enum NeneState {
 	STATE_DEFAULT;
 	STATE_PRE_RAISE;
 	STATE_RAISE;
@@ -28,8 +32,7 @@ enum NeneState
 	STATE_LOWER;
 }
 
-class BaseStage extends FlxBasic
-{
+class BaseStage extends FlxBasic {
 	private var game(get, never):Dynamic;
 	public var onPlayState(get, never):Bool;
 
@@ -62,19 +65,14 @@ class BaseStage extends FlxBasic
 	public var defaultCamZoom(get, set):Float;
 	public var camFollow(get, never):FlxObject;
 
-	// ratings x and y poss
 	public var ratingPos:FlxPoint = new FlxPoint(0, 0);
 	public var comboCountPos:FlxPoint = new FlxPoint(0, 0);
-	public var comboImage:FlxPoint = new FlxPoint(0, 0);
-	public function new()
-	{
-		if(game == null)
-		{
+
+	public function new() {
+		if(game == null) {
 			FlxG.log.error('Invalid state for the stage added!');
 			destroy();
-		}
-		else 
-		{
+		} else {
 			game.stages.push(this);
 			super();
 			create();
@@ -87,7 +85,7 @@ class BaseStage extends FlxBasic
 	//public function update(elapsed:Float) {}
 	public function countdownTick(count:Countdown, num:Int) {}
 	public function startSong() {}
-	public function onEndSong() {} // Para hacer Funcionar la frecuencia del speaker de nene lol
+
 	// FNF steps, beats and sections
 	public var curBeat:Int = 0;
 	public var curDecBeat:Float = 0;
@@ -97,7 +95,7 @@ class BaseStage extends FlxBasic
 	public function beatHit() {}
 	public function stepHit() {}
 	public function sectionHit() {}
-	public function setAudioAndStart(isStart:Bool) {}
+
 	// Substate close/open, for pausing Tweens/Timers
 	public function closeSubState() {}
 	public function openSubState(SubState:FlxSubState) {}
@@ -118,15 +116,12 @@ class BaseStage extends FlxBasic
 	function remove(object:FlxBasic, splice:Bool = false) return FlxG.state.remove(object, splice);
 	function insert(position:Int, object:FlxBasic) return FlxG.state.insert(position, object);
 	
-	public function addBehindBlackSceen(obj:FlxBasic) return insert(members.indexOf(game.blackGroup), obj);
 	public function addBehindGF(obj:FlxBasic) return insert(members.indexOf(game.gfGroup), obj);
 	public function addBehindBF(obj:FlxBasic) return insert(members.indexOf(game.boyfriendGroup), obj);
 	public function addBehindDad(obj:FlxBasic) return insert(members.indexOf(game.dadGroup), obj);
-	public function setDefaultGF(name:String) //Fix for the Chart Editor on Base Game stages
-	{
+	public function setDefaultGF(name:String) { //Fix for the Chart Editor on Base Game stages
 		var gfVersion:String = PlayState.SONG.gfVersion;
-		if(gfVersion == null || gfVersion.length < 1)
-		{
+		if(gfVersion == null || gfVersion.length < 1) {
 			gfVersion = name;
 			PlayState.SONG.gfVersion = gfVersion;
 		}
@@ -136,13 +131,11 @@ class BaseStage extends FlxBasic
 		return game.variables.get(name);
 
 	//start/end callback functions
-	public function setStartCallback(myfn:Void->Void)
-	{
+	public function setStartCallback(myfn:Void->Void) {
 		if(!onPlayState) return;
 		PlayState.instance.startCallback = myfn;
 	}
-	public function setEndCallback(myfn:Void->Void)
-	{
+	public function setEndCallback(myfn:Void->Void) {
 		if(!onPlayState) return;
 		PlayState.instance.endCallback = myfn;
 	}
@@ -157,14 +150,12 @@ class BaseStage extends FlxBasic
 	inline private function get_isStoryMode() return PlayState.isStoryMode;
 	inline private function get_seenCutscene() return PlayState.seenCutscene;
 	inline private function get_inCutscene() return game.inCutscene;
-	inline private function set_inCutscene(value:Bool)
-	{
+	inline private function set_inCutscene(value:Bool) {
 		game.inCutscene = value;
 		return value;
 	}
 	inline private function get_canPause() return game.canPause;
-	inline private function set_canPause(value:Bool)
-	{
+	inline private function set_canPause(value:Bool) {
 		game.canPause = value;
 		return value;
 	}
@@ -181,8 +172,7 @@ class BaseStage extends FlxBasic
 	inline private function get_dadGroup():FlxSpriteGroup return game.dadGroup;
 	inline private function get_gfGroup():FlxSpriteGroup return game.gfGroup;
 
-	inline private function get_unspawnNotes():Array<Note>
-	{
+	inline private function get_unspawnNotes():Array<Note> {
 		return cast game.unspawnNotes;
 	}
 	
@@ -191,8 +181,7 @@ class BaseStage extends FlxBasic
 	inline private function get_camOther():FlxCamera return game.camOther;
 
 	inline private function get_defaultCamZoom():Float return game.defaultCamZoom;
-	inline private function set_defaultCamZoom(value:Float):Float
-	{
+	inline private function set_defaultCamZoom(value:Float):Float {
 		game.defaultCamZoom = value;
 		return game.defaultCamZoom;
 	}
@@ -209,6 +198,24 @@ class BaseStage extends FlxBasic
 	function randomWeekSound(name:String, min:Int, max:Int, ?modsAllowed:Bool = true) {
 		return Paths.soundRandom(name, min, max, '', true, modsAllowed);
 	}
+
+	function changeComboGroupCamera(mode:CameraMode) { // Needs to be in createPost(), does not work in create() function
+		switch (mode) {
+			case Base:
+				PlayState.instance.comboGroup.cameras = [camGame];
+			case Other:
+				PlayState.instance.comboGroup.cameras = [camOther];
+			case Hud:
+				PlayState.instance.comboGroup.cameras = [camHUD];
+			default:
+				changeComboGroupCamera(Base);
+		}
+	}
+
+	/*var settings:BarSettings = haxe.Json.parse(Assets.getText(Paths.json("healthbars/5peso", "shared").replace("data", "images")));
+	PlayState.healthBarSettings = settings; // These 2 lines are to verify which healthbar you want to add
+
+	PlayState.instance.iconP2.visible = false;*/ //and this one in case you want to deactivate the icons or just the opponent's, It has to be in "createPost"
 
 	// Abot stuff
 	var abot:ABotSpeaker;
@@ -231,6 +238,8 @@ class BaseStage extends FlxBasic
 			updateABotEye(true);
 			add(abot);
 		}
+	//Example;
+	//addAbot(0, 0, 1, 1);
 	}
 	
 	// Small changes after abot is made.
@@ -270,7 +279,6 @@ class BaseStage extends FlxBasic
 			if(finishInstantly) abot.eyes.anim.curFrame = abot.eyes.anim.length - 1;
 		}
 	}
-
 	// Put this in startSong 
 	/*
 	override function startSong() {
@@ -281,7 +289,6 @@ class BaseStage extends FlxBasic
 		if (abot != null) abot.snd = FlxG.sound.music;
 		gf.animation.finishCallback = onNeneAnimationFinished;
 	}
-
 	// Put this in update
 	/*
 	override function update(elapsed:Float) {
@@ -292,7 +299,6 @@ class BaseStage extends FlxBasic
 		animationFinished = gf.isAnimationFinished();
 		transitionState();
 	}
-
 	// Put this in beatHit
 	/*
 	override function beatHit() {
@@ -307,28 +313,23 @@ class BaseStage extends FlxBasic
 					blinkCountdown = FlxG.random.int(MIN_BLINK_DELAY, MAX_BLINK_DELAY);
 				}
 				else blinkCountdown--;
-
 			default:
 				// In other states, don't interrupt the existing animation.
 		}
 	}
-
 	var currentNeneState:NeneState = STATE_DEFAULT;
 	function onNeneAnimationFinished(name:String) {
 		if(!game.startedCountdown) return;
-
 		switch(currentNeneState) {
 			case STATE_RAISE, STATE_LOWER:
 				if (name == 'raiseKnife' || name == 'lowerKnife') {
 					animationFinished = true;
 					transitionState();
 				}
-
 			default:
 				// Ignore.
 		}
 	}
-
 	function transitionState() {
 		switch (currentNeneState) {
 			case STATE_DEFAULT:
@@ -336,7 +337,6 @@ class BaseStage extends FlxBasic
 					currentNeneState = STATE_PRE_RAISE;
 					gf.skipDance = true;
 				}
-
 			case STATE_PRE_RAISE:
 				if (game.health > VULTURE_THRESHOLD) {
 					currentNeneState = STATE_DEFAULT;
@@ -348,19 +348,16 @@ class BaseStage extends FlxBasic
 					gf.danced = true;
 					animationFinished = false;
 				}
-
 			case STATE_RAISE:
 				if (animationFinished) {
 					currentNeneState = STATE_READY;
 					animationFinished = false;
 				}
-
 			case STATE_READY:
 				if (game.health > VULTURE_THRESHOLD) {
 					currentNeneState = STATE_LOWER;
 					gf.playAnim('lowerKnife');
 				}
-
 			case STATE_LOWER:
 				if (animationFinished) {
 					currentNeneState = STATE_DEFAULT;
@@ -369,4 +366,10 @@ class BaseStage extends FlxBasic
 				}
 		}
 	}
+}
+
+enum CameraMode {
+	Hud;
+	Other;
+	Base;
 }

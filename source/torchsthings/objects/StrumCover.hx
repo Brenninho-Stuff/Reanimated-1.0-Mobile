@@ -10,8 +10,7 @@ import flixel.system.FlxAssets.FlxShader;
 import openfl.utils.Assets;
 
 using StringTools;
-// Hehe, just testing Jorge's Webhook for his server
-// lol :V
+
 class StrumCover extends FlxSprite {
 	public static var defaultCoverSkin(default, never):String = 'strumCovers/NOTE_covers';
     public static var defaultLibrary(default, never):String = 'shared';
@@ -19,14 +18,12 @@ class StrumCover extends FlxSprite {
     public var strumNote:StrumNote;
     var posOffset:Array<Int> = [-25, -5];
     var animOffsets:Array<Array<Int>> = [/*start*/[20, 15], /*hold*/[-25, -5], /*end*/[-65, -40]]; // Please note that the "start" offset is kind of useless if you have a 1 frame animation
-	//public var rgbShader:RGBPalette;
-    //public var pixelShader:PixelSplashShaderRef;
     public var rgbShader:PixelSplashShaderRef;
     var assets:String = '';
     public var showSplash:Bool = false;
     public var enemySplash:Bool = false;
     var ratingsToShowUpOn:Array<String> = ['sick'];
-    public var minSustainLength:Float = 125.0; // Just change this to be whatever you want in case you don't want the splashes to show up too soon or too late
+    public var minSustainLength:Float = 100.0; // Just change this to be whatever you want in case you don't want the splashes to show up too soon or too late
 
     public function new(refNote:StrumNote, ?texture:String = 'strumCovers/NOTE_covers', ?library:String = 'shared') {
         super(0, 0);
@@ -72,8 +69,6 @@ class StrumCover extends FlxSprite {
         super.update(elapsed);
     }
 
-    //var isAltNote:Bool = false;
-
     function getRatingFromNote(note:Note):String {
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.data.ratingOffset);
 		var daRating:Rating = Conductor.judgeNote(PlayState.instance.ratingsData, noteDiff / PlayState.instance.playbackRate);
@@ -95,7 +90,6 @@ class StrumCover extends FlxSprite {
     }
 
     public var endAnimAlreadyPlayed:Bool = false;
-
 
     public function end(?force:Bool) {
         if (force != null) visible = force; else visible = showSplash;
@@ -123,8 +117,8 @@ class StrumCover extends FlxSprite {
         switch (anim) {
             case "confirm":
                 if(!endAnimAlreadyPlayed) end();
-            }
         }
+    }
 
     public static function getStrumSkinPostfix() {
         var skin:String = '';
@@ -148,13 +142,12 @@ class StrumCover extends FlxSprite {
         assets = texture + skinPostFix;
 
         frames = Paths.getSparrowAtlas(texture + skinPostFix, library);
-        antialiasing = ClientPrefs.data.antialiasing;
         animation.addByPrefix('start', colArray[strumNote.noteData] + "CoverStart0", 24, false);
         animation.addByPrefix('hold', colArray[strumNote.noteData] + "Cover0", 24, true);
         animation.addByPrefix('end', colArray[strumNote.noteData] + "CoverEnd0", 24, false);
-
         animation.finishCallback = daCallback;
         if (strumNote != null) strumNote.animation.finishCallback = strumFinishCallback;
+        antialiasing = ClientPrefs.data.antialiasing;
         animation.play("end");
 
         if(lastAnim != null) {animation.play(lastAnim, true);}

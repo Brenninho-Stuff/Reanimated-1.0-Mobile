@@ -1,4 +1,4 @@
-This text file is just a way to keep things in order of what was updated or added.
+This text file is just a way to keep things in order of what was updated or added. Side note... I may not keep them in order on accident... sorry.
 
 Imported my Haxe library (torchfunctions)
 Imported the vanilla FNF soundtray to the game
@@ -19,3 +19,44 @@ Added "changeRGB" function to RGBPalette.hx's RGBShaderReference class to avoid 
 Reflected Character object added to BaseStage.hx
 Added Strum Skin selection in Visual options
 Custom healthbar Client Pref
+Fixed strum covers staying longer than they should be on short sustains
+Added Alt Note Color Support for Notes, Strum Notes, Note Splashes, and Strum Covers
+Added event for strum covers and note splashes for opponent
+Added custom note skin and texture library support for character based note skins and colors
+IN DEV - Cursor that changes based on what it is overlapping
+Ability to change the Camera and Position of Rating and Combo count
+Added ability to use ABot, or Nene's Speaker, on any stage
+Made Blazin Middlescroll
+Added Wobbly Notes as an event
+Reflected Char has Atlas character support now, meaning it can work on spritemaps now instead of just spritesheets
+Added ability to mess with the window's title and color (Windows 10 and Windows 11 only I think)
+Added a custom note type for a ghost effect
+Added Cinematic Bars Event
+Added ability on Healthbar to have it smoothly move instead of an immediate jump when gaining or losing health
+Added ability to use Winning Icons on characters
+From JorgeX_YT from Reanimated - Added Credits to the intros of songs (It's a toggle). I won't be adding the default ones as I personally don't know who the song artists are nor do I know the charters.
+BIG UPDATE - UPDATED TO FLXANIMATE 4.0.0 FOR BETTER COMPATIBILITY WITH FLXANIMATE OBJECTS, example being shaders
+Made ABot actually able to use shaders
+Fixed Custom Character Note RGB from editing the colors of Custom Notes like the Hurt Note.
+Completely Revamped ImageBar for better customizabity as well as being able to edit everything through a json instead of hard coding it.
+Made the ABot speaker's visualizer update with current volume level
+Ghost Effect has an alt note variant
+Ghost Effect will use scaling method if slideDistance is set to 0
+Ghost Effect values can be changed via an event
+ImageBar can now be lerped if the "healthLerp" variable is set to true in it
+Custom Window Titles added to multiple states... I still have more to do lol
+CUSTOM NOTES FOR CHARACTERS ACTUALLY HAS MOD SUPPORT LESSSSSS GO.... I changed how "Paths.getSparrowAtlas" works a small bit, not a major change to its functionality really. "Reload Notes" may break after 2-3 times of changing the image, but a quick reload into the state fixes it.
+Added color bars to the Note Colors tab in the Character Editor (This change was present... I just forgot to record it here...)
+
+EVERYTHING BEFORE THIS WAS ON PSYCH 1.0 ENGINE, AFTER THIS LINE IS STUFF I HAVE ADDED SINCE I UPDATED MY ENGINE TO PSYCH 1.0.1
+Updated a lot of titles for several menus
+Added Icon Dancing - Lawornot
+Fixed a crash with icon dancing
+^^^ RELEASE 0.1.0 ^^^
+
+UPDATE TO PSYCH 1.0.2
+Fix Tankman cutscene messing up camera afterwards
+UPDATE TO PSYCH 1.0.2h
+UPDATE TO PSYCH 1.0.3
+UPDATE TO PSYCH 1.0.4.... FINALLY UP TO DATE lol, any future updates will be mine or other peoples additions... which I really hope that other people in the community will help out
+Fixed strum notes ending early on Left, Down, and Right note in pixel mode... firstly, never realized that, secondly, why was only Up setup correctly for that?

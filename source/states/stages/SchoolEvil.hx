@@ -5,24 +5,15 @@ import states.stages.objects.*;
 import substates.GameOverSubstate;
 import cutscenes.DialogueBox;
 import openfl.utils.Assets as OpenFlAssets;
-import torchsthings.shaders.*;
-import torchsfunctions.functions.ShaderUtils;
-import openfl.filters.ShaderFilter;
 
 class SchoolEvil extends BaseStage
 {
-	var crt:CRT = new CRT(true);
-	var shaderFilter:ShaderFilter;
 	override function create()
 	{
-		ratingPos.set(500, 600);
-        comboCountPos.set(400, 750);
-		comboImage.set( 0, 750);
-
 		var _song = PlayState.SONG;
-		if(_song.gameOverSound == null || _song.gameOverSound.trim().length < 1) GameOverSubstate.deathSoundName = 'pixel/fnf_loss_sfx-pixel';
-		if(_song.gameOverLoop == null || _song.gameOverLoop.trim().length < 1) GameOverSubstate.loopSoundName = 'pixel/gameOver-pixel';
-		if(_song.gameOverEnd == null || _song.gameOverEnd.trim().length < 1) GameOverSubstate.endSoundName = 'pixel/gameOverEnd-pixel';
+		if(_song.gameOverSound == null || _song.gameOverSound.trim().length < 1) GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
+		if(_song.gameOverLoop == null || _song.gameOverLoop.trim().length < 1) GameOverSubstate.loopSoundName = 'gameOver-pixel';
+		if(_song.gameOverEnd == null || _song.gameOverEnd.trim().length < 1) GameOverSubstate.endSoundName = 'gameOverEnd-pixel';
 		if(_song.gameOverChar == null || _song.gameOverChar.trim().length < 1) GameOverSubstate.characterName = 'bf-pixel-dead';
 		
 		var posX = 400;
@@ -35,7 +26,6 @@ class SchoolEvil extends BaseStage
 			bg = new BGSprite('weeb/animatedEvilSchool_low', posX, posY, 0.8, 0.9);
 
 		bg.scale.set(PlayState.daPixelZoom, PlayState.daPixelZoom);
-		bg.setGraphicSize(Std.int(9 * bg.width));
 		bg.antialiasing = false;
 		add(bg);
 		setDefaultGF('gf-pixel');
@@ -48,15 +38,8 @@ class SchoolEvil extends BaseStage
 			setStartCallback(schoolIntro);
 		}
 	}
-
-	override function update(elapsed:Float) {
-		crt.update(elapsed);
-	}
-
 	override function createPost()
 	{
-		shaderFilter = new ShaderFilter(crt);
-		ShaderUtils.applyFiltersToCams([camGame, camHUD, camOther], [shaderFilter]);
 		var trail:FlxTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 		addBehindDad(trail);
 	}
@@ -83,7 +66,7 @@ class SchoolEvil extends BaseStage
 			case "Trigger BG Ghouls":
 				if(!ClientPrefs.data.lowQuality)
 				{
-					bgGhouls = new BGSprite('weeb/bgGhouls', -800, 290, ['BG freaks glitch instance'], false);
+					bgGhouls = new BGSprite('weeb/bgGhouls', -100, 190, 0.9, 0.9, ['BG freaks glitch instance'], false);
 					bgGhouls.setGraphicSize(Std.int(bgGhouls.width * PlayState.daPixelZoom));
 					bgGhouls.updateHitbox();
 					bgGhouls.visible = false;
@@ -132,7 +115,7 @@ class SchoolEvil extends BaseStage
 	function schoolIntro():Void
 	{
 		inCutscene = true;
-		var red:FlxSprite = new FlxSprite(-300, -600).makeGraphic(FlxG.width * 10, FlxG.height * 10, 0xFFff1b31);
+		var red:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFFff1b31);
 		red.scrollFactor.set();
 		add(red);
 

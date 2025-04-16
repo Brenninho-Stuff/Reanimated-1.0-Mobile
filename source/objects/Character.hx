@@ -79,12 +79,6 @@ class Character extends FlxSprite
 
 	public var holdTimer:Float = 0;
 	public var heyTimer:Float = 0;
-	//para el count lol
-	public var threeTimer:Float = 0;
-	public var twoTimer:Float = 0;
-	public var oneTimer:Float = 0;
-	public var goTimer:Float = 0;
-
 	public var specialAnim:Bool = false;
 	public var animationNotes:Array<Dynamic> = [];
 	public var stunned:Bool = false;
@@ -122,6 +116,7 @@ class Character extends FlxSprite
 		up: [0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
 		right: [0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
 	}; // This needed a default value
+	
 	public var altNoteColors:NoteColors = {
 		left: [0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
 		down: [0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
@@ -155,7 +150,7 @@ class Character extends FlxSprite
 			case 'pico-speaker':
 				skipDance = true;
 				loadMappedAnims();
-				playAnim("shoot4");
+				playAnim("shoot1");
 			case 'pico-blazin', 'darnell-blazin':
 				skipDance = true;
 		}

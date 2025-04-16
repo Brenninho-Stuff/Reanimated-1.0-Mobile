@@ -1,10 +1,9 @@
 package objects;
 
-import openfl.display.BlendMode;
 class BGSprite extends FlxSprite
 {
 	private var idleAnim:String;
-	public function new(image:String, x:Float = 0, y:Float = 0, ?scrollX:Float = 1, ?scrollY:Float = 1, ?animArray:Array<String> = null, ?loop:Bool = false, ?blend:String = null) {
+	public function new(image:String, x:Float = 0, y:Float = 0, ?scrollX:Float = 1, ?scrollY:Float = 1, ?animArray:Array<String> = null, ?loop:Bool = false) {
 		super(x, y);
 
 		if (animArray != null) {
@@ -22,10 +21,6 @@ class BGSprite extends FlxSprite
 				loadGraphic(Paths.image(image));
 			}
 			active = false;
-		}
-		if (blend != null)
-		{
-			this.blend = blend;
 		}
 		scrollFactor.set(scrollX, scrollY);
 		antialiasing = ClientPrefs.data.antialiasing;

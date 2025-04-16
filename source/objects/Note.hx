@@ -25,6 +25,9 @@ typedef NoteSplashData = {
 	useGlobalShader:Bool, //breaks r/g/b but makes it copy default colors for your custom note
 	useRGBShader:Bool,
 	antialiasing:Bool,
+	r:FlxColor,
+	g:FlxColor,
+	b:FlxColor,
 	a:Float
 }
 
@@ -40,15 +43,12 @@ class Note extends FlxSprite
 	public static final defaultNoteTypes:Array<String> = [
 		'', //Always leave this one empty pls
 		'Alt Animation',
-		'Beat Animation',
-		'Shit Animation',
 		'Hey!',
 		'Hurt Note',
 		'GF Sing',
-		"Duo Sing",
 		'No Animation',
-		"Shoot Note",
-		'Dodge Tankman'
+		'Ghost Effect',
+		'Ghost Effect Alt'
 	];
 
 	public var extraData:Map<String, Dynamic> = new Map<String, Dynamic>();
@@ -106,6 +106,9 @@ class Note extends FlxSprite
 		antialiasing: !PlayState.isPixelStage,
 		useGlobalShader: false,
 		useRGBShader: (PlayState.SONG != null) ? !(PlayState.SONG.disableNoteRGB == true) : true,
+		r: -1,
+		g: -1,
+		b: -1,
 		a: ClientPrefs.data.splashAlpha
 	};
 
@@ -192,7 +195,7 @@ class Note extends FlxSprite
 	public var noCharShader:Bool = false;
 
 	private function set_noteType(value:String):String {
-		noteSplashData.texture = PlayState.SONG != null ? PlayState.SONG.splashSkin : 'noteSplashes';
+		noteSplashData.texture = PlayState.SONG != null ? PlayState.SONG.splashSkin : 'noteSplashes/noteSplashes';
 		defaultRGB();
 
 		if(noteData > -1 && noteType != value) {
@@ -209,9 +212,9 @@ class Note extends FlxSprite
 					rgbShader.b = 0xFF990022;
 
 					// splash data and colors
-					//noteSplashData.r = 0xFFFF0000;
-					//noteSplashData.g = 0xFF101010;
-					noteSplashData.texture = 'noteSplashes-electric';
+					noteSplashData.r = 0xFFFF0000;
+					noteSplashData.g = 0xFF101010;
+					noteSplashData.texture = 'noteSplashes/noteSplashes-electric';
 
 					// gameplay data
 					lowPriority = true;
@@ -220,28 +223,13 @@ class Note extends FlxSprite
 					hitsound = 'cancelMenu';
 					hitsoundChartEditor = false;
 					noCharShader = true;
-				case 'Alt Animation':
+				case 'Alt Animation' | 'Ghost Effect Alt':
 					animSuffix = '-alt';
-				case 'Beat Animation':
-					animSuffix = '-beat';
-				case 'Shit Animation':
-					animSuffix = '-shit';
 				case 'No Animation':
 					noAnimation = true;
 					noMissAnimation = true;
 				case 'GF Sing':
 					gfNote = true;
-				case 'Shoot Note':
-					lowPriority = true;
-					//notefolder = 'shared';
-					reloadNote('DEATHNOTE_assets');
-					rgbShader.enabled = false;
-					noMissAnimation = true;
-					//noteSplashData.r = 0xFF162C5A;
-					//noteSplashData.g = 0xFFDFB601;
-					noteSplashData.texture = 'noteSplashes/noteSplashes';
-					noCharShader = true;
-
 			}
 			if (value != null && value.length > 1) NoteTypesConfig.applyNoteTypeData(this, value);
 			if (hitsound != 'hitsound' && hitsoundVolume > 0) Paths.sound(hitsound); //precache new sound for being idiot-proof
@@ -249,11 +237,10 @@ class Note extends FlxSprite
 		}
 		return value;
 	}
-
 	public static var keepSkin:Array<String> = [
 		'Shoot Note'
 	];
-
+	
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false, ?createdFrom:Dynamic = null)
 	{
 		super();

@@ -17,8 +17,6 @@ import objects.MenuItem;
 import states.editors.MasterEditorMenu;
 import states.editors.content.Prompt;
 
-import torchsthings.utils.WindowTitleUtils;
-
 class WeekEditorState extends MusicBeatState implements PsychUIEventHandler.PsychUIEvent
 {
 	var txtWeekTitle:FlxText;
@@ -41,9 +39,6 @@ class WeekEditorState extends MusicBeatState implements PsychUIEventHandler.Psyc
 	}
 
 	override function create() {
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Week Editor");
-
 		txtWeekTitle = new FlxText(FlxG.width * 0.7, 10, 0, "", 32);
 		txtWeekTitle.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, RIGHT);
 		txtWeekTitle.alpha = 0.7;
@@ -102,7 +97,8 @@ class WeekEditorState extends MusicBeatState implements PsychUIEventHandler.Psyc
 		addEditorBox();
 		reloadAllShit();
 
-		FlxG.mouse.visible = true;
+		//FlxG.mouse.visible = true;
+		Cursor.show();
 
 		super.create();
 	}

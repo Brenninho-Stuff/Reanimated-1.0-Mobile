@@ -7,12 +7,10 @@ import flixel.FlxObject;
 import flixel.FlxSubState;
 import flixel.math.FlxPoint;
 
-import objects.Note;
 import states.StoryMenuState;
 import states.FreeplayState;
-import objects.StrumNote;
 
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class GameOverSubstate extends MusicBeatSubstate
 {
@@ -30,7 +28,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	public static var instance:GameOverSubstate;
 	public function new(?playStateBoyfriend:Character = null)
 	{
-		WindowTitleUtils.changeTitle(WindowTitleUtils.getCurrentTitle() + ' - GAME OVER!!!');
+		WindowUtils.changeTitle(WindowUtils.getCurrentTitle() + ' - GAME OVER!!!');
 
 		if(playStateBoyfriend != null && playStateBoyfriend.curCharacter == characterName) //Avoids spawning a second boyfriend cuz animate atlas is laggy
 		{
@@ -63,30 +61,26 @@ class GameOverSubstate extends MusicBeatSubstate
 	var overlayConfirmOffsets:FlxPoint = FlxPoint.get();
 	override function create()
 	{
-		var offsetX:Float = 0;
-		var offsetY:Float = 0;
 		instance = this;
 
-		var bg:FlxSprite = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
-		bg.scale.set(FlxG.width * 10, FlxG.height * 10);
-		bg.updateHitbox();
-		bg.screenCenter();
-		bg.alpha = 0;
-		bg.scrollFactor.set();
-		add(bg);
-		PlayState.instance.camHUD.visible = false;
-
 		Conductor.songPosition = 0;
+
+		var playBF:String = PlayState.instance.boyfriend.curCharacter;
+		#if MODS_ALLOWED
+		if (FileSystem.exists(Paths.getPath('characters/$playBF-dead.json', TEXT, null, true)))
+		#else
+		if (Assets.exists(Paths.getPath('characters/$playBF-dead.json', TEXT, null, true)))
+		#end
+		{characterName = playBF + '-dead';}
 
 		if(boyfriend == null)
 		{
 			boyfriend = new Character(PlayState.instance.boyfriend.getScreenPosition().x, PlayState.instance.boyfriend.getScreenPosition().y, characterName, true);
-			boyfriend.x = PlayState.instance.boyfriend.x + offsetX;
-			boyfriend.y = PlayState.instance.boyfriend.y + offsetY;
+			boyfriend.x += boyfriend.positionArray[0] - PlayState.instance.boyfriend.positionArray[0];
+			boyfriend.y += boyfriend.positionArray[1] - PlayState.instance.boyfriend.positionArray[1];
 		}
 		boyfriend.skipDance = true;
 		add(boyfriend);
-		PlayState.instance.boyfriend.visible = false;
 
 		FlxG.sound.play(Paths.sound(deathSoundName));
 		FlxG.camera.scroll.set();
@@ -99,9 +93,6 @@ class GameOverSubstate extends MusicBeatSubstate
 		FlxG.camera.focusOn(new FlxPoint(FlxG.camera.scroll.x + (FlxG.camera.width / 2), FlxG.camera.scroll.y + (FlxG.camera.height / 2)));
 		FlxG.camera.follow(camFollow, LOCKON, 0.01);
 		add(camFollow);
-
-		FlxTween.tween(FlxG.camera, {zoom: 1}, 0.5, {ease: FlxEase.circInOut});
-		FlxTween.tween(bg, {alpha: 0.5}, 0.4, {ease: FlxEase.linear});
 		
 		PlayState.instance.setOnScripts('inGameOver', true);
 		PlayState.instance.callOnScripts('onGameOverStart', []);
@@ -205,7 +196,7 @@ class GameOverSubstate extends MusicBeatSubstate
 						var exclude:Array<Int> = [];
 						//if(!ClientPrefs.cursing) exclude = [1, 3, 8, 13, 17, 21];
 	
-						FlxG.sound.play(Paths.sound('jeffGameover/jeffGameover-' + FlxG.random.int(1, 25, exclude)), 1, false, null, true, function() {
+						FlxG.sound.play(Paths.sound('jeffGameover/jeffGameover-' + FlxG.random.int(1, 25, exclude), '', true), 1, false, null, true, function() {
 							if(!isEnding)
 							{
 								FlxG.sound.music.fadeIn(0.2, 1, 4);

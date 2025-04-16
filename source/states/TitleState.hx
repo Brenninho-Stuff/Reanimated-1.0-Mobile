@@ -15,14 +15,10 @@ import openfl.display.BitmapData;
 
 import shaders.ColorSwap;
 
-import torchsthings.utils.WindowTitleUtils as TitleUtil;
-import torchsthings.utils.ColorUtil;
-
 import states.StoryMenuState;
-import states.OutdatedState;
 import states.MainMenuState;
 
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 typedef TitleData =
 {
@@ -70,28 +66,10 @@ class TitleState extends MusicBeatState
 	var easterEggKeysBuffer:String = '';
 	#end
 
-	var mustUpdate:Bool = false;
-
-	public static var updateVersion:String = '';
-	
-	var titleJSON:TitleData;
-
-	var randomGfs:Array<String> = [
-		'gfDanceTitle',
-		'z3mp', 
-		'iandee', 
-		'gfJeyzel',
-		'Nene'
-	];
-	var randomGfInt:Int;
-
 	override public function create():Void
 	{
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle);
+		WindowUtils.changeTitle(WindowUtils.DEFAULT_TITLE);
 
-		TitleUtil.setDarkMode();
-		TitleUtil.setWindowBorderColor(ColorUtil.getIntArray(FlxColor.BLACK));
-		
 		Paths.clearStoredMemory();
 		super.create();
 		Paths.clearUnusedMemory();
@@ -103,34 +81,6 @@ class TitleState extends MusicBeatState
 		}
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
-
-		#if CHECK_FOR_UPDATES
-		if(ClientPrefs.data.checkForUpdates && !closedState) {
-			trace('checking for update');
-			var http = new haxe.Http("https://raw.githubusercontent.com/ShadowMario/FNF-PsychEngine/main/gitVersion.txt");
-
-			http.onData = function (data:String)
-			{
-				updateVersion = data.split('\n')[0].trim();
-				var curVersion:String = MainMenuState.psychEngineVersion.trim();
-				trace('version online: ' + updateVersion + ', your version: ' + curVersion);
-				if(updateVersion != curVersion) {
-					trace('versions arent matching!');
-					mustUpdate = true;
-				}
-			}
-
-			http.onError = function (error) {
-				trace('error: $error');
-			}
-
-			http.request();
-		}
-		#end
-
-		randomGfInt = FlxG.random.int(0, randomGfs.length - 1);
-
-		titleJSON = findTitleJson('images/GFs/' + randomGfs[randomGfInt]);
 
 		if(!initialized)
 		{
@@ -148,7 +98,14 @@ class TitleState extends MusicBeatState
 			StoryMenuState.weekCompleted = FlxG.save.data.weekCompleted;
 		}
 
-		FlxG.mouse.visible = false;
+		/*
+		var bgSprite:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(1, 1, 1, 1));
+		bgSprite.scrollFactor.set();
+		add(bgSprite);
+		*/
+
+		//FlxG.mouse.visible = false;
+		Cursor.hide();
 		#if FREEPLAY
 		MusicBeatState.switchState(new FreeplayState());
 		#elseif CHARTING
@@ -160,30 +117,11 @@ class TitleState extends MusicBeatState
 			FlxTransitionableState.skipNextTransOut = true;
 			MusicBeatState.switchState(new FlashingState());
 		}
-		else
-		{
-			startIntro();
-		}
+		else startIntro();
 		#end
-	}
 
-	function findTitleJson(fileName:String):TitleData {
-		if (Paths.getTextFromFile(fileName + ".json") == null) {
-			return {
-				titlex: -150,
-				titley: -100,
-				startx: 100,
-				starty: 576,
-				gfx: 512,
-				gfy: 40,
-				backgroundSprite: "",
-				bpm: 102
-			}
-		} else {
-			return tjson.TJSON.parse(Paths.getTextFromFile(fileName + ".json"));
-		}
+		//WindowUtils.bgColorAsTransparency(FlxColor.fromRGB(1, 1, 1));
 	}
-
 
 	var logoBl:FlxSprite;
 	var gfDance:FlxSprite;
@@ -211,33 +149,8 @@ class TitleState extends MusicBeatState
 
 		gfDance = new FlxSprite(gfPosition.x, gfPosition.y);
 		gfDance.antialiasing = ClientPrefs.data.antialiasing;
-
-		switch(randomGfs[randomGfInt])
-		{
-			case 'z3mp':
-				gfDance.frames = Paths.getSparrowAtlas('GFs/z3mp');
-				gfDance.animation.addByIndices('danceLeft', 'GF Dancing Beat', [30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-				gfDance.animation.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-			case "gfDanceTitle":
-				gfDance.frames = Paths.getSparrowAtlas('GFs/gfDanceTitle');
-				gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-				gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-			case "iandee":
-				gfDance.frames = Paths.getSparrowAtlas('GFs/iandee');
-				gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-				gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-			case "gfJeyzel":
-				gfDance.frames = Paths.getSparrowAtlas('GFs/gfJeyzel');
-				gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-				gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-			case "Nene":
-				gfDance.frames = Paths.getSparrowAtlas('GFs/Nene');
-				gfDance.animation.addByIndices('danceLeft', 'Nene Dance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-				gfDance.animation.addByIndices('danceRight', 'Nene Dance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-		}
-
 		
-		/*if(ClientPrefs.data.shaders)
+		if(ClientPrefs.data.shaders)
 		{
 			swagShader = new ColorSwap();
 			gfDance.shader = swagShader.shader;
@@ -256,7 +169,7 @@ class TitleState extends MusicBeatState
 			gfDance.animation.addByPrefix('idle', animationName, 24, false);
 			gfDance.animation.play('idle');
 		}
-*/
+
 
 		var animFrames:Array<FlxFrame> = [];
 		titleText = new FlxSprite(enterPosition.x, enterPosition.y);
@@ -280,9 +193,11 @@ class TitleState extends MusicBeatState
 		titleText.animation.play('idle');
 		titleText.updateHitbox();
 
+		/*
 		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
 		logo.antialiasing = ClientPrefs.data.antialiasing;
 		logo.screenCenter();
+		*/
 
 		blackScreen = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
 		blackScreen.scale.set(FlxG.width, FlxG.height);
@@ -490,11 +405,8 @@ class TitleState extends MusicBeatState
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
-					if (mustUpdate)
-						MusicBeatState.switchState(new OutdatedState());
-					else
-						MusicBeatState.switchState(new MainMenuState());
-
+					MusicBeatState.switchState(new MainMenuState());
+					WindowUtils.disableTransparency();
 					closedState = true;
 				});
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
@@ -634,10 +546,11 @@ class TitleState extends MusicBeatState
 					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
-					createCoolText(['Psych Engine by'], 40);
+					createCoolText(['Torch Engine by'], 40);
 				case 4:
-					addMoreText('Shadow Mario', 40);
-					addMoreText('Riveren', 40);
+					addMoreText('TorchTheDragon', 40);
+					addMoreText('JorgeX_YT', 40);
+					addMoreText('Law', 40);
 				case 5:
 					deleteCoolText();
 				case 6:
@@ -724,8 +637,9 @@ class TitleState extends MusicBeatState
 						FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 						FlxG.sound.music.fadeIn(4, 0, 0.7);
 						transitioning = false;
-						if(easteregg == 'PESSY')
-							Achievements.unlock('pessy_easter_egg');
+						#if ACHIEVEMENTS_ALLOWED
+						if(easteregg == 'PESSY') Achievements.unlock('pessy_easter_egg');
+						#end
 					};
 				}
 			}

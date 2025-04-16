@@ -13,17 +13,16 @@ enum SpraycanState
 class SpraycanAtlasSprite extends FlxSpriteGroup
 {
 	public var currentState:SpraycanState = WAITING;
-	public var spraycanComplete:FlxSignal = new FlxSignal();
 
 	public var canAtlas:FlxAnimate;
 	public var explosion:FlxSprite;
+
+	var spraycanComplete:FlxSignal = new FlxSignal();
 	public function new(x:Float = 0, y:Float = 0)
 	{
 		super();
 
-		spraycanComplete.add(function(){
-			finishCanAnimation();
-		});
+		spraycanComplete.add(function() {finishCanAnimation();});
 
 		canAtlas = new FlxAnimate(x, y);
 		Paths.loadAnimateAtlasFromLibrary(canAtlas, 'spraycanAtlas', 'weekend1');

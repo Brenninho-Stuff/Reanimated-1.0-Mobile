@@ -1,7 +1,7 @@
 package states;
 
 import objects.AttachedSprite;
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
 
 class CreditsState extends MusicBeatState
 {
@@ -20,7 +20,7 @@ class CreditsState extends MusicBeatState
 
 	override function create()
 	{
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + ' - Viewing Credits');
+		WindowUtils.changeTitle(WindowUtils.baseTitle + ' - Viewing Credits');
 
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
@@ -42,7 +42,9 @@ class CreditsState extends MusicBeatState
 
 		var defaultList:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			["Torch Engine Port Team"],
-			["TorchTheDragon",	"torchengine/torch",	"Main and Sole programmer of this port",			"https://www.youtube.com/@TorchTheDragon", 	"AA1111"],
+			["TorchTheDragon",	"torchengine/torch",	"Main Programmer of this port",			"https://www.youtube.com/@TorchTheDragon", 	"AA1111"],
+			['JorgeX_YT',		'torchengine/jorge',		'Programmer and Contributor',				'https://www.youtube.com/@JorgeX_YT',	'4CE8BF'],
+			['Law',				'torchengine/law',			'Programmer and Contributor',						'https://twitter.com/Lawornot',			'000099'],
 			[""],
 			["Psych Engine Team"],
 			["Shadow Mario",		"shadowmario",		"Main Programmer and Head of Psych Engine",					"https://ko-fi.com/shadowmario",	"444444"],
@@ -52,14 +54,13 @@ class CreditsState extends MusicBeatState
 			["bb-panzu",			"bb",				"Ex-Programmer of Psych Engine",							"https://x.com/bbsub3",				"3E813A"],
 			[""],
 			["Engine Contributors"],
-			["crowplexus",			"crowplexus",		"HScript Iris, Input System v3, and Other PRs",				"https://github.com/crowplexus",	"CFCFCF"],
+			["crowplexus", "crowplexus", "Linux Support, HScript Iris, Input System v3, and Other PRs", "https://twitter.com/IamMorwen", "CFCFCF"],
 			["Kamizeta",			"kamizeta",			"Creator of Pessy, Psych Engine's mascot.",				"https://www.instagram.com/cewweey/",	"D21C11"],
 			["MaxNeton",			"maxneton",			"Loading Screen Easter Egg Artist/Animator.",	"https://bsky.app/profile/maxneton.bsky.social","3C2E4E"],
 			["Keoiki",				"keoiki",			"Note Splash Animations and Latin Alphabet",				"https://x.com/Keoiki_",			"D2D2D2"],
 			["SqirraRNG",			"sqirra",			"Crash Handler and Base code for\nChart Editor's Waveform",	"https://x.com/gedehari",			"E1843A"],
 			["EliteMasterEric",		"mastereric",		"Runtime Shaders support and Other PRs",					"https://x.com/EliteMasterEric",	"FFBD40"],
 			["MAJigsaw77",			"majigsaw",			".MP4 Video Loader Library (hxvlc)",						"https://x.com/MAJigsaw77",			"5F5F5F"],
-			["Tahir Toprak Karabekiroglu",	"tahir",	"Note Splash Editor and Other PRs",							"https://x.com/TahirKarabekir",		"A04397"],
 			["iFlicky",				"flicky",			"Composer of Psync and Tea Time\nAnd some sound effects",	"https://x.com/flicky_i",			"9E29CF"],
 			["KadeDev",				"kade",				"Fixed some issues on Chart Editor and Other PRs",			"https://x.com/kade0912",			"64A250"],
 			["superpowers04",		"superpowers04",	"LUA JIT Fork",												"https://x.com/superpowers04",		"B957ED"],
@@ -143,7 +144,7 @@ class CreditsState extends MusicBeatState
 	{
 		if (FlxG.sound.music.volume < 0.7)
 		{
-			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
+			FlxG.sound.music.volume += 0.5 * elapsed;
 		}
 
 		if(!quitting)

@@ -10,7 +10,8 @@ import flixel.input.gamepad.FlxGamepad;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.gamepad.FlxGamepadManager;
 
-import torchsthings.utils.WindowTitleUtils;
+import torchsthings.utils.WindowUtils;
+
 class ControlsSubState extends MusicBeatSubstate
 {
 	var curSelected:Int = 0;
@@ -29,10 +30,6 @@ class ControlsSubState extends MusicBeatSubstate
 		[true, 'Down', 'ui_down', 'UI Down'],
 		[true, 'Up', 'ui_up', 'UI Up'],
 		[true, 'Right', 'ui_right', 'UI Right'],
-		[true],
-		[true, 'SPECIAL ACTIONS'],
-		[true, 'Hey', 'special_action', 'Debug Key #1'],
-		[true, 'Dodge', 'dodge_action', 'Debug Key #2'],
 		[true],
 		[true, 'Reset', 'reset', 'Reset'],
 		[true, 'Accept', 'accept', 'Accept'],
@@ -59,22 +56,21 @@ class ControlsSubState extends MusicBeatSubstate
 	var grpBinds:FlxTypedGroup<Alphabet>;
 	var selectSpr:AttachedSprite;
 
-	var gamepadColor:FlxColor = 0xfffdf24e;
-	var keyboardColor:FlxColor = 0xff71fdc3;
+	var gamepadColor:FlxColor = 0xfffd7194;
+	var keyboardColor:FlxColor = 0xff7192fd;
 	var onKeyboardMode:Bool = true;
 	
 	var controllerSpr:FlxSprite;
 	
 	public function new()
 	{
-		WindowTitleUtils.changeDefaultTitle(WindowTitleUtils.DEFAULT_TITLE);
-		WindowTitleUtils.changeTitle(WindowTitleUtils.baseTitle + " - Controls");
-
 		super();
 
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Controls Menu", null);
 		#end
+
+		WindowUtils.changeTitle(WindowUtils.baseTitle + " - Controls");
 
 		options.push([true]);
 		options.push([true]);
