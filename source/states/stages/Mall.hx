@@ -4,47 +4,72 @@ import states.stages.objects.*;
 
 class Mall extends BaseStage
 {
+
 	var upperBoppers:BGSprite;
 	var bottomBoppers:MallCrowd;
 	var santa:BGSprite;
-
+	
 	override function create()
 	{
-		var bg:BGSprite = new BGSprite('christmas/bgWalls', -1000, -500, 0.2, 0.2);
-		bg.setGraphicSize(Std.int(bg.width * 0.8));
+		ratingPos.set(550, 450);
+        comboCountPos.set(450, 600);
+		comboImage.set( 0, 550);
+
+		var bg:BGSprite = new BGSprite('christmas/bgWalls', -1900, -1000, 0.2, 0.2);
+		bg.setGraphicSize(Std.int(bg.width * 1.2));
 		bg.updateHitbox();
 		add(bg);
 
 		if(!ClientPrefs.data.lowQuality) {
-			upperBoppers = new BGSprite('christmas/upperBop', -240, -90, 0.33, 0.33, ['Upper Crowd Bob']);
-			upperBoppers.setGraphicSize(Std.int(upperBoppers.width * 0.85));
+			upperBoppers = new BGSprite('christmas/upperBop', -750, -260, 0.33, 0.33, ['Upper Crowd Bob']);
+			upperBoppers.setGraphicSize(Std.int(upperBoppers.width * 1.2));
 			upperBoppers.updateHitbox();
 			add(upperBoppers);
 
-			var bgEscalator:BGSprite = new BGSprite('christmas/bgEscalator', -1100, -600, 0.3, 0.3);
-			bgEscalator.setGraphicSize(Std.int(bgEscalator.width * 0.9));
+			var bgEscalator:BGSprite = new BGSprite('christmas/bgEscalator', -1800, -900, 0.3, 0.3);
+			bgEscalator.setGraphicSize(Std.int(bgEscalator.width * 1.2));
 			bgEscalator.updateHitbox();
 			add(bgEscalator);
 		}
 
-		var tree:BGSprite = new BGSprite('christmas/christmasTree', 370, -250, 0.40, 0.40);
-		add(tree);
+			var tree:BGSprite = new BGSprite('christmas/christmasTree', 200, -400, 0.40, 0.40);
+			tree.setGraphicSize(Std.int(tree.width * 1.3));
+			tree.updateHitbox();
+			add(tree);
 
 		bottomBoppers = new MallCrowd(-300, 140);
+		bottomBoppers.scrollFactor.set(0.9, 0.9);
+		bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 1.1));
+		bottomBoppers.updateHitbox();
 		add(bottomBoppers);
 
-		var fgSnow:BGSprite = new BGSprite('christmas/fgSnow', -600, 700);
+		var fgSnow:BGSprite = new BGSprite('christmas/fgSnow', -2000, 880);
+		fgSnow.scale.set(2.0, 3.0);
 		add(fgSnow);
 
 		santa = new BGSprite('christmas/santa', -840, 150, 1, 1, ['santa idle in fear']);
-		add(santa);
-		playWeekSound('Lights_Shut_off');
+
+		Paths.sound('mall/Lights_Shut_off');
 		setDefaultGF('gf-christmas');
 
+addAbot(100, 355);
 		if(isStoryMode && !seenCutscene)
 			setEndCallback(eggnogEndCutscene);
 	}
 
+	override function createPost() {
+		addBehindBlackSceen(santa);
+		addAbotPost();
+
+	}
+
+	override function sectionHit() {
+		updateABotEye();
+	}
+
+	override function startSong() {
+		abotSongStart();
+	}
 	override function countdownTick(count:Countdown, num:Int) everyoneDance();
 	override function beatHit() everyoneDance();
 
@@ -82,7 +107,7 @@ class Mall extends BaseStage
 		var nextSong:String = Paths.formatToSongPath(PlayState.storyPlaylist[1]);
 		if(nextSong == 'winter-horrorland')
 		{
-			FlxG.sound.play(playWeekSound('Lights_Shut_off'));
+			FlxG.sound.play(Paths.sound('mall/Lights_Shut_off'));
 
 			var blackShit:FlxSprite = new FlxSprite(-FlxG.width * FlxG.camera.zoom,
 				-FlxG.height * FlxG.camera.zoom).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);

@@ -1,0 +1,260 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "BF idle dance",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				12,
+				-7
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "BF NOTE LEFT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-7,
+				-50
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "BF NOTE DOWN0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-27,
+				34
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "BF NOTE UP0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-48,
+				-5
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "BF NOTE RIGHT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				38,
+				15
+			],
+			"anim": "singLEFT-alt",
+			"fps": 24,
+			"name": "BFCOOLLEFT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-12,
+				-22
+			],
+			"anim": "singDOWN-alt",
+			"fps": 24,
+			"name": "BFCOOLDOWN0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-11,
+				72
+			],
+			"anim": "singUP-alt",
+			"fps": 24,
+			"name": "BFCOOLUP0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-27,
+				7
+			],
+			"anim": "singRIGHT-alt",
+			"fps": 24,
+			"name": "BFCOOLRIGHT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				2,
+				4
+			],
+			"anim": "hey",
+			"fps": 24,
+			"name": "BF HEY!!",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				7,
+				20
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "BF NOTE LEFT MISS",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "BF NOTE DOWN MISS",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-31,
+				27
+			],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "BF NOTE UP MISS",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-40,
+				19
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "BF NOTE RIGHT MISS",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				18,
+				17
+			],
+			"anim": "hurt",
+			"fps": 24,
+			"name": "BF hit0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-24,
+				33
+			],
+			"anim": "hey-alt",
+			"fps": 24,
+			"name": "COOLHEY0",
+			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				-10
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "dodge",
+			"loop": false,
+			"name": "boyfriend dodge"
+		},
+		{
+			"offsets": [
+				0,
+				-10
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "dodgeUP",
+			"loop": false,
+			"name": "boyfriend dodge"
+		},
+		{
+			"offsets": [
+				0,
+				-10
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "dodgeDOWN",
+			"loop": false,
+			"name": "boyfriend dodge"
+		},
+		{
+			"offsets": [
+				0,
+				-10
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "dodgeLEFT",
+			"loop": false,
+			"name": "boyfriend dodge"
+		},
+		{
+			"offsets": [
+				0,
+				-10
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "dodgeRIGHT",
+			"loop": false,
+			"name": "boyfriend dodge"
+		}
+	],
+	"vocals_file": "",
+	"noteSplashes": "normal",
+	"no_antialiasing": false,
+	"image": "unlockable characters/tzenbf",
+	"position": [
+		10,
+		350
+	],
+	"strumCovers": "normal",
+	"noteAssets": "normal",
+	"healthicon": "bf",
+	"flip_x": true,
+	"healthbar_colors": [
+		65,
+		200,
+		234
+	],
+	"camera_position": [
+		60,
+		0
+	],
+	"notePath": "torchs_assets",
+	"sing_duration": 4,
+	"scale": 1,
+	"_editor_isPlayer": true
+}

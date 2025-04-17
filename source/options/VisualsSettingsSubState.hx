@@ -179,6 +179,12 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		);
 		addOption(option);
 
+		var option:Option = new Option('Smooth health bar',
+			'If enabled makes health bar move more smoothly',
+			'vsliceSmoothBar',
+			'bool');
+		addOption(option);
+
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',
 			'hideHud',

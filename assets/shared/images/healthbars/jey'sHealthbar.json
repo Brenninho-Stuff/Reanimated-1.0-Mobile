@@ -1,0 +1,16 @@
+{
+    "emptyBar": "jeysHealthbar",
+    "emptyBarLibrary": "shared",
+    "emptyBarAnimated": false,
+    "emptyBarOverlay": "",
+    "emptyBarOverlayAnimated": false,
+    "emptyBarOverlayAnimationName": "",
+    "emptyBarAnimationName": "",
+    "fullBar": "jeysHealthbar",
+    "fullBarLibrary": "shared",
+    "fullBarAnimated": false,
+    "fullBarOverlay": "",
+    "fullBarOverlayAnimated": false,
+    "fullBarOverlayAnimationName": "",
+    "fullBarAnimationName": ""
+}

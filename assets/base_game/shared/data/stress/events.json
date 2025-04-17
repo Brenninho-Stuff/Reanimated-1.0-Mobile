@@ -1,42 +1,115 @@
 {
-	"song": {
-		"events": [
+	"events": [
+		[
+			10666.6666666667,
 			[
-				62022.4719101124,
-				[
-					[
-						"Play Animation",
-						"singDOWN-alt",
-						"dad"
-					],
-					[
-						"Set Property",
-						"defaultCamZoom",
-						"1.08"
-					],
-					[
-						"Camera Follow Pos",
-						"320",
-						"504"
-					]
-				]
-			],
-			[
-				64719.1011235955,
-				[
-					[
-						"Camera Follow Pos",
-						"",
-						""
-					],
-					[
-						"Set Property",
-						"defaultCamZoom",
-						"0.9"
-					]
-				]
+				["Play Animation", "Idle", "gf"]
 			]
 		],
-		"format": "psych_v1_convert"
-	}
+		[
+			34666.6666666667,
+			[
+				["Screen Shake", "0.7, 0.01", ""]
+			]
+		],
+		[
+			40000,
+			[
+				["Screen Shake", "0.7, 0.01", ""]
+			]
+		],
+		[
+			45333.3333333333,
+			[
+				["Screen Shake", "0.7, 0.01", ""]
+			]
+		],
+		[
+			50666.6666666667,
+			[
+				["Screen Shake", "0.7, 0.01", ""]
+			]
+		],
+		[
+			61333.3333333334,
+			[
+				["Play Animation", "singDOWN-alt", "dad"]
+			]
+		],
+		[
+			64000,
+			[
+				["Set Health Drain", "0.03", ""],
+				["Enemy Splashes", "true", "true"]
+			]
+		],
+		[
+			80000,
+			[
+				["Camera Follow Pos", "600", "350"]
+			]
+		],
+		[
+			85333.3333333333,
+			[
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			90666.6666666666,
+			[
+				["Camera Follow Pos", "600", "350"]
+			]
+		],
+		[
+			95916.6666666666,
+			[
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			97999.9999999999,
+			[
+				["Screen Shake", "0.7, 0.01", ""],
+				["Camera Follow Pos", "600", "240"],
+				["Set Property", "defaultCamZoom", "1"]
+			]
+		],
+		[
+			98666.6666666666,
+			[
+				["Set Property", "defaultCamZoom", "0.7"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			112000,
+			[
+				["Camera Follow Pos", "500", "440"]
+			]
+		],
+		[
+			117250,
+			[
+				["Camera Follow Pos", "", ""],
+				["HUD Fade", "0", "1"]
+			]
+		],
+		[
+			117416.666666667,
+			[
+				["Change Character", "dad", "tankman-die"],
+				["Play Animation", "die", "dad"],
+				["Screen Shake", "0.01, 0.2", ""],
+				["Play Animation", "shootTankman", "gf"]
+			]
+		],
+		[
+			117750,
+			[
+				["Play Animation", "Idle", "gf"]
+			]
+		]
+	],
+	"format": "psych_v1"
 }

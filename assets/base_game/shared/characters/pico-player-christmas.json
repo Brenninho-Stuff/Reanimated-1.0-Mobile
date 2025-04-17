@@ -1,0 +1,160 @@
+{
+	"animations": [
+		{
+			"offsets": [65, 18],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "pico Up note0"
+		},
+		{
+			"offsets": [102, -86],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Pico Down Note0"
+		},
+		{
+			"offsets": [92, -48],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "Pico Down Note MISS"
+		},
+		{
+			"offsets": [44, 52],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "pico Up note miss"
+		},
+		{
+			"loop": false,
+			"offsets": [-56, 1],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Pico Note Right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [90, -15],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Pico NOTE LEFT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-55, 43],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "Pico Note Right Miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [98, 19],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "Pico NOTE LEFT miss",
+			"indices": []
+		},
+		{
+			"offsets": [93, -3],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "Pico Idle Dance0"
+		},
+		{
+			"loop": false,
+			"offsets": [89, -4],
+			"anim": "burp",
+			"fps": 24,
+			"name": "burp fuck",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [89, -5],
+			"anim": "burp1",
+			"fps": 24,
+			"name": "burp big pico",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [89, -3],
+			"anim": "burp2",
+			"fps": 24,
+			"name": "burp small plus talk pico",
+			"indices": []
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"useNoteSkin": false,
+	"image": "characters/Pico_FNF_assetss_Christmas",
+	"position": [0, 300],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
+	"healthicon": "pico",
+	"flip_x": true,
+	"healthbar_colors": [133, 230, 81],
+	"disableNoteRGB": false,
+	"camera_position": [190, 0],
+	"noteSkin": "",
+	"noteColors": {
+		"right": [
+			-16718592,
+			-1,
+			-16751104
+		],
+		"up": [
+			-41728,
+			-1,
+			-9297408
+		],
+		"down": [
+			-16718592,
+			-1,
+			-16751104
+		],
+		"left": [
+			-41728,
+			-1,
+			-9297408
+		]
+	},
+	"sing_duration": 4,
+	"hasAltColors": false,
+	"scale": 1,
+	"_editor_isPlayer": true
+}

@@ -1,80 +1,81 @@
 {
 	"animations": [
 		{
+			"offsets": [
+				-218,
+				-280
+			],
 			"loop": false,
-			"offsets": [-218, -280],
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "idle spirit_"
+			"fps": 24,
+			"name": "idle spirit_",
+			"indices": []
 		},
 		{
+			"offsets": [
+				-200,
+				-280
+			],
 			"loop": false,
-			"offsets": [-200, -280],
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "left_"
+			"fps": 24,
+			"name": "left_",
+			"indices": []
 		},
 		{
+			"offsets": [
+				170,
+				110
+			],
 			"loop": false,
-			"offsets": [170, 110],
-			"fps": 24,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "spirit down_"
+			"fps": 24,
+			"name": "spirit down_",
+			"indices": []
 		},
 		{
+			"offsets": [
+				-220,
+				-280
+			],
 			"loop": false,
-			"offsets": [-220, -280],
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "right_"
+			"fps": 24,
+			"name": "right_",
+			"indices": []
 		},
 		{
+			"offsets": [
+				-220,
+				-240
+			],
 			"loop": false,
-			"offsets": [-220, -240],
-			"fps": 24,
 			"anim": "singUP",
-			"indices": [],
-			"name": "up_"
+			"fps": 24,
+			"name": "up_",
+			"indices": []
 		}
 	],
-	"vocals_file": "",
 	"no_antialiasing": true,
 	"image": "characters/spirit",
-	"position": [-150, 100],
+	"position": [
+		-150,
+		100
+	],
 	"healthicon": "spirit-pixel",
+	"noteAssets": "pixelUI/normal",
+	"noteSplashes": "normal",
+	"strumCovers": "normal",
 	"flip_x": false,
-	"healthbar_colors": [255, 60, 110],
-	"camera_position": [0, 0],
-	"noteColors": {
-		"right": [
-			-49554,
-			-1,
-			-11270374
-		],
-		"up": [
-			-49554,
-			-1,
-			-11270374
-		],
-		"down": [
-			-49554,
-			-1,
-			-11270374
-		],
-		"left": [
-			-49554,
-			-1,
-			-11270374
-		]
-	},
+	"healthbar_colors": [
+		255,
+		60,
+		110
+	],
+	"camera_position": [
+		0,
+		0
+	],
 	"sing_duration": 4,
-	"scale": 6,
-	"_editor_isPlayer": false,
-	"healthBar": "default",
-	"animatedHealthBar": false,
-	"healthBarAnimation": ""
+	"scale": 6
 }

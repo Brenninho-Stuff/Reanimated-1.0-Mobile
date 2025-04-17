@@ -1,24 +1,25 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				2,
 				0
 			],
-			"anim": "singUP",
+			"loop": false,
 			"fps": 24,
-			"name": "GF Dancing Beat Hair blowing CAR",
-			"indices": []
+			"anim": "singUP",
+			"indices": [],
+			"name": "GF Dancing Beat Hair blowing CAR"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				0,
+				2,
 				0
 			],
-			"fps": 24,
+			"loop": false,
 			"anim": "danceRight",
+			"fps": 24,
+			"name": "GF Dancing Beat Hair blowing CAR",
 			"indices": [
 				15,
 				16,
@@ -35,17 +36,17 @@
 				27,
 				28,
 				29
-			],
-			"name": "GF Dancing Beat Hair blowing CAR"
+			]
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"fps": 24,
+			"loop": false,
 			"anim": "danceLeft",
+			"fps": 24,
+			"name": "GF Dancing Beat Hair blowing CAR",
 			"indices": [
 				30,
 				0,
@@ -63,10 +64,43 @@
 				12,
 				13,
 				14
+			]
+		},
+		{
+			"offsets": [
+				1,
+				5
 			],
-			"name": "GF Dancing Beat Hair blowing CAR"
+			"loop": false,
+			"fps": 24,
+			"anim": "cheer",
+			"indices": [],
+			"name": "GF Cheer Car0"
+		},
+		{
+			"offsets": [
+				1,
+				-76
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "dodge",
+			"indices": [],
+			"name": "GF dodge0"
+		},
+		{
+			"offsets": [
+				3,
+				-14
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "sad",
+			"loop": false,
+			"name": "gf sad"
 		}
 	],
+	"vocals_file": "",
 	"no_antialiasing": false,
 	"image": "characters/gfCar",
 	"position": [
@@ -85,5 +119,6 @@
 		0
 	],
 	"sing_duration": 4,
-	"scale": 1
+	"scale": 1,
+	"_editor_isPlayer": false
 }

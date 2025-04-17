@@ -67,6 +67,7 @@ class BaseStage extends FlxBasic {
 
 	public var ratingPos:FlxPoint = new FlxPoint(0, 0);
 	public var comboCountPos:FlxPoint = new FlxPoint(0, 0);
+	public var comboImage:FlxPoint = new FlxPoint(0, 0);
 
 	public function new() {
 		if(game == null) {
@@ -115,7 +116,8 @@ class BaseStage extends FlxBasic {
 	function add(object:FlxBasic) return FlxG.state.add(object);
 	function remove(object:FlxBasic, splice:Bool = false) return FlxG.state.remove(object, splice);
 	function insert(position:Int, object:FlxBasic) return FlxG.state.insert(position, object);
-	
+
+	public function addBehindBlackSceen(obj:FlxBasic) return insert(members.indexOf(game.blackGroup), obj);
 	public function addBehindGF(obj:FlxBasic) return insert(members.indexOf(game.gfGroup), obj);
 	public function addBehindBF(obj:FlxBasic) return insert(members.indexOf(game.boyfriendGroup), obj);
 	public function addBehindDad(obj:FlxBasic) return insert(members.indexOf(game.dadGroup), obj);

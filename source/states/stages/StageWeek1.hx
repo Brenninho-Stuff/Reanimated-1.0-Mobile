@@ -2,44 +2,111 @@ package states.stages;
 
 import states.stages.objects.*;
 import objects.Character;
+import torchsthings.shaders.*;
+import torchsfunctions.functions.ShaderUtils;
+import openfl.filters.ShaderFilter;
+import torchsthings.objects.effects.ReflectedChar;
+import substates.GameOverSubstate;
 
 class StageWeek1 extends BaseStage
 {
 	var dadbattleBlack:BGSprite;
+	var dadbattleGlowup:BGSprite;
+	var dadbattleGlowdown:BGSprite;
 	var dadbattleLight:BGSprite;
 	var dadbattleFog:DadBattleFog;
+	var crt:CRT = new CRT(false, true);
+	var shaderFilter:ShaderFilter;
+	var gfPixel:Character = null;
+	var offsetState:Bool = false; // Literally only here to prevent a crash I found - Torch
+	//var reflectedBF:ReflectedChar;
+	//var reflectedDad:ReflectedChar;
 	override function create()
 	{
-		//ratingPos.set(17, 300); // Just used random numbers for example
-		//comboCountPos.set(15, 275);
+		ratingPos.set(850, 450);
+        comboCountPos.set(750, 600);
+		comboImage.set( 0, 550);
 
-		var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
+		offsetState = Std.isOfType(FlxG.state, options.NoteOffsetState);
+		var bg:BGSprite = new BGSprite('rework/stageback', -650, -300, 0.9, 0.9);
+		bg.setGraphicSize(Std.int(bg.width * 1.5));
+		bg.updateHitbox();
 		add(bg);
 
-		var stageFront:BGSprite = new BGSprite('stagefront', -650, 600, 0.9, 0.9);
-		stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+		var stageFront:BGSprite = new BGSprite('rework/stagefront', -650, -300, 0.9, 0.9);
+		stageFront.setGraphicSize(Std.int(stageFront.width * 1.5));
 		stageFront.updateHitbox();
 		add(stageFront);
 		if(!ClientPrefs.data.lowQuality) {
-			var stageLight:BGSprite = new BGSprite('stage_light', -125, -100, 0.9, 0.9);
-			stageLight.setGraphicSize(Std.int(stageLight.width * 1.1));
-			stageLight.updateHitbox();
-			add(stageLight);
-			var stageLight:BGSprite = new BGSprite('stage_light', 1225, -100, 0.9, 0.9);
-			stageLight.setGraphicSize(Std.int(stageLight.width * 1.1));
-			stageLight.updateHitbox();
-			stageLight.flipX = true;
-			add(stageLight);
+					/*var stageHorns:BGSprite = new BGSprite('Altavoces', -200, 400, 0.9, 0.9);
+					stageHorns.setGraphicSize(Std.int(stageHorns.width * 2.1));
+					stageHorns.updateHitbox();
+					add(stageHorns);*/
 
-			var stageCurtains:BGSprite = new BGSprite('stagecurtains', -500, -300, 1.3, 1.3);
-			stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-			stageCurtains.updateHitbox();
-			add(stageCurtains);
+					var stagelittlelights:BGSprite = new BGSprite('rework/stage_light',  -550, -500, 1.0, 1.0);
+					stagelittlelights.scale.set(1.45, 1.5);
+					stagelittlelights.updateHitbox();
+					add(stagelittlelights);
+
+					var stageCurtains:BGSprite = new BGSprite('rework/stagecurtains',  -550, -460, 1.1, 1.1);
+					stageCurtains.scale.set(1.4, 1.5);
+					stageCurtains.updateHitbox();
+					add(stageCurtains);
+		}
+		var stageColumns:BGSprite = new BGSprite('rework/stagecolumns', -550, -250, 1.2, 1.2);
+		stageColumns.scale.set(1.4, 1.3);
+		stageColumns.updateHitbox();
+		add(stageColumns);
+
+		if (!offsetState) {
+			switch(PlayState.SONG.song.toLowerCase()) {
+				case 'test':
+					gfPixel = new Character(330, 335, 'gf-pixel', true); // Made her a "player" so she would face the other way
+					add(gfPixel);
+					gfPixel.dance();
+			}
 		}
 	}
 
-	override function createPost(){
-		//changeComboGroupCamera(Base);
+	override function createPost() {
+		if (!offsetState) {
+			switch(PlayState.SONG.song.toLowerCase()) {
+				case 'test':
+					gf.x += 450;
+					shaderFilter = new ShaderFilter(crt);
+					ShaderUtils.applyFiltersToCams([camGame, camHUD, camOther], [shaderFilter]);
+					reflectedBF = new ReflectedChar(boyfriend, 0.35);
+					reflectedDad = new ReflectedChar(dad, 0.35);
+					addBehindBF(reflectedBF);
+					addBehindDad(reflectedDad);
+			}
+		}
+	}
+
+	var tween:FlxTween;
+
+	override function update(elapsed:Float) {
+		crt.update(elapsed);
+		if (gfPixel != null) {
+			if (gfPixel.animation.name != gf.animation.name) {
+				gfPixel.animation.play(gf.animation.name, true);
+			}
+		}
+		if (!offsetState) {
+			if (PlayState.SONG.song.toLowerCase() == 'test') {
+				if (game.focusedChar == boyfriend) {
+					if (tween != null) {
+						tween.cancel();
+					}
+					tween = FlxTween.tween(crt, {middle:0.425}, 2.7, {ease: FlxEase.elasticOut});
+				} else {
+					if (tween != null) {
+						tween.cancel();
+					}
+					tween = FlxTween.tween(crt, {middle:0.57}, 2.7, {ease: FlxEase.elasticOut});
+				}
+			}
+		}
 	}
 
 	override function eventPushed(event:objects.Note.EventNote)
@@ -49,15 +116,31 @@ class StageWeek1 extends BaseStage
 			case "Dadbattle Spotlight":
 				dadbattleBlack = new BGSprite(null, -800, -400, 0, 0);
 				dadbattleBlack.makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
-				dadbattleBlack.alpha = 0.25;
+				dadbattleBlack.alpha = 0.45;
 				dadbattleBlack.visible = false;
 				add(dadbattleBlack);
 
-				dadbattleLight = new BGSprite('spotlight', 400, -400);
+				dadbattleLight = new BGSprite('rework/spotlight_Alt', 400, 100);
 				dadbattleLight.alpha = 0.375;
 				dadbattleLight.blend = ADD;
 				dadbattleLight.visible = false;
 				add(dadbattleLight);
+
+				dadbattleGlowup = new BGSprite('rework/light', -400, -400, 1.2, 1.2);
+				dadbattleGlowup.setGraphicSize(Std.int(dadbattleGlowup.width * 2.3));
+				dadbattleGlowup.updateHitbox();
+				dadbattleGlowup.alpha = 0.75;
+				dadbattleGlowup.blend = ADD;
+				dadbattleGlowup.visible = false;
+				add(dadbattleGlowup);
+
+				dadbattleGlowdown = new BGSprite('rework/light2', -700, 600, 0.9, 0.9);
+				dadbattleGlowdown.setGraphicSize(Std.int(dadbattleGlowdown.width * 2.1));
+				dadbattleGlowdown.updateHitbox();
+				dadbattleGlowdown.alpha = 0.75;
+				dadbattleGlowdown.blend = ADD;
+				dadbattleGlowdown.visible = false;
+				add(dadbattleGlowdown);
 
 				dadbattleFog = new DadBattleFog();
 				dadbattleFog.visible = false;
@@ -79,6 +162,8 @@ class StageWeek1 extends BaseStage
 						if(val == 1) //enable
 						{
 							dadbattleBlack.visible = true;
+							dadbattleGlowup.visible = true;
+							dadbattleGlowdown.visible = true;
 							dadbattleLight.visible = true;
 							dadbattleFog.visible = true;
 							defaultCamZoom += 0.12;
@@ -91,14 +176,33 @@ class StageWeek1 extends BaseStage
 						new FlxTimer().start(0.12, function(tmr:FlxTimer) {
 							dadbattleLight.alpha = 0.375;
 						});
-						dadbattleLight.setPosition(who.getGraphicMidpoint().x - dadbattleLight.width / 2, who.y + who.height - dadbattleLight.height + 50);
+						// frameHeight grabs the proper pixel height for the frame, not just the actual height of the object
+						dadbattleLight.setPosition(who.getGraphicMidpoint().x - dadbattleLight.width / 2, who.y + /*who.height*/ who.frameHeight - dadbattleLight.height + 50);
 						FlxTween.tween(dadbattleFog, {alpha: 0.7}, 1.5, {ease: FlxEase.quadInOut});
 
 					default:
 						dadbattleBlack.visible = false;
+						dadbattleGlowup.visible = false;
+						dadbattleGlowdown.visible = false;
 						dadbattleLight.visible = false;
 						defaultCamZoom -= 0.12;
 						FlxTween.tween(dadbattleFog, {alpha: 0}, 0.7, {onComplete: function(twn:FlxTween) dadbattleFog.visible = false});
+				}
+			case "Change Character":
+				if (value1.toLowerCase() == "bf" || value1.toLowerCase() == "boyfriend" || value1.toLowerCase() == "player") {
+					reflectedBF.destroy();
+					reflectedBF = new ReflectedChar(boyfriend, 0.35);
+					addBehindBF(reflectedBF);
+				} 
+				if (value1.toLowerCase() == "dad" || value1.toLowerCase() == "enemy" || value1.toLowerCase() == "opponent") {
+					reflectedDad.destroy();
+					reflectedDad = new ReflectedChar(dad, 0.35);
+					addBehindDad(reflectedDad);
+				}
+				if (value1.toLowerCase() == 'gf' || value1.toLowerCase() == 'girlfriend') {
+					reflectedGF.destroy();
+					reflectedGF = new ReflectedChar(gf, 0.35);
+					addBehindGF(reflectedGF);
 				}
 		}
 	}

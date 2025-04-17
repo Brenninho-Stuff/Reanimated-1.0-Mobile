@@ -1,36 +1,35 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
-				1,
+				0,
 				0
 			],
-			"anim": "cheer",
+			"loop": false,
 			"fps": 24,
-			"name": "GF Cheer",
-			"indices": []
+			"anim": "cheer",
+			"indices": [],
+			"name": "GF Cheer"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				-2,
+				0,
 				-21
 			],
-			"anim": "sad",
+			"loop": false,
 			"fps": 24,
-			"name": "gf sad",
-			"indices": []
+			"anim": "sad",
+			"indices": [],
+			"name": "gf sad"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				-9
 			],
-			"anim": "danceLeft",
+			"loop": false,
 			"fps": 24,
-			"name": "GF Dancing Beat",
+			"anim": "danceLeft",
 			"indices": [
 				30,
 				0,
@@ -48,17 +47,17 @@
 				12,
 				13,
 				14
-			]
+			],
+			"name": "GF Dancing Beat"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				-9
 			],
-			"anim": "danceRight",
+			"loop": false,
 			"fps": 24,
-			"name": "GF Dancing Beat",
+			"anim": "danceRight",
 			"indices": [
 				15,
 				16,
@@ -75,15 +74,20 @@
 				27,
 				28,
 				29
-			]
+			],
+			"name": "GF Dancing Beat"
 		}
 	],
+	"vocals_file": "",
+	"noteSplashes": "normal",
 	"no_antialiasing": false,
 	"image": "characters/gfChristmas",
 	"position": [
 		0,
 		0
 	],
+	"strumCovers": "normal",
+	"noteAssets": "normal",
 	"healthicon": "gf",
 	"flip_x": false,
 	"healthbar_colors": [
@@ -95,6 +99,8 @@
 		0,
 		0
 	],
+	"notePath": "torchs_assets",
 	"sing_duration": 4,
-	"scale": 1
+	"scale": 1,
+	"_editor_isPlayer": false
 }

@@ -9,9 +9,7 @@ import flixel.addons.display.FlxTiledSprite;
 import substates.GameOverSubstate;
 import states.stages.objects.*;
 import objects.Note;
-//import torchsthings.utils.WindowUtils as TitleUtil;
-//import torchsthings.utils.ColorUtil;
-//import torchsfunctions.functions.ColorUtils;
+import torchsthings.shaders.AdjustColorShader;
 
 class PhillyBlazin extends BaseStage
 {
@@ -28,23 +26,25 @@ class PhillyBlazin extends BaseStage
 
 	//var abot:ABotSpeaker;
 
-	override function create() {
+	override function create()
+	{
+		ratingPos.set(1200, 550); // Just used random numbers for example
+		comboCountPos.set(1100, 700);
+		comboImage.set(0, 700);
+
 		FlxTransitionableState.skipNextTransOut = true; //skip the original transition fade
 		function setupScale(spr:BGSprite)
 		{
-			spr.scale.set(1.75, 1.75);
+			spr.scale.set(1.8, 1.83);
 			spr.updateHitbox();
 		}
-
-		//TitleUtil.setDarkMode();
-		//TitleUtil.setWindowBorderColor(ColorUtils.getIntArray(FlxColor.RED));
 
 		if(!ClientPrefs.data.lowQuality)
 		{
 			var skyImage = Paths.image('phillyBlazin/skyBlur');
 			scrollingSky = new FlxTiledSprite(skyImage, Std.int(skyImage.width * 1.1) + 475, Std.int(skyImage.height / 1.1), true, false);
 			scrollingSky.antialiasing = ClientPrefs.data.antialiasing;
-			scrollingSky.setPosition(-500, -120);
+			scrollingSky.setPosition(-500, -320);
 			scrollingSky.scrollFactor.set();
 			add(scrollingSky);
 
@@ -59,19 +59,19 @@ class PhillyBlazin extends BaseStage
 			add(lightning);
 		}
 		
-		var phillyForegroundCity:BGSprite = new BGSprite('phillyBlazin/streetBlur', -600, -175, 0.0, 0.0);
+		var phillyForegroundCity:BGSprite = new BGSprite('phillyBlazin/streetBlur', -900, -320, 0.0, 0.0);
 		setupScale(phillyForegroundCity);
 		add(phillyForegroundCity);
 		
 		if(!ClientPrefs.data.lowQuality)
 		{
-			foregroundMultiply = new BGSprite('phillyBlazin/streetBlur', -600, -175, 0.0, 0.0);
+			foregroundMultiply = new BGSprite('phillyBlazin/streetBlur', -900, -320, 0.0, 0.0);
 			setupScale(foregroundMultiply);
 			foregroundMultiply.blend = MULTIPLY;
 			foregroundMultiply.visible = false;
 			add(foregroundMultiply);
 			
-			additionalLighten = new FlxSprite(-600, -175).makeGraphic(1, 1, FlxColor.WHITE);
+			additionalLighten = new FlxSprite(-900, -320).makeGraphic(1, 1, FlxColor.WHITE);
 			additionalLighten.scrollFactor.set();
 			additionalLighten.scale.set(2500, 2500);
 			additionalLighten.updateHitbox();
@@ -80,11 +80,9 @@ class PhillyBlazin extends BaseStage
 			add(additionalLighten);
 		}
 
-		/*
-		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
-		add(abot);
-		*/
-		addAbot(0, 550);
+		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
+		//add(abot);
+		addAbot(0,345);
 		
 		if(ClientPrefs.data.shaders)
 			setupRainShader();
@@ -121,17 +119,29 @@ class PhillyBlazin extends BaseStage
 	override function createPost()
 	{
 		addAbotPost();
-		if (songName.toLowerCase() == 'blazin') {
-			for (i in 0...4) {
-				PlayState.instance.playerStrums.members[i].x = 365 + (110 * i);
-				PlayState.instance.playerStrums.members[i].x += 50;
-				PlayState.instance.defaultStrumPosition[i + 4][0] = 365 + (110 * i) + 50;
-				PlayState.instance.opponentStrums.members[i].x = -5000;
-				PlayState.instance.opponentStrums.members[i].visible = false;
-				PlayState.instance.defaultStrumPosition[i][0] = -5000;
-			}
-		}
+		var colorShader = new AdjustColorShader();
+        colorShader.hue = -26;
+        colorShader.saturation = -23;
+        colorShader.contrast = 1;
+        colorShader.brightness = -20;
 
+        boyfriend.shader = colorShader;
+        gf.shader = colorShader;
+        dad.shader = colorShader;
+        if (abot != null) abot.setShader(colorShader);
+		{
+			if (songName.toLowerCase() == 'blazin') {
+				for (i in 0...4) {
+					PlayState.instance.playerStrums.members[i].x = 365 + (110 * i);
+					PlayState.instance.playerStrums.members[i].x += 50;
+					PlayState.instance.defaultStrumPosition[i + 4][0] = 365 + (110 * i) + 50;
+					PlayState.instance.opponentStrums.members[i].x = -5000;
+					PlayState.instance.opponentStrums.members[i].visible = false;
+					PlayState.instance.defaultStrumPosition[i][0] = -5000;
+				}
+		}
+	}
+			
 		FlxG.camera.focusOn(camFollow.getPosition());
 		FlxG.camera.fade(FlxColor.BLACK, 1.5, true, null, true);
 
@@ -165,13 +175,13 @@ class PhillyBlazin extends BaseStage
 		addBehindBF(dadGroup);
 	}
 
+	override function sectionHit() {
+		updateABotEye();
+	}
+
 	override function beatHit()
 	{
 		abotBeatHit();
-	}
-
-	override function sectionHit() {
-		updateABotEye();
 	}
 	
 	override function startSong()
@@ -212,6 +222,7 @@ class PhillyBlazin extends BaseStage
 			applyLightning();
 			lightningTimer = FlxG.random.float(7, 15);
 		}
+
 		abotUpdate();
 	}
 	

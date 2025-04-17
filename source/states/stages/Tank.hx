@@ -4,6 +4,8 @@ import states.stages.objects.*;
 import cutscenes.CutsceneHandler;
 import substates.GameOverSubstate;
 import objects.Character;
+
+import objects.Note;
 import flixel.util.FlxSignal;
 
 class Tank extends BaseStage
@@ -13,69 +15,117 @@ class Tank extends BaseStage
 	var tankmanRun:FlxTypedGroup<TankmenBG>;
 	var foregroundSprites:FlxTypedGroup<BGSprite>;
 
+	// lol
+	var tankleft1:BGSprite;
+	var tankleft2:BGSprite;
+	var tankmid:BGSprite;
+	var tankright1:BGSprite;
+	var tankright2:BGSprite;
+
 	var picoStress:FlxSignal = new FlxSignal();
+
+	//var abot:ABot;
 
 	override function create()
 	{
-		var sky:BGSprite = new BGSprite('tankSky', -400, -400, 0, 0);
-		add(sky);
+		ratingPos.set(550, 500);
+        comboCountPos.set(450, 650);
+        comboImage.set( 0, 600);
 
+		var sky:BGSprite = new BGSprite('tankSky', -800, -800, 0, 0);
+		sky.setGraphicSize(Std.int(1.6 * sky.width));
+		sky.updateHitbox();
+		add(sky);
+	
 		if(!ClientPrefs.data.lowQuality)
 		{
-			var clouds:BGSprite = new BGSprite('tankClouds', FlxG.random.int(-700, -100), FlxG.random.int(-20, 20), 0.1, 0.1);
-			clouds.active = true;
-			clouds.velocity.x = FlxG.random.float(5, 15);
+			var clouds:BGSprite = new BGSprite('tankClouds', -300, -200, 0.1, 0.1);
+			clouds.scale.set(1.2, 1.2);
+			//clouds.active = true;
+			//clouds.velocity.x = FlxG.random.float(3, 15);
 			add(clouds);
 
-			var mountains:BGSprite = new BGSprite('tankMountains', -300, -20, 0.2, 0.2);
-			mountains.setGraphicSize(Std.int(1.2 * mountains.width));
+			var right:BGSprite = new BGSprite('right smoke', 1300, -350, 0.3, 0.3, ['right smoke'], true);
+			right.setGraphicSize(Std.int(1.2 * right.width));
+			right.updateHitbox();
+			add(right);
+
+			var left:BGSprite = new BGSprite('left smoke', -650, -350, 0.3, 0.3, ['left smoke'], true);
+			left.setGraphicSize(Std.int(1.2 * left.width));
+			left.updateHitbox();
+			add(left);
+	
+			var mountains:BGSprite = new BGSprite('tankMountains', -800, -300, 0.2, 0.2);
+			mountains.setGraphicSize(Std.int(1.4 * mountains.width));
 			mountains.updateHitbox();
 			add(mountains);
-
-			var buildings:BGSprite = new BGSprite('tankBuildings', -200, 0, 0.3, 0.3);
-			buildings.setGraphicSize(Std.int(1.1 * buildings.width));
+	
+			var buildings:BGSprite = new BGSprite('tankBuildings', -800, 80, 0.3, 0.3);
+			buildings.setGraphicSize(Std.int(1.4 * buildings.width));
 			buildings.updateHitbox();
 			add(buildings);
 		}
-
-		var ruins:BGSprite = new BGSprite('tankRuins',-200,0,.35,.35);
-		ruins.setGraphicSize(Std.int(1.1 * ruins.width));
+	
+		var ruins:BGSprite = new BGSprite('tankRuins',-800, -20, 0.35, 0.35);
+		ruins.setGraphicSize(Std.int(1.4 * ruins.width));
 		ruins.updateHitbox();
 		add(ruins);
-
+	
 		if(!ClientPrefs.data.lowQuality)
 		{
-			var smokeLeft:BGSprite = new BGSprite('smokeLeft', -200, -100, 0.4, 0.4, ['SmokeBlurLeft'], true);
+			var smokeLeft:BGSprite = new BGSprite('smokeLeft', -400, -100, 0.4, 0.4, ['SmokeBlurLeft'], true);
 			add(smokeLeft);
 			var smokeRight:BGSprite = new BGSprite('smokeRight', 1100, -100, 0.4, 0.4, ['SmokeRight'], true);
 			add(smokeRight);
-
-			tankWatchtower = new BGSprite('tankWatchtower', 100, 50, 0.5, 0.5, ['watchtower gradient color']);
+	
+			tankWatchtower = new BGSprite('tankWatchtower', -300, 20, 0.6, 0.6, ['watchtower']);
+			tankWatchtower.scale.set(1.4, 1.4);
 			add(tankWatchtower);
 		}
-
+	
 		tankGround = new BackgroundTank();
 		add(tankGround);
-
+	
 		tankmanRun = new FlxTypedGroup<TankmenBG>();
 		add(tankmanRun);
-
-		var ground:BGSprite = new BGSprite('tankGround', -420, -150);
-		ground.setGraphicSize(Std.int(1.15 * ground.width));
+	
+		var ground:BGSprite = new BGSprite('tankGround',  -760, 550);
+		ground.setGraphicSize(Std.int(1.4 * ground.width));
 		ground.updateHitbox();
 		add(ground);
+	
+		/*foregroundSprites = new FlxTypedGroup<BGSprite>();
+		foregroundSprites.add(new BGSprite('tank0', -850, 550, 1.5, 1.5, ['fg']));
+		if(!ClientPrefs.data.lowQuality) foregroundSprites.add(new BGSprite('tank1', -600, 900, 1.5, 1.5, ['fg']));
+		foregroundSprites.add(new BGSprite('tank2', 20, 790, 1.5, 1.5, ['foreground']));
+		if(!ClientPrefs.data.lowQuality) foregroundSprites.add(new BGSprite('tank1', 600, 900, 1.5, 1.5, ['fg']));
+		foregroundSprites.add(new BGSprite('tank5', 1620, 680, 1.5, 1.5, ['fg']));
+		if(!ClientPrefs.data.lowQuality) foregroundSprites.add(new BGSprite('tank3', 1200, 750, 1.5, 1.5, ['fg']));
+		foregroundSprites.setGraphicSize(Std.int(foregroundSprites.width * 1.2));*/
 
-		foregroundSprites = new FlxTypedGroup<BGSprite>();
-		foregroundSprites.add(new BGSprite('tank0', -500, 650, 1.7, 1.5, ['fg']));
-		if(!ClientPrefs.data.lowQuality) foregroundSprites.add(new BGSprite('tank1', -300, 750, 2, 0.2, ['fg']));
-		foregroundSprites.add(new BGSprite('tank2', 450, 940, 1.5, 1.5, ['foreground']));
-		if(!ClientPrefs.data.lowQuality) foregroundSprites.add(new BGSprite('tank4', 1300, 900, 1.5, 1.5, ['fg']));
-		foregroundSprites.add(new BGSprite('tank5', 1620, 700, 1.5, 1.5, ['fg']));
-		if(!ClientPrefs.data.lowQuality) foregroundSprites.add(new BGSprite('tank3', 1300, 1200, 3.5, 2.5, ['fg']));
-
+		tankleft1 = new BGSprite('tank0', -1050, 600, 1.5, 1.5, ['fg']);
+		tankleft1.setGraphicSize(Std.int(1.3 * tankleft1.width));
+		tankleft1.updateHitbox();
+		tankleft2 = new BGSprite('tank1', -600, 950, 1.5, 1.5, ['fg']);
+		tankleft2.setGraphicSize(Std.int(1.3 * tankleft2.width));
+		tankleft2.updateHitbox();
+		tankmid = new BGSprite('tank2', 380, 920, 1.5, 1.5, ['foreground']);
+		tankmid.setGraphicSize(Std.int(1.3 * tankmid.width));
+		tankmid.updateHitbox();
+		tankright1 = new BGSprite('tank1', 1050, 950, 1.5, 1.5, ['fg']);
+		tankright1.setGraphicSize(Std.int(1.3 * tankright1.width));
+		tankright1.updateHitbox();
+		tankright2 = new BGSprite('tank5', 1820, 680, 1.5, 1.5, ['fg']);
+		tankright2.setGraphicSize(Std.int(1.3 * tankright2.width));
+		tankright2.updateHitbox();
+	
 		// Default GFs
 		if(songName == 'stress') setDefaultGF('pico-speaker');
 		else setDefaultGF('gf-tankmen');
+		
+        addAbot(100, 355);
+		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+
 		
 		if (isStoryMode && !seenCutscene)
 		{
@@ -92,7 +142,11 @@ class Tank extends BaseStage
 	}
 	override function createPost()
 	{
-		add(foregroundSprites);
+		add(tankleft1);
+		add(tankleft2);
+		add(tankmid);
+		add(tankright1);
+		add(tankright2);
 
 		if(!ClientPrefs.data.lowQuality)
 		{
@@ -120,6 +174,14 @@ class Tank extends BaseStage
 				}
 			}
 		}
+		addAbotPost();
+	}
+	override function sectionHit() {
+		updateABotEye();
+	}
+
+	override function startSong() {
+		abotSongStart();
 	}
 
 	override function countdownTick(count:Countdown, num:Int) if(num % 2 == 0) everyoneDance();
@@ -127,10 +189,15 @@ class Tank extends BaseStage
 	function everyoneDance()
 	{
 		if(!ClientPrefs.data.lowQuality) tankWatchtower.dance();
-		foregroundSprites.forEach(function(spr:BGSprite)
+		/*foregroundSprites.forEach(function(spr:BGSprite)
 		{
 			spr.dance();
-		});
+		});*/
+		tankleft1.dance();
+		tankleft2.dance();
+		tankmid.dance();
+		tankright1.dance();
+		tankright2.dance();
 	}
 
 	// Cutscenes
@@ -296,10 +363,10 @@ class Tank extends BaseStage
 		boyfriendGroup.alpha = 0.00001;
 		camFollow.setPosition(dad.x + 400, dad.y + 170);
 		FlxTween.tween(FlxG.camera, {zoom: 0.9 * 1.2}, 1, {ease: FlxEase.quadInOut});
-		foregroundSprites.forEach(function(spr:BGSprite)
+		/*foregroundSprites.forEach(function(spr:BGSprite)
 		{
 			spr.y += 100;
-		});
+		});*/
 		playWeekSound('stressCutscene');
 
 		pico = new FlxAnimate(gf.x + 150, gf.y + 450);
@@ -316,6 +383,7 @@ class Tank extends BaseStage
 		cutsceneHandler.push(pico);
 
 		// prepare pico animation cycle
+
 		picoStress.add(function() {
 			switch (pico.anim.curInstance.symbol.name) {
 				case "dieBitch", "GF Time to Die sequence":
@@ -339,6 +407,32 @@ class Tank extends BaseStage
 					if (pico.anim.onComplete == picoStress) pico.anim.onComplete = new FlxSignal();
 			}
 		});
+
+		/*
+		function picoStressCycle() {
+			switch (pico.anim.curInstance.symbol.name) {
+				case "dieBitch", "GF Time to Die sequence":
+					pico.anim.play('picoAppears', true);
+					boyfriendGroup.alpha = 1;
+					boyfriendCutscene.visible = false;
+					boyfriend.playAnim('bfCatch', true);
+					boyfriend.animation.finishCallback = function(name:String)
+					{
+						if(name != 'idle')
+						{
+							boyfriend.playAnim('idle', true);
+							boyfriend.animation.curAnim.finish(); //Instantly goes to last frame
+						}
+					};
+				case "picoAppears", "Pico Saves them sequence":
+					pico.anim.play('picoEnd', true);
+				case "picoEnd", "Pico Dual Wield on Speaker idle":
+					gfGroup.alpha = 1;
+					pico.visible = false;
+					if (pico.anim.onComplete == picoStressCycle) pico.anim.onComplete = function() {};
+			}
+		}
+		*/
 		pico.anim.onComplete = picoStress;
 
 		boyfriendCutscene = new FlxSprite(boyfriend.x + 5, boyfriend.y + 20);
@@ -426,4 +520,20 @@ class Tank extends BaseStage
 			});
 		}
 	}
-}
+	override function opponentNoteHit(note:Note)
+		{
+			var sndTime:Float = note.strumTime - Conductor.songPosition;
+			switch(note.noteType)
+				{
+			case 'Dodge Tankman':
+				{
+					dad.playAnim('dodge', true);
+					dad.specialAnim = true;
+					//FlxG.sound.play(Paths.sound(''));		
+				}
+					gf.playAnim('shootTankman', true);
+					gf.specialAnim = true;
+					FlxG.camera.shake(0.01, 0.2);
+			}
+		}
+	}

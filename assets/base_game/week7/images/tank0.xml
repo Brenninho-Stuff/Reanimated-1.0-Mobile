@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="tank0.png">
-	<!-- Created with Adobe Animate version 21.0.0.35450 -->
+	<!-- Created with Adobe Animate version 22.0.5.191 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="fg tankhead far right instance 10000" x="631" y="457" width="311" height="437" frameX="-3" frameY="-13" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10001" x="631" y="457" width="311" height="437" frameX="-3" frameY="-13" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10002" x="0" y="460" width="306" height="440" frameX="-3" frameY="-10" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10003" x="0" y="460" width="306" height="440" frameX="-3" frameY="-10" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10004" x="631" y="0" width="305" height="447" frameX="-2" frameY="-3" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10005" x="631" y="0" width="305" height="447" frameX="-2" frameY="-3" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10006" x="0" y="0" width="306" height="450" frameX="-1" frameY="0" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10007" x="0" y="0" width="306" height="450" frameX="-1" frameY="0" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10008" x="316" y="0" width="305" height="450" frameX="0" frameY="0" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10009" x="316" y="0" width="305" height="450" frameX="0" frameY="0" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10010" x="316" y="0" width="305" height="450" frameX="0" frameY="0" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10011" x="316" y="0" width="305" height="450" frameX="0" frameY="0" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10012" x="316" y="0" width="305" height="450" frameX="0" frameY="0" frameWidth="314" frameHeight="450"/>
-	<SubTexture name="fg tankhead far right instance 10013" x="316" y="0" width="305" height="450" frameX="0" frameY="0" frameWidth="314" frameHeight="450"/>
+	<SubTexture name="fg tankhead far right instancia 10000" x="10" y="10" width="394" height="552" frameX="-2" frameY="-16" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10001" x="10" y="10" width="394" height="552" frameX="-2" frameY="-16" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10002" x="414" y="10" width="387" height="557" frameX="-3" frameY="-12" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10003" x="414" y="10" width="387" height="557" frameX="-3" frameY="-12" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10004" x="811" y="10" width="387" height="566" frameX="-2" frameY="-3" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10005" x="811" y="10" width="387" height="566" frameX="-2" frameY="-3" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10006" x="1208" y="10" width="387" height="569" frameX="-1" frameY="0" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10007" x="1208" y="10" width="387" height="569" frameX="-1" frameY="0" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10008" x="1605" y="10" width="387" height="569" frameX="0" frameY="0" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10009" x="1605" y="10" width="387" height="569" frameX="0" frameY="0" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10010" x="1605" y="10" width="387" height="569" frameX="0" frameY="0" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10011" x="1605" y="10" width="387" height="569" frameX="0" frameY="0" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10012" x="1605" y="10" width="387" height="569" frameX="0" frameY="0" frameWidth="396" frameHeight="569"/>
+	<SubTexture name="fg tankhead far right instancia 10013" x="1605" y="10" width="387" height="569" frameX="0" frameY="0" frameWidth="396" frameHeight="569"/>
 </TextureAtlas>

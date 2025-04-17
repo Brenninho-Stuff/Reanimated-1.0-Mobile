@@ -1,10 +1,19 @@
 package states;
 
+import flixel.addons.display.FlxBackdrop;
+import flixel.addons.display.FlxGridOverlay;
 import flixel.FlxObject;
 import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import states.editors.MasterEditorMenu;
 import options.OptionsState;
+import torchsfunctions.functions.KeyboardTools;
+import flixel.input.keyboard.FlxKey;
+import flixel.input.FlxKeyManager;
+import backend.Highscore;
+import backend.Song;
+import states.PlayState;
+import openfl.ui.Mouse;
 
 //temporary
 import torchsthings.states.ResultsScreen;
@@ -17,16 +26,37 @@ enum MainMenuColumn {
 }
 
 class MainMenuState extends MusicBeatState
-{
+{	
+	public static var fnfReaniV:String = 'V2.0';
 	public static var psychEngineVersion:String = '1.0.4'; // This is also used for Discord RPC
 	public static var torchEngineVersion:String = '0.1.1'; // Only reason I am listing this is because I think I am nearing a first beta release of this build
 	public static var curSelected:Int = 0;
 	public static var curColumn:MainMenuColumn = CENTER;
+	public static var codeEntered:Bool = false; // Just for some detection is all, like for the "debugger" achievement
 	var allowMouse:Bool = true; //Turn this off to block mouse movement in menus
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	var leftItem:FlxSprite;
 	var rightItem:FlxSprite;
+
+	var charInput:String = "";
+	var codesAndSongs:Array<Array<String>> = [
+		["SMASH", "Verbal-smash"], 
+		["CHUDNELL", "score"], 
+		["TMG", "high-remix"], 
+		["HEV", "pico-erect"], 
+		["KARANXD", "blammed-erect"], 
+		["LOCKIN", "fuck-you"],
+		["DUPLEX", "blammed-remix"],
+		["CHRISTMAS", "erect-eggnog"],
+		["MEAREST","satin-panties-remix"],
+		//["ICONOCLAST", "robin"],
+		["HENRY", "cg5"],
+		//["BFMIX", "Darnell-bf-mix"],
+		["DEBUG", 'test']
+	];
+	var invalidCodes:Array<String> = [];
+
 
 	//Centered/Text options
 	var optionShit:Array<String> = [
@@ -41,6 +71,17 @@ class MainMenuState extends MusicBeatState
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
+
+	var djData:Array<Array<String>> = [
+		//	['djAssetName', 'x', 'y', 'graphicScale', 'djIdle', 'selectedAnimation'],
+			['tutututurutututru', '660', '190', '0.6', 'bfeando ando0', ''], 
+			['Jeys_BF_DJ_Assets', '380', '100', '0.8', 'BF Dancing Beat0', 'BF Cheer0'],
+			['Boyfriend_DJ_original', '630', '200', '1.2', 'Boyfriend DJ0', 'Boyfriend hey0'],
+			['Girlfriend', '630', '200', '1.2', 'Idle menu0', 'Start menu0'],
+			['mecaigo', '730', '200', '1.2', 'zemp dj idle0', 'zemp dj enter0']
+		];
+		var randomDJnum:Int;
+		var dj:BGSprite;
 
 	static var showOutdatedWarning:Bool = true;
 	override function create()
@@ -63,12 +104,12 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = 0.25;
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
+		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.scrollFactor.set(0, yScroll);
-		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.updateHitbox();
 		bg.screenCenter();
+		bg.color = 0xfffdf24e;
 		add(bg);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
@@ -77,31 +118,93 @@ class MainMenuState extends MusicBeatState
 		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		magenta.antialiasing = ClientPrefs.data.antialiasing;
 		magenta.scrollFactor.set(0, yScroll);
-		magenta.setGraphicSize(Std.int(magenta.width * 1.175));
 		magenta.updateHitbox();
 		magenta.screenCenter();
 		magenta.visible = false;
-		magenta.color = 0xFFfd719b;
+		magenta.color = 0xfffd4e82;
 		add(magenta);
+
+		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x73FFFFFF, 0x0));
+		grid.velocity.set(-40, 40);
+		grid.alpha = 0;
+		FlxTween.tween(grid, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
+		add(grid);
+
+		randomDJnum = FlxG.random.int(0, djData.length - 1);
+		var djName:String = djData[randomDJnum][0];
+		var djOffsets:Array<Int> = [Std.parseInt(djData[randomDJnum][1]), Std.parseInt(djData[randomDJnum][2])];
+		var djScale:Float = Std.parseFloat(djData[randomDJnum][3]);
+		var djAnims:Array<String> = [djData[randomDJnum][4], djData[randomDJnum][5]];
+		
+		dj = new BGSprite('menuDJs/' + djName, djOffsets[0], djOffsets[1], 0.3, 0.3, [djAnims[0]], true);
+		dj.animation.addByPrefix(djAnims[1], djAnims[1], 24, false);
+		dj.antialiasing = ClientPrefs.data.antialiasing;
+		dj.setGraphicSize(Std.int(dj.width * djScale));
+		dj.updateHitbox();
+		add(dj);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
-		for (num => option in optionShit)
-		{
-			var item:FlxSprite = createMenuItem(option, 0, (num * 140) + 90);
-			item.y += (4 - optionShit.length) * 70; // Offsets for when you have anything other than 4 items
-			item.screenCenter(X);
-		}
+		for (i in 0...optionShit.length)
+			{
+				if (optionShit[i] == 'nothing') {continue;}
+				var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 140;
+				var menuItem:FlxSprite = new FlxSprite(0, (i * 140) + offset);
+				menuItem.antialiasing = ClientPrefs.data.antialiasing;
+				menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
+				menuItem.animation.addByPrefix('idle', optionShit[i] + " idle", 24);
+				menuItem.animation.addByPrefix('selected', optionShit[i] + " selected", 24);
+				menuItem.animation.play('idle');
+				menuItems.add(menuItem);
+				var scr:Float = (optionShit.length - 4) * 0.135;
+				if (optionShit.length < 6)
+					scr = 0;
+				menuItem.scrollFactor.set(0, scr);
+				menuItem.setGraphicSize(Std.int(menuItem.width * 1));
+				menuItem.updateHitbox();
+				//menuItem.screenCenter(X);
+			
+				switch (i)
+				{
+					case 0: 
+						//menuItem.x = 99.4;
+						menuItem.x -= 570;
+						menuItem.y = 4.95;
+						FlxTween.tween(menuItem, { x: menuItem.x + 570}, 0.7, {startDelay: 0.3 * i, ease: FlxEase.smoothStepOut});
+					case 1:
+						//menuItem.x = 100;
+						menuItem.x -= 670;
+						menuItem.y = 180;
+						FlxTween.tween(menuItem, { x: menuItem.x + 700}, 0.7, {startDelay: 0.3 * i, ease: FlxEase.smoothStepOut});
+					case 2:
+						//menuItem.x = 100;
+						menuItem.x -= 670;
+						menuItem.y = 370;
+						FlxTween.tween(menuItem, {x: menuItem.x + 700}, 0.7, {startDelay: 0.3 * i, ease: FlxEase.smoothStepOut});
+					case 3:
+						//menuItem.x = 100;
+						menuItem.x -= 670;
+						menuItem.y = 550;
+						FlxTween.tween(menuItem, {x: menuItem.x + 700}, 0.7, {startDelay: 0.3 * i, ease: FlxEase.smoothStepOut});
+				}
+			}
 
 		if (leftOption != null)
-			leftItem = createMenuItem(leftOption, 60, 490);
+			leftItem = createMenuItem(leftOption, 1560, 40);
+			FlxTween.tween(leftItem, {x: leftItem.x + -500}, 0.7, {startDelay: 0.3, ease: FlxEase.smoothStepOut});
+
 		if (rightOption != null)
 		{
-			rightItem = createMenuItem(rightOption, FlxG.width - 60, 490);
-			rightItem.x -= rightItem.width;
+			rightItem = createMenuItem(rightOption, 1560, 220);
+			FlxTween.tween(rightItem, {x: rightItem.x + -500}, 0.7, {startDelay: 0.3, ease: FlxEase.smoothStepOut});
+
 		}
 
+		var rVer:FlxText = new FlxText(12, FlxG.height - 64, 0, "Reanimated " + fnfReaniV, 12);
+		rVer.scrollFactor.set();
+		rVer.setFormat("vcr.ttf", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(rVer);
 		var torchVer:FlxText = new FlxText(12, FlxG.height - 44, 0, "Torch Engine v" + torchEngineVersion, 12);
 		torchVer.scrollFactor.set();
 		torchVer.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -137,7 +240,7 @@ class MainMenuState extends MusicBeatState
 		}
 		#end
 
-		FlxG.camera.follow(camFollow, null, 0.15);
+		//FlxG.camera.follow(camFollow, null, 0.15);
 	}
 
 	function createMenuItem(name:String, x:Float, y:Float):FlxSprite
@@ -287,6 +390,10 @@ class MainMenuState extends MusicBeatState
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
 
+				var djCheer:String = djData[randomDJnum][5];
+				dj.animation.play(djCheer);
+				FlxG.mouse.visible = false;
+
 				if (ClientPrefs.data.flashing)
 					FlxFlicker.flicker(magenta, 1.1, 0.15, false);
 
@@ -307,7 +414,24 @@ class MainMenuState extends MusicBeatState
 						item = rightItem;
 				}
 
-				FlxFlicker.flicker(item, 1, 0.06, false, false, function(flick:FlxFlicker)
+				FlxTween.tween(item, {
+					x: (FlxG.width - item.width) / 3.2,
+					y: (FlxG.height - item.height) / 2
+				}, 0.5, {ease: FlxEase.quadOut});
+
+				for (memb in menuItems.members)
+					{
+						if (memb != item)
+						{
+							FlxTween.tween(memb, {alpha: 0}, 0.4, {ease: FlxEase.quadOut});
+						}
+					}
+
+				FlxTween.tween(FlxG.camera, {zoom: 1.2}, 0.5, {
+					ease: FlxEase.quadOut,
+				});
+
+				FlxG.camera.fade(FlxColor.BLACK, 1.1, false, function() 
 				{
 					switch (option) {
 						case 'story_mode':
@@ -364,6 +488,41 @@ class MainMenuState extends MusicBeatState
 				MusicBeatState.switchState(new MasterEditorMenu());
 			}
 			#end
+
+			charInput += KeyboardTools.keypressToString();
+			for (array in codesAndSongs) {
+				if (array[0].toUpperCase().trim().startsWith(charInput)) {
+					if (charInput == array[0].toUpperCase().trim() && !invalidCodes.contains(array[0])) {
+						FlxG.mouse.visible = false;
+						selectedSomethin = true;
+						codeEntered = true;
+
+						FlxG.sound.play(Paths.sound('confirmMenu'));
+						var djCheer:String = djData[randomDJnum][5];
+						dj.animation.play(djCheer);
+
+						var songLowercase:String = Paths.formatToSongPath(array[1]);
+						var poop:String = Highscore.formatSong(songLowercase, 2);
+
+						PlayState.SONG = Song.loadFromJson(poop, songLowercase);
+						PlayState.isStoryMode = false;
+						PlayState.storyDifficulty = 2;
+
+						LoadingState.loadAndSwitchState(new PlayState());
+					}
+					continue;
+				} else {
+					if (invalidCodes.contains(array[0])) continue;
+					invalidCodes.push(array[0]);
+					//trace(invalidCodes);
+				}
+			}
+			if (invalidCodes.length == codesAndSongs.length) {
+				invalidCodes = [];
+				charInput = '';
+				//trace("reset char input");
+			}
+		
 		}
 
 		super.update(elapsed);

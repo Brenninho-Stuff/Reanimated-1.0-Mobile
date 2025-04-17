@@ -31,6 +31,12 @@ import states.editors.CharacterEditorState;
 import substates.PauseSubState;
 import substates.GameOverSubstate;
 
+//objects Plus
+import objectsplus.GhostEffectDoubleNote;
+import objectsplus.ScoreDisplay;
+import objectsplus.CustomEvents;
+import objectsplus.NotesTween;
+
 #if !flash
 import openfl.filters.ShaderFilter;
 #end
@@ -135,11 +141,25 @@ class PlayState extends MusicBeatState
 	public var creditsIconP:HealthIcon;
 	public var creditsIconEn:HealthIcon;
 
+	//Health Drain Event
+	public var healthDraining:Float;
+	public var canDie:Bool = false;
+
+	//Bg for color transform event
+	public var blackScreen:FlxSprite;
+
 	public var playbackRate(default, set):Float = 1;
+
+	//dodge Event
+	public var canDodge:Bool = true;
+	public var dodged:Bool = false;
+	public var warning:FlxSprite;
+	public var poste:FlxSprite;
 
 	public var boyfriendGroup:FlxSpriteGroup;
 	public var dadGroup:FlxSpriteGroup;
 	public var gfGroup:FlxSpriteGroup;
+	public var blackGroup:FlxSpriteGroup;
 	public static var curStage:String = '';
 	public static var stageUI(default, set):String = "normal";
 	public static var uiPrefix:String = "";
@@ -241,6 +261,7 @@ class PlayState extends MusicBeatState
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
 	public var camHUD:FlxCamera;
+	public var camBlack:FlxCamera;
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
@@ -248,6 +269,7 @@ class PlayState extends MusicBeatState
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
+	public var subTitle:FlxText;
 	public var scoreTxt:FlxText;
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
@@ -281,6 +303,8 @@ class PlayState extends MusicBeatState
 	var detailsText:String = "";
 	var detailsPausedText:String = "";
 	#end
+
+	var scoreDisplay:ScoreDisplay;
 
 	//Achievement shit
 	var keysPressed:Array<Int> = [];
@@ -359,11 +383,14 @@ class PlayState extends MusicBeatState
 
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = initPsychCamera();
+		camBlack = new FlxCamera();
 		camHUD = new FlxCamera();
 		camOther = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
 		camOther.bgColor.alpha = 0;
+		camBlack.bgColor.alpha = 0;
 
+		FlxG.cameras.add(camBlack, false);
 		FlxG.cameras.add(camHUD, false);
 		FlxG.cameras.add(camOther, false);
 
@@ -424,6 +451,7 @@ class PlayState extends MusicBeatState
 		if(girlfriendCameraOffset == null)
 			girlfriendCameraOffset = [0, 0];
 
+		blackGroup = new FlxSpriteGroup();
 		boyfriendGroup = new FlxSpriteGroup(BF_X, BF_Y);
 		dadGroup = new FlxSpriteGroup(DAD_X, DAD_Y);
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
@@ -431,16 +459,24 @@ class PlayState extends MusicBeatState
 		switch (curStage)
 		{
 			case 'stage': new StageWeek1(); 			//Week 1
+			case "stageErect": new StageErect();		//Week 1 - Erect
 			case 'spooky': new Spooky();				//Week 2
+			//case "spookyErect": new SpookyErect();		//Week 2 - Erect
 			case 'philly': new Philly();				//Week 3
+			case "phillyErect": new PhillyErect();		//Week 3 - Erect
 			case 'limo': new Limo();					//Week 4
+			case "limoErect": new LimoErect();			//Week 4 - Erect
 			case 'mall': new Mall();					//Week 5 - Cocoa, Eggnog
+			case 'mallErect': new MallErect();			//Week 5 - Erect
 			case 'mallEvil': new MallEvil();			//Week 5 - Winter Horrorland
 			case 'school': new School();				//Week 6 - Senpai, Roses
+			case "schoolErect": new SchoolErect();		//Week 6 - Erect
 			case 'schoolEvil': new SchoolEvil();		//Week 6 - Thorns
 			case 'tank': new Tank();					//Week 7 - Ugh, Guns, Stress
 			case 'phillyStreets': new PhillyStreets(); 	//Weekend 1 - Darnell, Lit Up, 2Hot
 			case 'phillyBlazin': new PhillyBlazin();	//Weekend 1 - Blazin
+			case "phillyStreetsErect": new PhillyStreetsErect(); //Weekend 1 bf mix - Erect
+			case 'wait': new Wait();					//Wait - CG5 Best Song
 		}
 		if(isPixelStage) introSoundsSuffix = '-pixel';
 
@@ -450,12 +486,20 @@ class PlayState extends MusicBeatState
 		add(luaDebugGroup);
 		#end
 
+		blackScreen = new FlxSprite(-4000, -2000).makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
+		blackScreen.alpha = 0;
+		blackScreen.cameras = [camBlack];
+		blackScreen.setGraphicSize(FlxG.width * 10, FlxG.height * 10);
+		blackScreen.updateHitbox();
+		blackScreen.scrollFactor.set(0.9, 0.9);
+		blackGroup.add(blackScreen);
+
 		if (!stageData.hide_girlfriend)
 		{
 			if(SONG.gfVersion == null || SONG.gfVersion.length < 1) SONG.gfVersion = 'gf'; //Fix for the Chart Editor
 			gf = new Character(0, 0, SONG.gfVersion);
 			startCharacterPos(gf);
-			gfGroup.scrollFactor.set(0.95, 0.95);
+			//gfGroup.scrollFactor.set(0.95, 0.95);
 			gfGroup.add(gf);
 		}
 
@@ -476,6 +520,7 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
+			add(blackGroup);
 			add(gfGroup);
 			add(dadGroup);
 			add(boyfriendGroup);
@@ -534,7 +579,7 @@ class PlayState extends MusicBeatState
 		Conductor.songPosition = -Conductor.crochet * 5 + Conductor.offset;
 		var showTime:Bool = (ClientPrefs.data.timeBarType != 'Disabled');
 		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
-		timeTxt.setFormat(Paths.font(isPixelStage ? "pixel-latin.ttf" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		timeTxt.setFormat(Paths.font(isPixelStage ? "pixel" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
 		timeTxt.borderSize = 2;
@@ -640,6 +685,7 @@ class PlayState extends MusicBeatState
 		reloadHealthBarColors();
 		uiGroup.add(healthBar);
 		healthBar.healthLerp = true; // Lerping Works
+		healthBar.healthLerp = ClientPrefs.data.vsliceSmoothBar;
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
 		//iconP1.y = healthBar.y - 75;
@@ -657,25 +703,50 @@ class PlayState extends MusicBeatState
 		
 		iconsAnimator = new IconsAnimator(iconP1, iconP2, iconP1.y);
 
+		subTitle = new FlxText(0, 560.8, FlxG.width, "", 20);
+		//subTitle.setFormat(Paths.font("PhantomMuff.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		subTitle.setFormat(Paths.font(isPixelStage ? "pixel" : "vcr2.ttf"), isPixelStage ? 20 : 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		subTitle.scrollFactor.set();
+		subTitle.borderSize = 1.25;
+		subTitle.cameras = [camOther];
+		//subTitle.visible = !ClientPrefs.data.hideHud;
+		add(subTitle);
+
+
 		scoreTxt = new FlxText(0, healthBar.y + 70/*40*/, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font(isPixelStage ? "pixel-latin.ttf" : "vcr.ttf"), isPixelStage ? 14 : 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setFormat(Paths.font(isPixelStage ? "pixel" : "vcr.ttf"), isPixelStage ? 14 : 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.data.hideHud;
 		uiGroup.add(scoreTxt);
 
+		scoreDisplay = new ScoreDisplay();
+		add(scoreDisplay);
+		scoreTxt.visible = false;
+
 		botplayTxt = new FlxText(400, healthBar.y - 90, FlxG.width - 800, Language.getPhrase("Botplay").toUpperCase(), 32);
-		botplayTxt.setFormat(Paths.font(isPixelStage ? "pixel-latin.ttf" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		botplayTxt.setFormat(Paths.font(isPixelStage ? "pixel" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
 		uiGroup.add(botplayTxt);
 		if(ClientPrefs.data.downScroll)
-			botplayTxt.y = healthBar.y + 70;
+			botplayTxt.y = healthBar.y + 120;
+
+		warning = new FlxSprite(30, 400).loadGraphic(Paths.image('Dodge Event/warningNote'));
+		warning.cameras = [camOther];
+		warning.alpha = 0;
+		warning.screenCenter();
+		add(warning);
+
+		poste = new FlxSprite(-1150, 110).loadGraphic(Paths.image('Dodge Event/street_pole'));
+		poste.cameras = [camOther];
+		poste.alpha = 0;
+		add(poste);
 
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
-		comboGroup.cameras = [camHUD];
+		//comboGroup.cameras = [camHUD];
 		creditsGroup.cameras = [camOther];
 
 		// Below didn't work so I shall give it a fix
@@ -719,17 +790,17 @@ class PlayState extends MusicBeatState
 
 		creditsSongTitle = new FlxText(textX, 330);
 		creditsSongTitle.text = "Now Playing  :  " + curSong;
-		creditsSongTitle.setFormat(Paths.font(isPixelStage ? "pixel-latin.ttf" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		creditsSongTitle.setFormat(Paths.font(isPixelStage ? "pixel" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		creditsSongTitle.size = creditsTextSize;
 
 		creditsArtist = new FlxText(textX, creditsSongTitle.y + 40);
 		creditsArtist.text = "By: " + jsonObj.artist;
-		creditsArtist.setFormat(Paths.font(isPixelStage ? "pixel-latin.ttf" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		creditsArtist.setFormat(Paths.font(isPixelStage ? "pixel" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		creditsArtist.size = creditsTextSize;
 
 		creditsCharter = new FlxText(textX, creditsArtist.y + 40);
 		creditsCharter.text = "Charter: " + jsonObj.charter;
-		creditsCharter.setFormat(Paths.font(isPixelStage ? "pixel-latin.ttf" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		creditsCharter.setFormat(Paths.font(isPixelStage ? "pixel" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		creditsCharter.size = creditsTextSize;
 
 		creditsIconP = new HealthIcon(boyfriend.healthIcon, false);
@@ -1120,6 +1191,7 @@ class PlayState extends MusicBeatState
 	var finishTimer:FlxTimer = null;
 
 	// For being able to mess with the sprites on Lua
+	public var countdownThree:FlxSprite;
 	public var countdownReady:FlxSprite;
 	public var countdownSet:FlxSprite;
 	public var countdownGo:FlxSprite;
@@ -1159,6 +1231,7 @@ class PlayState extends MusicBeatState
 			canPause = true;
 			generateStaticArrows(0);
 			generateStaticArrows(1);
+			NotesTween.setStrumsY();
 			for (i in 0...playerStrums.length) {
 				setOnScripts('defaultPlayerStrumX' + i, playerStrums.members[i].x);
 				setOnScripts('defaultPlayerStrumY' + i, playerStrums.members[i].y);
@@ -1193,9 +1266,9 @@ class PlayState extends MusicBeatState
 
 				var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
 				var introImagesArray:Array<String> = switch(stageUI) {
-					case "pixel": ['pixelUI/ready-pixel', 'pixelUI/set-pixel', 'pixelUI/date-pixel'];
-					case "normal": ["ready", "set" ,"go"];
-					default: ['${uiPrefix}UI/ready${uiPostfix}', '${uiPrefix}UI/set${uiPostfix}', '${uiPrefix}UI/go${uiPostfix}'];
+					case "pixel": ['${stageUI}UI/ready-pixel', '${stageUI}UI/set-pixel', '${stageUI}UI/date-pixel', '${stageUI}UI/three-pixel'];
+					case "normal": ["ready", "set" ,"go", "three"];
+					default: ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go', '${stageUI}UI/three'];
 				}
 				introAssets.set(stageUI, introImagesArray);
 
@@ -1206,20 +1279,37 @@ class PlayState extends MusicBeatState
 				switch (swagCounter)
 				{
 					case 0:
+						countdownThree = createCountdownSprite(introAlts[3], antialias);
 						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
 						tick = THREE;
+						if (gf.curCharacter == "jeys-gf") {
+							gf.playAnim("three", true);
+							gf.specialAnim = true;
+						}
 					case 1:
 						countdownReady = createCountdownSprite(introAlts[0], antialias);
 						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
 						tick = TWO;
+						if (gf.curCharacter == "jeys-gf") {
+							gf.playAnim("two", true);
+							gf.specialAnim = true;
+						}
 					case 2:
 						countdownSet = createCountdownSprite(introAlts[1], antialias);
 						FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
 						tick = ONE;
+						if (gf.curCharacter == "jeys-gf") {
+						gf.playAnim("one", true);
+						gf.specialAnim = true;
+						}
 					case 3:
 						countdownGo = createCountdownSprite(introAlts[2], antialias);
 						FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
 						tick = GO;
+						if (gf.curCharacter == "jeys-gf") {
+    					gf.playAnim("Go!", true);
+    					gf.specialAnim = true;
+						}
 					case 4:
 						tick = START;
 				}
@@ -1455,6 +1545,8 @@ class PlayState extends MusicBeatState
 		#end
 		setOnScripts('songLength', songLength);
 		callOnScripts('onSongStart');
+		canDie = true;
+
 	}
 
 	private var noteTypes:Array<String> = [];
@@ -2175,6 +2267,69 @@ class PlayState extends MusicBeatState
 				openCharacterEditor();
 		}
 
+		if (controls.SPECIAL_ACTION)
+			{
+				if (boyfriend.animOffsets.exists('hey')) {
+					var chance = FlxG.random.float(0, 1); 
+					var num = FlxG.random.int(1, 3);
+					var thesound = "";
+					if (chance < 0.05 && boyfriend.hasAnimation('hey-alt')) {
+						boyfriend.playAnim('hey-alt', true);
+						boyfriend.specialAnim = true;
+						boyfriend.heyTimer = 0.6;
+						gf.playAnim('cheer', true);
+						gf.specialAnim = true;
+						gf.heyTimer = 0.6;
+				
+						var thesound = "";
+						switch (boyfriend.curCharacter) {
+							case "pico-player":
+								thesound = "pico-yeah";
+							default:
+								thesound = "heysound" + num;
+						}
+						FlxG.sound.play(Paths.sound(thesound));
+						trace(thesound);
+					} else {
+						boyfriend.playAnim('hey', true);
+						boyfriend.specialAnim = true;
+						boyfriend.heyTimer = 0.6;
+						gf.playAnim('cheer', true);
+						gf.specialAnim = true;
+						gf.heyTimer = 0.6;
+				
+						var num = FlxG.random.int(1, 3);
+						var thesound = "";
+						switch (boyfriend.curCharacter) {
+							case "pico-player":
+								thesound = "pico-yeah";
+							default:
+								thesound = "heysound" + num;
+						}
+						FlxG.sound.play(Paths.sound(thesound));
+						trace(thesound);
+					}
+				}
+				
+			}
+			if (controls.DODGE_ACTION && canDodge)
+				{
+					boyfriend.animation.finishCallback = function(name:String) {
+						if (name == 'dodge')
+							boyfriend.dance();
+					};
+					
+					gf.animation.finishCallback = function(name:String) {
+						if (name == 'dodge')
+							gf.dance();
+					};
+					
+					boyfriend.playAnim('dodge', true);
+					gf.playAnim('dodge', true);
+					warning.alpha = 0;
+					dodged = true;
+					canDodge = false;
+				}
 		if (healthBar.bounds.max != null && health > healthBar.bounds.max)
 			health = healthBar.bounds.max;
 
@@ -2228,7 +2383,7 @@ class PlayState extends MusicBeatState
 		FlxG.watch.addQuick("stepShit", curStep);
 
 		// RESET = Quick Game Over Screen
-		if (!ClientPrefs.data.noReset && controls.RESET && canReset && !inCutscene && startedCountdown && !endingSong)
+		if (!ClientPrefs.data.noReset && controls.RESET && canReset && !inCutscene && startedCountdown && !endingSong && canDie)			
 		{
 			health = 0;
 			trace("RESET = True");
@@ -2291,6 +2446,22 @@ class PlayState extends MusicBeatState
 
 							if(daNote.isSustainNote && strum.sustainReduce) daNote.clipToStrumNote(strum);
 
+							// If this works, then I hate this setup
+							// ...it worked, and now I officially hate this lol -
+							if (daNote.noteType == 'Shoot Note' && daNote.mustPress) {
+								if (cpuControlled && !daNote.blockHit && daNote.canBeHit && (daNote.isSustainNote || daNote.strumTime <= Conductor.songPosition)) {
+									goodNoteHit(daNote);
+								} else if (Conductor.songPosition - daNote.strumTime > (noteKillOffset / 3) + 20) { // Might need to change this for better miss timing
+									if (!cpuControlled && !daNote.ignoreNote && !endingSong && (daNote.tooLate || !daNote.wasGoodHit))
+										noteMiss(daNote);
+
+									daNote.active = daNote.visible = false;
+									invalidateNote(daNote);
+								}
+							} else if (daNote.noteType == 'Shoot Note' && daNote.wasGoodHit && !daNote.hitByOpponent && !daNote.ignoreNote) {
+								opponentNoteHit(daNote);
+							}
+
 							// Kill extremely late notes and cause misses
 							if (Conductor.songPosition - daNote.strumTime > noteKillOffset)
 							{
@@ -2331,6 +2502,7 @@ class PlayState extends MusicBeatState
 
 		setOnScripts('botPlay', cpuControlled);
 		callOnScripts('onUpdatePost', [elapsed]);
+        NotesTween.onUpdatePost(elapsed);
 
 		playerCovers.forEach(function(c:StrumCover) {
 			for (i in 0...keysArray.length) {
@@ -2472,8 +2644,8 @@ class PlayState extends MusicBeatState
 	public var isDead:Bool = false; //Don't mess with this on Lua!!!
 	public var gameOverTimer:FlxTimer;
 	function doDeathCheck(?skipHealthCheck:Bool = false) {
-		if (((skipHealthCheck && instakillOnMiss) || health <= 0) && !practiceMode && !isDead && gameOverTimer == null)
-		{
+		if (((skipHealthCheck && instakillOnMiss) || health <= 0) && !practiceMode && !isDead && canDie)
+			{
 			var ret:Dynamic = callOnScripts('onGameOver', null, true);
 			if(ret != LuaUtils.Function_Stop)
 			{
@@ -2493,7 +2665,7 @@ class PlayState extends MusicBeatState
 				#end
 
 				persistentUpdate = false;
-				persistentDraw = false;
+				persistentDraw = true;
 				FlxTimer.globalManager.clear();
 				FlxTween.globalManager.clear();
 				FlxG.camera.setFilters([]);
@@ -2907,6 +3079,76 @@ class PlayState extends MusicBeatState
 				if(flValue2 == null) flValue2 = 1;
 				FlxG.sound.play(Paths.sound(value1), flValue2);
 
+			case "Set Health Drain":
+				var val1 = flValue1;
+				healthDraining = val1;
+				//FNF HD SOURCE LOL
+			case 'HUD Fade':
+				var alpha:Float = Std.parseFloat(value1);
+				var duration:Float = Std.parseFloat(value2);
+				cameraTwn = FlxTween.tween(camHUD, {alpha: alpha}, duration);
+				case 'Camera Flash':
+				if(ClientPrefs.data.flashing) {
+					var galax:Int = 0;
+					var time:Float = Std.parseFloat(value2);
+					if(Math.isNaN(galax)) galax = 0;
+					switch(value1) {
+						case 'white':
+							galax = 0;
+						case 'black':
+							galax = 1;
+						default:
+							galax = Std.parseInt(value1);
+							if(Math.isNaN(galax)) galax = 0;
+					}
+	
+					switch(galax)
+					{
+						case 0:
+							camOther.flash(FlxColor.WHITE, time, null, true);
+						case 1:
+							camOther.flash(FlxColor.BLACK, time, null, true);
+					}
+				}
+
+			case "Cinematics" | "Camera Fade" | "Color Transform":
+				CustomEvents.onEvent(eventName, value1, value2);
+
+				
+			case 'Dodge Event':
+				dodged = false;
+				canDodge = true;
+				warning.alpha = 1;
+				poste.alpha = 1;
+				new FlxTimer().start(0.1, function(tmr:FlxTimer) {
+					FlxG.sound.play(Paths.sound('warning'));
+					FlxTween.tween(poste, {x:3650}, 1.35, {ease:FlxEase.sineIn, onComplete: 
+					function(twn:FlxTween)
+					{
+						poste.x = -1150;
+					}});
+				});
+				new FlxTimer().start(1, function(tmr:FlxTimer) {
+					if(!dodged)
+					{
+						health = 0;
+						boyfriend.playAnim('hurt', true);
+					}
+				});
+			case 'Show Lyrics':
+				subTitle.text = value1;
+				subTitle.visible = true;
+				subTitle.alpha = 1;
+				subTitle.color = FlxColor.WHITE;
+				
+				if (value2 != null && value2.length > 0)
+				{
+					var vals2:Array<String> = value2.split(',');
+					var alpha:Float = Std.parseFloat(vals2[0].trim());
+					var duration:Float = Std.parseFloat(vals2[1].trim());
+					cameraTwn = FlxTween.tween(subTitle, {alpha: alpha}, duration);
+				}
+
 			default: // I only have this file for more complicated events that need a lot of code or something
 				CustomEvents.onEvent(eventName, value1, value2);
 		}
@@ -3239,10 +3481,15 @@ class PlayState extends MusicBeatState
 		comboSpr.acceleration.y = FlxG.random.int(200, 300) * playbackRate * playbackRate;
 		comboSpr.velocity.y -= FlxG.random.int(140, 160) * playbackRate;
 		comboSpr.visible = (!ClientPrefs.data.hideHud && showCombo);
-		comboSpr.x += ClientPrefs.data.comboOffset[0];
-		comboSpr.y -= ClientPrefs.data.comboOffset[1];
+		var comboImage:FlxPoint = new FlxPoint(0, 0);
+		stagesFunc(function(stage:BaseStage) {
+			comboImage.x = stage.comboImage.x;
+			comboImage.y = stage.comboImage.y;
+		});
+		if (comboImage.x != 0) comboSpr.x = comboImage.x; else comboSpr.x += ClientPrefs.data.comboOffset[0];
+		if (comboImage.y != 0) comboSpr.y = comboImage.y; else comboSpr.y -= ClientPrefs.data.comboOffset[1];
 		comboSpr.antialiasing = antialias;
-		comboSpr.y += 60;
+		//comboSpr.y += 60;
 		comboSpr.velocity.x += FlxG.random.int(1, 10) * playbackRate;
 		comboGroup.add(rating);
 
@@ -3506,6 +3753,33 @@ class PlayState extends MusicBeatState
 				invalidateNote(note);
 		});
 
+		if (daNote.noteType == "Shoot Note") {
+			if (boyfriend.animOffsets.exists('hurt')) {
+				boyfriend.playAnim('hurt', true);
+				boyfriend.specialAnim = true;
+				if (gf.animation.exists('shoot')) {
+					gf.playAnim('shoot', true);
+					gf.specialAnim = true;
+				}
+			}
+		
+			var dadAnimOptions:Array<String> = [
+				singAnimations[Std.int(Math.abs(daNote.noteData))] + '-shoot', //First animation
+				'shoot' //Second animation
+
+			];
+		
+			for (anim in dadAnimOptions) { //remove this "if (dad.get Animation Name() != anime) {" so you can use the note repeatedly on one side xd
+				if (dad.animOffsets.exists(anim)) {
+					dad.playAnim(anim, true);
+					dad.specialAnim = true;
+					FlxG.sound.play(Paths.sound('shoot'));
+					FlxG.camera.shake(0.01, 0.2);				
+				}
+			}
+			health -= 0.35;
+		}
+
 		noteMissCommon(daNote.noteData, daNote);
 		stagesFunc(function(stage:BaseStage) stage.noteMiss(daNote));
 		var result:Dynamic = callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
@@ -3605,6 +3879,7 @@ class PlayState extends MusicBeatState
 
 	function opponentNoteHit(note:Note):Void
 	{
+		GhostEffectDoubleNote.onDadNoteHit(note);
 		var result:Dynamic = callOnLuas('opponentNoteHitPre', [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
 		if(result != LuaUtils.Function_Stop && result != LuaUtils.Function_StopHScript && result != LuaUtils.Function_StopAll) result = callOnHScript('opponentNoteHitPre', [note]);
 
@@ -3639,12 +3914,24 @@ class PlayState extends MusicBeatState
  				char.playAnim(animToPlay, true);
  				char.holdTimer = 0;
 			}
+			if(note.noteType == 'Duo Sing')
+				{
+					dad.playAnim(animToPlay, true);
+					dad.holdTimer = 0;
+					gf.playAnim(animToPlay, true);
+					gf.holdTimer = 0;
+				}
 
 			switch(note.noteType) {
 				case 'Ghost Effect' | 'Ghost Effect Alt':
 					if (!note.isSustainNote) GhostEffect.createGhost(dad, 0, note);
 			}
 		}
+
+		if(healthDraining * healthGain > 0 && health > healthDraining * healthGain + 0.2) 
+			{
+				health -= healthDraining * healthGain;
+			}
 
 		if(opponentVocals.length <= 0) vocals.volume = 1;
 		strumPlayAnim(true, Std.int(Math.abs(note.noteData)), Conductor.stepCrochet * 1.25 / 1000 / playbackRate);
@@ -3702,6 +3989,8 @@ class PlayState extends MusicBeatState
 
 	public function goodNoteHit(note:Note):Void
 	{
+		GhostEffectDoubleNote.onBoyfiendNoteHit(note);
+		songScore += FlxG.random.int(0, 50); // Add a random value to songScore
 		if(note.wasGoodHit) return;
 		if(cpuControlled && note.ignoreNote) return;
 
@@ -3777,9 +4066,37 @@ class PlayState extends MusicBeatState
 			if (gainHealth) health += note.hitHealth * healthGain;
 
 			switch(note.noteType) {
+				case "Shoot Note":
+					var dodgeAnimations:Array<String> = ['dodgeLEFT', 'dodgeDOWN', 'dodgeUP', 'dodgeRIGHT'];
+					var animToPlay:String = dodgeAnimations[Std.int(Math.abs(note.noteData))];
+					boyfriend.playAnim(animToPlay, true);
+					boyfriend.specialAnim = true;
+					if (gf.animation.exists('shoot')) {
+						gf.playAnim('shoot', true);
+						gf.specialAnim = true;
+					}
+
+					var dadAnimOptions:Array<String> = [
+						singAnimations[Std.int(Math.abs(note.noteData))] + '-shoot', //First animation
+						'shoot', //Second animation
+					];	
+					for (anim in dadAnimOptions) { //remove this "if (dad.get Animation Name() != anime) {" so you can use the note repeatedly on one side xd
+							dad.playAnim(anim, true);
+							dad.specialAnim = true;
+							FlxG.sound.play(Paths.sound('shoot'));
+							FlxG.camera.shake(0.01, 0.2);
+					}
+				case "Duo Sing":
+					var singsAnimations:Array<String> = ['singLEFT', 'singDOWN', 'singUP', 'singRIGHT'];
+					var animToPlay:String = singsAnimations[Std.int(Math.abs(note.noteData))];
+					boyfriend.playAnim(animToPlay, true);
+					gf.playAnim(animToPlay, true);
+					gf.holdTimer = 0;
+				
+
 				case 'Ghost Effect' | 'Ghost Effect Alt':
 					if (!note.isSustainNote) GhostEffect.createGhost(boyfriend, 1, note);
-			}
+				}
 		}
 		else //Notes that count as a miss if you hit them (Hurt notes for example)
 		{

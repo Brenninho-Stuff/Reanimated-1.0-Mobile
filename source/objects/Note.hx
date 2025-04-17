@@ -43,12 +43,18 @@ class Note extends FlxSprite
 	public static final defaultNoteTypes:Array<String> = [
 		'', //Always leave this one empty pls
 		'Alt Animation',
+		'Beat Animation',
+		'Shit Animation',
 		'Hey!',
 		'Hurt Note',
 		'GF Sing',
 		'No Animation',
 		'Ghost Effect',
-		'Ghost Effect Alt'
+		'Ghost Effect Alt',
+		"Duo Sing",
+		'No Animation',
+		"Shoot Note",
+		'Dodge Tankman'
 	];
 
 	public var extraData:Map<String, Dynamic> = new Map<String, Dynamic>();
@@ -230,6 +236,17 @@ class Note extends FlxSprite
 					noMissAnimation = true;
 				case 'GF Sing':
 					gfNote = true;
+				case 'Beat Animation':
+					animSuffix = '-beat';
+				case 'Shit Animation':
+					animSuffix = '-shit';
+				case 'Shoot Note':
+					lowPriority = true;
+					reloadNote('DEATHNOTE_assets');
+					rgbShader.enabled = false;
+					noMissAnimation = true;
+					noteSplashData.texture = 'noteSplashes/noteSplashes';
+					noCharShader = true;
 			}
 			if (value != null && value.length > 1) NoteTypesConfig.applyNoteTypeData(this, value);
 			if (hitsound != 'hitsound' && hitsoundVolume > 0) Paths.sound(hitsound); //precache new sound for being idiot-proof

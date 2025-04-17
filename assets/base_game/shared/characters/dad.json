@@ -1,142 +1,168 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				-9,
-				10
-			],
-			"loop": false,
-			"anim": "singLEFT",
-			"fps": 24,
-			"name": "Dad Sing Note LEFT",
-			"indices": []
-		},
-		{
-			"offsets": [
-				0,
-				-30
-			],
-			"loop": false,
-			"anim": "singDOWN",
-			"fps": 24,
-			"name": "Dad Sing Note DOWN",
-			"indices": []
-		},
-		{
-			"offsets": [
-				-6,
-				50
-			],
-			"loop": false,
-			"anim": "singUP",
-			"fps": 24,
-			"name": "Dad Sing Note UP",
-			"indices": []
-		},
-		{
-			"offsets": [
-				0,
-				27
-			],
-			"loop": false,
-			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "Dad Sing Note RIGHT",
-			"indices": []
-		},
-		{
-			"offsets": [
-				0,
-				0
-			],
-			"loop": false,
-			"anim": "idle",
-			"fps": 24,
-			"name": "Dad idle dance",
-			"indices": []
-		},
-		{
-			"offsets": [
-				0,
-				0
-			],
-			"loop": true,
-			"fps": 24,
-			"anim": "idle-loop",
-			"indices": [
-				10,
-				11,
-				12,
-				12
-			],
-			"name": "Dad idle dance"
-		},
-		{
-			"offsets": [
-				-9,
-				10
-			],
+			"offsets": [-9, 10],
 			"loop": true,
 			"fps": 24,
 			"anim": "singLEFT-loop",
-			"indices": [
-				12,
-				13,
-				14,
-				15
-			],
+			"indices": [12, 13, 14, 15],
 			"name": "Dad Sing Note LEFT"
 		},
 		{
-			"offsets": [
-				0,
-				27
-			],
+			"offsets": [0, 27],
 			"loop": true,
 			"fps": 24,
 			"anim": "singRIGHT-loop",
-			"indices": [
-				15,
-				16,
-				17,
-				18
-			],
+			"indices": [15, 16, 17, 18],
 			"name": "Dad Sing Note RIGHT"
 		},
 		{
-			"offsets": [
-				-6,
-				50
-			],
+			"offsets": [-6, 50],
 			"loop": true,
 			"fps": 24,
 			"anim": "singUP-loop",
-			"indices": [
-				56,
-				57,
-				58,
-				59
-			],
+			"indices": [56, 57, 58, 59],
 			"name": "Dad Sing Note UP"
+		},
+		{
+			"offsets": [-6, 18],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "Dad Sing Note LEFT0"
+		},
+		{
+			"offsets": [5, -21],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Dad Sing Note DOWN0"
+		},
+		{
+			"offsets": [-7, 48],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "Dad Sing Note UP0"
+		},
+		{
+			"offsets": [-5, 28],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "Dad Sing Note RIGHT0"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "Dad idle dance0"
+		},
+		{
+			"offsets": [-7, 18],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT-beat",
+			"indices": [],
+			"name": "Dad Sing Note LEFT beat"
+		},
+		{
+			"offsets": [1, -24],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN-beat",
+			"indices": [],
+			"name": "Dad Sing Note DOWN beat"
+		},
+		{
+			"offsets": [-10, 10],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP-beat",
+			"indices": [],
+			"name": "Dad Sing Note UP beat"
+		},
+		{
+			"offsets": [-2, 29],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT-beat",
+			"indices": [],
+			"name": "Dad Sing Note RIGHT beat"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle-alt",
+			"indices": [],
+			"name": "Dad idle dance alt"
 		}
 	],
+	"vocals_file": "",
 	"no_antialiasing": false,
+	"useNoteSkin": false,
 	"image": "characters/DADDY_DEAREST",
-	"position": [
-		0,
-		0
-	],
+	"position": [0, 0],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "dad",
 	"flip_x": false,
-	"healthbar_colors": [
-		175,
-		102,
-		206
-	],
-	"camera_position": [
-		0,
-		0
-	],
+	"healthbar_colors": [175, 102, 206],
+	"disableNoteRGB": false,
+	"camera_position": [0, 0],
+	"noteSkin": "",
+	"noteColors": {
+		"right": [
+			-5438977,
+			-1,
+			-12910503
+		],
+		"up": [
+			-11468624,
+			-1,
+			-14417841
+		],
+		"down": [
+			-5438977,
+			-1,
+			-12910503
+		],
+		"left": [
+			-11468624,
+			-1,
+			-14417841
+		]
+	},
 	"sing_duration": 6.1,
-	"scale": 1
+	"hasAltColors": false,
+	"scale": 1,
+	"_editor_isPlayer": false
 }

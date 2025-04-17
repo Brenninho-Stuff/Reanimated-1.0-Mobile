@@ -6,10 +6,18 @@ class Spooky extends BaseStage
 	var halloweenWhite:BGSprite;
 	override function create()
 	{
+		ratingPos.set(750, 600);
+        comboCountPos.set(650, 750);
+		comboImage.set( 0, 700);
+
 		if(!ClientPrefs.data.lowQuality) {
-			halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
+			halloweenBG = new BGSprite('halloween_bg', -500, -190, ['halloweem bg0', 'halloweem bg lightning strike']);
+			halloweenBG.setGraphicSize(Std.int(1.3 * halloweenBG.width));
+			halloweenBG.updateHitbox();
 		} else {
-			halloweenBG = new BGSprite('halloween_bg_low', -200, -100);
+			halloweenBG = new BGSprite('halloween_bg_low', -500, -170);
+			halloweenBG.setGraphicSize(Std.int(1.3 * halloweenBG.width));
+			halloweenBG.updateHitbox();
 		}
 		add(halloweenBG);
 
@@ -54,14 +62,17 @@ class Spooky extends BaseStage
 		lightningStrikeBeat = curBeat;
 		lightningOffset = FlxG.random.int(8, 24);
 
-		if(boyfriend.hasAnimation('scared'))
+		if(boyfriend.animOffsets.exists('scared')) {
 			boyfriend.playAnim('scared', true);
+		}
 
-		if(dad.hasAnimation('scared'))
+		if(dad.animOffsets.exists('scared')) {
 			dad.playAnim('scared', true);
+		}
 
-		if(gf != null && gf.hasAnimation('scared'))
+		if(gf != null && gf.animOffsets.exists('scared')) {
 			gf.playAnim('scared', true);
+		}
 
 		if(ClientPrefs.data.camZooms) {
 			FlxG.camera.zoom += 0.015;

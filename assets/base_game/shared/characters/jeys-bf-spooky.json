@@ -1,0 +1,188 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [-15, -2],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "BF NOTE LEFT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [0, 0],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "BF NOTE DOWN0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-24, -3],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "BF NOTE UP0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-7, 0],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "BF NOTE RIGHT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [0, 0],
+			"anim": "danceRight",
+			"fps": 24,
+			"name": "BF Spooky Dance",
+			"indices": [0, 1, 2, 3, 4, 5, 6, 7]
+		},
+		{
+			"loop": false,
+			"offsets": [0, 0],
+			"anim": "danceLeft",
+			"fps": 24,
+			"name": "BF Spooky Dance",
+			"indices": [8, 9, 10, 11, 12, 13, 14, 15]
+		},
+		{
+			"loop": false,
+			"offsets": [-3, 0],
+			"anim": "hey",
+			"fps": 24,
+			"name": "BF Hey!!0",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [18, 0],
+			"anim": "scared",
+			"fps": 24,
+			"name": "BF idle shaking0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [0, 0],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "BF NOTE DOWNMiss0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-10, -2],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "BF NOTE LEFTMiss0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-19, -3],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "BF NOTE UPMiss0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-5, -2],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "BF NOTE RIGHTMiss0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [78, 68],
+			"anim": "singLEFT-alt",
+			"fps": 24,
+			"name": "BF NOTE LEFT ALT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [64, -9],
+			"anim": "singDOWN-alt",
+			"fps": 24,
+			"name": "BF NOTE DOWN ALT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [104, 75],
+			"anim": "singRIGHT-alt",
+			"fps": 24,
+			"name": "BF NOTE RIGHT ALT0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [53, 71],
+			"anim": "singUP-alt",
+			"fps": 24,
+			"name": "BF NOTE UP ALT0",
+			"indices": []
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "unlockable characters/Jey's_BF_Spooky",
+	"position": [-200, 80],
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
+	"healthicon": "Jeysbf",
+	"flip_x": true,
+	"healthbar_colors": [10, 109, 202],
+	"camera_position": [230, 30],
+	"noteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
+	"sing_duration": 4,
+	"hasAltColors": false,
+	"scale": 1,
+	"_editor_isPlayer": true
+}

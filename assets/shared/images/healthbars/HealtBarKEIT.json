@@ -1,0 +1,16 @@
+{
+    "emptyBar": "HealtBarKEIT",
+    "emptyBarLibrary": "shared",
+    "emptyBarAnimated": false,
+    "emptyBarOverlay": "",
+    "emptyBarOverlayAnimated": false,
+    "emptyBarOverlayAnimationName": "",
+    "emptyBarAnimationName": "",
+    "fullBar": "HealtBarKEIT",
+    "fullBarLibrary": "shared",
+    "fullBarAnimated": false,
+    "fullBarOverlay": "",
+    "fullBarOverlayAnimated": false,
+    "fullBarOverlayAnimationName": "",
+    "fullBarAnimationName": ""
+}

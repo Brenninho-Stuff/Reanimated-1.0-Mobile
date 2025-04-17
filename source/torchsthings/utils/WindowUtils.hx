@@ -10,8 +10,8 @@ class WindowUtils {
     static function get_gameWindow() {
         return Application.current.window;
     }
-    public static var baseTitle:String = "Friday Night Funkin': Torch Engine";
-    public static final DEFAULT_TITLE:String = "Friday Night Funkin': Torch Engine";
+    public static var baseTitle:String = "~ Friday Night Funkin': | REANIMATED | Into The Highlights ~";
+    public static final DEFAULT_TITLE:String = "~ Friday Night Funkin': | REANIMATED | Into The Highlights ~";
     public static var isDarkMode:Bool = false;
     public static var windowHeaderColor:Array<Int> = [];
     public static var windowBorderColor:Array<Int> = [];

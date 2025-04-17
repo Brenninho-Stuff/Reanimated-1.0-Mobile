@@ -1,127 +1,184 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				0,
-				0
-			],
+			"offsets": [-12, -129],
+			"loop": true,
+			"fps": 24,
+			"anim": "Idle",
+			"indices": [],
+			"name": "Pico Dual Wield on Speaker idle"
+		},
+		{
+			"offsets": [-9, -16],
 			"loop": false,
 			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "up"
+		},
+		{
+			"offsets": [-8, -119],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "left"
+		},
+		{
+			"offsets": [-8, -95],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "right"
+		},
+		{
+			"offsets": [-10, -116],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "down"
+		},
+		{
+			"loop": false,
+			"offsets": [431, -6],
+			"anim": "shootTankman",
+			"fps": 24,
+			"name": "shoot tankman0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [431, -18],
 			"anim": "shoot1",
-			"indices": [],
-			"name": "Pico shoot 1"
+			"fps": 24,
+			"name": "Pico shoot 4",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-1,
-				-128
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [404, -62],
 			"anim": "shoot2",
-			"indices": [],
-			"name": "Pico shoot 2"
+			"fps": 24,
+			"name": "Pico shoot 3",
+			"indices": []
 		},
 		{
-			"offsets": [
-				412,
-				-64
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [-10, -127],
 			"anim": "shoot3",
-			"indices": [],
-			"name": "Pico shoot 3"
+			"fps": 24,
+			"name": "Pico shoot 2",
+			"indices": []
 		},
 		{
-			"offsets": [
-				439,
-				-19
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [-10, 1],
 			"anim": "shoot4",
-			"indices": [],
-			"name": "Pico shoot 4"
+			"fps": 24,
+			"name": "Pico shoot 1",
+			"indices": []
 		},
 		{
-			"offsets": [
-				412,
-				-64
-			],
 			"loop": true,
-			"fps": 24,
-			"anim": "shoot3-loop",
-			"indices": [
-				50,
-				51,
-				52
-			],
-			"name": "Pico shoot 3"
-		},
-		{
-			"offsets": [
-				0,
-				0
-			],
-			"loop": true,
-			"fps": 24,
+			"offsets": [431, -18],
 			"anim": "shoot1-loop",
-			"indices": [
-				23,
-				24,
-				25
-			],
-			"name": "Pico shoot 1"
+			"fps": 24,
+			"name": "Pico shoot 4",
+			"indices": [5, 6, 7]
 		},
 		{
-			"offsets": [
-				1,
-				-128
-			],
 			"loop": true,
-			"fps": 24,
+			"offsets": [404, -62],
 			"anim": "shoot2-loop",
-			"indices": [
-				57,
-				58,
-				59
-			],
-			"name": "Pico shoot 2"
+			"fps": 24,
+			"name": "Pico shoot 3",
+			"indices": [5, 6, 7]
 		},
 		{
-			"offsets": [
-				439,
-				-19
-			],
 			"loop": true,
+			"offsets": [-10, -127],
+			"anim": "shoot3-loop",
 			"fps": 24,
+			"name": "Pico shoot 2",
+			"indices": [5, 6, 7]
+		},
+		{
+			"loop": true,
+			"offsets": [-10, 1],
 			"anim": "shoot4-loop",
-			"indices": [
-				50,
-				51,
-				52
-			],
-			"name": "Pico shoot 4"
+			"fps": 24,
+			"name": "Pico shoot 1",
+			"indices": [5, 6, 7]
+		},
+		{
+			"offsets": [-12, -35],
+			"indices": [],
+			"fps": 24,
+			"anim": "Animation",
+			"loop": false,
+			"name": "Animation"
 		}
 	],
+	"vocals_file": "",
 	"no_antialiasing": false,
+	"useNoteSkin": false,
 	"image": "characters/picoSpeaker",
-	"position": [
-		120,
-		-125
-	],
+	"position": [65, -144],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "pico",
 	"flip_x": false,
-	"healthbar_colors": [
-		183,
-		216,
-		85
-	],
-	"camera_position": [
-		-310,
-		100
-	],
+	"healthbar_colors": [183, 216, 85],
+	"disableNoteRGB": false,
+	"camera_position": [-60, 40],
+	"noteSkin": "",
+	"noteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"sing_duration": 4,
-	"scale": 1
+	"hasAltColors": false,
+	"scale": 1,
+	"_editor_isPlayer": false
 }

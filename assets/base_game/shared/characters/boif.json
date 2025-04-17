@@ -1,0 +1,136 @@
+{
+	"animations": [
+		{
+			"offsets": [5, -5],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "idle"
+		},
+		{
+			"loop": false,
+			"offsets": [82, -5],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "leff",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [40, -50],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "downn",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [10, 7],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "upp",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-12, -18],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "righh",
+			"indices": []
+		},
+		{
+			"offsets": [59, -13],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT-alt",
+			"indices": [],
+			"name": "colifloor es una mrd"
+		},
+		{
+			"offsets": [-7, -5],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT-alt",
+			"indices": [],
+			"name": "mi prepucio"
+		},
+		{
+			"offsets": [-45, 10],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP-alt",
+			"indices": [],
+			"name": "oli"
+		},
+		{
+			"offsets": [66, -53],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN-alt",
+			"indices": [],
+			"name": "bajo"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"useNoteSkin": true,
+	"image": "17bucks/boif",
+	"position": [0, 250],
+	"noteSkinLib": "torchs_assets",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
+	"healthicon": "boyf",
+	"flip_x": true,
+	"healthbar_colors": [75, 147, 178],
+	"disableNoteRGB": true,
+	"camera_position": [240, -50],
+	"noteSkin": "custom_notes/z3mp",
+	"noteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
+	"sing_duration": 4,
+	"hasAltColors": false,
+	"scale": 0.9,
+	"_editor_isPlayer": true
+}
