@@ -88,14 +88,6 @@ class PhillyStreetsErect extends BaseStage
         highway.updateHitbox();
         add(highway);
 
-        var degradado:FlxSprite = new FlxSprite(284, 305).loadGraphic(Paths.image('phillyStreets/phillyHighwayLights_lightmap'));
-		degradado.antialiasing = ClientPrefs.data.antialiasing;
-		degradado.blend = ADD;
-		degradado.scrollFactor.set(1.0, 1.0);
-		degradado.updateHitbox();
-		//degradado.screenCenter();
-		add(degradado);
-
         phillyCarsBack = new FlxSprite(1748, 818);
 		phillyCarsBack.frames = Paths.getSparrowAtlas("phillyStreets/erect/phillyCars");
 		phillyCarsBack.scrollFactor.set(0.9, 1);

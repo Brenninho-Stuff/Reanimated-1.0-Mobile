@@ -17,7 +17,7 @@ class Wait extends BaseStage
 		blackScreen.scrollFactor.set();
 		add(blackScreen);
         
-        var settings:BarSettings = haxe.Json.parse(Assets.getText(Paths.json("healthbars/5peso", "shared").replace("data", "images")));
+        var settings:BarSettings = haxe.Json.parse(Assets.getText(Paths.json("healthbars/17bucks", "shared").replace("data", "images")));
         PlayState.healthBarSettings = settings;
     }
     override function createPost()

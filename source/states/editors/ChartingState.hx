@@ -87,10 +87,14 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
 		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
+		['Camera Flash', "You know what it is.\nValue 1: white/gray/black/green/lime/yellow/orange/\nred/purple/blue/pink/magenta/cyan\nValue 2: Flash duration"],
+		['HUD Fade', "Value 1: Opaticity\nValue 2: Duration"],
 		["Enemy Splashes", "Value 1: Enemy Note Splashes (true/false)\n\nValue 2: Enemy Strum Cover Splashes (true/false)"],
 		['Wobbly Notes', "Value 1: The wiggle factor 'x,y' Int Array\nValue 2: Who does it effect? Options are:\n'enemy', 'player', 'both', and 'none'\n'stop1' and 'stop2' also work\n'stop1' affects the enemy, 'stop2' affects the player\n\nSet value 1 to '0,0' or set 'none' in value 2 to remove\nwobble"],
-		['Cinematic Bars', "Value 1: The speed the bars move on screen \nand how long until they leave (ex. [2,4] [(speed),(wait)])\n\nValue 2: The distance the bars move"],
+		['Camera Fade', "Value 1: Duration \nValue 2: Camera to switch to (off / on)"],
+		['Cinematics',"Value 1: The speed the bars move on screen \nand how long until they leave (ex. [2,4] [(speed),(wait)])\n\nValue 2: The distance the bars move"],
 		['Show Lyrics', "Value 1: Show lyrics\nValue 2: Fade Lyrics(This is optional, this is the same as fade hud [1,1]) \nAn example of how to use it when it is a lyrics with fade,\nValue1: [Hi!!]\nValue2: [0,1]\nTo return it to normal it would be like this\nValue1: [Surprise]\nValue2: [1,0.1]\nThis is used in case you use the fade lyrics"],
+		['Color Transform', "Value 1: Time in seconds to apply the color transform effect.\nValue 2: (Optional) If you don't want the color to be applied, just put 'nocolor' and that's it"],
 		['Edit Ghost Notes', 'Value 1: If the ghost should be colored, \nif the ghosts color should be affected by their custom note colors\nDefault Values: "true, true".\n\nValue 2: The tween time, the sliding distance.\nDefault Values: "0.4, 90.0"']
 	];
 	
