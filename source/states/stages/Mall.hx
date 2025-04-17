@@ -52,7 +52,8 @@ class Mall extends BaseStage
 		Paths.sound('mall/Lights_Shut_off');
 		setDefaultGF('gf-christmas');
 
-addAbot(100, 355);
+		addAbot(100, 355);
+		
 		if(isStoryMode && !seenCutscene)
 			setEndCallback(eggnogEndCutscene);
 	}
