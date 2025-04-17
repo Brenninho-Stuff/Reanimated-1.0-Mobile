@@ -1,21 +1,1625 @@
 {
 	"player1": "bf-christmas-hev",
-	"player2": "parents-christmas",
+	"events": [
+		[
+			0,
+			[
+				["Updated Camera Zoom", "Main", "1.2,7,smoothStepIn"]
+			]
+		],
+		[
+			2800,
+			[
+				["Hey!", "1", "0.5"],
+				["Hey!", "bf", "0.5"],
+				["Set Health Drain", "0.04", ""]
+			]
+		],
+		[
+			3200,
+			[
+				["Updated Camera Zoom", "main", "0.5,1.2,smoothStepIn"]
+			]
+		],
+		[
+			6000,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			9200,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			12400,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			15600,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			15666.6666666667,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			15733.3333333333,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			15800,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			15866.6666666667,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			15933.3333333333,
+			[
+				["Add Camera Zoom", "", ""]
+			]
+		],
+		[
+			16000,
+			[
+				["Camera Follow Pos", "700", "400"],
+				["Cinematics", "1,12", "120"],
+				["Color Transform", "1", "12.5,nocolor"]
+			]
+		],
+		[
+			16400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			16400,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			16800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			16800,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			17000,
+			[
+				["Camera Follow Pos", "670", "430"]
+			]
+		],
+		[
+			17200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			17400,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			17600,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			17800,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			18000,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			18000,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			18200,
+			[
+				["Camera Follow Pos", "670", "430"]
+			]
+		],
+		[
+			18400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			18400,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			18600,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			18800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			18800,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			19000,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			19200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			19200,
+			[
+				["Camera Follow Pos", "670", "430"]
+			]
+		],
+		[
+			19600,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			19600,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			20000,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			20000,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			20200,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			20400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			20600,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			20800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			21000,
+			[
+				["Camera Follow Pos", "670", "430"]
+			]
+		],
+		[
+			21200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			21200,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			21400,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			21600,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			21600,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			21800,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			22000,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			22000,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			22200,
+			[
+				["Camera Follow Pos", "670", "430"]
+			]
+		],
+		[
+			22400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			22400,
+			[
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			22800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			22800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			23200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			23200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			23600,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			23600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			24000,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			24400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			24400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			24800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			24800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			25200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			25200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			25200,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			25600,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			26000,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			26000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			26400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			26400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			26800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			26800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			27200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			27600,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			27600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			28000,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			28000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			28400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			28400,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			28400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			28400,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			29200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			29600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			30000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			30800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			31200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			31600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			31600,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			32400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			32800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			33200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			34000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			34400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			34800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			34800,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			35600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			36000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			36400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			37200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			37600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			38000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			38000,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			38800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			39200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			39600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			40400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			40800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			41200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			48400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			48800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			49200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			50000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			50400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			50800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			50800,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			51600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			52000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			52400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			53200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			53600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			54000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			54000,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			54800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			55200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			55600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			56400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			56800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			57200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			57200,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			58000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			58400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			58800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			59600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			60000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			61200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			61600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			62000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			62800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			63200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			63600,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			63600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			64400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			64800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			65200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			66000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			66400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			66800,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			66800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			67600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			68000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			68400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			69200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			69600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			70000,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			70000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			70800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			71200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			71600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			72400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			73200,
+			[
+				["Add Camera Zoom", "0.010", "0.01"]
+			]
+		],
+		[
+			73400,
+			[
+				["Add Camera Zoom", "0.010", "0.01"]
+			]
+		],
+		[
+			74000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			74400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			74800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			75600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			76000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			76400,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			76400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			77200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			77600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			78000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			78800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			79200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			79600,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			79600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			80400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			80800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			81200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			82000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			82400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			82800,
+			[
+				["Hey!", "1", "0.5"]
+			]
+		],
+		[
+			82800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			83600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			84000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			84400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			85200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			85600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			86000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			86390,
+			[
+				["Cinematics", "1", "120"],
+				["Color Transform", "1", "12.5,nocolor"]
+			]
+		],
+		[
+			86400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			86400,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			86800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			86800,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			87200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			87200,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			87400,
+			[
+				["Camera Follow Pos", "670", "430"]
+			]
+		],
+		[
+			87600,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			87800,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			88000,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			88200,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			88400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			88400,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			88600,
+			[
+				["Camera Follow Pos", "670", "430"]
+			]
+		],
+		[
+			88800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			88800,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			89000,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			89200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			89200,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			89400,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			89600,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			89600,
+			[
+				["Camera Follow Pos", "670", "430"]
+			]
+		],
+		[
+			90000,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			90000,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			90400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			90400,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			90600,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			90800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			91000,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			91200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			91400,
+			[
+				["Camera Follow Pos", "670", "430"]
+			]
+		],
+		[
+			91600,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			91600,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			91800,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			92000,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			92000,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			92200,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			92400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			92400,
+			[
+				["Camera Follow Pos", "700", "460"]
+			]
+		],
+		[
+			92600,
+			[
+				["Camera Follow Pos", "670", "430"]
+			]
+		],
+		[
+			92800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			92800,
+			[
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			93200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			93200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			93600,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			93600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			94000,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			94000,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			94400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			94800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			94800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			95200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			95200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			95600,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			95600,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			96000,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			96400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			96400,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			96800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			96800,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			97200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			97200,
+			[
+				["Add Camera Zoom", "0.009", "0.009"]
+			]
+		],
+		[
+			97600,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			97600,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			97800,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			98000,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			98200,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			98400,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			98400,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			98800,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			98800,
+			[
+				["Camera Follow Pos", "670", "430"]
+			]
+		],
+		[
+			99000,
+			[
+				["Camera Follow Pos", "700", "400"]
+			]
+		],
+		[
+			99200,
+			[
+				["Add Camera Zoom", "0.080", "0.055"]
+			]
+		],
+		[
+			99200,
+			[
+				["Camera Follow Pos", "730", "430"]
+			]
+		],
+		[
+			100800,
+			[
+				["Camera Follow Pos", "700", "400"],
+				["Camera Fade", "3", "off"]
+			]
+		]
+	],
+	"gfVersion": "gf-christmas-hev",
 	"notes": [
 		{
-			"gfSection": false,
-			"sectionNotes": [],
 			"sectionBeats": 4,
+			"sectionNotes": [],
+			"gfSection": false,
 			"mustHitSection": false
 		},
 		{
-			"gfSection": false,
-			"sectionNotes": [],
 			"sectionBeats": 4,
+			"sectionNotes": [],
+			"gfSection": false,
 			"mustHitSection": true
 		},
 		{
-			"gfSection": false,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[3400, 5, 0],
 				[3800, 5, 0],
@@ -23,11 +1627,11 @@
 				[4400, 7, 0],
 				[4600, 6, 0]
 			],
-			"sectionBeats": 4,
+			"gfSection": false,
 			"mustHitSection": false
 		},
 		{
-			"gfSection": false,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[5000, 5, 0],
 				[5400, 5, 0],
@@ -36,11 +1640,11 @@
 				[6000, 7, 0],
 				[6200, 5, 0]
 			],
-			"sectionBeats": 4,
+			"gfSection": false,
 			"mustHitSection": false
 		},
 		{
-			"gfSection": false,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[6600, 5, 0],
 				[7000, 5, 0],
@@ -48,11 +1652,11 @@
 				[7600, 7, 0],
 				[7800, 6, 0]
 			],
-			"sectionBeats": 4,
+			"gfSection": false,
 			"mustHitSection": false
 		},
 		{
-			"gfSection": false,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[8200, 5, 0],
 				[8600, 5, 0],
@@ -61,11 +1665,11 @@
 				[9200, 4, 0],
 				[9400, 5, 0]
 			],
-			"sectionBeats": 4,
+			"gfSection": false,
 			"mustHitSection": false
 		},
 		{
-			"gfSection": false,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[9800, 1, 0],
 				[10200, 1, 0],
@@ -74,11 +1678,11 @@
 				[10900, 2, 0],
 				[11000, 0, 100]
 			],
-			"sectionBeats": 4,
+			"gfSection": false,
 			"mustHitSection": true
 		},
 		{
-			"gfSection": false,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[11400, 1, 0],
 				[11800, 1, 0],
@@ -87,11 +1691,11 @@
 				[12400, 3, 0, "Alt Animation"],
 				[12600, 0, 100, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"gfSection": false,
 			"mustHitSection": true
 		},
 		{
-			"gfSection": false,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[13000, 1, 0],
 				[13400, 1, 0],
@@ -100,10 +1704,11 @@
 				[14100, 2, 0],
 				[14200, 0, 0]
 			],
-			"sectionBeats": 4,
+			"gfSection": false,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[14600, 3, 0, "Alt Animation"],
 				[14650, 2, 0, "Alt Animation"],
@@ -114,11 +1719,10 @@
 				[15600, 2, 100, "Alt Animation"],
 				[15800, 1, 100, "Alt Animation"]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[16000, 2, 300],
 				[16000, 6, 300, "Alt Animation"],
@@ -131,11 +1735,11 @@
 				[17400, 3, 300],
 				[17400, 7, 300, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[17800, 1, 100],
 				[17800, 5, 100, "Alt Animation"],
@@ -152,11 +1756,11 @@
 				[19000, 3, 100],
 				[19000, 7, 100, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[19200, 0, 300],
 				[19200, 4, 300, "Alt Animation"],
@@ -169,11 +1773,11 @@
 				[20600, 1, 300],
 				[20600, 5, 300, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[21000, 0, 100],
 				[21000, 4, 100, "Alt Animation"],
@@ -189,11 +1793,11 @@
 				[22000, 5, 300, "Alt Animation"],
 				[22200, 0, 100]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[22400, 3, 500, "Alt Animation"],
 				[22600, 6, 0, "Alt Animation"],
@@ -204,11 +1808,11 @@
 				[23600, 4, 0, "Alt Animation"],
 				[23800, 5, 100, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[24000, 2, 500, "Alt Animation"],
 				[24200, 6, 0, "Alt Animation"],
@@ -221,11 +1825,11 @@
 				[25200, 4, 100, "Alt Animation"],
 				[25400, 5, 100, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[25600, 3, 500, "Alt Animation"],
 				[25800, 6, 0, "Alt Animation"],
@@ -237,11 +1841,11 @@
 				[26800, 4, 0, "Alt Animation"],
 				[27000, 5, 100, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[27200, 1, 0],
 				[27400, 3, 0],
@@ -259,10 +1863,11 @@
 				[28600, 2, 100],
 				[28600, 5, 100, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[28800, 1, 200],
 				[29000, 7, 0],
@@ -280,10 +1885,10 @@
 				[30200, 3, 0],
 				[30300, 7, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[30400, 6, 0],
 				[30600, 7, 0],
@@ -302,10 +1907,10 @@
 				[31800, 4, 0],
 				[31800, 2, 100]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[32000, 7, 0],
 				[32000, 0, 0, "Alt Animation"],
@@ -323,10 +1928,10 @@
 				[33400, 4, 0],
 				[33500, 7, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[33600, 6, 0],
 				[33800, 7, 0],
@@ -345,10 +1950,10 @@
 				[35000, 5, 0],
 				[35000, 0, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[35200, 7, 400],
 				[35400, 3, 0],
@@ -360,10 +1965,10 @@
 				[36600, 3, 0],
 				[36700, 2, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[36800, 0, 0, "Alt Animation"],
 				[36900, 2, 0, "Alt Animation"],
@@ -380,10 +1985,10 @@
 				[38000, 1, 100],
 				[38200, 2, 100]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[38600, 1, 0],
 				[38800, 2, 100],
@@ -394,10 +1999,10 @@
 				[39600, 1, 100],
 				[39800, 3, 100]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[40000, 3, 0, "Alt Animation"],
 				[40100, 2, 0, "Alt Animation"],
@@ -416,11 +2021,10 @@
 				[41400, 1, 0, "Alt Animation"],
 				[41500, 3, 0, "Alt Animation"]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[41600, 2, 500, "Alt Animation"],
 				[41600, 4, 0, "Alt Animation"],
@@ -433,11 +2037,11 @@
 				[42800, 5, 0, "Alt Animation"],
 				[43000, 7, 0, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": false
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[43200, 0, 0],
 				[43200, 7, 300, "Alt Animation"],
@@ -450,11 +2054,11 @@
 				[44400, 1, 0],
 				[44600, 3, 0]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[44800, 3, 200],
 				[44800, 4, 0, "Alt Animation"],
@@ -468,11 +2072,11 @@
 				[46200, 2, 100],
 				[46200, 7, 0, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": false
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[46400, 0, 0],
 				[46400, 7, 300, "Alt Animation"],
@@ -490,10 +2094,11 @@
 				[47600, 0, 0, "Alt Animation"],
 				[47800, 0, 0, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[48000, 2, 1400, "Alt Animation"],
 				[48200, 5, 0],
@@ -503,10 +2108,10 @@
 				[49300, 4, 0],
 				[49400, 7, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[49800, 5, 0],
 				[50200, 5, 0],
@@ -515,10 +2120,10 @@
 				[50900, 4, 0],
 				[51000, 7, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[51400, 5, 0],
 				[51800, 5, 0],
@@ -527,10 +2132,10 @@
 				[52500, 4, 0],
 				[52600, 7, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[53000, 5, 0],
 				[53400, 5, 0],
@@ -539,10 +2144,10 @@
 				[54100, 4, 0],
 				[54200, 7, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[54600, 3, 0],
 				[54650, 2, 150],
@@ -552,10 +2157,10 @@
 				[55700, 0, 0],
 				[55800, 1, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[56200, 3, 0, "Alt Animation"],
 				[56232.5, 2, 200, "Alt Animation"],
@@ -565,10 +2170,10 @@
 				[57200, 0, 0, "Alt Animation"],
 				[57400, 2, 100, "Alt Animation"]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[57800, 3, 0],
 				[57900, 0, 0],
@@ -581,10 +2186,10 @@
 				[59000, 1, 0],
 				[59050, 0, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[59200, 2, 0],
 				[59400, 3, 0],
@@ -597,11 +2202,10 @@
 				[60600, 1, 0, "Alt Animation"],
 				[60700, 3, 0, "Alt Animation"]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[60800, 2, 1500, "Alt Animation"],
 				[60800, 6, 0, "Alt Animation"],
@@ -613,11 +2217,11 @@
 				[62000, 5, 0, "Alt Animation"],
 				[62200, 7, 0, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": false
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[62400, 4, 0, "Alt Animation"],
 				[62500, 7, 0, "Alt Animation"],
@@ -629,10 +2233,11 @@
 				[63400, 6, 0, "Alt Animation"],
 				[63600, 7, 300, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[64000, 2, 0],
 				[64200, 3, 0],
@@ -644,10 +2249,10 @@
 				[65400, 1, 0],
 				[65500, 2, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[65600, 3, 0],
 				[65700, 0, 0],
@@ -662,11 +2267,10 @@
 				[66800, 0, 100],
 				[67000, 1, 100]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[67200, 2, 0],
 				[67200, 5, 0, "Alt Animation"],
@@ -678,11 +2282,11 @@
 				[68400, 5, 0, "Alt Animation"],
 				[68600, 6, 0, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": false
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[68800, 7, 0, "Alt Animation"],
 				[68900, 4, 0, "Alt Animation"],
@@ -695,10 +2299,11 @@
 				[70000, 6, 300, "Alt Animation"],
 				[70200, 2, 0]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[70400, 1, 0],
 				[70600, 3, 0],
@@ -708,10 +2313,10 @@
 				[71600, 1, 0],
 				[71800, 3, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[72200, 1, 0],
 				[72400, 3, 0, "Alt Animation"],
@@ -721,10 +2326,10 @@
 				[73200, 0, 0, "Alt Animation"],
 				[73400, 3, 0, "Alt Animation"]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[73600, 2, 1500, "Alt Animation"],
 				[73800, 7, 0],
@@ -737,10 +2342,10 @@
 				[75000, 4, 0],
 				[75100, 7, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[75200, 6, 0],
 				[75400, 7, 0],
@@ -752,10 +2357,10 @@
 				[76400, 7, 0],
 				[76600, 4, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[76800, 7, 0],
 				[76800, 1, 500],
@@ -771,10 +2376,10 @@
 				[78200, 4, 0],
 				[78300, 7, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[78400, 6, 0],
 				[78600, 7, 0],
@@ -793,10 +2398,10 @@
 				[79800, 5, 0],
 				[79800, 2, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": false
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[80000, 7, 400],
 				[80200, 3, 0],
@@ -808,10 +2413,10 @@
 				[81400, 3, 0],
 				[81500, 2, 0]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[81600, 0, 0],
 				[81700, 2, 0],
@@ -828,10 +2433,10 @@
 				[82800, 1, 100],
 				[83000, 2, 100]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[83400, 1, 0],
 				[83600, 2, 100],
@@ -842,10 +2447,10 @@
 				[84400, 1, 100],
 				[84600, 3, 100]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[84800, 3, 0],
 				[84900, 2, 0],
@@ -864,11 +2469,10 @@
 				[86200, 1, 0, "Alt Animation"],
 				[86300, 3, 0, "Alt Animation"]
 			],
-			"sectionBeats": 4,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[86400, 6, 300, "Alt Animation"],
 				[86400, 2, 300, "Alt Animation"],
@@ -881,11 +2485,11 @@
 				[87800, 7, 300, "Alt Animation"],
 				[87800, 3, 300, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": false
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[88200, 5, 100, "Alt Animation"],
 				[88200, 1, 100, "Alt Animation"],
@@ -902,11 +2506,11 @@
 				[89400, 7, 100, "Alt Animation"],
 				[89400, 3, 100, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[89600, 4, 300, "Alt Animation"],
 				[89600, 0, 300, "Alt Animation"],
@@ -919,11 +2523,11 @@
 				[91000, 5, 300, "Alt Animation"],
 				[91000, 1, 300, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": false
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[91400, 4, 100, "Alt Animation"],
 				[91400, 0, 100, "Alt Animation"],
@@ -939,11 +2543,11 @@
 				[92400, 1, 100, "Alt Animation"],
 				[92600, 0, 200, "Alt Animation"]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[92800, 7, 500, "Alt Animation"],
 				[93000, 2, 0],
@@ -954,11 +2558,11 @@
 				[94000, 0, 0],
 				[94200, 1, 100]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[94400, 6, 500, "Alt Animation"],
 				[94600, 2, 0],
@@ -971,11 +2575,11 @@
 				[95600, 5, 300, "Alt Animation"],
 				[95800, 1, 100]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"altAnim": true,
+			"sectionBeats": 4,
 			"sectionNotes": [
 				[96000, 7, 500, "Alt Animation"],
 				[96200, 2, 0],
@@ -987,11 +2591,11 @@
 				[97200, 4, 300, "Alt Animation"],
 				[97400, 1, 100]
 			],
-			"sectionBeats": 4,
+			"altAnim": true,
 			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"typeOfSection": 0,
 			"sectionNotes": [
 				[97600, 5, 0, "Alt Animation"],
 				[97600, 1, 0, "Alt Animation"],
@@ -1010,452 +2614,65 @@
 				[99000, 5, 100, "Alt Animation"],
 				[99000, 1, 100, "Alt Animation"]
 			],
-			"typeOfSection": 0,
-			"gfSection": false,
+			"sectionBeats": 4,
 			"altAnim": true,
-			"mustHitSection": true,
+			"gfSection": false,
+			"bpm": 165,
 			"changeBPM": false,
-			"bpm": 165
+			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
+			"typeOfSection": 0,
 			"sectionNotes": [
 				[99200, 3, 1100, "Alt Animation"],
 				[99200, 7, 1100, "Alt Animation"]
 			],
-			"typeOfSection": 0,
-			"gfSection": false,
+			"sectionBeats": 4,
 			"altAnim": true,
-			"mustHitSection": true,
+			"gfSection": false,
+			"bpm": 177,
 			"changeBPM": false,
-			"bpm": 177
+			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
-			"sectionNotes": [],
 			"typeOfSection": 0,
-			"gfSection": false,
+			"sectionNotes": [],
+			"sectionBeats": 4,
 			"altAnim": false,
-			"mustHitSection": true,
+			"gfSection": false,
+			"bpm": 177,
 			"changeBPM": false,
-			"bpm": 177
+			"mustHitSection": true
 		},
 		{
-			"sectionBeats": 4,
-			"sectionNotes": [],
 			"typeOfSection": 0,
-			"gfSection": false,
+			"sectionNotes": [],
+			"sectionBeats": 4,
 			"altAnim": false,
-			"mustHitSection": false,
+			"gfSection": false,
+			"bpm": 177,
 			"changeBPM": false,
-			"bpm": 177
+			"mustHitSection": false
 		},
 		{
-			"sectionBeats": 4,
-			"sectionNotes": [],
 			"typeOfSection": 0,
-			"gfSection": false,
+			"sectionNotes": [],
+			"sectionBeats": 4,
 			"altAnim": false,
-			"mustHitSection": false,
+			"gfSection": false,
+			"bpm": 177,
 			"changeBPM": false,
-			"bpm": 177
+			"mustHitSection": false
 		}
 	],
-	"gfVersion": "gf-christmas-hev",
-	"events": [
-		[
-			16400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			16800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			17200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			17600,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			18000,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			18400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			18800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			19200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			19600,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			20000,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			20400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			20800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			21200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			21600,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			22000,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			22400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			22800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			23200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			23600,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			24000,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			24400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			24800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			25200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			25600,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			26000,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			26400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			26800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			27200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			27600,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			28000,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			28400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			86400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			86800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			87200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			87600,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			88000,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			88400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			88800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			89200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			89600,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			90000,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			90400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			90800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			91200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			91600,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			92000,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			92400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			92800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			93200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			93600,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			94000,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			94400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			94800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			95200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			95600,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			96000,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			96400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			96800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			97200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			97600,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			98000,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			98400,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			98800,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		],
-		[
-			99200,
-			[
-				["Add Camera Zoom", "0.080", "0.055"]
-			]
-		]
-	],
+	"player2": "parents-christmas",
 	"player3": null,
-	"splashSkin": "",
-	"song": "Erect-Eggnog",
-	"arrowSkin": "",
-	"validScore": true,
-	"needsVoices": true,
+	"song": "erect-eggnog",
 	"stage": "mall",
-	"speed": 2.6,
+	"needsVoices": true,
+	"validScore": true,
+	"arrowSkin": "",
+	"format": "psych_v1_convert",
 	"bpm": 150,
-	"format": "psych_v1_convert"
+	"speed": 2.6
 }
