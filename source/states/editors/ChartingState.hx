@@ -89,6 +89,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
 		['Camera Flash', "You know what it is.\nValue 1: white/gray/black/green/lime/yellow/orange/\nred/purple/blue/pink/magenta/cyan\nValue 2: Flash duration"],
 		['HUD Fade', "Value 1: Opaticity\nValue 2: Duration"],
+		["Set Health Drain", 'Defines how much life will be taken from the player\nwhen the enemy presses a note\n(recommend to use 0.06 or less)'],
 		["Enemy Splashes", "Value 1: Enemy Note Splashes (true/false)\n\nValue 2: Enemy Strum Cover Splashes (true/false)"],
 		['Wobbly Notes', "Value 1: The wiggle factor 'x,y' Int Array\nValue 2: Who does it effect? Options are:\n'enemy', 'player', 'both', and 'none'\n'stop1' and 'stop2' also work\n'stop1' affects the enemy, 'stop2' affects the player\n\nSet value 1 to '0,0' or set 'none' in value 2 to remove\nwobble"],
 		['Camera Fade', "Value 1: Duration \nValue 2: Camera to switch to (off / on)"],

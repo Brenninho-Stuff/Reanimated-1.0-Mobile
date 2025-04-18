@@ -150,7 +150,11 @@ class Character extends FlxSprite
 			case 'pico-speaker':
 				skipDance = true;
 				loadMappedAnims();
-				playAnim("shoot1");
+				playAnim("shoot4");
+			case 'otis-speaker':
+				skipDance = true;
+				loadMappedAnims();
+				playAnim("shoot4-loop");
 			case 'pico-blazin', 'darnell-blazin':
 				skipDance = true;
 		}
@@ -345,7 +349,7 @@ class Character extends FlxSprite
 
 		switch(curCharacter)
 		{
-			case 'pico-speaker':
+			case 'pico-speaker', 'otis-speaker':
 				if(animationNotes.length > 0 && Conductor.songPosition > animationNotes[0][0])
 				{
 					var noteData:Int = 1;

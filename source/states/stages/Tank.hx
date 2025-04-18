@@ -120,13 +120,14 @@ class Tank extends BaseStage
 		tankright2.updateHitbox();
 	
 		// Default GFs
-		if(songName == 'stress') setDefaultGF('pico-speaker');
+		if(songName == 'stress' || songName == 'stress-Pico-Mix') setDefaultGF('pico-speaker');
 		else setDefaultGF('gf-tankmen');
 		
         addAbot(100, 355);
 		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
 
 		
+
 		if (isStoryMode && !seenCutscene)
 		{
 			switch (songName)
@@ -153,20 +154,34 @@ class Tank extends BaseStage
 			for (daGf in gfGroup)
 			{
 				var gf:Character = cast daGf;
-				if(gf.curCharacter == 'pico-speaker')
-				{
+				if (gf.curCharacter == 'pico-speaker') {
 					var firstTank:TankmenBG = new TankmenBG(20, 500, true);
 					firstTank.resetShit(20, 1500, true);
 					firstTank.strumTime = 10;
 					firstTank.visible = false;
 					tankmanRun.add(firstTank);
-
-					for (i in 0...TankmenBG.animationNotes.length)
-					{
-						if(FlxG.random.bool(16)) {
+				
+					for (i in 0...TankmenBG.animationNotes.length) {
+						if (FlxG.random.bool(16)) {
 							var tankBih = tankmanRun.recycle(TankmenBG);
 							tankBih.strumTime = TankmenBG.animationNotes[i][0];
 							tankBih.resetShit(500, 200 + FlxG.random.int(50, 100), TankmenBG.animationNotes[i][1] < 2);
+							tankmanRun.add(tankBih);
+						}
+					}
+					break;
+				} else if (gf.curCharacter == 'otis-speaker') {
+					var firstTank:TankmenBG = new TankmenBG(30, 600, true);
+					firstTank.resetShit(30, 1600, true);
+					firstTank.strumTime = 15;
+					firstTank.visible = false;
+					tankmanRun.add(firstTank);
+				
+					for (i in 0...TankmenBG.animationNotes.length) {
+						if (FlxG.random.bool(12)) {
+							var tankBih = tankmanRun.recycle(TankmenBG);
+							tankBih.strumTime = TankmenBG.animationNotes[i][0];
+							tankBih.resetShit(600, 250 + FlxG.random.int(50, 100), TankmenBG.animationNotes[i][1] < 2);
 							tankmanRun.add(tankBih);
 						}
 					}

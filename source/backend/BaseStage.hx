@@ -234,7 +234,7 @@ class BaseStage extends FlxBasic {
 	}
 	*/
 	function addAbot(?xOffset:Float = 0.0, ?yOffset:Float = 550.0, ?scrollFactorX:Float = 1.0, ?scrollFactorY:Float = 1.0) {
-		if (PlayState.SONG.gfVersion == 'nene' || PlayState.SONG.gfVersion == 'nene-opp'|| PlayState.SONG.gfVersion == 'nene-christmas') {
+		if (PlayState.SONG.gfVersion == 'nene' || PlayState.SONG.gfVersion == 'nene-opp'|| PlayState.SONG.gfVersion == 'nene-christmas'||  PlayState.SONG.gfVersion == 'otis-speaker') {
 			abot = new ABotSpeaker(gfGroup.x + xOffset, gfGroup.y + yOffset);
 			abot.scrollFactor.set(scrollFactorX, scrollFactorY);
 			updateABotEye(true);

@@ -2871,11 +2871,18 @@ class PlayState extends MusicBeatState
 						gf.heyTimer = flValue2;
 					}
 				}
-				if(value != 1) {
+			if(value != 1) {
+				var chance = FlxG.random.float(0, 1); 
+				if (chance < 0.1 && boyfriend.hasAnimation('hey-alt')) {
+					boyfriend.playAnim('hey-alt', true);
+					boyfriend.specialAnim = true;
+					boyfriend.heyTimer = flValue2;
+				} else {
 					boyfriend.playAnim('hey', true);
 					boyfriend.specialAnim = true;
 					boyfriend.heyTimer = flValue2;
 				}
+			}
 
 			case 'Set GF Speed':
 				if(flValue1 == null || flValue1 < 1) flValue1 = 1;
@@ -3503,7 +3510,7 @@ class PlayState extends MusicBeatState
 	public var totalPlayed:Int = 0;
 	public var totalNotesHit:Float = 0.0;
 
-	public var showCombo:Bool = false;
+	public var showCombo:Bool = true;
 	public var showComboNum:Bool = true;
 	public var showRating:Bool = true;
 
@@ -3627,12 +3634,11 @@ class PlayState extends MusicBeatState
 
 		var daLoop:Int = 0;
 		var xThing:Float = 0;
-		if (showCombo)
+		if (showCombo && combo >= 50)
 			comboGroup.add(comboSpr);
-
-		var separatedScore:String = Std.string(combo).lpad('0', 3);
+		var separatedScore:String = Std.string(combo).lpad('0', 1);
 		for (i in 0...separatedScore.length)
-		{
+	{
 			var comboPoint:FlxPoint = new FlxPoint(0, 0);
 			stagesFunc(function(stage:BaseStage) {
 				comboPoint.x = stage.comboCountPos.x;
@@ -4155,9 +4161,13 @@ class PlayState extends MusicBeatState
 
 					if(note.noteType == 'Hey!')
 					{
-						if(char.hasAnimation(animCheck))
-						{
-							char.playAnim(animCheck, true);
+						if(char.hasAnimation(animCheck)) {
+							var chance = FlxG.random.float(0, 1);
+							if (chance < 0.1 && char.hasAnimation(animCheck + "-alt")) { 
+								char.playAnim(animCheck + "-alt", true); 
+							} else { 
+								char.playAnim(animCheck, true); 
+							}
 							char.specialAnim = true;
 							char.heyTimer = 0.6;
 						}
@@ -4176,9 +4186,31 @@ class PlayState extends MusicBeatState
 			if (!note.isSustainNote)
 			{
 				combo++;
-				if(combo > 9999) combo = 9999;
+				//if(combo > 9999) combo = 9999;
 				popUpScore(note);
 			}
+
+			if (combo == 50)
+				{
+					if (gf != null) {
+						if (gf.animOffsets.exists("cheer")) {
+							gf.playAnim('cheer', true);
+							gf.specialAnim = true;
+							gf.heyTimer = 0.6;
+						}
+					}
+				}
+
+			if (combo == 200)
+				{
+					if (gf != null) {
+						if (gf.animOffsets.exists("comboCheerHigh")) {
+							gf.playAnim('comboCheerHigh', true);
+							gf.specialAnim = true;
+							gf.heyTimer = 0.6;
+						}
+					}
+				}
 			var gainHealth:Bool = true; // prevent health gain, *if* sustains are treated as a singular note
 			if (guitarHeroSustains && note.isSustainNote) gainHealth = false;
 			if (gainHealth) health += note.hitHealth * healthGain;
@@ -4278,6 +4310,26 @@ class PlayState extends MusicBeatState
 		if(!note.isSustainNote) invalidateNote(note); else sickStrum(note);
 	}
 
+	private function sustainHold(note:Note = null):Void {
+		var scoreToAdd:Int = 35;
+		if (note.rating.toLowerCase() == 'unknown' && note.prevNote.rating.toLowerCase() != 'unknown') {
+			trace(note.prevNote.rating);
+			note.rating = note.prevNote.rating;
+		}
+		scoreToAdd = switch(note.rating) {
+			case 'sick':
+				35;
+			case 'good':
+				20;
+			case 'bad':
+				10;
+			default: //shit and unknown
+				5;
+		};
+		songScore += scoreToAdd;
+		sickStrum(note);
+		
+	}
 	private function sickStrum(note:Note = null):Void {
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.data.ratingOffset);
 		var daRating:Rating = Conductor.judgeNote(ratingsData, noteDiff / playbackRate);

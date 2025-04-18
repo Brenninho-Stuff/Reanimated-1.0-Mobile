@@ -14,7 +14,7 @@ class Robin extends BaseStage
 	{
 		ratingPos.set(750, 950);
         comboCountPos.set(650, 1100);
-		comboImage.set( 0, 950);
+		comboImage.set( 0, 1070);
 
 		var _song = PlayState.SONG;
 		if(_song.gameOverLoop == null || _song.gameOverLoop.trim().length < 1) GameOverSubstate.loopSoundName = 'gameOver-iconoclast';
