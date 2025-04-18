@@ -1,0 +1,16 @@
+{
+    "emptyBar": "Iconoclast-color",
+    "emptyBarLibrary": "shared",
+    "emptyBarAnimated": false,
+    "emptyBarOverlay": "Iconoclast",
+    "emptyBarOverlayAnimated": false,
+    "emptyBarOverlayAnimationName": "",
+    "emptyBarAnimationName": "",
+    "fullBar": "Iconoclast-color",
+    "fullBarLibrary": "shared",
+    "fullBarAnimated": false,
+    "fullBarOverlay": "Iconoclast",
+    "fullBarOverlayAnimated": false,
+    "fullBarOverlayAnimationName": "",
+    "fullBarAnimationName": ""
+}

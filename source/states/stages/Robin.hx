@@ -3,13 +3,19 @@ package states.stages;
 import states.stages.objects.*;
 import objects.Character;
 import substates.GameOverSubstate;
-
+import lime.utils.Assets;
+import torchsthings.objects.ImageBar;
+import torchsthings.objects.ImageBar.BarSettings;
 
 class Robin extends BaseStage
 {
 	var robinForestuff:BGSprite;
 	override function create() 
 	{
+		ratingPos.set(750, 950);
+        comboCountPos.set(650, 1100);
+		comboImage.set( 0, 950);
+
 		var _song = PlayState.SONG;
 		if(_song.gameOverLoop == null || _song.gameOverLoop.trim().length < 1) GameOverSubstate.loopSoundName = 'gameOver-iconoclast';
 		if(_song.gameOverEnd == null || _song.gameOverEnd.trim().length < 1) GameOverSubstate.endSoundName = 'gameOverEnd-iconoclast';
@@ -49,10 +55,12 @@ class Robin extends BaseStage
 		stone.updateHitbox();
 		add(stone);
 		
-		robinForestuff = new BGSprite('blockrock/forestuff', -200, 110, 0.4, 0.4);
+		robinForestuff = new BGSprite('blockrock/forestuff', -80, 410, 0.9, 0.9);
 		robinForestuff.setGraphicSize(Std.int(robinForestuff.width * 0.75));
 		robinForestuff.updateHitbox();
-			
+		
+		var settings:BarSettings = haxe.Json.parse(Assets.getText(Paths.json("healthbars/Iconoclast", "shared").replace("data", "images")));
+        PlayState.healthBarSettings = settings;
 	}
 	override function createPost()
 		{

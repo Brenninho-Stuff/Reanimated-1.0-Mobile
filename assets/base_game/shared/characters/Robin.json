@@ -1,84 +1,104 @@
 {
 	"animations": [
 		{
+			"offsets": [10, 10],
 			"loop": false,
-			"offsets": [
-				10,
-				10
-			],
+			"fps": 24,
 			"anim": "idle",
-			"fps": 24,
-			"name": "Idle",
-			"indices": []
+			"indices": [],
+			"name": "Idle"
 		},
 		{
-			"offsets": [
-				14,
-				46
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [14, 46],
 			"anim": "singUP",
-			"indices": [],
-			"name": "Up"
+			"fps": 24,
+			"name": "Up",
+			"indices": []
 		},
 		{
+			"offsets": [81, -10],
 			"loop": false,
-			"offsets": [
-				81,
-				-10
-			],
+			"fps": 24,
 			"anim": "singLEFT",
-			"fps": 24,
-			"name": "Left",
-			"indices": []
-		},
-		{
-			"offsets": [
-				-49,
-				26
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singRIGHT",
 			"indices": [],
-			"name": "Right"
+			"name": "Left"
 		},
 		{
 			"loop": false,
-			"offsets": [
-				-47,
-				18
-			],
-			"anim": "singDOWN",
+			"offsets": [-49, 26],
+			"anim": "singRIGHT",
 			"fps": 24,
-			"name": "Down",
+			"name": "Right",
 			"indices": []
+		},
+		{
+			"offsets": [-47, 18],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Down"
 		}
 	],
 	"vocals_file": "",
-	"noteSplashes": "robin",
 	"no_antialiasing": false,
+	"useNoteSkin": false,
 	"image": "characters/Robin",
-	"position": [
-		-40,
-		75
-	],
-	"strumCovers": "robin",
-	"noteAssets": "robin",
+	"position": [-40, 75],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
 	"healthicon": "robin",
 	"flip_x": true,
-	"healthbar_colors": [
-		255,
-		208,
-		1
-	],
-	"camera_position": [
-		0,
-		0
-	],
-	"notePath": "torchs_assets",
+	"healthbar_colors": [255, 208, 1],
+	"disableNoteRGB": false,
+	"camera_position": [0, 0],
+	"noteSkin": "",
+	"noteColors": {
+		"right": [
+			-1050311,
+			-1,
+			-10140656
+		],
+		"up": [
+			-16760372,
+			-1,
+			-15594937
+		],
+		"down": [
+			-9699144,
+			-1,
+			-12648349
+		],
+		"left": [
+			-5552070,
+			-1,
+			-11133132
+		]
+	},
 	"sing_duration": 6.1,
+	"hasAltColors": false,
 	"scale": 1,
 	"_editor_isPlayer": false
 }
