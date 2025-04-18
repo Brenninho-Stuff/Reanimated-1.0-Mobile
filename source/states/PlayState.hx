@@ -486,6 +486,8 @@ class PlayState extends MusicBeatState
 			if (curStage == "schoolEvil") {
 				introSoundsSuffix = '-pixel-corrupted';
 			}
+			} else {
+			introSoundsSuffix = '';
 			if (curStage == "robin") {
 				introSoundsSuffix = '-iconoclast';
 			}
