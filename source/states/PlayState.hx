@@ -479,15 +479,16 @@ class PlayState extends MusicBeatState
 			case 'phillyBlazin': new PhillyBlazin();	//Weekend 1 - Blazin
 			case "phillyStreetsErect": new PhillyStreetsErect(); //Weekend 1 bf mix - Erect
 			case 'wait': new Wait();					//Wait - CG5 Best Song
+			case 'robin': new Robin();			//Wait - Erect
 		}
 		if(isPixelStage) {
 			introSoundsSuffix = '-pixel';
 			if (curStage == "schoolEvil") {
 				introSoundsSuffix = '-pixel-corrupted';
 			}
-			/*if (curStage == "robin") {
+			if (curStage == "robin") {
 				introSoundsSuffix = '-iconoclast';
-			}*/
+			}
 		}
 		#if (LUA_ALLOWED || HSCRIPT_ALLOWED)
 		luaDebugGroup = new FlxTypedGroup<psychlua.DebugLuaText>();
