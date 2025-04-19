@@ -24,7 +24,7 @@ class StrumCover extends FlxSprite {
     public var showSplash:Bool = false;
     public var enemySplash:Bool = false;
     var ratingsToShowUpOn:Array<String> = ['sick'];
-    public var minSustainLength:Float = 100.0; // Just change this to be whatever you want in case you don't want the splashes to show up too soon or too late
+    public var minSustainLength:Float = susMath(); // Just change this to be whatever you want in case you don't want the splashes to show up too soon or too late
 
     public function new(refNote:StrumNote, ?texture:String = 'strumCovers/NOTE_covers', ?library:String = 'shared') {
         super(0, 0);
@@ -45,12 +45,31 @@ class StrumCover extends FlxSprite {
         visible = false;
     }
 
+    static function susMath(?length:Float = 100.0) { // I literally just used random numbers here... don't hate me... - Torch
+        var sustain:Float = length;
+        var sped:Float = PlayState.SONG.speed;
+        if (sped >= 1 && sped < 2) {
+            sustain *= sped / 1.5;
+        } else if (sped >= 2 && sped < 3) {
+            sustain *= sped / 2;
+        } else if (sped >= 3 && sped < 4) {
+            sustain *= sped / 2.75;
+        } else if (sped >= 4) { //TOO FAST
+            sustain *= sped / 4; //Fuck it, imma put 4, if it look like shit, it look like shit... i'm not gonna guess every number;
+        } else if (sped < 1) {
+            sustain *= sped;
+        } else {
+            sustain = 100;
+        }
+        return sustain;
+    }
+
     public function setMinimumSustainLength(?length:Float, ?multBySpeed:Bool = false) {
         if (length != null && length != minSustainLength) {
             minSustainLength = length;
-            if (multBySpeed) minSustainLength *= PlayState.SONG.speed / 1.5;
+            if (multBySpeed) minSustainLength = susMath(length);
         } else {
-            minSustainLength *= PlayState.SONG.speed / 1.5;
+            minSustainLength = susMath(length);
         }
         var noteColor:String = colArray[strumNote.noteData].toTitleCase();
         var char:String = (strumNote.player == 0) ? 'Enemy' : 'Player';

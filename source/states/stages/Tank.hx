@@ -120,8 +120,19 @@ class Tank extends BaseStage
 		tankright2.updateHitbox();
 	
 		// Default GFs
+		switch(songName.toLowerCase()) {
+			case 'stress':
+				setDefaultGF('pico-speaker');
+			case 'stress-pico-mix':
+				setDefaultGF('otis-speaker');
+				//trace('otis set');
+			default:
+				setDefaultGF('gf-tankman');
+		}
+		/*
 		if(songName == 'stress' || songName == 'stress-Pico-Mix') setDefaultGF('pico-speaker');
 		else setDefaultGF('gf-tankmen');
+		*/
 		
         addAbot(100, 355);
 		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
