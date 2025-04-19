@@ -67,9 +67,9 @@ class StageWeek1 extends BaseStage
 					gfPixel.dance();
 			}
 
-			// test
-			speakerTest = new SpeakerSkin(0, 0, '', true, 'ABot');
-			add(speakerTest);
+			// SPEAKER TEST WIP!!!!!!!!s
+			//speakerTest = new SpeakerSkin(0, 0, '', true, 'ABot');
+			//add(speakerTest);
 		}
 	}
 
