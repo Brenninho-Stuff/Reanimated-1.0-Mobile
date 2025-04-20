@@ -310,6 +310,16 @@ class Tank extends BaseStage
 		tankman.anim.play('wellWell', true);
 		FlxG.camera.zoom *= 1.2;
 
+		gf.animation.finishCallback = function(name:String)
+			{
+				switch(name)
+				{
+					case 'danceLeft', 'danceRight':
+							gf.dance();
+				}
+			};
+			gf.dance();
+
 		// Well well well, what do we got here?
 		cutsceneHandler.timer(0.1, function()
 		{
@@ -359,6 +369,16 @@ class Tank extends BaseStage
 		tankman.anim.addBySymbol('tightBars', 'TANK TALK 2', 24, false);
 		tankman.anim.play('tightBars', true);
 		boyfriend.animation.curAnim.finish();
+
+		gf.animation.finishCallback = function(name:String)
+			{
+				switch(name)
+				{
+					case 'danceLeft', 'danceRight':
+							gf.dance();
+				}
+			};
+			gf.dance();
 
 		cutsceneHandler.onStart = function()
 		{

@@ -71,7 +71,6 @@ class MallErect extends BaseStage
 		parentsCutscene.x += parentsCutscene.positionArray[0];
 		parentsCutscene.y += parentsCutscene.positionArray[1];
 		parentsCutscene.visible = false;
-		add(parentsCutscene);
 
 		santa = new BGSprite('christmas/erect/santa', -840, 150, 1, 1, ['santa idle in fear']);
 		Paths.sound('mall/Lights_Shut_off');
@@ -80,7 +79,6 @@ class MallErect extends BaseStage
 		santaDead.x += santaDead.positionArray[0];
 		santaDead.y += santaDead.positionArray[1];
 		santaDead.visible = false;
-		add(santaDead);
 		setDefaultGF('gf-christmas');
 
 addAbot(100, 355);
@@ -94,8 +92,10 @@ addAbot(100, 355);
 	}
 
 	override function createPost()
-		{			
+		{	
 			add(santa);
+			add(parentsCutscene);
+			add(santaDead);
 			add(snowfallin);
 			super.createPost();
 			addAbotPost();
@@ -213,6 +213,15 @@ addAbot(100, 355);
 		game.tweenCameraToPosition(santaDead.x + 300, santaDead.y, 2.8, FlxEase.expoOut);
 		game.tweenCameraZoom(0.73, 2, true, FlxEase.quadInOut);
 		FlxG.sound.play(Paths.sound('mall/santa_emotion'));
+		gf.animation.finishCallback = function(name:String)
+			{
+				switch(name)
+				{
+					case 'danceLeft', 'danceRight':
+							gf.dance();
+				}
+			};
+			gf.dance();
 
 		cutsceneHandler.timer(2.8, function()
 		{
@@ -223,6 +232,13 @@ addAbot(100, 355);
 		cutsceneHandler.timer(11.375, function()
 		{
 			FlxG.sound.play(Paths.sound('mall/santa_shot_n_falls'));
+			gf.playAnim("sad", true);
+			gf.specialAnim = true;
+			gf.animation.finishCallback = function(name:String) {
+    		if (name == "sad") {
+       	 	gf.playAnim("sad", true);
+    	}
+		};
 		});
 
 		
