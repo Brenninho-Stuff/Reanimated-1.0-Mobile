@@ -1306,6 +1306,7 @@ class PlayState extends MusicBeatState
 						}
 					case 1:
 						countdownReady = createCountdownSprite(introAlts[0], antialias);
+						countdownReady.x = PlayState.isPixelStage ? 150 : -50;
 						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
 						tick = TWO;
 						if (gf.curCharacter == "jeys-gf") {
@@ -1314,6 +1315,7 @@ class PlayState extends MusicBeatState
 						}
 					case 2:
 						countdownSet = createCountdownSprite(introAlts[1], antialias);
+						countdownSet.x = PlayState.isPixelStage ? 1050 : 650;
 						FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
 						tick = ONE;
 						if (gf.curCharacter == "jeys-gf") {
@@ -1321,13 +1323,13 @@ class PlayState extends MusicBeatState
 						gf.specialAnim = true;
 						}
 					case 3:
-						countdownGo = createCountdownSprite(introAlts[2], antialias);
+						countdownGo = createCountdownSprite(introAlts[2], antialias); 
 						FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
 						tick = GO;
 						if (gf.curCharacter == "jeys-gf") {
-    					gf.playAnim("Go!", true);
-    					gf.specialAnim = true;
-						}
+					gf.playAnim("Go!", true);					
+					gf.specialAnim = true;					
+				}
 					case 4:
 						tick = START;
 				}
@@ -1358,7 +1360,7 @@ class PlayState extends MusicBeatState
 	inline private function createCountdownSprite(image:String, antialias:Bool):FlxSprite
 	{
 		var spr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(image));
-		spr.cameras = [camHUD];
+		//spr.cameras = [camHUD];
 		spr.scrollFactor.set();
 		spr.updateHitbox();
 
@@ -1368,12 +1370,19 @@ class PlayState extends MusicBeatState
 		spr.screenCenter();
 		spr.antialiasing = antialias;
 		insert(members.indexOf(noteGroup), spr);
-		FlxTween.tween(spr, {/*y: spr.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
-			ease: FlxEase.cubeInOut,
+								
+		FlxTween.tween(spr, {y: spr.y - 100}, Conductor.crochet / 3000, {
+			ease: FlxEase.circOut,
 			onComplete: function(twn:FlxTween)
 			{
-				remove(spr);
-				spr.destroy();
+				FlxTween.tween(spr, {y: spr.y + 300, alpha: 0}, Conductor.crochet / 800, {
+					ease: FlxEase.circIn,
+					onComplete: function(twn:FlxTween)
+					{
+						remove(spr);
+						spr.destroy();
+					}
+				});
 			}
 		});
 		return spr;
