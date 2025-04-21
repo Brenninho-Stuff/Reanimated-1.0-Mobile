@@ -165,6 +165,9 @@ class PhillyStreetsErect extends BaseStage
                     case 'darnell-bf-mix':
                         rainShaderStartIntensity = 0;
                         rainShaderEndIntensity = 0.05;
+                    case 'lit-up-bf-mix':
+                        rainShaderStartIntensity = 0.05;
+                         rainShaderEndIntensity = 0.1;
                 }
                     rainShader.intensity = rainShaderStartIntensity;
                     FlxG.camera.setFilters([new ShaderFilter(rainShader)]);
