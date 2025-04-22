@@ -184,7 +184,7 @@ class StageErect extends BaseStage
                     dadbattleBlack.visible = false;
                     add(dadbattleBlack);
     
-                    dadbattleLight = new BGSprite('rework/spotlight_Alt', 400);
+                    dadbattleLight = new BGSprite('spotlight', 400);
                     dadbattleLight.alpha = 0.375;
                     dadbattleLight.blend = ADD;
                     dadbattleLight.visible = false;

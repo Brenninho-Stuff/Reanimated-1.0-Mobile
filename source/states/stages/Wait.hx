@@ -23,7 +23,7 @@ class Wait extends BaseStage
     override function createPost()
     { 
         // Hide opponent notes
-        if (songName.toLowerCase() == 'cg5') {
+        if (songName.toLowerCase() == 'i-ma-walk-right-in') {
 			for (i in 0...4) {
 				PlayState.instance.opponentStrums.members[i].x = -5000;
 				PlayState.instance.opponentStrums.members[i].visible = false;
