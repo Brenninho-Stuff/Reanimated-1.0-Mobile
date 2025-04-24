@@ -154,7 +154,7 @@ class Character extends FlxSprite
 			case 'otis-speaker':
 				skipDance = true;
 				loadMappedAnims();
-				playAnim("shoot4-loop");
+				playAnim("shoot1");
 			case 'pico-blazin', 'darnell-blazin':
 				skipDance = true;
 		}

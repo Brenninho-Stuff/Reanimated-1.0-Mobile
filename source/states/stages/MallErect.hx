@@ -15,6 +15,7 @@ class MallErect extends BaseStage
 	var santaDead:Character;
 	var parentsCutscene:Character;
 	var cutsceneHandler:CutsceneHandler;
+    var blackScreen:FlxSprite;
 
 	override function create()
 	{
@@ -189,6 +190,12 @@ addAbot(100, 355);
 
 		FlxTween.tween(camHUD, {alpha: 0}, 1,  {ease: FlxEase.sineInOut});
 
+		blackScreen = new FlxSprite(-600,-570).makeGraphic(Std.int(FlxG.width * 3), Std.int(FlxG.height * 3), FlxColor.BLACK);
+		blackScreen.alpha = 0;
+		blackScreen.scrollFactor.set();
+		blackScreen.cameras = [camOther];
+		add(blackScreen);
+
 		cutsceneHandler.finishCallback = function()
 		{
 			game.inCutscene = false;
@@ -250,7 +257,7 @@ addAbot(100, 355);
 
 		cutsceneHandler.timer(15, function()
 		{
-			camHUD.fade(0xFF000000, 1, false, null, true);
+			FlxTween.tween(blackScreen, { alpha: 1}, 1, {startDelay: 0.3});
 		});
 
 	}

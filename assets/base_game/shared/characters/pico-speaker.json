@@ -1,124 +1,124 @@
 {
 	"animations": [
 		{
+			"loop": true,
 			"offsets": [-12, -129],
-			"loop": true,
-			"fps": 24,
 			"anim": "Idle",
-			"indices": [],
-			"name": "Pico Dual Wield on Speaker idle"
+			"fps": 24,
+			"name": "Pico Dual Wield on Speaker idle",
+			"indices": []
 		},
 		{
-			"offsets": [-9, -16],
 			"loop": false,
-			"fps": 24,
+			"offsets": [-9, -6],
 			"anim": "singUP",
-			"indices": [],
-			"name": "up"
+			"fps": 24,
+			"name": "up",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [-8, -119],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "left"
+			"fps": 24,
+			"name": "left",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [-8, -95],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "right"
+			"fps": 24,
+			"name": "right",
+			"indices": []
 		},
 		{
-			"offsets": [-10, -116],
 			"loop": false,
-			"fps": 24,
+			"offsets": [-10, -114],
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "down"
+			"fps": 24,
+			"name": "down",
+			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [431, -6],
+			"loop": false,
+			"fps": 24,
 			"anim": "shootTankman",
-			"fps": 24,
-			"name": "shoot tankman0",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [431, -18],
-			"anim": "shoot1",
-			"fps": 24,
-			"name": "Pico shoot 4",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [404, -62],
-			"anim": "shoot2",
-			"fps": 24,
-			"name": "Pico shoot 3",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [-10, -127],
-			"anim": "shoot3",
-			"fps": 24,
-			"name": "Pico shoot 2",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [-10, 1],
-			"anim": "shoot4",
-			"fps": 24,
-			"name": "Pico shoot 1",
-			"indices": []
-		},
-		{
-			"loop": true,
-			"offsets": [431, -18],
-			"anim": "shoot1-loop",
-			"fps": 24,
-			"name": "Pico shoot 4",
-			"indices": [5, 6, 7]
-		},
-		{
-			"loop": true,
-			"offsets": [404, -62],
-			"anim": "shoot2-loop",
-			"fps": 24,
-			"name": "Pico shoot 3",
-			"indices": [5, 6, 7]
-		},
-		{
-			"loop": true,
-			"offsets": [-10, -127],
-			"anim": "shoot3-loop",
-			"fps": 24,
-			"name": "Pico shoot 2",
-			"indices": [5, 6, 7]
-		},
-		{
-			"loop": true,
-			"offsets": [-10, 1],
-			"anim": "shoot4-loop",
-			"fps": 24,
-			"name": "Pico shoot 1",
-			"indices": [5, 6, 7]
-		},
-		{
-			"offsets": [-12, -35],
 			"indices": [],
-			"fps": 24,
-			"anim": "Animation",
+			"name": "shoot tankman0"
+		},
+		{
+			"offsets": [431, -18],
 			"loop": false,
-			"name": "Animation"
+			"fps": 24,
+			"anim": "shoot1",
+			"indices": [],
+			"name": "Pico shoot 4"
+		},
+		{
+			"offsets": [404, -62],
+			"loop": false,
+			"fps": 24,
+			"anim": "shoot2",
+			"indices": [],
+			"name": "Pico shoot 3"
+		},
+		{
+			"offsets": [-10, -127],
+			"loop": false,
+			"fps": 24,
+			"anim": "shoot3",
+			"indices": [],
+			"name": "Pico shoot 2"
+		},
+		{
+			"offsets": [-10, 1],
+			"loop": false,
+			"fps": 24,
+			"anim": "shoot4",
+			"indices": [],
+			"name": "Pico shoot 1"
+		},
+		{
+			"offsets": [431, -18],
+			"loop": true,
+			"fps": 24,
+			"anim": "shoot1-loop",
+			"indices": [5, 6, 7],
+			"name": "Pico shoot 4"
+		},
+		{
+			"offsets": [404, -62],
+			"loop": true,
+			"fps": 24,
+			"anim": "shoot2-loop",
+			"indices": [5, 6, 7],
+			"name": "Pico shoot 3"
+		},
+		{
+			"offsets": [-10, -127],
+			"loop": true,
+			"fps": 24,
+			"anim": "shoot3-loop",
+			"indices": [5, 6, 7],
+			"name": "Pico shoot 2"
+		},
+		{
+			"offsets": [-10, 1],
+			"loop": true,
+			"fps": 24,
+			"anim": "shoot4-loop",
+			"indices": [5, 6, 7],
+			"name": "Pico shoot 1"
+		},
+		{
+			"loop": false,
+			"offsets": [-12, -35],
+			"anim": "Animation",
+			"fps": 24,
+			"name": "Animation",
+			"indices": []
 		}
 	],
 	"vocals_file": "",

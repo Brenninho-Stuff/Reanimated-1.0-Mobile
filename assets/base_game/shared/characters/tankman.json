@@ -10,22 +10,6 @@
 		},
 		{
 			"loop": false,
-			"offsets": [-7, -5],
-			"anim": "singUP-alt",
-			"fps": 24,
-			"name": "TANKMAN UGH",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [3, 16],
-			"anim": "singDOWN-alt",
-			"fps": 24,
-			"name": "PRETTY GOOD tankman",
-			"indices": []
-		},
-		{
-			"loop": false,
 			"offsets": [59, 5],
 			"anim": "argh",
 			"fps": 24,
@@ -50,49 +34,161 @@
 		},
 		{
 			"offsets": [46, 43],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "singUP",
-			"loop": false,
+			"indices": [],
 			"name": "Tankman UP note0"
 		},
 		{
 			"offsets": [69, -113],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "singDOWN",
-			"loop": false,
+			"indices": [],
 			"name": "Tankman DOWN note0"
 		},
 		{
 			"offsets": [90, -14],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "singLEFT",
-			"loop": false,
+			"indices": [],
 			"name": "Tankman Right Note0"
 		},
 		{
 			"offsets": [-15, -32],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "singRIGHT",
-			"loop": false,
+			"indices": [],
 			"name": "Tankman Note Left0"
 		},
 		{
 			"offsets": [71, -52],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "dodge",
-			"loop": false,
+			"indices": [],
 			"name": "Tankman Dodge0"
+		},
+		{
+			"loop": false,
+			"offsets": [1, 52],
+			"anim": "idle-blody",
+			"fps": 24,
+			"name": "Tankman Idle bloody0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [44, 154],
+			"anim": "singUP-blody",
+			"fps": 24,
+			"name": "Tankman UP note bloody0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [69, -117],
+			"anim": "singDOWN-blody",
+			"fps": 24,
+			"name": "Tankman DOWN note bloody0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [110, 118],
+			"anim": "redheads",
+			"fps": 24,
+			"name": "redheads anim0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-14, 15],
+			"anim": "singRIGHT-blody",
+			"fps": 24,
+			"name": "Tankman Note Left bloody0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [89, 13],
+			"anim": "singLEFT-blody",
+			"fps": 24,
+			"name": "Tankman Right Note bloody0",
+			"indices": []
+		},
+		{
+			"offsets": [1, 90],
+			"indices": [],
+			"fps": 24,
+			"anim": "pretty good-blody",
+			"loop": false,
+			"name": "pretty good anim0"
+		},
+		{
+			"offsets": [1, 52],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle-alt",
+			"loop": false,
+			"name": "Tankman Idle bloody0"
+		},
+		{
+			"offsets": [46, 154],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP-alt",
+			"loop": false,
+			"name": "Tankman UP note bloody0"
+		},
+		{
+			"offsets": [69, -117],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN-alt",
+			"loop": false,
+			"name": "Tankman DOWN note bloody0"
+		},
+		{
+			"offsets": [-14, 15],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT-alt",
+			"loop": false,
+			"name": "Tankman Note Left bloody0"
+		},
+		{
+			"offsets": [90, 14],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT-alt",
+			"loop": false,
+			"name": "Tankman Right Note bloody0"
+		},
+		{
+			"offsets": [-7, -6],
+			"indices": [],
+			"fps": 24,
+			"anim": "ugh",
+			"loop": false,
+			"name": "TANKMAN UGH"
+		},
+		{
+			"offsets": [1, 17],
+			"indices": [],
+			"fps": 24,
+			"anim": "pretty good",
+			"loop": false,
+			"name": "PRETTY GOOD tankman"
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
 	"useNoteSkin": false,
-	"image": "characters/tankmanCaptain",
+	"image": "characters/tankmanCaptain,characters/tankmanCaptainBloody",
 	"position": [0, 240],
 	"noteSkinLib": "shared",
 	"altNoteColors": {
