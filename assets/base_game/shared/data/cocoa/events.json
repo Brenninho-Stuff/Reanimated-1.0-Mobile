@@ -1,1 +1,294 @@
-{"song":{"player1":"bf-christmas","notes":[{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[[9000,-1,"Hey!","1",""]],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[[18600,-1,"Hey!","1",""]],"lengthInSteps":16,"mustHitSection":true},{"altAnim":true,"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"altAnim":true,"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"altAnim":true,"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"altAnim":true,"sectionNotes":[[28200,-1,"Hey!","1",""]],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[[37800,-1,"Hey!","1",""]],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"altAnim":true,"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"altAnim":true,"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"altAnim":true,"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"altAnim":true,"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[[85800,-1,"Hey!","1",""]],"lengthInSteps":16,"mustHitSection":true},{"altAnim":true,"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"altAnim":true,"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"altAnim":true,"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"altAnim":true,"sectionNotes":[],"lengthInSteps":16,"mustHitSection":false},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"sectionNotes":[],"lengthInSteps":16,"mustHitSection":true},{"lengthInSteps":16,"altAnim":false,"typeOfSection":0,"sectionNotes":[],"bpm":100,"changeBPM":false,"mustHitSection":true},{"lengthInSteps":16,"altAnim":false,"typeOfSection":0,"sectionNotes":[],"bpm":100,"changeBPM":false,"mustHitSection":true}],"player2":"parents-christmas","song":"Cocoa","validScore":true,"needsVoices":true,"speed":1.5,"bpm":100}}
+{
+	"events": [
+		[
+			0,
+			[
+				["Set Property", "defaultCamZoom", "0.6"]
+			]
+		],
+		[
+			5344.8275862069,
+			[
+				["Set Property", "defaultCamZoom", "0.65"]
+			]
+		],
+		[
+			8103.44827586207,
+			[
+				["Set Property", "defaultCamZoom", "0.7"]
+			]
+		],
+		[
+			11034.4827586207,
+			[
+				["Updated Camera Zoom", "Main", "0.55,1.75,cubeOut"]
+			]
+		],
+		[
+			11038.0747126437,
+			[
+				["Enemy Splashes", "true", "true"]
+			]
+		],
+		[
+			15172.4137931035,
+			[
+				["Camera Follow Pos", "650", "400"]
+			]
+		],
+		[
+			19310.3448275862,
+			[
+				["Set Property", "defaultCamZoom", "0.6"]
+			]
+		],
+		[
+			20689.6551724138,
+			[
+				["Camera Follow Pos", "", ""],
+				["Updated Camera Zoom", "Main", "0.65,0.75,cubeOut"]
+			]
+		],
+		[
+			22068.9655172414,
+			[
+				["Updated Camera Zoom", "Main", "0.6,0.75,cubeOut"]
+			]
+		],
+		[
+			26206.8965517241,
+			[
+				["Updated Camera Zoom", "Main", "0.65,0.75,cubeOut"]
+			]
+		],
+		[
+			27586.2068965517,
+			[
+				["Updated Camera Zoom", "Main", "0.6,0.75,cubeOut"]
+			]
+		],
+		[
+			32413.7931034483,
+			[
+				["Updated Camera Zoom", "Main", "0.63,1.75,cubeOut"]
+			]
+		],
+		[
+			32758.6206896552,
+			[
+				["Updated Camera Zoom", "Main", "0.66,1.75,cubeOut"]
+			]
+		],
+		[
+			33103.4482758621,
+			[
+				["Updated Camera Zoom", "Main", "0.55,1.75,cubeOut"],
+				["Camera Follow Pos", "650", "400"]
+			]
+		],
+		[
+			44137.9310344828,
+			[
+				["Set Property", "defaultCamZoom", "0.6"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			52413.7931034483,
+			[
+				["Set Property", "defaultCamZoom", "0.65"]
+			]
+		],
+		[
+			52931.0344827586,
+			[
+				["Set Property", "defaultCamZoom", "0.7"]
+			]
+		],
+		[
+			53448.275862069,
+			[
+				["Set Property", "defaultCamZoom", "0.75"]
+			]
+		],
+		[
+			53965.5172413793,
+			[
+				["Set Property", "defaultCamZoom", "0.8"]
+			]
+		],
+		[
+			54482.7586206897,
+			[
+				["Set Property", "defaultCamZoom", "0.75"]
+			]
+		],
+		[
+			55172.4137931035,
+			[
+				["Updated Camera Zoom", "Main", "0.55,1.75,cubeOut"],
+				["Camera Follow Pos", "650", "400"]
+			]
+		],
+		[
+			66206.8965517242,
+			[
+				["Set Property", "defaultCamZoom", "0.6"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			70344.8275862069,
+			[
+				["Set Property", "defaultCamZoom", "0.7"]
+			]
+		],
+		[
+			70689.6551724138,
+			[
+				["Set Property", "defaultCamZoom", "0.73"]
+			]
+		],
+		[
+			71034.4827586207,
+			[
+				["Set Property", "defaultCamZoom", "0.76"]
+			]
+		],
+		[
+			71724.1379310345,
+			[
+				["Set Property", "defaultCamZoom", "0.7"]
+			]
+		],
+		[
+			72758.6206896552,
+			[
+				["Set Property", "defaultCamZoom", "0.65"]
+			]
+		],
+		[
+			74482.7586206896,
+			[
+				["Set Property", "defaultCamZoom", "0.6"]
+			]
+		],
+		[
+			75862.0689655172,
+			[
+				["Set Property", "defaultCamZoom", "0.55"]
+			]
+		],
+		[
+			77241.3793103448,
+			[
+				["Camera Follow Pos", "650", "400"]
+			]
+		],
+		[
+			80689.6551724138,
+			[
+				["Set Property", "0.6", ""]
+			]
+		],
+		[
+			80862.0689655172,
+			[
+				["Play Animation", "uh", "Dad"]
+			]
+		],
+		[
+			81206.8965517241,
+			[
+				["Hey!", "", "0.5"]
+			]
+		],
+		[
+			81551.724137931,
+			[
+				["Set Property", "defaultCamZoom", "0.55"]
+			]
+		],
+		[
+			82758.6206896551,
+			[
+				["Set Property", "defaultCamZoom", "0.6"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			88275.8620689654,
+			[
+				["Set Property", "defaultCamZoom", "0.55"]
+			]
+		],
+		[
+			89655.1724137931,
+			[
+				["Camera Follow Pos", "650", "400"]
+			]
+		],
+		[
+			91034.4827586206,
+			[
+				["Set Property", "defaultCamZoom", "0.6"]
+			]
+		],
+		[
+			93793.1034482758,
+			[
+				["Set Property", "defaultCamZoom", "0.65"],
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			96551.7241379309,
+			[
+				["Set Property", "defaultCamZoom", "0.6"]
+			]
+		],
+		[
+			97931.0344827585,
+			[
+				["Set Property", "defaultCamZoom", "0.65"]
+			]
+		],
+		[
+			102068.965517241,
+			[
+				["Set Property", "defaultCamZoom", "0.7"]
+			]
+		],
+		[
+			104827.586206896,
+			[
+				["Set Property", "defaultCamZoom", "0.75"]
+			]
+		],
+		[
+			106896.551724138,
+			[
+				["Set Property", "defaultCamZoom", "0.8"]
+			]
+		],
+		[
+			108965.517241379,
+			[
+				["Set Property", "defaultCamZoom", "0.85"]
+			]
+		],
+		[
+			110344.827586207,
+			[
+				["Set Property", "defaultCamZoom", "0.65"]
+			]
+		],
+		[
+			113103.448275862,
+			[
+				["Set Property", "defaultCamZoom", "0.55"]
+			]
+		]
+	],
+	"format": "psych_v1"
+}

@@ -154,7 +154,7 @@ override function create()
             tankCutscene.playAnim("PlayCutscene");   
     
             game.tweenCameraToPosition(tankCutscene.x + 450, tankCutscene.y + 400);
-            game.tweenCameraZoom(0.65, 0.8, true, FlxEase.expoOut);
+            game.tweenCameraZoom(0.65, 0.8, true, FlxEase.smoothStepOut);
             FlxG.sound.play(Paths.sound('Tank/endCutscene'));
             
             cutsceneHandler.timer(0.1, function()
@@ -184,14 +184,14 @@ override function create()
                 boyfriend.playAnim("laugh", true);
                 boyfriend.specialAnim = true;
             });
-            cutsceneHandler.timer (9, function () 
+            cutsceneHandler.timer(10.9, function()
             {
-                game.tweenCameraToPosition(tankCutscene.x + 450, tankCutscene.y + 100, 4.3, FlxEase.expoIn);
-            });
-            cutsceneHandler.timer(9.9, function()
-            {
-                FlxTween.tween(blackScreen, { alpha: 1}, 2, {startDelay: 0.4});
+                FlxTween.tween(blackScreen, { alpha: 1}, 1, {startDelay: 0.3});
 
+            });
+            cutsceneHandler.timer (11.1, function () 
+            {
+                    game.tweenCameraToPosition(tankCutscene.x + 450, tankCutscene.y + 100, 4.3, FlxEase.smoothStepOut);
             });
     
         }

@@ -7,6 +7,7 @@ import torchsthings.shaders.*;
 import torchsfunctions.functions.ShaderUtils;
 import openfl.filters.ShaderFilter;
 import torchsthings.shaders.AdjustColorShader;
+import torchsthings.objects.SpeakerSkin;
 
 
 import openfl.utils.Assets as OpenFlAssets;
@@ -16,6 +17,8 @@ class SchoolErect extends BaseStage
 	var bgGirls:BackgroundGirlsErect;
 	var crt:CRT = new CRT();
 	var shaderFilter:ShaderFilter;
+	var speakerTest:SpeakerSkin = null;
+
 	override function create()
 	{
 
@@ -90,6 +93,13 @@ class SchoolErect extends BaseStage
 		}
 		setDefaultGF('gf-pixel');
 
+		switch(PlayState.SONG.song.toLowerCase()) {
+			case 'senpai-pico-mix':
+				bgGirls.visible = false;
+				speakerTest = new SpeakerSkin(0, 1000, '', true, 'ABot-pixel');
+				add(speakerTest);
+		}
+
 		switch (songName)
 		{
 			case 'senpai':
@@ -104,11 +114,6 @@ class SchoolErect extends BaseStage
 			initDoof();
 			setStartCallback(schoolIntro);
 		}
-	}
-
-	override function beatHit()
-	{
-		if(bgGirls != null) bgGirls.dance();
 	}
 
 	function makeCoolShader(hue:Float,sat:Float,bright:Float,contrast:Float) {
@@ -194,7 +199,30 @@ class SchoolErect extends BaseStage
 	
 		shaderFilter = new ShaderFilter(crt);
 		ShaderUtils.applyFiltersToCams([camGame, camHUD, camOther], [shaderFilter]);
+
+		if (speakerTest != null) {
+			speakerTest.gf = gf;
+			speakerTest.createPost();
+			speakerTest.x = gf.x - 150;
+			speakerTest.y = gf.y - -90;
+		}
 	}
+	override function startSong() {
+		if (speakerTest != null) {
+			speakerTest.snd = FlxG.sound.music;
+			speakerTest.songStart();
+		}
+	}
+	override function sectionHit() {
+		if (speakerTest != null) {
+			speakerTest.updateABotEye(speakerTest.daCustomSpeaker);
+		}
+	}
+	override function beatHit()
+		{
+			if(bgGirls != null) bgGirls.dance();
+		}
+	
 
 	override function update(elapsed:Float) {
 		crt.update(elapsed);
