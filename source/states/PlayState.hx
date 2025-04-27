@@ -2411,9 +2411,11 @@ class PlayState extends MusicBeatState
 						boyfriend.playAnim('hey-alt', true);
 						boyfriend.specialAnim = true;
 						boyfriend.heyTimer = 0.6;
+						if (gf.animation.exists('cheer')) {
 						gf.playAnim('cheer', true);
 						gf.specialAnim = true;
 						gf.heyTimer = 0.6;
+					}
 				
 						var thesound = "";
 						switch (boyfriend.curCharacter) {
@@ -2428,10 +2430,11 @@ class PlayState extends MusicBeatState
 						boyfriend.playAnim('hey', true);
 						boyfriend.specialAnim = true;
 						boyfriend.heyTimer = 0.6;
-						gf.playAnim('cheer', true);
-						gf.specialAnim = true;
-						gf.heyTimer = 0.6;
-				
+						if (gf.animation.exists('cheer')) {
+							gf.playAnim('cheer', true);
+							gf.specialAnim = true;
+							gf.heyTimer = 0.6;
+						}
 						var num = FlxG.random.int(1, 3);
 						var thesound = "";
 						switch (boyfriend.curCharacter) {
