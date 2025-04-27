@@ -1,76 +1,44 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [-57, -87],
+			"loop": false,
+			"fps": 24,
 			"anim": "shoot1",
-			"fps": 24,
-			"name": "shoot back0",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [204, -77],
-			"anim": "shoot2",
-			"fps": 24,
-			"name": "shoot forward low0",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [-86, -76],
-			"anim": "shoot3",
-			"fps": 24,
-			"name": "shoot back low0",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [180, -2],
-			"anim": "shoot4",
-			"fps": 24,
-			"name": "shoot forward0",
-			"indices": []
-		},
-		{
-			"loop": true,
-			"offsets": [-58, -100],
-			"anim": "shoot1-loop",
-			"fps": 24,
-			"name": "otis idle",
-			"indices": []
-		},
-		{
-			"loop": true,
-			"offsets": [-58, -100],
-			"anim": "shoot2-loop",
-			"fps": 24,
-			"name": "otis idle",
-			"indices": []
-		},
-		{
-			"loop": true,
-			"offsets": [-58, -100],
-			"anim": "shoot3-loop",
-			"fps": 24,
-			"name": "otis idle",
-			"indices": []
-		},
-		{
-			"loop": true,
-			"offsets": [-58, -100],
-			"anim": "shoot4-loop",
-			"fps": 24,
-			"name": "otis idle",
-			"indices": []
-		},
-		{
-			"offsets": [-58, -100],
 			"indices": [],
-			"fps": 24,
-			"anim": "idle",
+			"name": "shoot back0"
+		},
+		{
+			"offsets": [204, -77],
 			"loop": false,
-			"name": "otis idle"
+			"fps": 24,
+			"anim": "shoot2",
+			"indices": [],
+			"name": "shoot forward low0"
+		},
+		{
+			"offsets": [-86, -76],
+			"loop": false,
+			"fps": 24,
+			"anim": "shoot3",
+			"indices": [],
+			"name": "shoot back low0"
+		},
+		{
+			"offsets": [180, -2],
+			"loop": false,
+			"fps": 24,
+			"anim": "shoot4",
+			"indices": [],
+			"name": "shoot forward0"
+		},
+		{
+			"loop": false,
+			"offsets": [-58, -100],
+			"anim": "idle",
+			"fps": 24,
+			"name": "otis idle",
+			"indices": []
 		}
 	],
 	"vocals_file": "",

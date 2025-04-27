@@ -428,6 +428,10 @@ class PlayState extends MusicBeatState
 		stageUI = "normal";
 		if (stageData.stageUI != null && stageData.stageUI.trim().length > 0)
 			stageUI = stageData.stageUI;
+
+		if (curStage == "mall" || curStage == "mallErect" || curStage == "mallEvil") {
+			stageUI = "mall";
+		}
 		
 		if (curStage == "robin") {
 			stageUI = "robin";
@@ -1221,6 +1225,7 @@ class PlayState extends MusicBeatState
 			case "pixel": ['pixelUI/ready-pixel', 'pixelUI/set-pixel', 'pixelUI/date-pixel'];
 			case "normal": ["ready", "set" ,"go"];
 			case "robin": ['UI/ready', 'UI/set', 'UI/go'];
+			case "mall": ['UI/ready', 'UI/set', 'UI/go'];
 			default: ['${uiPrefix}UI/ready${uiPostfix}', '${uiPrefix}UI/set${uiPostfix}', '${uiPrefix}UI/go${uiPostfix}'];
 		}
 		introAssets.set(stageUI, introImagesArray);
@@ -1287,6 +1292,7 @@ class PlayState extends MusicBeatState
 					case "pixel": ['${stageUI}UI/ready-pixel', '${stageUI}UI/set-pixel', '${stageUI}UI/date-pixel', '${stageUI}UI/three-pixel'];
 					case "normal": ["ready", "set" ,"go", "three"];
 					case "robin": ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go','${stageUI}UI/three'];
+					case "mall": ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go','${stageUI}UI/three'];
 					default: ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go', '${stageUI}UI/three'];
 				}
 				introAssets.set(stageUI, introImagesArray);
