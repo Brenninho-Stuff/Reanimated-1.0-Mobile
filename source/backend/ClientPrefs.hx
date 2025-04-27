@@ -18,8 +18,8 @@ import states.TitleState;
 	public var noteSkin:String = 'Default';
 	public var splashSkin:String = 'Psych';
 	public var strumSkin:String = 'Default';
-	public var healthBarSkin:String = 'Default';
-	public var splashAlpha:Float = 0.6;
+	public var healthBarSkin:String = 'Reanimated';
+	public var splashAlpha:Float = 0.8;
 	public var lowQuality:Bool = false;
 	public var shaders:Bool = true;
 	public var cacheOnGPU:Bool = #if !switch false #else true #end; // GPU Caching made by Raltyro
@@ -46,11 +46,11 @@ import states.TitleState;
 	public var healthBarAlpha:Float = 1;
 	public var hitsoundVolume:Float = 0;
 	public var iconAnims:Array<String> = ['Default', 'Disabled'];
-	public var extraCamMovementAmount:Int = 30;
+	public var extraCamMovementAmount:Int = 20;
 	public var pauseMusic:String = 'Tea Time';
 	public var checkForUpdates:Bool = true;
 	public var comboStacking:Bool = true;
-	public var showSongCredits:Bool = false;
+	public var showSongCredits:Bool = true;
 	public var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
 		'scrolltype' => 'multiplicative', 
@@ -79,7 +79,7 @@ import states.TitleState;
 	public var goodWindow:Float = 90.0;
 	public var badWindow:Float = 135.0;
 	public var safeFrames:Float = 10.0;
-	public var guitarHeroSustains:Bool = true;
+	public var guitarHeroSustains:Bool = false;
 	public var discordRPC:Bool = true;
 	public var loadingScreen:Bool = true;
 	public var language:String = 'en-US';

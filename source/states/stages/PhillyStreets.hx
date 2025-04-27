@@ -473,7 +473,7 @@ class PhillyStreets extends BaseStage
 			addBehindBF(reflectedBF);
 			boyfriend.playAnim("reload", true);
 			gunPrepSnd.play(true);
-			game.tweenCameraToPosition(dadPos[0]+180, dadPos[1], 0.4, FlxEase.backOut);
+			game.tweenCameraToPosition(dadPos[0]+380, dadPos[1], 0.6, FlxEase.backOut);
 		});
 		cutsceneHandler.timer(6.466, function() createCasing());
 
@@ -503,8 +503,9 @@ class PhillyStreets extends BaseStage
 
 		cutsceneHandler.timer(7.1, function()
 		{
-			game.tweenCameraToPosition(dadPos[0]+100, dadPos[1], 1, FlxEase.quadInOut);
-			FlxG.sound.play(randomWeekSound('shots/shot', 1, 4));			spraycan.playCanShot();
+			game.tweenCameraToPosition(dadPos[0]+100, dadPos[1], 2.5, FlxEase.quadInOut);
+			FlxG.sound.play(randomWeekSound('shots/shot', 1, 4));			
+			spraycan.playCanShot();
 			new FlxTimer().start(1/24, function(_)
 			{
 				darkenStageProps();
