@@ -1,7 +1,7 @@
 package states.stages.objects;
 
 import flixel.graphics.frames.FlxAtlasFrames;
-
+import torchsthings.shaders.AdjustColorShader;
 class TankmenBG extends FlxSprite
 {
 	public static var animationNotes:Array<Dynamic> = [];
@@ -9,6 +9,7 @@ class TankmenBG extends FlxSprite
 	private var endingOffset:Float;
 	private var goingRight:Bool;
 	public var strumTime:Float;
+	private var colorShader:AdjustColorShader;
 
 	public function new(x:Float, y:Float, facingRight:Bool)
 	{
@@ -18,6 +19,8 @@ class TankmenBG extends FlxSprite
 		goingRight = facingRight;
 		super(x, y);
 
+		colorShader = null;
+
 		frames = Paths.getSparrowAtlas('tankmanKilled1');
 		animation.addByPrefix('run', 'tankman running', 24, true);
 		animation.addByPrefix('shot', 'John Shot ' + FlxG.random.int(1, 2), 24, false);
@@ -25,8 +28,14 @@ class TankmenBG extends FlxSprite
 		animation.curAnim.curFrame = FlxG.random.int(0, animation.curAnim.frames.length - 1);
 		antialiasing = ClientPrefs.data.antialiasing;
 
-		scale.set(0.8, 0.8);
+		scale.set(0.9, 0.9);
 		updateHitbox();
+	}
+
+	public function setShader(shader:AdjustColorShader):Void
+	{
+    	colorShader = shader;
+    	this.shader = colorShader;
 	}
 
 	public function resetShit(x:Float, y:Float, goingRight:Bool):Void

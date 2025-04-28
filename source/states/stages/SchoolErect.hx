@@ -98,6 +98,10 @@ class SchoolErect extends BaseStage
 				bgGirls.visible = false;
 				speakerTest = new SpeakerSkin(0, 1000, '', true, 'ABot-pixel');
 				add(speakerTest);
+			case 'roses-pico-mix':
+				bgGirls.visible = false;
+				speakerTest = new SpeakerSkin(0, 1000, '', true, 'ABot-pixel');
+				add(speakerTest);
 		}
 
 		switch (songName)

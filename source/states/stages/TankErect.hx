@@ -19,6 +19,7 @@ class TankErect extends BaseStage
     var tankCutscene:Character;
     var cutsceneHandler:CutsceneHandler;
     var blackScreen:FlxSprite;
+    var tankmanRun:FlxTypedGroup<TankmenBG>;
 
 override function create()
     {
@@ -49,12 +50,26 @@ override function create()
 		sniper.animation.play("idle");
 		add(sniper);
 
+        tankmanRun = new FlxTypedGroup<TankmenBG>();
+		add(tankmanRun);
+
         tankCutscene = new Character(dadGroup.x, dadGroup.y, "tankman-cutscene", false);
 		tankCutscene.x += tankCutscene.positionArray[0];
 		tankCutscene.y += tankCutscene.positionArray[1];
 		tankCutscene.visible = false;
 
         addAbot(100, 355);
+
+        	// Default GFs
+		switch(songName.toLowerCase()) {
+			case 'stress':
+				setDefaultGF('pico-speaker');
+			case 'stress-pico-mix':
+				setDefaultGF('otis-speaker');
+				//trace('otis set');
+			default:
+				setDefaultGF('nene');
+		}
 
         if (!isStoryMode && PlayState.SONG.song.toLowerCase() == "stress-pico-mix")
             {
@@ -73,6 +88,48 @@ override function create()
         override function createPost()
             {   
                 add(tankCutscene);
+
+                if(!ClientPrefs.data.lowQuality)
+                    {
+                        for (daGf in gfGroup)
+                        {
+                            var gf:Character = cast daGf;
+                            if (gf.curCharacter == 'pico-speaker') {
+                                var firstTank:TankmenBG = new TankmenBG(20, 500, true);
+                                firstTank.resetShit(20, 1500, true);
+                                firstTank.strumTime = 10;
+                                firstTank.visible = false;
+                                tankmanRun.add(firstTank);
+                            
+                                for (i in 0...TankmenBG.animationNotes.length) {
+                                    if (FlxG.random.bool(16)) {
+                                        var tankBih = tankmanRun.recycle(TankmenBG);
+                                        tankBih.strumTime = TankmenBG.animationNotes[i][0];
+                                        tankBih.resetShit(500, 200 + FlxG.random.int(50, 100), TankmenBG.animationNotes[i][1] < 2);
+                                        tankmanRun.add(tankBih);
+                                    }
+                                }
+                                break;
+                            } else if (gf.curCharacter == 'otis-speaker') {
+                                var firstTank:TankmenBG = new TankmenBG(30, 600, true);
+                                firstTank.resetShit(30, 1600, true);
+                                firstTank.strumTime = 15;
+                                firstTank.visible = false;
+                                tankmanRun.add(firstTank);
+                            
+                                for (i in 0...TankmenBG.animationNotes.length) {
+                                    if (FlxG.random.bool(12)) {
+                                        var tankBih = tankmanRun.recycle(TankmenBG);
+                                        tankBih.strumTime = TankmenBG.animationNotes[i][0];
+                                        tankBih.resetShit(600, 250 + FlxG.random.int(50, 100), TankmenBG.animationNotes[i][1] < 2);
+                                        tankmanRun.add(tankBih);
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+
                 super.createPost();
                 addAbotPost();
                 var colorShader = new AdjustColorShader();
@@ -85,6 +142,13 @@ override function create()
                 gf.shader = colorShader;
                 dad.shader = colorShader;
                 tankCutscene.shader = colorShader;
+                for (tankman in tankmanRun.members)
+                    {
+                        if (tankman != null)
+                        {
+                            tankman.setShader(colorShader);
+                        }
+                    }
                 if (abot != null) abot.setShader(colorShader);
      }
 

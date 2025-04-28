@@ -449,7 +449,16 @@ class Tank extends BaseStage
 					pico.anim.play('picoEnd', true);
 				case "picoEnd", "Pico Dual Wield on Speaker idle":
 					gfGroup.alpha = 1;
-					pico.visible = false;
+					gf.animation.finishCallback = function(name:String)
+                        {
+                            switch(name)
+                                {
+                                    case 'idle':
+                                    gf.dance();
+                                }
+                            }
+                        gf.dance();					
+						pico.visible = false;
 					if (pico.anim.onComplete == picoStress) pico.anim.onComplete = new FlxSignal();
 			}
 		});
