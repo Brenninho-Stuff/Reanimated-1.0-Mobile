@@ -86,6 +86,7 @@ class Character extends FlxSprite
 	public var idleSuffix:String = '';
 	public var danceIdle:Bool = false; //Character use "danceLeft" and "danceRight" instead of "idle"
 	public var skipDance:Bool = false;
+	public var forceIdle:Bool = false; // Character will always use "idle" animation
 
 	public var healthIcon:String = 'face';
 	public var animationsArray:Array<AnimArray> = [];
@@ -148,13 +149,15 @@ class Character extends FlxSprite
 		switch(curCharacter)
 		{
 			case 'pico-speaker':
-				skipDance = true;
+				//skipDance = true;
+				forceIdle = true;
 				loadMappedAnims();
-				playAnim("shoot4");
+				//playAnim("idle");
 			case 'otis-speaker':
-				skipDance = true;
+				forceIdle = true;
+				//skipDance = true;
 				loadMappedAnims();
-				playAnim("shoot1");
+				//playAnim("idle");
 			case 'pico-blazin', 'darnell-blazin':
 				skipDance = true;
 		}
@@ -436,7 +439,14 @@ class Character extends FlxSprite
 	{
 		if (!debugMode && !skipDance && !specialAnim)
 		{
-			if(danceIdle)
+			if (forceIdle && hasAnimation('idle' + idleSuffix))
+			{
+				if (Conductor.songPosition % Conductor.stepCrochet < 16)
+				{
+					playAnim('idle' + idleSuffix, true);
+				}
+			}
+			else if (danceIdle)
 			{
 				danced = !danced;
 
@@ -445,8 +455,10 @@ class Character extends FlxSprite
 				else
 					playAnim('danceLeft' + idleSuffix);
 			}
-			else if(hasAnimation('idle' + idleSuffix))
+			else if (hasAnimation('idle' + idleSuffix))
+			{
 				playAnim('idle' + idleSuffix);
+			}
 		}
 	}
 

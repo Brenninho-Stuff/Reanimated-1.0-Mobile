@@ -1,100 +1,92 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [-9, -6],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUP",
-			"indices": [],
-			"name": "up"
+			"fps": 24,
+			"name": "up",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [-8, -119],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "left"
+			"fps": 24,
+			"name": "left",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [-8, -95],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "right"
+			"fps": 24,
+			"name": "right",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [-10, -114],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "down"
+			"fps": 24,
+			"name": "down",
+			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [431, -6],
+			"loop": false,
+			"fps": 24,
 			"anim": "shootTankman",
-			"fps": 24,
-			"name": "shoot tankman0",
-			"indices": []
+			"indices": [],
+			"name": "shoot tankman0"
 		},
 		{
-			"loop": false,
 			"offsets": [431, -18],
+			"loop": false,
+			"fps": 24,
 			"anim": "shoot1",
-			"fps": 24,
-			"name": "Pico shoot 4",
-			"indices": []
+			"indices": [],
+			"name": "Pico shoot 4"
 		},
 		{
-			"loop": false,
 			"offsets": [404, -62],
+			"loop": false,
+			"fps": 24,
 			"anim": "shoot2",
-			"fps": 24,
-			"name": "Pico shoot 3",
-			"indices": []
+			"indices": [],
+			"name": "Pico shoot 3"
 		},
 		{
-			"loop": false,
 			"offsets": [-10, -127],
+			"loop": false,
+			"fps": 24,
 			"anim": "shoot3",
-			"fps": 24,
-			"name": "Pico shoot 2",
-			"indices": []
+			"indices": [],
+			"name": "Pico shoot 2"
 		},
 		{
-			"loop": false,
 			"offsets": [-10, 1],
-			"anim": "shoot4",
+			"loop": false,
 			"fps": 24,
-			"name": "Pico shoot 1",
+			"anim": "shoot4",
+			"indices": [],
+			"name": "Pico shoot 1"
+		},
+		{
+			"loop": false,
+			"offsets": [-12, -129],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Pico Dual Wield on Speaker idle",
 			"indices": []
 		},
 		{
-			"offsets": [-12, -35],
-			"loop": false,
-			"fps": 24,
-			"anim": "Animation",
-			"indices": [],
-			"name": "Animation"
-		},
-		{
-			"offsets": [-12, -129],
+			"offsets": [-11, -136],
 			"indices": [],
 			"fps": 24,
-			"anim": "idle",
+			"anim": "burp",
 			"loop": false,
-			"name": "Pico Dual Wield on Speaker idle"
-		},
-		{
-			"offsets": [-12, -35],
-			"indices": [40, 41, 42],
-			"fps": 24,
-			"anim": "Animation1",
-			"loop": true,
-			"name": "Animation"
+			"name": "burp0"
 		}
 	],
 	"vocals_file": "",
