@@ -57,6 +57,28 @@
 	"flip_x": false,
 	"healthbar_colors": [228, 90, 119],
 	"camera_position": [0, 0],
+	"noteColors": {
+		"right": [
+			-18734,
+			-1,
+			-4239239
+		],
+		"up": [
+			-1482340,
+			-1,
+			-7001512
+		],
+		"down": [
+			-18734,
+			-1,
+			-4239239
+		],
+		"left": [
+			-1482340,
+			-1,
+			-7001512
+		]
+	},
 	"sing_duration": 6.1,
 	"scale": 1,
 	"_editor_isPlayer": false
