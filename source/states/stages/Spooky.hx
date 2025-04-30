@@ -20,6 +20,7 @@ class Spooky extends BaseStage
 			halloweenBG.updateHitbox();
 		}
 		add(halloweenBG);
+		addAbot(100, 355);
 
 		//PRECACHE SOUNDS
 		playWeekSound('thunder_1');
@@ -42,8 +43,17 @@ class Spooky extends BaseStage
 		halloweenWhite.alpha = 0;
 		halloweenWhite.blend = ADD;
 		add(halloweenWhite);
+		addAbotPost();
+
 	}
 
+	override function sectionHit() {
+		updateABotEye();
+	}
+
+	override function startSong() {
+		abotSongStart();
+	}
 	var lightningStrikeBeat:Int = 0;
 	var lightningOffset:Int = 8;
 	override function beatHit()

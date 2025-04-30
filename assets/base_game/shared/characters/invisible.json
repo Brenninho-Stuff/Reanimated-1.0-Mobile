@@ -1,0 +1,63 @@
+{
+	"animations": [
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "req"
+		},
+		{
+			"loop": false,
+			"offsets": [0, -14],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "rughpose",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [110, 10],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "leftpose",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [0, 20],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "upppose",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-10, -60],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "downpose",
+			"indices": []
+		},
+		{
+			"offsets": [184, 591],
+			"loop": false,
+			"fps": 24,
+			"anim": "drop",
+			"indices": [],
+			"name": "drop"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/invisible",
+	"position": [0, 0],
+	"healthicon": "nene",
+	"flip_x": false,
+	"healthbar_colors": [228, 90, 119],
+	"camera_position": [0, 0],
+	"sing_duration": 6.1,
+	"scale": 1,
+	"_editor_isPlayer": false
+}

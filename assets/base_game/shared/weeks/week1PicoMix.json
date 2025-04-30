@@ -1,0 +1,45 @@
+{
+	"storyName": "Your New Week",
+	"difficulties": "Hard",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"weekBefore": "weekend1",
+	"startUnlocked": false,
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"hideStoryMode": true,
+	"songs": [
+		[
+			"Bopeebo-(Pico-Mix)",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Fresh-(Pico-Mix)",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Dad Battle-(Pico-Mix)",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		]
+	],
+	"weekName": "Custom Week",
+	"hiddenUntilUnlocked": false
+}

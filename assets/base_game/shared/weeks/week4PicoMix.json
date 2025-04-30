@@ -1,0 +1,26 @@
+{
+	"storyName": "MOMMY MUST MURDER",
+	"difficulties": "hard",
+	"hideFreeplay": false,
+	"weekBackground": "limo",
+	"weekBefore": "weekend1",
+	"startUnlocked": false,
+	"songs": [
+		[
+			"High-(Pico-Mix)",
+			"mom",
+			[
+				252,
+				150,
+				215
+			]
+		]
+	],
+	"hideStoryMode": true,
+	"weekCharacters": [
+		"mom",
+		"bf",
+		"gf"
+	],
+	"weekName": "Week 4"
+}

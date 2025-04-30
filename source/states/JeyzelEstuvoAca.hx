@@ -26,9 +26,7 @@ class JeyzelEstuvoAca extends MusicBeatState
 			We hope you like our project\n
 			Have fun\n
 			Sincerely\n
-			FNF Reanimated Team\n 
-I want my money\n 
-Atte: Jeyzel_Arts", //These 2 lines have to be like this so that everything is centered lol
+			FNF Reanimated Team", //These 2 lines have to be like this so that everything is centered 
             100);
         warnText.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER);
         warnText.screenCenter();

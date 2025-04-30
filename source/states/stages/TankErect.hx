@@ -156,12 +156,14 @@ override function create()
 
      override function beatHit() {
         abotBeatHit();
+        if (!isSipping) {
         sniper.animation.play("idle", false);
+    }
         guy.animation.play("idle", false);
     
 
-    if (!isSipping && FlxG.random.bool(2)) {  
-                sipAnimation();
+        if (!isSipping && FlxG.random.bool(2)) {  
+            sipAnimation();
         }
     }
     

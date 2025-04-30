@@ -1,43 +1,43 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [0, 0],
-			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
-			"fps": 24,
 			"anim": "danceLeft",
-			"loop": false,
-			"name": "idle hair right"
+			"fps": 24,
+			"name": "idle hair right",
+			"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 		},
 		{
+			"loop": false,
 			"offsets": [0, 0],
-			"indices": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
-			"fps": 24,
 			"anim": "danceRight",
-			"loop": false,
-			"name": "idle hair right"
+			"fps": 24,
+			"name": "idle hair right",
+			"indices": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 		},
 		{
+			"loop": false,
 			"offsets": [2, 0],
-			"indices": [],
-			"fps": 24,
 			"anim": "cheer",
-			"loop": false,
-			"name": "hey"
+			"fps": 24,
+			"name": "hey",
+			"indices": []
 		},
 		{
-			"offsets": [1, 3],
-			"indices": [],
-			"fps": 24,
-			"anim": "sad",
 			"loop": false,
-			"name": "sad"
+			"offsets": [1, 3],
+			"anim": "sad",
+			"fps": 24,
+			"name": "sad",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
 	"useNoteSkin": false,
 	"image": "unlockable characters/gfCar-Hev",
-	"position": [0, 0],
+	"position": [170, 20],
 	"noteSkinLib": "shared",
 	"altNoteColors": {
 		"right": [

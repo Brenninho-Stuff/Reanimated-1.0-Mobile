@@ -87,7 +87,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
 		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
-		['Camera Flash', "You know what it is.\nValue 1: white/gray/black/green/lime/yellow/orange/\nred/purple/blue/pink/magenta/cyan\nValue 2: Flash duration"],
+		['Camera Flash', "You know what it is.\nValue 1: white (0)/black (1) \nValue 2: Flash duration"],
 		['HUD Fade', "Value 1: Opaticity\nValue 2: Duration"],
 		["Set Health Drain", 'Defines how much life will be taken from the player\nwhen the enemy presses a note\n(recommend to use 0.06 or less)'],
 		["Enemy Splashes", "Value 1: Enemy Note Splashes (true/false)\n\nValue 2: Enemy Strum Cover Splashes (true/false)"],
