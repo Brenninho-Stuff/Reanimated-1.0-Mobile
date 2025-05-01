@@ -54,7 +54,12 @@ class Note extends FlxSprite
 		"Duo Sing",
 		'No Animation',
 		"Shoot Note",
-		'Dodge Tankman'
+		'Dodge Tankman',
+		'weekend-1-lightcan',
+		'weekend-1-kickcan',
+		'weekend-1-kneecan',
+		'weekend-1-reload',
+		'weekend-1-firegun'
 	];
 
 	public var extraData:Map<String, Dynamic> = new Map<String, Dynamic>();

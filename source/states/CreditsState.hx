@@ -55,7 +55,7 @@ class CreditsState extends MusicBeatState
 			['Kontari',  		'FNF Reanimated Team/Konta',        'Charter/Dev Build Tester',                   			'https://x.com/konatsutari_',          'a9127d'],
 			['Tyfool1000',  	'FNF Reanimated Team/',        		'Charter/Dev Build Tester',                   			'https://www.youtube.com/@ImSnax',          '2471a3'],
 			['KaizoPlus',  		'FNF Reanimated Team/kaizo',        'Charter/Dev Build Tester',                   			'https://www.youtube.com/@Kaizo_pe',          '188840'],
-			['Alpha',  			'FNF Reanimated Team/',        		'Charter/Coder Lua',                    'https://www.youtube.com/@isplatinumalpha',          '00FFFF'],
+			['Deimoz',  		'FNF Reanimated Team/',        		'Charter/Coder Lua',                    'https://www.youtube.com/@isplatinumalpha',          '00FFFF'],
 			['Ryan_Sdjr',		'FNF Reanimated Team/ryan',			'Stage Darnell OLD/IntroSongLua/Shooting Notes Design' ,'https://www.youtube.com/@ryan_sdjr',	'50A5EB'],
 			['Hunter',			'FNF Reanimated Team/',				'Dev Build Tester/Chart Arranger',		'',			'0AD0D3'],
 			['DARK_STYLE',		'FNF Reanimated Team/Dark',			'Composer',								'https://www.youtube.com/@dark_style0629',			'0AD0D3'],

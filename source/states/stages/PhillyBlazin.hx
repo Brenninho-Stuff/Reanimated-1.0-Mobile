@@ -82,7 +82,7 @@ class PhillyBlazin extends BaseStage
 
 		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
 		//add(abot);
-		addAbot(0,345);
+		addAbot(100,355);
 		
 		if(ClientPrefs.data.shaders)
 			setupRainShader();

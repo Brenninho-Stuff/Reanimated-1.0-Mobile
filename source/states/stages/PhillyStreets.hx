@@ -19,6 +19,7 @@ import shaders.RainShader;
 import flixel.addons.display.FlxTiledSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import torchsthings.shaders.AdjustColorShader;
+import flixel.tweens.FlxTween;
 
 class PhillyStreets extends BaseStage
 {
@@ -906,11 +907,12 @@ class PhillyStreets extends BaseStage
 			case 'weekend-1-firegun':
 				if (!didReload)
 				note.blockHit = true;
-				camFollow.x -= 100;
-				camFollow.y -= 100;
+				camFollow.x -= -90;
+				camFollow.y -= 110;
 				boyfriend.holdTimer = 0;
 				boyfriend.playAnim('shoot', true);
 				boyfriend.specialAnim = true;
+				FlxTween.tween(game, {defaultCamZoom: 0.77}, 2, {ease: FlxEase.quadInOut});
 				FlxG.sound.play(randomWeekSound('shots/shot', 1, 4));
 				spraycan.playCanShot();
 
@@ -954,7 +956,7 @@ class PhillyStreets extends BaseStage
 				game.defaultCamZoom += 0.1;
 				game.focusedChar = game.dad;
 				game.cameraSpeed = 2;
-				camFollow.x -= 100;
+				camFollow.x -= 500;
 
 			case 'weekend-1-kickcan':
 				createCan();
