@@ -391,6 +391,7 @@ class PhillyStreets extends BaseStage
 			startCountdown();
 
 			camHUD.visible = true;
+			FlxTween.tween(camHUD, {alpha: 1}, 2, {ease: FlxEase.sineInOut});
 			boyfriend.animation.finishCallback = null;
 			dad.animation.finishCallback = null;
 		};
@@ -912,6 +913,7 @@ class PhillyStreets extends BaseStage
 				boyfriend.holdTimer = 0;
 				boyfriend.playAnim('shoot', true);
 				boyfriend.specialAnim = true;
+				game.defaultCamZoom += -0.12;
 				FlxTween.tween(game, {defaultCamZoom: 0.77}, 2, {ease: FlxEase.quadInOut});
 				FlxG.sound.play(randomWeekSound('shots/shot', 1, 4));
 				spraycan.playCanShot();

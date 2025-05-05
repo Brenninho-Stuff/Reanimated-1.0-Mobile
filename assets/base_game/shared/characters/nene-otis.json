@@ -1,0 +1,72 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [163, 835],
+			"anim": "PlayCutscene",
+			"fps": 24,
+			"name": "Nene Idle Otis",
+			"indices": []
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"useNoteSkin": false,
+	"image": "characters/Nene_Otis",
+	"position": [0, 0],
+	"noteSkinLib": "shared",
+	"altNoteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
+	"healthicon": "face",
+	"flip_x": false,
+	"healthbar_colors": [161, 161, 161],
+	"disableNoteRGB": false,
+	"camera_position": [0, 0],
+	"noteSkin": "",
+	"noteColors": {
+		"right": [
+			-444097,
+			-1,
+			-10153928
+		],
+		"up": [
+			-15533563,
+			-1,
+			-16104377
+		],
+		"down": [
+			-16711681,
+			-1,
+			-15383881
+		],
+		"left": [
+			-4043879,
+			-1,
+			-12837034
+		]
+	},
+	"sing_duration": 4,
+	"hasAltColors": false,
+	"scale": 1,
+	"_editor_isPlayer": false
+}
