@@ -75,7 +75,6 @@ class PhillyStreets extends BaseStage
     var lightCanSnd:FlxSound;
     var kickCanSnd:FlxSound;
     var kneeCanSnd:FlxSound;
-    var cutsceneSnd:FlxSound = new FlxSound().loadEmbedded(Paths.sound('darnellCanCutscene'));
 
     //Nene and Speaker
     //var abot:ABot;
@@ -346,18 +345,9 @@ class PhillyStreets extends BaseStage
 
     function prepareCutscene()
 	{
-		reflectedBF = new ReflectedChar(boyfriend, 0.35);
-		addBehindBF(reflectedBF);
-		inCutsceneDarnell = true;
-		seenDarnellCutscene = false;
-		picoPos = [boyfriend.getMidpoint().x -400 - boyfriend.cameraPosition[0] - game.boyfriendCameraOffset[0],  boyfriend.getMidpoint().y - 100 + boyfriend.cameraPosition[1] + game.boyfriendCameraOffset[1]];
-		dadPos = [dad.getMidpoint().x + 150 + dad.cameraPosition[0] + game.opponentCameraOffset[0], dad.getMidpoint().y - 100 + dad.cameraPosition[1] + game.opponentCameraOffset[1]];
-
-		game.isCameraOnForcedPos = true;
-		cutsceneHandler = new CutsceneHandler();
+		
 
 		//boyfriendGroup.alpha = 0.00001;
-		camHUD.visible = false;
 
 		/*picoIntro1 = new Character(1939, 454, "pico-intro", true);
 		picoIntro1.x += picoIntro1.positionArray[0];
@@ -378,30 +368,24 @@ class PhillyStreets extends BaseStage
 			addBehindBF(reflectedBF);
 		}*/
 
-		camFollow.setPosition(picoPos[0] + 250, picoPos[1]);
-
-		cutsceneHandler.finishCallback = function()
-		{
-			game.tweenCameraZoom(0.77, 2, true, FlxEase.sineInOut);
-			game.tweenCameraToPosition(dadPos[0]+180, dadPos[1], 2, FlxEase.sineInOut);
-			var timeForStuff:Float = Conductor.crochet / 1000 * 4.5;
-			FlxG.sound.music.fadeOut(timeForStuff);
-			spraycan.cutscene = false;
-			spraycan.destroy();
-			startCountdown();
-
-			camHUD.visible = true;
-			FlxTween.tween(camHUD, {alpha: 1}, 2, {ease: FlxEase.sineInOut});
-			boyfriend.animation.finishCallback = null;
-			dad.animation.finishCallback = null;
-		};
+		
 
 	}
 
 	function darnellIntro()
 	{
+		reflectedBF = new ReflectedChar(boyfriend, 0.35);
+		addBehindBF(reflectedBF);
+		inCutsceneDarnell = true;
+		seenDarnellCutscene = false;
+		picoPos = [boyfriend.getMidpoint().x -400 - boyfriend.cameraPosition[0] - game.boyfriendCameraOffset[0],  boyfriend.getMidpoint().y - 100 + boyfriend.cameraPosition[1] + game.boyfriendCameraOffset[1]];
+		dadPos = [dad.getMidpoint().x + 150 + dad.cameraPosition[0] + game.opponentCameraOffset[0], dad.getMidpoint().y - 100 + dad.cameraPosition[1] + game.opponentCameraOffset[1]];
+		
+		camHUD.alpha = 0;
+		camFollow.setPosition(picoPos[0] + 250, picoPos[1]);
 
-		prepareCutscene();
+		game.isCameraOnForcedPos = true;
+		cutsceneHandler = new CutsceneHandler();
 
 		var cutsceneMusic:FlxSound = new FlxSound().loadEmbedded(playWeekMusic('darnellCanCutscene'));
 		cutsceneMusic.looped = true;
@@ -446,11 +430,11 @@ class PhillyStreets extends BaseStage
 				dad.dance();
 		});
 		
-		var cutsceneSnd:FlxSound = new FlxSound().loadEmbedded(Paths.sound('darnellCanCutscene'));
-		FlxG.sound.list.add(cutsceneSnd);
+		//var cutsceneSnd:FlxSound = new FlxSound().loadEmbedded(Paths.sound('darnellCanCutscene'));
+		//FlxG.sound.list.add(cutsceneSnd);
 		cutsceneHandler.timer(0.7, function()
 		{
-			cutsceneSnd.play(true);
+			cutsceneMusic.play(true);
 			FlxTween.tween(blackScreen, { alpha: 0}, 2, {startDelay: 0.3});
 		});
 
@@ -535,6 +519,32 @@ class PhillyStreets extends BaseStage
 			inCutsceneDarnell = false;
 		});
 
+		cutsceneHandler.finishCallback = function() {
+			cutsceneMusic.stop();
+
+			game.tweenCameraZoom(0.77, 2, true, FlxEase.sineInOut);
+			game.tweenCameraToPosition(dadPos[0]+180, dadPos[1], 2, FlxEase.sineInOut);
+			//var timeForStuff:Float = Conductor.crochet / 1000 * 4.5;
+			//FlxG.sound.music.fadeOut(timeForStuff);
+			
+			spraycan.visible = spraycan.active = spraycan.cutscene = false;
+			//camHUD.alpha = 1;
+			startCountdown();
+
+			FlxTween.tween(camHUD, {alpha: 1}, 2, {ease: FlxEase.sineInOut});
+			//boyfriend.animation.finishCallback = null;
+			//dad.animation.finishCallback = null;
+		};
+
+		cutsceneHandler.skipCallback = function() {
+			cutsceneHandler.finishCallback();
+
+			dad.dance();
+			gf.dance();
+			boyfriend.dance();
+			dad.animation.finishCallback = null;
+			gf.animation.finishCallback = null;
+		};
 	}
 
     override function update(elapsed:Float)
