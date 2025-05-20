@@ -77,7 +77,11 @@ override function create()
 		tankCutscene.y += tankCutscene.positionArray[1];
 		tankCutscene.visible = false;
 
-        addAbot(98, 351);
+        if (PlayState.SONG.song.toLowerCase().contains('pico-mix')) {
+			defaultSpeaker = 'abot';
+            //addSpeaker(98, 351);
+            addSpeaker(gfGroup.x + 98, gfGroup.y + 351);
+		}
 
         	// Default GFs
 		switch(songName.toLowerCase()) {
@@ -98,94 +102,79 @@ override function create()
         }
 
     }
+    override function createPost() {   
+        add(tankmanIntro);
+        add(tankCutscene);
 
-    override function sectionHit() {
-		updateABotEye();
-	}
-
-	override function startSong() {
-		abotSongStart();
-	}
-        override function createPost()
-            {   
-                add(tankmanIntro);
-                add(tankCutscene);
-
-                if(!ClientPrefs.data.lowQuality)
-                    {
-                        for (daGf in gfGroup)
-                        {
-                            var gf:Character = cast daGf;
-                            if (gf.curCharacter == 'pico-speaker') {
-                                var firstTank:TankmenBG = new TankmenBG(20, 500, true);
-                                firstTank.resetShit(20, 1500, true);
-                                firstTank.strumTime = 10;
-                                firstTank.visible = false;
-                                tankmanRun.add(firstTank);
-                            
-                                for (i in 0...TankmenBG.animationNotes.length) {
-                                    if (FlxG.random.bool(16)) {
-                                        var tankBih = tankmanRun.recycle(TankmenBG);
-                                        tankBih.strumTime = TankmenBG.animationNotes[i][0];
-                                        tankBih.resetShit(500, 200 + FlxG.random.int(50, 100), TankmenBG.animationNotes[i][1] < 2);
-                                        tankmanRun.add(tankBih);
-                                    }
-                                }
-                                break;
-                            } else if (gf.curCharacter == 'otis-speaker') {
-                                var firstTank:TankmenBG = new TankmenBG(30, 600, true);
-                                firstTank.resetShit(30, 1600, true);
-                                firstTank.strumTime = 15;
-                                firstTank.visible = false;
-                                tankmanRun.add(firstTank);
-                            
-                                for (i in 0...TankmenBG.animationNotes.length) {
-                                    if (FlxG.random.bool(12)) {
-                                        var tankBih = tankmanRun.recycle(TankmenBG);
-                                        tankBih.strumTime = TankmenBG.animationNotes[i][0];
-                                        tankBih.resetShit(600, 250 + FlxG.random.int(50, 100), TankmenBG.animationNotes[i][1] < 2);
-                                        tankmanRun.add(tankBih);
-                                    }
-                                }
-                                break;
-                            }
+        if(!ClientPrefs.data.lowQuality) {
+            for (daGf in gfGroup) {
+                var gf:Character = cast daGf;
+                if (gf.curCharacter == 'pico-speaker') {
+                    var firstTank:TankmenBG = new TankmenBG(20, 500, true);
+                    firstTank.resetShit(20, 1500, true);
+                    firstTank.strumTime = 10;
+                    firstTank.visible = false;
+                    tankmanRun.add(firstTank);
+                
+                    for (i in 0...TankmenBG.animationNotes.length) {
+                        if (FlxG.random.bool(16)) {
+                            var tankBih = tankmanRun.recycle(TankmenBG);
+                            tankBih.strumTime = TankmenBG.animationNotes[i][0];
+                            tankBih.resetShit(500, 200 + FlxG.random.int(50, 100), TankmenBG.animationNotes[i][1] < 2);
+                            tankmanRun.add(tankBih);
                         }
                     }
-
-                super.createPost();
-                addAbotPost();
-                var colorShader = new AdjustColorShader();
-                colorShader.hue = -38;
-                colorShader.saturation = -20;
-                colorShader.contrast = -25;
-                colorShader.brightness = -46;
-        
-                boyfriend.shader = colorShader;
-                gf.shader = colorShader;
-                dad.shader = colorShader;
-                tankCutscene.shader = colorShader;
-                tankmanIntro.shader = colorShader;
-                otis.shader = colorShader;
-                for (tankman in tankmanRun.members)
-                    {
-                        if (tankman != null)
-                        {
-                            tankman.setShader(colorShader);
+                    break;
+                } else if (gf.curCharacter == 'otis-speaker') {
+                    var firstTank:TankmenBG = new TankmenBG(30, 600, true);
+                    firstTank.resetShit(30, 1600, true);
+                    firstTank.strumTime = 15;
+                    firstTank.visible = false;
+                    tankmanRun.add(firstTank);
+                
+                    for (i in 0...TankmenBG.animationNotes.length) {
+                        if (FlxG.random.bool(12)) {
+                            var tankBih = tankmanRun.recycle(TankmenBG);
+                            tankBih.strumTime = TankmenBG.animationNotes[i][0];
+                            tankBih.resetShit(600, 250 + FlxG.random.int(50, 100), TankmenBG.animationNotes[i][1] < 2);
+                            tankmanRun.add(tankBih);
                         }
                     }
-                if (abot != null) abot.setShader(colorShader);
-     }
+                    break;
+                }
+            }
+        }
 
-     var isSipping:Bool = false;
+        super.createPost();
+        var colorShader = new AdjustColorShader();
+        colorShader.hue = -38;
+        colorShader.saturation = -20;
+        colorShader.contrast = -25;
+        colorShader.brightness = -46;
 
-     override function beatHit() {
-        abotBeatHit();
-        if (!isSipping) {
-        sniper.animation.play("idle", false);
+        boyfriend.shader = colorShader;
+        gf.shader = colorShader;
+        dad.shader = colorShader;
+        tankCutscene.shader = colorShader;
+        tankmanIntro.shader = colorShader;
+        otis.shader = colorShader;
+        for (tankman in tankmanRun.members) {
+            if (tankman != null) {
+                tankman.setShader(colorShader);
+            }
+        }
+        if (speaker != null) speaker.setShader(colorShader);
     }
+
+    var isSipping:Bool = false;
+
+    override function beatHit() {
+        super.beatHit();
+        if (!isSipping) {
+            sniper.animation.play("idle", false);
+        }
         guy.animation.play("idle", false);
     
-
         if (!isSipping && FlxG.random.bool(2)) {  
             sipAnimation();
         }
@@ -202,20 +191,17 @@ override function create()
         });
     }
 
-    function prepareCutsceneIntro()
-        {
-            cutsceneHandler = new CutsceneHandler();
-            tankmanIntro.visible = true;
-            otis.visible = true;
-            dad.visible = false;
-            gf.visible = false;
-            abot.visible = false;
-            game.inCutscene = true;
-            game.isCameraOnForcedPos = true;
-            camHUD.visible = false;
-    
-        }
-    
+    function prepareCutsceneIntro() {
+        cutsceneHandler = new CutsceneHandler();
+        tankmanIntro.visible = true;
+        otis.visible = true;
+        dad.visible = false;
+        gf.visible = false;
+        speaker.visible = false;
+        game.inCutscene = true;
+        game.isCameraOnForcedPos = true;
+        camHUD.visible = false;
+    }
 
     function prepareStressCutscene()
         {
@@ -335,16 +321,34 @@ override function create()
                     dad.visible = true;
                     gf.visible = true;
                     otis.visible = false;
-                    abot.visible = true;
+                    speaker.visible = true;
                 });
 
-                cutsceneHandler.finishCallback = function() {
-                    game.isCameraOnForcedPos = false;
-                    game.inCutscene = false;
-                    camHUD.visible = true;
-                    FlxTween.tween(camHUD, {alpha: 1}, 2, {ease: FlxEase.sineInOut});
-                    startCountdown();
-                };
+            cutsceneHandler.finishCallback = function() {
+                game.isCameraOnForcedPos = false;
+                game.inCutscene = false;
+                camHUD.visible = true;
+                FlxTween.tween(camHUD, {alpha: 1}, 2, {ease: FlxEase.sineInOut});
+                startCountdown();
+                otis.destroy();
+                tankmanIntro.destroy();
+            };
+
+            cutsceneHandler.skipCallback = function () {
+                cutsceneSnd.stop();
+                cutsceneHandler.finishCallback();
+
+                //otis.visible = false;
+                //tankmanIntro.visible = false;
+                gf.visible = true;
+                dad.visible = true;
+                speaker.visible = true;
+                dad.dance();
+                gf.dance();
+                boyfriend.dance();
+                dad.animation.finishCallback = null;
+                gf.animation.finishCallback = null;
+            }
     
         }
         function StressErectCutscene()
@@ -387,13 +391,11 @@ override function create()
             cutsceneHandler.timer(10.9, function()
             {
                 FlxTween.tween(blackScreen, { alpha: 1}, 1, {startDelay: 0.3});
-
             });
             cutsceneHandler.timer (11.1, function () 
             {
                     game.tweenCameraToPosition(tankCutscene.x + 450, tankCutscene.y + 100, 4.3, FlxEase.smoothStepOut);
             });
-    
         }
 
     override function opponentNoteHit(note:Note)

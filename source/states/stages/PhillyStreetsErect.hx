@@ -150,7 +150,9 @@ class PhillyStreetsErect extends BaseStage
         mistMid.alpha = 0.8;
         mistMid.antialiasing = ClientPrefs.data.antialiasing;
 
-        addAbot(100, 355);        //abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+        //addAbot(100, 355);        //abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+        defaultSpeaker = 'abot';
+        addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
 
         if(ClientPrefs.data.shaders)
 			setupRainShader();
@@ -176,7 +178,6 @@ class PhillyStreetsErect extends BaseStage
     override function createPost()
     {   
         super.createPost();
-        addAbotPost();
         var colorShader = new AdjustColorShader();
         colorShader.hue = -10;
         colorShader.saturation = 5;
@@ -186,10 +187,7 @@ class PhillyStreetsErect extends BaseStage
         boyfriend.shader = colorShader;
         gf.shader = colorShader;
         dad.shader = colorShader;
-        if (abot != null) abot.setShader(colorShader);
-
-       
-                    
+        if (speaker != null) speaker.setShader(colorShader);
             /*
             This comment is only here to explain the reflection.
         
@@ -215,33 +213,24 @@ class PhillyStreetsErect extends BaseStage
         periodicoRandom.visible = false;
         add(periodicoRandom);
         add(greyGradient);
-
     }
-    override function sectionHit() {
-		updateABotEye();
-	}
 
-	override function startSong() {
-		abotSongStart();
-	}
-    function everyoneDance()
-        { 
-        }
+    function everyoneDance() {}
+
     override function update(elapsed:Float) {
         // Actualizar el shader solo si está habilitado
-        if(rainShader != null)
-            {
-                var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 0, (FlxG.sound.music != null ? FlxG.sound.music.length : 0), rainShaderStartIntensity, rainShaderEndIntensity);
-                rainShader.intensity = remappedIntensityValue;
-                rainShader.updateViewInfo(FlxG.width, FlxG.height, FlxG.camera);
-                rainShader.update(elapsed);
-            }
+        if(rainShader != null) {
+            var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 0, (FlxG.sound.music != null ? FlxG.sound.music.length : 0), rainShaderStartIntensity, rainShaderEndIntensity);
+            rainShader.intensity = remappedIntensityValue;
+            rainShader.updateViewInfo(FlxG.width, FlxG.height, FlxG.camera);
+            rainShader.update(elapsed);
+        }
     }
 
     var paperBeat:Int = 0;
 	var paperOffset:Int = 12;
     override function beatHit() {
-        abotBeatHit();
+        super.beatHit();
 
         // Reducir la probabilidad de eventos para mejorar el rendimiento
         if (FlxG.random.bool(5) && curBeat != (lastChange + changeInterval) && carInterruptable) {

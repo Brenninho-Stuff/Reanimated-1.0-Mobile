@@ -77,8 +77,6 @@ class PhillyStreets extends BaseStage
     var kneeCanSnd:FlxSound;
 
     //Nene and Speaker
-    //var abot:ABot;
-	//var abotLookDir:Bool = false;	
     var knifeRaised:Bool = false;
     var blinkTime:Float = 0;
     final BLINK_MIN:Float = 1;
@@ -225,7 +223,9 @@ class PhillyStreets extends BaseStage
        // abot = new ABot(1100, 740);
 		//add(abot); 
         //Adding picoFade
-		addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+		//addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+		defaultSpeaker = 'abot';
+		addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
 
         picoFade = new FlxSprite();
 		picoFade.antialiasing = ClientPrefs.data.antialiasing;
@@ -260,8 +260,6 @@ class PhillyStreets extends BaseStage
 
         //Functions
         resetCar(true, true);
-        //updateABotEye(true);
-
     }
 
 	
@@ -312,7 +310,6 @@ class PhillyStreets extends BaseStage
 		reflectedBF = new ReflectedChar(boyfriend, 0.35);
 		addBehindBF(reflectedBF);
 		super.createPost();
-		addAbotPost();
 		var colorShader = new AdjustColorShader();
         colorShader.hue = -26;
         colorShader.saturation = -23;
@@ -323,7 +320,7 @@ class PhillyStreets extends BaseStage
         gf.shader = colorShader;
         dad.shader = colorShader;
         spraycan.shader = colorShader;
-        if (abot != null) abot.setShader(colorShader);
+        if (speaker != null) speaker.setShader(colorShader);
 		phillySpray.shader = colorShader;
 
         add(phillySpray);
@@ -332,45 +329,7 @@ class PhillyStreets extends BaseStage
         add(periodicoRandom);
 
 		createCan();
-
     }
-
-	override function sectionHit() {
-		updateABotEye();
-	}
-
-	override function startSong() {
-		abotSongStart();
-	}
-
-    function prepareCutscene()
-	{
-		
-
-		//boyfriendGroup.alpha = 0.00001;
-
-		/*picoIntro1 = new Character(1939, 454, "pico-intro", true);
-		picoIntro1.x += picoIntro1.positionArray[0];
-		picoIntro1.y += picoIntro1.positionArray[1];
-		add(picoIntro1);
-
-		picoIntro2 = new Character(1939, 454, "pico-intro2", true);
-		picoIntro2.x += picoIntro2.positionArray[0];
-		picoIntro2.y += picoIntro2.positionArray[1];
-		add(picoIntro2);
-		picoIntro2.alpha = 0.00001;
-		*/
-
-		/*if (useShader)
-		{
-			reflectedBF.destroy();
-			reflectedBF = new ReflectedChar(picoIntro1, 0.35);
-			addBehindBF(reflectedBF);
-		}*/
-
-		
-
-	}
 
 	function darnellIntro()
 	{
@@ -580,7 +539,6 @@ class PhillyStreets extends BaseStage
 			}
 		}
 
-		abotUpdate();
 		super.update(elapsed);
 	}
 
@@ -626,7 +584,7 @@ class PhillyStreets extends BaseStage
 	var paperOffset:Int = 12;
     override function beatHit() 
 	{
-		abotBeatHit();
+		super.beatHit();
 
 		// Try driving a car when its possible
 		if (FlxG.random.bool(10) && curBeat != (lastChange + changeInterval) && carInterruptable == true)

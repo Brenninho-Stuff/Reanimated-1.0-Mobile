@@ -19,6 +19,7 @@ import states.TitleState;
 	public var splashSkin:String = 'Psych';
 	public var strumSkin:String = 'Default';
 	public var healthBarSkin:String = 'Reanimated';
+	public var speakerSkin:String = 'Stage';
 	public var splashAlpha:Float = 0.8;
 	public var lowQuality:Bool = false;
 	public var shaders:Bool = true;
@@ -85,6 +86,7 @@ import states.TitleState;
 	public var language:String = 'en-US';
 
 	public var characterNoteColors:String = 'Enabled';
+	public var volumeDependantBop:Bool = true;
 }
 
 class ClientPrefs {

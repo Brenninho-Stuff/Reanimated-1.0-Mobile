@@ -16,7 +16,7 @@ class StageErect extends BaseStage
     var crowd:BGSprite;
     var orange:BGSprite;
     var bg:BGSprite;
-    var speaker:BGSprite;
+    var erectSpeaker:BGSprite;
     var lightsmall:BGSprite;
     var light:BGSprite;
     var lightAbove:BGSprite;
@@ -63,11 +63,11 @@ class StageErect extends BaseStage
         orange.updateHitbox();
         add(orange);
 
-        speaker = new BGSprite('rework/Erect/speaker', -201, 205, 1, 1);
-        speaker.antialiasing =  ClientPrefs.data.antialiasing;
-        speaker.setGraphicSize(Std.int(speaker.width * 0.9));
-        speaker.updateHitbox();
-        add(speaker);
+        erectSpeaker = new BGSprite('rework/Erect/speaker', -201, 205, 1, 1);
+        erectSpeaker.antialiasing =  ClientPrefs.data.antialiasing;
+        erectSpeaker.setGraphicSize(Std.int(erectSpeaker.width * 0.9));
+        erectSpeaker.updateHitbox();
+        add(erectSpeaker);
 
         lightsmall = new BGSprite('rework/Erect/brightLightSmall', 1500, -200, 0.9, 0.9);
         lightsmall.antialiasing =  ClientPrefs.data.antialiasing;
@@ -85,8 +85,12 @@ class StageErect extends BaseStage
         lightAbove.setGraphicSize(Std.int(lightAbove.width * 1.2));
         lightAbove.updateHitbox();
         
-        addAbot(100, 355);
+        //addAbot(100, 355);
         //abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+        if (PlayState.SONG.song.toLowerCase().contains('pico-mix')) {
+			defaultSpeaker = 'abot';
+            addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
+		}
 
         if (!offsetState) {
             switch(PlayState.SONG.song.toLowerCase()) {
@@ -97,49 +101,36 @@ class StageErect extends BaseStage
                     gfPixel.dance();
             }
         }
-     
     }
- 
+
     override function createPost() {
         add(lightsmall);
         add(light);
         add(lightAbove);
         super.createPost();
-        addAbotPost();
         //Color Shader2 es Para el Abot lol
         gf.shader = makeCoolShader(-9,0,-30,-4);
         dad.shader = makeCoolShader(-32,0,-33,-23);
         boyfriend.shader = makeCoolShader(12,0,-23,7);
-        if (abot != null) abot.setShader(makeCoolShader(-9, 0, -30, -4));
-            if (!offsetState) {
-                switch(PlayState.SONG.song.toLowerCase()) {
-                    case 'test':
-                        gf.x += 450;
-                        shaderFilter = new ShaderFilter(crt);
-                        ShaderUtils.applyFiltersToCams([camGame, camHUD, camOther], [shaderFilter]);
-                        reflectedBF = new ReflectedChar(boyfriend, 0.35);
-                        reflectedDad = new ReflectedChar(dad, 0.35);
-                        addBehindBF(reflectedBF);
-                        addBehindDad(reflectedDad);
-                }
+        if (speaker != null) speaker.setShader(makeCoolShader(-9, 0, -30, -4)); 
+        if (!offsetState) {
+            switch(PlayState.SONG.song.toLowerCase()) {
+                case 'test':
+                    gf.x += 450;
+                    shaderFilter = new ShaderFilter(crt);
+                    ShaderUtils.applyFiltersToCams([camGame, camHUD, camOther], [shaderFilter]);
+                    reflectedBF = new ReflectedChar(boyfriend, 0.35);
+                    reflectedDad = new ReflectedChar(dad, 0.35);
+                    addBehindBF(reflectedBF);
+                    addBehindDad(reflectedDad);
             }
         }
-    override function sectionHit() {
-        updateABotEye();
-    }
-    
-     override function startSong() {
-         abotSongStart();
     }
 
     override function countdownTick(count:Countdown, num:Int) if(num % 2 == 0) everyoneDance();
-    override function beatHit()
-        {       
-            abotBeatHit();
-        }
-        function everyoneDance()
-            { 
-            }
+    
+    function everyoneDance() {}
+
     function makeCoolShader(hue:Float,sat:Float,bright:Float,contrast:Float) {
         var coolShader = new AdjustColorShader();
         coolShader.hue = hue;

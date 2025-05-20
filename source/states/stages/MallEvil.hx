@@ -89,7 +89,8 @@ class MallEvil extends BaseStage
 		});
 	}
 	override function createPost()
-		{
-			add(filter);
-		}
+	{
+		super.createPost();
+		add(filter);
+	}
 }

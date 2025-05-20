@@ -20,7 +20,10 @@ class Spooky extends BaseStage
 			halloweenBG.updateHitbox();
 		}
 		add(halloweenBG);
-		addAbot(100, 355);
+		if (PlayState.SONG.song.toLowerCase().contains('pico-mix')) {
+			defaultSpeaker = 'abot';
+            addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
+		}
 
 		//PRECACHE SOUNDS
 		playWeekSound('thunder_1');
@@ -43,21 +46,13 @@ class Spooky extends BaseStage
 		halloweenWhite.alpha = 0;
 		halloweenWhite.blend = ADD;
 		add(halloweenWhite);
-		addAbotPost();
-
-	}
-
-	override function sectionHit() {
-		updateABotEye();
-	}
-
-	override function startSong() {
-		abotSongStart();
+		super.createPost();
 	}
 	var lightningStrikeBeat:Int = 0;
 	var lightningOffset:Int = 8;
 	override function beatHit()
 	{
+		super.beatHit();
 		if (FlxG.random.bool(10) && curBeat > lightningStrikeBeat + lightningOffset)
 		{
 			lightningStrikeShit();

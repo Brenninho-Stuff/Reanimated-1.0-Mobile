@@ -134,7 +134,10 @@ class Tank extends BaseStage
 		else setDefaultGF('gf-tankmen');
 		*/
 		
-        addAbot(100, 355);
+        if (PlayState.SONG.song.toLowerCase().contains('pico-mix')) {
+			defaultSpeaker = 'abot';
+            addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
+		}
 		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
 
 		
@@ -200,18 +203,14 @@ class Tank extends BaseStage
 				}
 			}
 		}
-		addAbotPost();
-	}
-	override function sectionHit() {
-		updateABotEye();
-	}
-
-	override function startSong() {
-		abotSongStart();
+		super.createPost();
 	}
 
 	override function countdownTick(count:Countdown, num:Int) if(num % 2 == 0) everyoneDance();
-	override function beatHit() everyoneDance();
+	override function beatHit() {
+		super.beatHit();
+		everyoneDance();
+	}
 	function everyoneDance()
 	{
 		if(!ClientPrefs.data.lowQuality) tankWatchtower.dance();

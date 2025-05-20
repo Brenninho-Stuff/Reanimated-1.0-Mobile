@@ -69,7 +69,9 @@ class PhillyErect extends BaseStage
         car.setGraphicSize(Std.int(car.width * 1.2));
         car.updateHitbox();
     
-addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+        //addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
+        defaultSpeaker = 'abot';
+        addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
     }
 
     override function createPost() {
@@ -81,7 +83,6 @@ addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*
 		addBehindGF(reflectedGF);
 		reflectedDad = new ReflectedChar(dad, 0.35);
 		addBehindDad(reflectedDad);
-        addAbotPost();
 		var colorShader = new AdjustColorShader();
         colorShader.hue = -40;
         colorShader.saturation = -25;
@@ -92,16 +93,8 @@ addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*
         gf.shader = colorShader;
         dad.shader = colorShader;
         car.shader = colorShader;
-        if (abot != null) abot.setShader(colorShader);
+        if (speaker != null) speaker.setShader(colorShader);
     }
-    
-    override function sectionHit() {
-		updateABotEye();
-	}
-
-	override function startSong() {
-		abotSongStart();
-	}
     
     override function eventPushed(event:objects.Note.EventNote) {
         switch(event.event) {
@@ -147,7 +140,7 @@ addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*
     override function countdownTick(count:Countdown, num:Int) if(num % 2 == 0) everyoneDance();
 
     override function beatHit() {       
-        abotBeatHit();
+        super.beatHit();
 
         if (curBeat % 4 == 0) {
             curLight = FlxG.random.int(0, phillyLightsColors.length - 1, [curLight]);
@@ -167,7 +160,7 @@ addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*
                 var lightId:Int = Math.round(flValue1);
 
                 var chars:Array<FlxSprite> = [boyfriend, gf, dad];
-                if (abot != null) chars.push(abot);
+                if (speaker != null) chars.push(speaker);
                 switch(lightId) {
                     case 0:
                         if(phillyGlowGradient.visible) {

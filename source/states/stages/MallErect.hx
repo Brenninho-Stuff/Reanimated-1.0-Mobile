@@ -82,7 +82,11 @@ class MallErect extends BaseStage
 		santaDead.visible = false;
 		setDefaultGF('gf-christmas');
 
-addAbot(100, 355);
+		//addAbot(100, 355);
+		if (PlayState.SONG.song.toLowerCase().contains('pico-mix')) {
+			defaultSpeaker = 'abot';
+            addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
+		}
 		if (!isStoryMode)
 			if (PlayState.SONG.song.toLowerCase() == "eggnog")
 			{
@@ -92,41 +96,32 @@ addAbot(100, 355);
 			setEndCallback(eggnogEndCutscene);
 	}
 
-	override function createPost()
-		{	
-			add(santa);
-			add(parentsCutscene);
-			add(santaDead);
-			add(snowfallin);
-			super.createPost();
-			addAbotPost();
-			var colorShader = new AdjustColorShader();
-			colorShader.hue = 5;
-			colorShader.saturation = 20;
+	override function createPost() {	
+		add(santa);
+		add(parentsCutscene);
+		add(santaDead);
+		add(snowfallin);
+		super.createPost();
+		var colorShader = new AdjustColorShader();
+		colorShader.hue = 5;
+		colorShader.saturation = 20;
 
-			boyfriend.shader = colorShader;
-			gf.shader = colorShader;
-			dad.shader = colorShader;
-			if (abot != null) abot.setShader(colorShader);
-			santa.shader = colorShader;
-			santaDead.shader = colorShader;
-			parentsCutscene.shader = colorShader;
-		}
-	
-		override function sectionHit() {
-			updateABotEye();
-		}
-	
-		override function startSong() {
-			abotSongStart();
-		}
+		boyfriend.shader = colorShader;
+		gf.shader = colorShader;
+		dad.shader = colorShader;
+		if (speaker != null) speaker.setShader(colorShader);
+		santa.shader = colorShader;
+		santaDead.shader = colorShader;
+		parentsCutscene.shader = colorShader;
+	}
 	override function countdownTick(count:Countdown, num:Int) everyoneDance();
-	override function beatHit() everyoneDance();
+	override function beatHit() {
+		super.beatHit();
+		everyoneDance();
+	}
 
-	override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float)
-	{
-		switch(eventName)
-		{
+	override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float) {
+		switch(eventName) {
 			case "Hey!":
 				switch(value1.toLowerCase().trim()) {
 					case 'bf' | 'boyfriend' | '0':
@@ -135,8 +130,7 @@ addAbot(100, 355);
 		}
 	}
 
-	function everyoneDance()
-	{
+	function everyoneDance() {
 		if(!ClientPrefs.data.lowQuality)
 			bottomBoppers.dance(true);
 			upperBoppers.dance(true);
@@ -144,17 +138,14 @@ addAbot(100, 355);
 			santa.dance(true);
 	}
 
-	function eggnogEndCutscene()
-	{
-		if(PlayState.storyPlaylist[1] == null)
-		{
+	function eggnogEndCutscene() {
+		if(PlayState.storyPlaylist[1] == null) {
 			endSong();
 			return;
 		}
 
 		var nextSong:String = Paths.formatToSongPath(PlayState.storyPlaylist[1]);
-		if(nextSong == 'winter-horrorland')
-		{
+		if(nextSong == 'winter-horrorland') {
 			FlxG.sound.play(Paths.sound('mall/Lights_Shut_off'));
 
 			var blackShit:FlxSprite = new FlxSprite(-FlxG.width * FlxG.camera.zoom,
@@ -175,8 +166,7 @@ addAbot(100, 355);
 		else endSong();
 	}
 
-		function prepareEggnogCutscene()
-	{
+	function prepareEggnogCutscene() {
 		cutsceneHandler = new CutsceneHandler();
 		santa.visible = false;
 		dad.visible = false;
@@ -196,19 +186,16 @@ addAbot(100, 355);
 		blackScreen.cameras = [camOther];
 		add(blackScreen);
 
-		cutsceneHandler.finishCallback = function()
-		{
+		cutsceneHandler.finishCallback = function() {
 			game.inCutscene = false;
 			camHUD.fade(0xFF000000, 0.5, true, null, true);
-			new FlxTimer().start(0.5, function(tmr)
-			{
+			new FlxTimer().start(0.5, function(tmr) {
 				endSong();
 			});
 		}
 	}
 
-	function eggnogErectCutscene()
-	{
+	function eggnogErectCutscene() {
 		prepareEggnogCutscene();
 		cutsceneHandler.endTime = 16;
 
@@ -220,45 +207,37 @@ addAbot(100, 355);
 		game.tweenCameraToPosition(santaDead.x + 300, santaDead.y, 2.8, FlxEase.expoOut);
 		game.tweenCameraZoom(0.73, 2, true, FlxEase.quadInOut);
 		FlxG.sound.play(Paths.sound('mall/santa_emotion'));
-		gf.animation.finishCallback = function(name:String)
-			{
-				switch(name)
-				{
-					case 'danceLeft', 'danceRight':
-							gf.dance();
-				}
-			};
-			gf.dance();
+		gf.animation.finishCallback = function(name:String) {
+			switch(name) {
+				case 'danceLeft', 'danceRight':
+					gf.dance();
+			}
+		};
+		gf.dance();
 
-		cutsceneHandler.timer(2.8, function()
-		{
+		cutsceneHandler.timer(2.8, function() {
 			game.tweenCameraToPosition(santaDead.x + 150, santaDead.y, 9, FlxEase.quartInOut);
 			game.tweenCameraZoom(0.79, 9, true, FlxEase.quadInOut);
 		});
 
-		cutsceneHandler.timer(11.375, function()
-		{
+		cutsceneHandler.timer(11.375, function() {
 			FlxG.sound.play(Paths.sound('mall/santa_shot_n_falls'));
 			gf.playAnim("sad", true);
 			gf.specialAnim = true;
 			gf.animation.finishCallback = function(name:String) {
-    		if (name == "sad") {
-       	 	gf.playAnim("sad", true);
-    	}
-		};
+				if (name == "sad") {
+					gf.playAnim("sad", true);
+				}
+			};
 		});
-
 		
-		cutsceneHandler.timer(12.83, function()
-		{
+		cutsceneHandler.timer(12.83, function() {
 			camGame.shake(0.005, 0.2);
 			game.tweenCameraToPosition(santaDead.x + 160, santaDead.y + 80, 5, FlxEase.expoOut);
 		});
 
-		cutsceneHandler.timer(15, function()
-		{
-			FlxTween.tween(blackScreen, { alpha: 1}, 1, {startDelay: 0.3});
+		cutsceneHandler.timer(15, function() {
+			FlxTween.tween(blackScreen, {alpha: 1}, 1, {startDelay: 0.3});
 		});
-
 	}
 }

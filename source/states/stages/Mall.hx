@@ -52,7 +52,12 @@ class Mall extends BaseStage
 		Paths.sound('mall/Lights_Shut_off');
 		setDefaultGF('gf-christmas');
 
-		addAbot(100, 355);
+		//addAbot(100, 355);
+		if (PlayState.SONG.song.toLowerCase().contains('pico-mix')) {
+			defaultSpeaker = 'abot';
+			//addSpeaker(100, 355);
+            addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
+		}
 		
 		if(isStoryMode && !seenCutscene)
 			setEndCallback(eggnogEndCutscene);
@@ -60,17 +65,10 @@ class Mall extends BaseStage
 
 	override function createPost() {
 		addBehindBlackSceen(santa);
-		addAbotPost();
-
+		super.createPost();
 	}
 
-	override function sectionHit() {
-		updateABotEye();
-	}
 
-	override function startSong() {
-		abotSongStart();
-	}
 	override function countdownTick(count:Countdown, num:Int) everyoneDance();
 	override function beatHit() everyoneDance();
 

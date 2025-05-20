@@ -19,9 +19,7 @@ class SchoolErect extends BaseStage
 	var shaderFilter:ShaderFilter;
 	var speakerTest:SpeakerSkin = null;
 
-	override function create()
-	{
-
+	override function create() {
 		ratingPos.set(500, 600);
         comboCountPos.set(400, 750);
 		comboImage.set( 0, 750);
@@ -94,14 +92,18 @@ class SchoolErect extends BaseStage
 		setDefaultGF('gf-pixel');
 
 		switch(PlayState.SONG.song.toLowerCase()) {
-			case 'senpai-pico-mix':
+			case 'senpai-pico-mix' | 'roses-pico-mix':
 				bgGirls.visible = false;
+				defaultSpeaker = 'abot-pixel';
+				addSpeaker(gfGroup.x - 150, gfGroup.y + 95);
+			/*
 				speakerTest = new SpeakerSkin(0, 1000, '', true, 'ABot-pixel');
 				add(speakerTest);
 			case 'roses-pico-mix':
 				bgGirls.visible = false;
 				speakerTest = new SpeakerSkin(0, 1000, '', true, 'ABot-pixel');
 				add(speakerTest);
+			*/
 		}
 
 		switch (songName)
@@ -203,29 +205,11 @@ class SchoolErect extends BaseStage
 	
 		shaderFilter = new ShaderFilter(crt);
 		ShaderUtils.applyFiltersToCams([camGame, camHUD, camOther], [shaderFilter]);
-
-		if (speakerTest != null) {
-			speakerTest.gf = gf;
-			speakerTest.createPost();
-			speakerTest.x = gf.x - 150;
-			speakerTest.y = gf.y - -90;
-		}
 	}
-	override function startSong() {
-		if (speakerTest != null) {
-			speakerTest.snd = FlxG.sound.music;
-			speakerTest.songStart();
-		}
+	override function beatHit() {
+		super.beatHit();
+		if(bgGirls != null) bgGirls.dance();
 	}
-	override function sectionHit() {
-		if (speakerTest != null) {
-			speakerTest.updateABotEye(speakerTest.daCustomSpeaker);
-		}
-	}
-	override function beatHit()
-		{
-			if(bgGirls != null) bgGirls.dance();
-		}
 	
 
 	override function update(elapsed:Float) {

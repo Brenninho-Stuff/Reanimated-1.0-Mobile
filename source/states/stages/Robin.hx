@@ -59,21 +59,16 @@ class Robin extends BaseStage
 		robinForestuff.setGraphicSize(Std.int(robinForestuff.width * 0.75));
 		robinForestuff.updateHitbox();
 		
-		addAbot(100, 355);
+		if (PlayState.SONG.song.toLowerCase().contains('pico-mix')) {
+			defaultSpeaker = 'abot';
+            addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
+		}
 
 		var settings:BarSettings = haxe.Json.parse(Assets.getText(Paths.json("healthbars/Iconoclast", "shared").replace("data", "images")));
         PlayState.healthBarSettings = settings;
 	}
-	override function createPost()
-		{
-			addAbotPost();
-			add(robinForestuff);
-		}
-		override function sectionHit() {
-			updateABotEye();
-		}
-	
-		override function startSong() {
-			abotSongStart();
-		}
+	override function createPost() {
+		super.createPost();
+		add(robinForestuff);
+	}
 }

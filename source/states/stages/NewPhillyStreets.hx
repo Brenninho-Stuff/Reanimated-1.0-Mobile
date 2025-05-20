@@ -45,7 +45,7 @@ class PhillyStreets extends BaseStage
 	var spraycanPile:BGSprite;
 
 	var darkenable:Array<FlxSprite> = [];
-	var abot:ABotSpeaker;
+	//var abot:ABotSpeaker;
 	override function create()
 	{
 		ratingPos.set(1400, 800); // Just used random numbers for example

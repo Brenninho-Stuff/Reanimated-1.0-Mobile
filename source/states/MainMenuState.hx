@@ -29,7 +29,7 @@ class MainMenuState extends MusicBeatState
 {	
 	public static var fnfReaniV:String = 'V2.0';
 	public static var psychEngineVersion:String = '1.0.4'; // This is also used for Discord RPC
-	public static var torchEngineVersion:String = '0.1.1'; // Only reason I am listing this is because I think I am nearing a first beta release of this build
+	public static var torchEngineVersion:String = '0.1.2'; // Only reason I am listing this is because I think I am nearing a first beta release of this build
 	public static var curSelected:Int = 0;
 	public static var curColumn:MainMenuColumn = CENTER;
 	public static var codeEntered:Bool = false; // Just for some detection is all, like for the "debugger" achievement

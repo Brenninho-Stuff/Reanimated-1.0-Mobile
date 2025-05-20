@@ -24,8 +24,6 @@ class PhillyBlazin extends BaseStage
 	
 	var lightningTimer:Float = 3.0;
 
-	//var abot:ABotSpeaker;
-
 	override function create()
 	{
 		ratingPos.set(1200, 550); // Just used random numbers for example
@@ -80,9 +78,9 @@ class PhillyBlazin extends BaseStage
 			add(additionalLighten);
 		}
 
-		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
-		//add(abot);
-		addAbot(100,355);
+		//addAbot(100,355);
+		defaultSpeaker = 'abot';
+		addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
 		
 		if(ClientPrefs.data.shaders)
 			setupRainShader();
@@ -118,7 +116,7 @@ class PhillyBlazin extends BaseStage
 	
 	override function createPost()
 	{
-		addAbotPost();
+		super.createPost();
 		var colorShader = new AdjustColorShader();
         colorShader.hue = -26;
         colorShader.saturation = -23;
@@ -128,8 +126,7 @@ class PhillyBlazin extends BaseStage
         boyfriend.shader = colorShader;
         gf.shader = colorShader;
         dad.shader = colorShader;
-        if (abot != null) abot.setShader(colorShader);
-		{
+        if (speaker != null) speaker.setShader(colorShader); {
 			if (songName.toLowerCase() == 'blazin') {
 				for (i in 0...4) {
 					PlayState.instance.playerStrums.members[i].x = 365 + (110 * i);
@@ -139,8 +136,8 @@ class PhillyBlazin extends BaseStage
 					PlayState.instance.opponentStrums.members[i].visible = false;
 					PlayState.instance.defaultStrumPosition[i][0] = -5000;
 				}
+			}
 		}
-	}
 			
 		FlxG.camera.focusOn(camFollow.getPosition());
 		FlxG.camera.fade(FlxColor.BLACK, 1.5, true, null, true);
@@ -160,7 +157,7 @@ class PhillyBlazin extends BaseStage
 			if(character == null) continue;
 			character.color = 0xFF888888;
 		}
-		if (abot != null) abot.color = 0xFF888888;
+		if (speaker != null) speaker.color = 0xFF888888;
 
 		var unspawnNotes:Array<Note> = cast game.unspawnNotes;
 		for (note in unspawnNotes)
@@ -173,20 +170,6 @@ class PhillyBlazin extends BaseStage
 		}
 		remove(dadGroup, true);
 		addBehindBF(dadGroup);
-	}
-
-	override function sectionHit() {
-		updateABotEye();
-	}
-
-	override function beatHit()
-	{
-		abotBeatHit();
-	}
-	
-	override function startSong()
-	{
-		abotSongStart();
 	}
 
 	function setupRainShader()
@@ -222,8 +205,6 @@ class PhillyBlazin extends BaseStage
 			applyLightning();
 			lightningTimer = FlxG.random.float(7, 15);
 		}
-
-		abotUpdate();
 	}
 	
 	function applyLightning():Void
@@ -263,7 +244,7 @@ class PhillyBlazin extends BaseStage
 		FlxTween.color(boyfriend, LIGHTNING_FADE_DURATION, 0xFF606060, 0xFFDEDEDE);
 		FlxTween.color(dad, LIGHTNING_FADE_DURATION, 0xFF606060, 0xFFDEDEDE);
 		FlxTween.color(gf, LIGHTNING_FADE_DURATION, 0xFF606060, 0xFF888888);
-		FlxTween.color(abot, LIGHTNING_FADE_DURATION, 0xFF606060, 0xFF888888);
+		FlxTween.color(speaker, LIGHTNING_FADE_DURATION, 0xFF606060, 0xFF888888);
 
 		// Sound
 		FlxG.sound.play(randomWeekSound('lightning/Lightning', 1, 3, null));
