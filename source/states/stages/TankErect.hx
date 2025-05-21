@@ -222,8 +222,7 @@ override function create()
             blackScreen.cameras = [camOther];
 		    add(blackScreen);
 
-            cutsceneHandler.finishCallback = function()
-            {
+            cutsceneHandler.finishCallback = cutsceneHandler.skipCallback = function() {
                 game.inCutscene = false;
                 camHUD.fade(0xFF000000, 0.5, true, null, true);
                 new FlxTimer().start(0.5, function(tmr)
@@ -231,6 +230,7 @@ override function create()
                     endSong();
                 });
             }
+
         }
         
 

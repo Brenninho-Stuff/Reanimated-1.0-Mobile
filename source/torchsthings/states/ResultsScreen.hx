@@ -112,7 +112,8 @@ class ResultsScreen extends MusicBeatState {
         rank = rankToInt(rating);
 
         songName = new FlxBitmapText(FlxBitmapFont.fromMonospace(Paths.image('results_screen/alphabet', 'torchs_assets'), fontLetters, FlxPoint.get(49, 62)));
-        songName.text = FlxStringUtil.toTitleCase(song);
+        //songName.text = FlxStringUtil.toTitleCase(song);
+        songName.text = song;
         songName.letterSpacing = -15;
         songName.angle = -4.4;
 
