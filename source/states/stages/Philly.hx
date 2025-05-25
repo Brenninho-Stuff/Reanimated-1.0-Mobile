@@ -202,6 +202,22 @@ class Philly extends BaseStage
 	{
 		switch(eventName)
 		{
+			case "Change Character":
+				if (value1.toLowerCase() == "bf" || value1.toLowerCase() == "boyfriend" || value1.toLowerCase() == "player") {
+					reflectedBF.destroy();
+					reflectedBF = new ReflectedChar(boyfriend, 0.35);
+					addBehindBF(reflectedBF);
+				} 
+				if (value1.toLowerCase() == "dad" || value1.toLowerCase() == "enemy" || value1.toLowerCase() == "opponent") {
+					reflectedDad.destroy();
+					reflectedDad = new ReflectedChar(dad, 0.35);
+					addBehindDad(reflectedDad);
+				}
+				if (value1.toLowerCase() == 'gf' || value1.toLowerCase() == 'girlfriend') {
+					reflectedGF.destroy();
+					reflectedGF = new ReflectedChar(gf, 0.35);
+					addBehindGF(reflectedGF);
+				}
 			case "Philly Glow":
 				PlayState.instance.eventExisted = true;
 				if(flValue1 == null || flValue1 <= 0) flValue1 = 0;
