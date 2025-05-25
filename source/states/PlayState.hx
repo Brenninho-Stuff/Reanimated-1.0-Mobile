@@ -2860,7 +2860,6 @@ class PlayState extends MusicBeatState
 	}
 
 	var zoomTweens:Array<FlxTween> = [null];
-
 	public var eventExisted:Bool = true;
 
 	public function triggerEvent(eventName:String, value1:String, value2:String, strumTime:Float) {
@@ -3296,7 +3295,7 @@ class PlayState extends MusicBeatState
 				eventExisted = false;
 		}
 
-		// These have to state that the event DOES exist by calling upon the playstate, so PlayState.eventExisted = true;
+		// These have to state that the event DOES exist by calling upon the playstate instance, so PlayState.instance.eventExisted = true;
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));
 		callOnScripts('onEvent', [eventName, value1, value2, strumTime]); 
 
