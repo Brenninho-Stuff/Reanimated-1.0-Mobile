@@ -68,6 +68,7 @@ class SchoolEvil extends BaseStage
 		switch(eventName)
 		{
 			case "Trigger BG Ghouls":
+				PlayState.instance.eventExisted = true;
 				if(!ClientPrefs.data.lowQuality)
 				{
 					bgGhouls.dance(true);

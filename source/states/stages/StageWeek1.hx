@@ -185,6 +185,7 @@ class StageWeek1 extends BaseStage
 		switch(eventName)
 		{
 			case "Dadbattle Spotlight":
+				PlayState.instance.eventExisted = true;
 				if(flValue1 == null) flValue1 = 0;
 				var val:Int = Math.round(flValue1);
 

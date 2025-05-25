@@ -22,7 +22,7 @@ class CustomEvents {
 
     public static function onEvent(eventName:String, value1:String, value2:String) {
         switch (eventName) {
-            case 'Cinematics':
+            case 'Cinematic Bars' | 'Cinematics':
                 var upperBar:FlxSprite = new FlxSprite(-110, initialUpperY).makeGraphic(1500, 350, 0xFF000000);
                 var lowerBar:FlxSprite = new FlxSprite(-110, initialLowerY).makeGraphic(1500, 350, 0xFF000000);
                 upperBar.cameras = [PlayState.instance.camHUD];
@@ -131,7 +131,8 @@ class CustomEvents {
                         });
                     }
                 }
-
+            default: 
+                trace('Event $eventName doesn\'t exist.');
         }
     
     }

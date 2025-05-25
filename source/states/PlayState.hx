@@ -2861,11 +2861,15 @@ class PlayState extends MusicBeatState
 
 	var zoomTweens:Array<FlxTween> = [null];
 
+	public var eventExisted:Bool = true;
+
 	public function triggerEvent(eventName:String, value1:String, value2:String, strumTime:Float) {
 		var flValue1:Null<Float> = Std.parseFloat(value1);
 		var flValue2:Null<Float> = Std.parseFloat(value2);
 		if(Math.isNaN(flValue1)) flValue1 = null;
 		if(Math.isNaN(flValue2)) flValue2 = null;
+
+		eventExisted = true;
 
 		switch(eventName) {
 			case 'Hey!':
@@ -3254,11 +3258,6 @@ class PlayState extends MusicBeatState
 							camOther.flash(FlxColor.BLACK, time, null, true);
 					}
 				}
-
-			case "Cinematics" | "Camera Fade" | "Color Transform":
-				CustomEvents.onEvent(eventName, value1, value2);
-
-				
 			case 'Dodge Event':
 				dodged = false;
 				canDodge = true;
@@ -3294,11 +3293,14 @@ class PlayState extends MusicBeatState
 				}
 
 			default: // I only have this file for more complicated events that need a lot of code or something
-				CustomEvents.onEvent(eventName, value1, value2);
+				eventExisted = false;
 		}
 
+		// These have to state that the event DOES exist by calling upon the playstate, so PlayState.eventExisted = true;
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));
-		callOnScripts('onEvent', [eventName, value1, value2, strumTime]);
+		callOnScripts('onEvent', [eventName, value1, value2, strumTime]); 
+
+		if (!eventExisted) CustomEvents.onEvent(eventName, value1, value2);
 	}
 
 	public function moveCameraSection(?sec:Null<Int>):Void {

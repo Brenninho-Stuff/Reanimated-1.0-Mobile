@@ -116,6 +116,7 @@ class School extends BaseStage
 		switch(eventName)
 		{
 			case "BG Freaks Expression":
+				PlayState.instance.eventExisted = true;
 				if(bgGirls != null) bgGirls.swapDanceType();
 		}
 	}
