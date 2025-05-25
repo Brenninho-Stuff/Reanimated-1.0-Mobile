@@ -66,10 +66,6 @@ class StageWeek1 extends BaseStage
 					add(gfPixel);
 					gfPixel.dance();
 			}
-
-			// SPEAKER TEST WIP!!!!!!!!s
-			//speakerTest = new SpeakerSkin(0, 0, '', true, 'ABot');
-			//add(speakerTest);
 		}
 	}
 
@@ -85,34 +81,8 @@ class StageWeek1 extends BaseStage
 					addBehindBF(reflectedBF);
 					addBehindDad(reflectedDad);
 			}
-
-			if (speakerTest != null) {
-				speakerTest.gf = gf;
-				speakerTest.createPost();
-				speakerTest.x = gf.x;
-				speakerTest.y = gf.y - 100;
-			}
 		}
-	}
-	var speakerTest:SpeakerSkin = null;
-
-	override function startSong() {
-		if (speakerTest != null) {
-			speakerTest.snd = FlxG.sound.music;
-			speakerTest.songStart();
-		}
-	}
-
-	override function beatHit() {
-		if (speakerTest != null) {
-			speakerTest.beatHit();
-		}
-	}
-
-	override function sectionHit() {
-		if (speakerTest != null) {
-			speakerTest.updateABotEye(speakerTest.daCustomSpeaker);
-		}
+		super.createPost();
 	}
 
 	var tween:FlxTween;

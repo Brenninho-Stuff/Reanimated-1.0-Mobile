@@ -79,6 +79,7 @@ class BaseStage extends FlxBasic {
 			super();
 			create();
 		}
+		Paths.clearUnusedMemory();
 	}
 
 	//main callbacks
