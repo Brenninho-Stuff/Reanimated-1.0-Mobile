@@ -2,14 +2,6 @@
 	"animations": [
 		{
 			"loop": false,
-			"offsets": [-57, -87],
-			"anim": "shoot1",
-			"fps": 24,
-			"name": "shoot back0",
-			"indices": []
-		},
-		{
-			"loop": false,
 			"offsets": [536, -18],
 			"anim": "shoot2",
 			"fps": 24,
@@ -25,26 +17,42 @@
 			"indices": []
 		},
 		{
-			"loop": false,
-			"offsets": [483, -4],
-			"anim": "shoot4",
-			"fps": 24,
-			"name": "shoot forward0",
-			"indices": []
-		},
-		{
 			"offsets": [-58, -100],
 			"loop": false,
 			"fps": 24,
 			"anim": "idle",
 			"indices": [],
 			"name": "otis idle"
+		},
+		{
+			"loop": false,
+			"offsets": [-7, -61],
+			"anim": "reload",
+			"fps": 24,
+			"name": "otis reload",
+			"indices": []
+		},
+		{
+			"offsets": [482, -4],
+			"indices": [],
+			"fps": 24,
+			"anim": "shoot1",
+			"loop": false,
+			"name": "shoot forward0"
+		},
+		{
+			"offsets": [-58, -88],
+			"indices": [],
+			"fps": 24,
+			"anim": "shoot4",
+			"loop": false,
+			"name": "shoot back0"
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
 	"useNoteSkin": false,
-	"image": "characters/otisSpeaker",
+	"image": "characters/otisSpeaker, characters/otisReload",
 	"position": [65, -84],
 	"noteSkinLib": "shared",
 	"altNoteColors": {

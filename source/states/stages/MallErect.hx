@@ -102,17 +102,15 @@ class MallErect extends BaseStage
 		add(santaDead);
 		add(snowfallin);
 		super.createPost();
-		var colorShader = new AdjustColorShader();
-		colorShader.hue = 5;
-		colorShader.saturation = 20;
 
-		boyfriend.shader = colorShader;
-		gf.shader = colorShader;
-		dad.shader = colorShader;
-		if (speaker != null) speaker.setShader(colorShader);
-		santa.shader = colorShader;
-		santaDead.shader = colorShader;
-		parentsCutscene.shader = colorShader;
+		boyfriend.shader = makeCoolShader(-20,-15,0,-10);
+		gf.shader = makeCoolShader(-20,-15,0,-10);
+		dad.shader = makeCoolShader(-20,-15,0,-10);
+		if (speaker != null) speaker.setShader(makeCoolShader(-20,-15,0,-10)); 
+		bottomBoppers.shader = makeCoolShader(-4,-30,-22,0);
+		santa.shader = makeCoolShader(-20,-15,0,-10);
+		santaDead.shader = makeCoolShader(-20,-15,0,-10);
+		parentsCutscene.shader = makeCoolShader(-20,-15,0,-10);
 	}
 	override function countdownTick(count:Countdown, num:Int) everyoneDance();
 	override function beatHit() {
@@ -240,4 +238,12 @@ class MallErect extends BaseStage
 			FlxTween.tween(blackScreen, {alpha: 1}, 1, {startDelay: 0.3});
 		});
 	}
+	function makeCoolShader(hue:Float,sat:Float,bright:Float,contrast:Float) {
+        var coolShader = new AdjustColorShader();
+        coolShader.hue = hue;
+        coolShader.saturation = sat;
+        coolShader.brightness = bright;
+        coolShader.contrast = contrast;
+        return coolShader;
+    }
 }

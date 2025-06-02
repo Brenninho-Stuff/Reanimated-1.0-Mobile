@@ -179,10 +179,10 @@ class PhillyStreetsErect extends BaseStage
     {   
         super.createPost();
         var colorShader = new AdjustColorShader();
-        colorShader.hue = -10;
-        colorShader.saturation = 5;
-        colorShader.contrast = -30;
-        colorShader.brightness = -3;
+        colorShader.hue = -20;
+        colorShader.saturation = -40;
+        colorShader.contrast = -20;
+        colorShader.brightness = -20;
 
         boyfriend.shader = colorShader;
         gf.shader = colorShader;

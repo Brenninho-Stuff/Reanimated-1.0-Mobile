@@ -3932,7 +3932,7 @@ class PlayState extends MusicBeatState
 				if (dad.animOffsets.exists(anim)) {
 					dad.playAnim(anim, true);
 					dad.specialAnim = true;
-					FlxG.sound.play(Paths.sound('shoot'));
+					FlxG.sound.play(Paths.sound('shoot'),0.5);
 					FlxG.camera.shake(0.01, 0.2);				
 				}
 			}
@@ -4039,6 +4039,9 @@ class PlayState extends MusicBeatState
 	function opponentNoteHit(note:Note):Void
 	{
 		GhostEffectDoubleNote.onDadNoteHit(note);
+			if (note.gfNote || note.noteType == "Duo Sing") {
+        GhostEffectDoubleNote.onGfNoteHit(note);
+    }
 		var result:Dynamic = callOnLuas('opponentNoteHitPre', [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
 		if(result != LuaUtils.Function_Stop && result != LuaUtils.Function_StopHScript && result != LuaUtils.Function_StopAll) result = callOnHScript('opponentNoteHitPre', [note]);
 
@@ -4149,6 +4152,9 @@ class PlayState extends MusicBeatState
 	public function goodNoteHit(note:Note):Void
 	{
 		GhostEffectDoubleNote.onBoyfiendNoteHit(note);
+		if (note.gfNote || note.noteType == "Duo Sing") {
+        GhostEffectDoubleNote.onGfNoteHit(note);
+    }
 		songScore += FlxG.random.int(0, 50); // Add a random value to songScore
 		if(note.wasGoodHit) return;
 		if(cpuControlled && note.ignoreNote) return;
@@ -4268,7 +4274,7 @@ class PlayState extends MusicBeatState
 					for (anim in dadAnimOptions) { //remove this "if (dad.get Animation Name() != anime) {" so you can use the note repeatedly on one side xd
 							dad.playAnim(anim, true);
 							dad.specialAnim = true;
-							FlxG.sound.play(Paths.sound('shoot'));
+							FlxG.sound.play(Paths.sound('shoot'),0.5);
 							FlxG.camera.shake(0.01, 0.2);
 					}
 				case "Duo Sing":

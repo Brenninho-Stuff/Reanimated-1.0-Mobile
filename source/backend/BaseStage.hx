@@ -239,17 +239,17 @@ class BaseStage extends FlxBasic {
 	// I'd highly recommend using gfGroup.x and gfGroup.y to base values off to make it easier
 	function addSpeaker(?xOffset:Float = 0.0, ?yOffset:Float = 550.0, ?scrollFactorX:Float = 1.0, ?scrollFactorY:Float = 1.0) {
 		var skin:String = switch (ClientPrefs.data.speakerSkin.toLowerCase()) {
-			case "stage":
-				defaultSpeaker;
-			case "christmas":
-				"base-christmas";
-			case "abot" | "nene":
-				"abot";
-			case "abot-pixel" | "nene-pixel":
-				"abot-pixel";
-			default:
-				"base";
-		}
+            case "stage":
+                defaultSpeaker;
+            case "christmas":
+                "base-christmas";
+            case "nene":
+                "abot";
+            case "nene-pixel":
+                "abot-pixel";
+            default:
+                ClientPrefs.data.speakerSkin.toLowerCase();
+        }
 
 		speaker = new SpeakerSkin(xOffset, yOffset, skin);
 		speaker.scrollFactor.set(scrollFactorX, scrollFactorY);

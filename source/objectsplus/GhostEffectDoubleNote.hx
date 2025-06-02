@@ -7,8 +7,11 @@ class GhostEffectDoubleNote extends FlxSprite
 {
     private static var boyfriendGhostData:GhostData = new GhostData();
     private static var dadGhostData:GhostData = new GhostData();
+    private static var gfGhostData:GhostData = new GhostData();
     private static var boyfriendNoteCount:Int = 0;
     private static var dadNoteCount:Int = 0;
+    private static var gfNoteCount:Int = 0;
+
     
     public static function onBoyfiendNoteHit(note:Note):Void 
     {
@@ -52,9 +55,32 @@ class GhostEffectDoubleNote extends FlxSprite
         }
     }
 
+        public static function onGfNoteHit(note:Note):Void 
+    {
+        if (!note.isSustainNote)
+        {
+            if (gfGhostData.strumTime == note.strumTime)
+            {
+                gfNoteCount++;
+                if (gfNoteCount >= 2)
+                {
+                    updateGhostData('gf');
+                    createGhost('gf');
+                }
+            }
+            else
+            {
+                gfNoteCount = 1; // Reset count if the note is not consecutive
+            }
+            gfGhostData.strumTime = note.strumTime;
+        }
+     }
     private static function createGhost(char:String):Void
     {
-        var character = (char == 'boyfriend') ? PlayState.instance.boyfriend : PlayState.instance.dad;
+var character = (char == 'boyfriend') ? PlayState.instance.boyfriend :
+                    (char == 'dad') ? PlayState.instance.dad :
+                    PlayState.instance.gf;        
+                    
         var ghostSprite = new FlxSprite(character.x, character.y);
         
         ghostSprite.frames = character.frames;
@@ -64,7 +90,9 @@ class GhostEffectDoubleNote extends FlxSprite
         ghostSprite.alpha = 1;
         ghostSprite.color = character.color;
         
-        var ghostData = (char == 'boyfriend') ? boyfriendGhostData : dadGhostData;
+        var ghostData = (char == 'boyfriend') ? boyfriendGhostData :
+                    (char == 'dad') ? dadGhostData :
+                    gfGhostData;        
         ghostSprite.animation.frameName = ghostData.frameName;
         ghostSprite.offset.set(ghostData.offsetX, ghostData.offsetY);
         

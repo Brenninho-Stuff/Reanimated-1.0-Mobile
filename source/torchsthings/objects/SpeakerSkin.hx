@@ -16,7 +16,8 @@ import objects.Character;
 class SpeakerSkin extends FlxSpriteGroup {
     public var spriteList:Array<String> = [ // Speakers based on FlxSprite
         'base',
-        'base-christmas'
+        'base-christmas',
+        'hev'
     ];
     #if flxanimate
     public var atlasList:Array<String> = [ // Speakers based on FlxAnimate

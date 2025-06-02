@@ -35,7 +35,7 @@ class ReflectedChar extends Character {
                 return -285;
             case 'gf':
                 return -10;
-            case 'nene' | 'nene-christmas':
+            case 'nene' | 'nene-christmas' | 'gf-hev':
                 return 280;
             case 'bf-Nightmare':
                 return -205;

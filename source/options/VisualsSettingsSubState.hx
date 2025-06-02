@@ -137,7 +137,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			"What speaker skin do you want to use?",
 			'speakerSkin',
 			STRING,
-			["Stage", "Default", "Christmas", "ABot", "ABot-Pixel"]);
+			["Stage", "Default", "Christmas", "ABot", "ABot-Pixel", "Hev"]);
 		addOption(option);
 
 		#if desktop
