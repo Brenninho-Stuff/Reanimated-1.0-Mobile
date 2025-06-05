@@ -26,8 +26,27 @@ class HealthIcon extends FlxSprite
 	public function changeIcon(char:String, ?allowGPU:Bool = true) {
 		if(this.char != char) {
 			var name:String = 'icons/' + char;
-			if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/icon-' + char; //Older versions of psych engine's support
-			if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/icon-face'; //Prevents crash from missing icon
+			switch (ClientPrefs.data.IconSkin) {
+				case "New Version":
+					if (Paths.fileExists('images/iconsNew/' + char + '.png', IMAGE))
+						name = 'iconsNew/' + char;
+					else if (Paths.fileExists('images/iconsNew/icon-' + char + '.png', IMAGE))
+						name = 'iconsNew/icon-' + char;
+				case "Old Version":
+					if (Paths.fileExists('images/iconsOld/' + char + '.png', IMAGE))
+						name = 'iconsOld/' + char;
+					else if (Paths.fileExists('images/iconsOld/icon-' + char + '.png', IMAGE))
+						name = 'iconsOld/icon-' + char;
+					else if (Paths.fileExists('images/iconsOld/' + char + '-old.png', IMAGE))
+						name = 'iconsOld/' + char + '-old';
+					else if (Paths.fileExists('images/iconsOld/icon-' + char + '-old.png', IMAGE))
+						name = 'iconsOld/icon-' + char + '-old';
+				default:
+						name = 'icons/' + char;
+						if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/icon-' + char;
+						if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/icon-face';
+					
+			}
 			
 			var graphic = Paths.image(name, allowGPU);
 			var iSize:Float = Math.round(graphic.width / graphic.height);

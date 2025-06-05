@@ -140,6 +140,12 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 			["Stage", "Default", "Christmas", "ABot", "ABot-Pixel", "Hev"]);
 		addOption(option);
 
+		var option:Option = new Option('Icon Skin:',
+			"Que clase de skin de icon quieres usar?",
+			'IconSkin',
+			STRING,
+			["Old Version", "Mania"/*, "New Version"*/]);
+		addOption(option);
 		#if desktop
 		var option:Option = new Option('Volume Bop',
 			"Should the speaker bop be dependant on user volume?\n\nTrue - Speakers bop the louder the overall volume is\nFalse - Speakers bop at song volume independent of user volume",

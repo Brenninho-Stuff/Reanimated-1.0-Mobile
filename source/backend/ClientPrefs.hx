@@ -47,6 +47,7 @@ import states.TitleState;
 	public var healthBarAlpha:Float = 1;
 	public var hitsoundVolume:Float = 0;
 	public var iconAnims:Array<String> = ['Default', 'Disabled'];
+	public var IconSkin:String = 'Old Version';
 	public var extraCamMovementAmount:Int = 20;
 	public var pauseMusic:String = 'Tea Time';
 	public var checkForUpdates:Bool = true;
