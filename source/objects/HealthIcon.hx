@@ -26,7 +26,7 @@ class HealthIcon extends FlxSprite
 	public function changeIcon(char:String, ?allowGPU:Bool = true) {
 		if(this.char != char) {
 			var name:String = 'icons/' + char;
-			switch (ClientPrefs.data.IconSkin) {
+			switch (ClientPrefs.data.iconSkin) {
 				case "New Version":
 					if (Paths.fileExists('images/iconsNew/' + char + '.png', IMAGE))
 						name = 'iconsNew/' + char;

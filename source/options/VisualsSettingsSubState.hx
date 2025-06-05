@@ -142,7 +142,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 
 		var option:Option = new Option('Icon Skin:',
 			"Que clase de skin de icon quieres usar?",
-			'IconSkin',
+			'iconSkin',
 			STRING,
 			["Old Version", "Mania"/*, "New Version"*/]);
 		addOption(option);
