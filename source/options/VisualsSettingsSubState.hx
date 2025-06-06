@@ -141,10 +141,10 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		addOption(option);
 
 		var option:Option = new Option('Icon Skin:',
-			"Que clase de skin de icon quieres usar?",
+			"What kind of icon skin do you want to use?",
 			'iconSkin',
 			STRING,
-			["Old Version", "Mania"/*, "New Version"*/]);
+			["Old Version", "Vanilla"/*, "New Version"*/]);
 		addOption(option);
 		#if desktop
 		var option:Option = new Option('Volume Bop',
