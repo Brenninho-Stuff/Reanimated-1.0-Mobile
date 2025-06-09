@@ -186,41 +186,49 @@
 		},
 		{
 			"offsets": [78, -16],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "miss",
-			"loop": false,
+			"indices": [],
 			"name": "tankman miss0"
 		},
 		{
 			"offsets": [78, -16],
-			"indices": [5, 6, 7],
+			"loop": true,
 			"fps": 24,
 			"anim": "miss-loop",
-			"loop": true,
+			"indices": [5, 6, 7],
 			"name": "tankman miss0"
 		},
 		{
 			"offsets": [-9, 11],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "pissed",
-			"loop": false,
+			"indices": [],
 			"name": "tankman pissed0"
 		},
 		{
 			"offsets": [-9, 11],
-			"indices": [4, 5, 6],
+			"loop": true,
 			"fps": 24,
 			"anim": "pissed-loop",
-			"loop": true,
+			"indices": [4, 5, 6],
 			"name": "tankman pissed0"
+		},
+		{
+			"loop": false,
+			"offsets": [175, 10],
+			"anim": "Cutscene",
+			"fps": 24,
+			"name": "tankman lines mostly",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
 	"useNoteSkin": false,
-	"image": "characters/tankmanCaptain,characters/tankmanCaptainBloody,characters/tankStress",
+	"image": "characters/tankmanCaptain,characters/tankmanCaptainBloody,characters/tankStress,,characters/cutsceneTank/tank",
 	"position": [0, 240],
 	"noteSkinLib": "shared",
 	"altNoteColors": {

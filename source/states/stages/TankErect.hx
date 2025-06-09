@@ -108,41 +108,64 @@ override function create()
         add(tankCutscene);
 
         if(!ClientPrefs.data.lowQuality) {
-            for (daGf in gfGroup) {
-                var gf:Character = cast daGf;
-                if (gf.curCharacter == 'pico-speaker') {
-                    var firstTank:TankmenBG = new TankmenBG(20, 500, true);
-                    firstTank.resetShit(20, 1500, true);
-                    firstTank.strumTime = 10;
-                    firstTank.visible = false;
-                    tankmanRun.add(firstTank);
-                
-                    for (i in 0...TankmenBG.animationNotes.length) {
-                        if (FlxG.random.bool(16)) {
-                            var tankBih = tankmanRun.recycle(TankmenBG);
-                            tankBih.strumTime = TankmenBG.animationNotes[i][0];
-                            tankBih.resetShit(500, 200 + FlxG.random.int(50, 100), TankmenBG.animationNotes[i][1] < 2);
-                            tankmanRun.add(tankBih);
-                        }
-                    }
-                    break;
-                } else if (gf.curCharacter == 'otis-speaker') {
-                    var firstTank:TankmenBG = new TankmenBG(30, 600, true);
-                    firstTank.resetShit(30, 1600, true);
-                    firstTank.strumTime = 15;
-                    firstTank.visible = false;
-                    tankmanRun.add(firstTank);
-                
-                    for (i in 0...TankmenBG.animationNotes.length) {
-                        if (FlxG.random.bool(12)) {
-                            var tankBih = tankmanRun.recycle(TankmenBG);
-                            tankBih.strumTime = TankmenBG.animationNotes[i][0];
-                            tankBih.resetShit(600, 250 + FlxG.random.int(50, 100), TankmenBG.animationNotes[i][1] < 2);
-                            tankmanRun.add(tankBih);
-                        }
-                    }
-                    break;
-                }
+            for (daGf in gfGroup)
+			{
+				var gf:Character = cast daGf;
+				if (gf.curCharacter == 'pico-speaker')
+				{
+					//GameOverSubstate.characterName = 'pico-holding-nene-dead';
+					var firstTank:TankmenBG = new TankmenBG(20, 500, true);
+					firstTank.resetShit(30, 1900, true,false);
+					firstTank.strumTime = 10;
+					firstTank.visible = false;
+					tankmanRun.add(firstTank);
+
+					for (i in 0...TankmenBG.animationNotes.length)
+					{
+						if (FlxG.random.bool(16))
+						{
+							var tankBih = tankmanRun.recycle(TankmenBG);
+                            applyShader(tankBih, "");
+                            if (tankBih.shader != null && Std.isOfType(tankBih.shader, DropShadowShader)) {
+                            cast(tankBih.shader, DropShadowShader).threshold = 0.3;
+                            }
+							tankBih.strumTime = TankmenBG.animationNotes[i][0];
+							tankBih.scale.set(1.05, 1.05);
+							tankBih.updateHitbox();
+							tankBih.resetShit(600, 300, TankmenBG.animationNotes[i][1] < 2,false);
+							// @:privateAccess
+							// tankBih.endingOffset = 
+							tankmanRun.add(tankBih);
+						}
+					}
+					break;
+				} else if (gf.curCharacter == 'otis-speaker') {
+					var firstTank:TankmenBG = new TankmenBG(20, 500, true);
+					firstTank.resetShit(30, 1900, true,false);
+					firstTank.strumTime = 10;
+					firstTank.visible = false;
+					tankmanRun.add(firstTank);
+
+					for (i in 0...TankmenBG.animationNotes.length)
+					{
+						if (FlxG.random.bool(16))
+						{
+							var tankBih = tankmanRun.recycle(TankmenBG);
+                            applyShader(tankBih, "");
+                            if (tankBih.shader != null && Std.isOfType(tankBih.shader, DropShadowShader)) {
+                            cast(tankBih.shader, DropShadowShader).threshold = 0.3;
+                            }   
+							tankBih.strumTime = TankmenBG.animationNotes[i][0];
+							tankBih.scale.set(1.05, 1.05);
+							tankBih.updateHitbox();
+							tankBih.resetShit(600, 300, TankmenBG.animationNotes[i][1] < 2,false);
+							// @:privateAccess
+							// tankBih.endingOffset = 
+							tankmanRun.add(tankBih);
+						}
+					}
+					break;
+				}
             }
         }
 
@@ -156,13 +179,13 @@ override function create()
 		applyShader(gf, gf.curCharacter);
 		applyShader(dad, dad.curCharacter);
         tankCutscene.shader = colorShader;
-        tankmanIntro.shader = colorShader;
+        //tankmanIntro.shader = colorShader;
         otis.shader = colorShader;
-        for (tankman in tankmanRun.members) {
+        /*for (tankman in tankmanRun.members) {
             if (tankman != null) {
                 tankman.setShader(colorShader); //I'll do this tomorrow, Monday. I barely understand shaders, bruh, lol.
             }
-        }
+        }*/
         if (speaker != null) speaker.setShader(colorShader);
     }
 
@@ -193,9 +216,8 @@ override function create()
 
     function prepareCutsceneIntro() {
         cutsceneHandler = new CutsceneHandler();
-        tankmanIntro.visible = true;
+        //tankmanIntro.visible = true;
         otis.visible = true;
-        dad.visible = false;
         gf.visible = false;
         speaker.visible = false;
         game.inCutscene = true;
@@ -240,7 +262,7 @@ override function create()
             prepareCutsceneIntro();
             cutsceneHandler.endTime = 32;
 
-            game.tweenCameraToPosition(tankmanIntro.x + 800, tankmanIntro.y + 400, 0.1);
+            game.tweenCameraToPosition(dad.x + 850, dad.y + 200, 0.1);
 
             var cutsceneSnd:FlxSound = new FlxSound().loadEmbedded(playWeekSound('stressPicoCutscene'));
 		    FlxG.sound.list.add(cutsceneSnd);
@@ -251,7 +273,7 @@ override function create()
                     audioPlaying = cutsceneSnd;
                 };
             
-            tankmanIntro.playAnim("PlayCutscene");
+            dad.playAnim("Cutscene");
             otis.playAnim("PlayCutscene");
             boyfriend.animation.finishCallback = function(name:String) {
                 if (name == "alone") {
@@ -262,28 +284,28 @@ override function create()
 
             cutsceneHandler.timer (6.5, function () 
                 {                    
-                    game.tweenCameraZoom(0.9, 1, true, FlxEase.quadInOut);
-                    game.tweenCameraToPosition(tankmanIntro.x + 800, tankmanIntro.y + 300, 2, FlxEase.sineOut);
+                    game.tweenCameraZoom(1.3, 1, true, FlxEase.quadInOut);
+                    game.tweenCameraToPosition(dad.x + 850, dad.y + 40, 2, FlxEase.sineOut);
                 });
             cutsceneHandler.timer (8, function () 
                 {                    
-                    game.tweenCameraToPosition(tankmanIntro.x + 700, tankmanIntro.y + 300, 0.7, FlxEase.sineOut);
+                    game.tweenCameraToPosition(dad.x + 750, dad.y + 40, 0.7, FlxEase.sineOut);
                 });
             cutsceneHandler.timer (11.75, function () 
                 {                    
-                    game.tweenCameraZoom(0.85, 0.6, true, FlxEase.expoOut);
-                    game.tweenCameraToPosition(tankmanIntro.x + 700, tankmanIntro.y + -300, 0.9, FlxEase.sineOut);
+                    game.tweenCameraZoom(0.75, 0.65, true, FlxEase.expoOut);
+                    game.tweenCameraToPosition(dad.x + 750, dad.y + -400, 0.9, FlxEase.sineOut);
                 });
             cutsceneHandler.timer (13, function () 
                 {                    
                     game.tweenCameraZoom(0.8, 1, true, 1.5,FlxEase.quadInOut);
-                    game.tweenCameraToPosition(tankmanIntro.x + 850, tankmanIntro.y + 0, 1.05, FlxEase.expoInOut);
+                    game.tweenCameraToPosition(dad.x + 900, dad.y + -100, 1.05, FlxEase.expoInOut);
                 });
 
             cutsceneHandler.timer (13.7, function () 
                 {   
                     game.tweenCameraZoom(1.05, 2, true, FlxEase.expoOut);
-                    game.tweenCameraToPosition(tankmanIntro.x + 1300, tankmanIntro.y + 500, 1, FlxEase.sineOut);         
+                    game.tweenCameraToPosition(dad.x + 1350, dad.y + 300, 0.3, FlxEase.sineOut);         
                     boyfriend.playAnim("catch nene", true);
                 });
 
@@ -303,22 +325,21 @@ override function create()
             cutsceneHandler.timer (24.2, function () 
                 {                    
                     game.tweenCameraZoom(0.75, 1, true, FlxEase.quadInOut);
-                    game.tweenCameraToPosition(tankmanIntro.x + 430, tankmanIntro.y + 450, 1, FlxEase.sineOut);
+                    game.tweenCameraToPosition(dad.x + 480, dad.y + 250, 1, FlxEase.sineOut);
                 });
 
             cutsceneHandler.timer (27.8, function () 
                 {                    
-                    game.tweenCameraToPosition(tankmanIntro.x + 390, tankmanIntro.y + 450, 0.2, FlxEase.sineOut);
+                    game.tweenCameraToPosition(dad.x + 440, dad.y + 250, 0.2, FlxEase.sineOut);
+                    FlxG.camera.shake(0.02, 0.1);
                 });
             cutsceneHandler.timer (30, function () 
                 {                    
                     game.tweenCameraZoom(0.65, 1, true, FlxEase.quadInOut);
-                    game.tweenCameraToPosition(tankmanIntro.x + 750, tankmanIntro.y + 450, 1, FlxEase.sineOut);
+                    game.tweenCameraToPosition(dad.x + 800, dad.y + 250, 1, FlxEase.sineOut);
                 });
             cutsceneHandler.timer (32, function () 
                 {
-                    tankmanIntro.visible = false;
-                    dad.visible = true;
                     gf.visible = true;
                     otis.visible = false;
                     speaker.visible = true;
@@ -428,7 +449,6 @@ override function create()
 		{
 			case "bf":
 				{
-					rim.threshold = 0.1;
 					sprite.animation.callback = function(anim, frame, index)
 					{
 						rim.updateFrameInfo(sprite.frame);
@@ -437,7 +457,6 @@ override function create()
 
 			case "nene":
 				{
-					rim.threshold = 0.1;
 					rim.angle = 90;
 					sprite.animation.callback = function(anim, frame, index)
 					{
@@ -447,7 +466,7 @@ override function create()
             case "tankman":
 				{
 					rim.threshold = 0.3;
-					rim.angle = 90;
+					rim.angle = 130;
 					sprite.animation.callback = function(anim, frame, index)
 					{
 						rim.updateFrameInfo(sprite.frame);

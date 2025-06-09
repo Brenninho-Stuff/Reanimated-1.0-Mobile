@@ -2,12 +2,14 @@ package states.stages.objects;
 
 import flixel.graphics.frames.FlxAtlasFrames;
 import torchsthings.shaders.AdjustColorShader;
+
 class TankmenBG extends FlxSprite
 {
 	public static var animationNotes:Array<Dynamic> = [];
 	private var tankSpeed:Float;
 	private var endingOffset:Float;
 	private var goingRight:Bool;
+	private var offsetRight:Bool;
 	public var strumTime:Float;
 	private var colorShader:AdjustColorShader;
 
@@ -38,11 +40,12 @@ class TankmenBG extends FlxSprite
     	this.shader = colorShader;
 	}
 
-	public function resetShit(x:Float, y:Float, goingRight:Bool):Void
+	public function resetShit(x:Float, y:Float, goingRight:Bool,offsetRight:Bool):Void
 	{
 		this.x = x;
 		this.y = y;
 		this.goingRight = goingRight;
+		this.offsetRight = offsetRight;
 		endingOffset = FlxG.random.float(50, 200);
 		tankSpeed = FlxG.random.float(0.6, 1);
 		flipX = goingRight;
@@ -70,7 +73,7 @@ class TankmenBG extends FlxSprite
 		if(Conductor.songPosition > strumTime)
 		{
 			animation.play('shot');
-			if(goingRight)
+			if(goingRight && !offsetRight)
 			{
 				offset.x = 300;
 				offset.y = 200;
