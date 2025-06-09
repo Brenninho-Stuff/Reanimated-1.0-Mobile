@@ -7,6 +7,7 @@ import objects.Character;
 
 import objects.Note;
 import flixel.util.FlxSignal;
+import shaders.DropShadowShader;
 
 import torchsthings.shaders.AdjustColorShader;
 
@@ -151,16 +152,15 @@ override function create()
         colorShader.saturation = -20;
         colorShader.contrast = -25;
         colorShader.brightness = -46;
-
-        boyfriend.shader = colorShader;
-        gf.shader = colorShader;
-        dad.shader = colorShader;
+        applyShader(boyfriend, boyfriend.curCharacter);
+		applyShader(gf, gf.curCharacter);
+		applyShader(dad, dad.curCharacter);
         tankCutscene.shader = colorShader;
         tankmanIntro.shader = colorShader;
         otis.shader = colorShader;
         for (tankman in tankmanRun.members) {
             if (tankman != null) {
-                tankman.setShader(colorShader);
+                tankman.setShader(colorShader); //I'll do this tomorrow, Monday. I barely understand shaders, bruh, lol.
             }
         }
         if (speaker != null) speaker.setShader(colorShader);
@@ -414,6 +414,57 @@ override function create()
 					FlxG.camera.shake(0.01, 0.2);
 			}
 		}
+        function applyShader(sprite:FlxSprite, char_name:String)
+	{
+		var rim = new DropShadowShader();
+		rim.color = 0xFFDFEF3C;
+        rim.setAdjustColor(-46, -38, -25, -20);
+		rim.threshold = 0.1;
+		rim.attachedSprite = sprite;
+		rim.distance = 15;
+		rim.strength = 1;
+		rim.angle = 90;
+		switch (char_name)
+		{
+			case "bf":
+				{
+					rim.threshold = 0.1;
+					sprite.animation.callback = function(anim, frame, index)
+					{
+						rim.updateFrameInfo(sprite.frame);
+					};
+				}
+
+			case "nene":
+				{
+					rim.threshold = 0.1;
+					rim.angle = 90;
+					sprite.animation.callback = function(anim, frame, index)
+					{
+						rim.updateFrameInfo(sprite.frame);
+					};
+				}
+            case "tankman":
+				{
+					rim.threshold = 0.3;
+					rim.angle = 90;
+					sprite.animation.callback = function(anim, frame, index)
+					{
+						rim.updateFrameInfo(sprite.frame);
+					};
+				}
+			default:
+				{
+					rim.angle = 90;
+					sprite.animation.callback = function(anim, frame, index)
+					{
+						rim.updateFrameInfo(sprite.frame);
+					};
+				}
+		}
+		sprite.shader = rim;
+	}
+
     }
 
     
