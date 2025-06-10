@@ -201,10 +201,16 @@
 			]
 		],
 		[
+			64466.2921348315,
+			[
+				["Change Character", "dad", "tankman-bloody"],
+				["Play Animation", "redheads-loop", "dad"]
+			]
+		],
+		[
 			64719.1011235955,
 			[
 				["HUD Fade", "1", "0.5"],
-				["Alt Idle Animation", "dad", "-alt "],
 				["Set Property", "cameraSpeed", "1"],
 				["Camera Follow Pos", "", ""],
 				["Updated Camera Zoom", "Main", "0.8,3,expoOut"]
@@ -411,12 +417,6 @@
 			117303.370786517,
 			[
 				["Updated Camera Zoom", "Main", "0.68,3,expoOut"]
-			]
-		],
-		[
-			118314.606741573,
-			[
-				["Alt Idle Animation", "dad", "-alt"]
 			]
 		],
 		[

@@ -214,6 +214,19 @@ override function create()
         });
     }
 
+    override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float) {
+		if(eventName == "Change Character" && ClientPrefs.data.shaders){
+			switch(value1.toLowerCase().trim()) {
+				case 'gf' | 'girlfriend' | '2':
+					applyShader(gf, gf.curCharacter);
+				case 'dad' | 'opponent' | '1':
+					applyShader(dad, dad.curCharacter);
+				default:
+					applyShader(boyfriend, boyfriend.curCharacter);
+			}
+		}
+	}
+
     function prepareCutsceneIntro() {
         cutsceneHandler = new CutsceneHandler();
         //tankmanIntro.visible = true;
@@ -228,8 +241,6 @@ override function create()
     function prepareStressCutscene()
         {
             cutsceneHandler = new CutsceneHandler();
-            tankCutscene.visible = true;
-            dad.visible = false;
 
             game.inCutscene = true;
             game.isCameraOnForcedPos = true;
@@ -379,7 +390,7 @@ override function create()
     
             canPause = false;
     
-            tankCutscene.playAnim("PlayCutscene");   
+            dad.playAnim("Cutscene");   
     
             game.tweenCameraToPosition(tankCutscene.x + 580, tankCutscene.y + 400);
             game.tweenCameraZoom(0.65, 0.8, true, FlxEase.smoothStepOut);
@@ -467,6 +478,19 @@ override function create()
 				{
 					rim.threshold = 0.3;
 					rim.angle = 130;
+					sprite.animation.callback = function(anim, frame, index)
+					{
+						rim.updateFrameInfo(sprite.frame);
+					};
+				}
+            case "tankman-blody":
+				{
+					rim.angle = 130;
+					rim.altMaskImage = Paths.image("Erect/masks/tankmanCaptainBloody_mask").bitmap;
+					rim.maskThreshold = 1;
+					rim.threshold = 0.3;
+					rim.useAltMask = true;
+
 					sprite.animation.callback = function(anim, frame, index)
 					{
 						rim.updateFrameInfo(sprite.frame);
