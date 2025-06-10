@@ -8,7 +8,7 @@ import objects.Character;
 import objects.Note;
 import flixel.util.FlxSignal;
 import shaders.DropShadowShader;
-
+import shaders.DropShadowScreenspace;
 import torchsthings.shaders.AdjustColorShader;
 
 
@@ -21,10 +21,7 @@ class TankErect extends BaseStage
     var cutsceneHandler:CutsceneHandler;
     var blackScreen:FlxSprite;
     var tankmanRun:FlxTypedGroup<TankmenBG>;
-
     // InitialCutscene
-    var tankmanIntro:Character;
-    var otis:Character;
     var audioPlaying:FlxSound;
     var hasPlayedInitialCutscene:Bool = false;
 
@@ -60,24 +57,6 @@ override function create()
         tankmanRun = new FlxTypedGroup<TankmenBG>();
 		add(tankmanRun);
 
-        // objets for the cutscene
-
-        otis = new Character(gfGroup.x, gfGroup.y, "nene-otis", false);
-        otis.x += otis.positionArray[0];
-        otis.y += otis.positionArray[1];
-        otis.visible = false;
-        add(otis);
-
-        tankmanIntro = new Character(dadGroup.x, dadGroup.y, "tankmanIntro", false);
-        tankmanIntro.x += tankmanIntro.positionArray[0];
-        tankmanIntro.y += tankmanIntro.positionArray[1];
-        tankmanIntro.visible = false;
-
-        tankCutscene = new Character(dadGroup.x, dadGroup.y, "tankman-cutscene", false);
-		tankCutscene.x += tankCutscene.positionArray[0];
-		tankCutscene.y += tankCutscene.positionArray[1];
-		tankCutscene.visible = false;
-
         if (PlayState.SONG.song.toLowerCase().contains('pico-mix')) {
 			defaultSpeaker = 'abot';
             //addSpeaker(98, 351);
@@ -104,8 +83,6 @@ override function create()
 
     }
     override function createPost() {   
-        add(tankmanIntro);
-        add(tankCutscene);
 
         if(!ClientPrefs.data.lowQuality) {
             for (daGf in gfGroup)
@@ -178,9 +155,7 @@ override function create()
         applyShader(boyfriend, boyfriend.curCharacter);
 		applyShader(gf, gf.curCharacter);
 		applyShader(dad, dad.curCharacter);
-        tankCutscene.shader = colorShader;
         //tankmanIntro.shader = colorShader;
-        otis.shader = colorShader;
         /*for (tankman in tankmanRun.members) {
             if (tankman != null) {
                 tankman.setShader(colorShader); //I'll do this tomorrow, Monday. I barely understand shaders, bruh, lol.
@@ -226,13 +201,32 @@ override function create()
 			}
 		}
 	}
+    var otis:FlxAnimate;
+    var speakerFront:FlxAnimate;
+    var speakerBack:FlxAnimate;
 
     function prepareCutsceneIntro() {
         cutsceneHandler = new CutsceneHandler();
+        /*otis = new FlxAnimate(gf.x + -200, gf.y + -700);
+        Paths.loadAnimateAtlasFromLibrary(otis, "Erect/cutscene/Nene_Otis", Paths.currentLevel);
+        otis.antialiasing = ClientPrefs.data.antialiasing;
+        addBehindBF(otis);
+        cutsceneHandler.push(otis);*/ //Example
+        
+        speakerBack = new FlxAnimate(1170, 640);
+        Paths.loadAnimateAtlasFromLibrary(speakerBack, "Erect/cutscene/speakerBack", Paths.currentLevel);
+        speakerBack.antialiasing = ClientPrefs.data.antialiasing;
+        addBehindSpeaker(speakerBack);
+        cutsceneHandler.push(speakerBack);
+        
+        speakerFront = new FlxAnimate(1170, 640);
+        Paths.loadAnimateAtlasFromLibrary(speakerFront, "Erect/cutscene/speakerFront", Paths.currentLevel);
+        speakerFront.antialiasing = ClientPrefs.data.antialiasing;
+        addBehindDadAndBF(speakerFront);
+        cutsceneHandler.push(speakerFront);
+        speakerFront.visible = false;
+
         //tankmanIntro.visible = true;
-        otis.visible = true;
-        gf.visible = false;
-        speaker.visible = false;
         game.inCutscene = true;
         game.isCameraOnForcedPos = true;
         camHUD.visible = false;
@@ -277,6 +271,18 @@ override function create()
 
             var cutsceneSnd:FlxSound = new FlxSound().loadEmbedded(playWeekSound('stressPicoCutscene'));
 		    FlxG.sound.list.add(cutsceneSnd);
+            speakerBack.anim.addBySymbol('cutscene', 'Tankmens', 24, false);
+            speakerBack.anim.play("cutscene", true);
+            applyAbotShader(speakerBack);
+
+            speakerFront.anim.addBySymbol('cutscene', 'Tankmens', 24, false);
+            speakerFront.anim.play("cutscene", true);
+            applyAbotShader(speakerFront);
+            
+            //otis.anim.addBySymbol('cutscene', 'Nene Idle Otis', 24, false);
+            //otis.anim.play("cutscene", true);
+            //applyAbotShader(otis);
+
 
             cutsceneHandler.onStart = function()
                 {
@@ -285,7 +291,7 @@ override function create()
                 };
             
             dad.playAnim("Cutscene");
-            otis.playAnim("PlayCutscene");
+            gf.playAnim("Cutscene");
             boyfriend.animation.finishCallback = function(name:String) {
                 if (name == "alone") {
                     boyfriend.playAnim("alone");
@@ -349,12 +355,6 @@ override function create()
                     game.tweenCameraZoom(0.65, 1, true, FlxEase.quadInOut);
                     game.tweenCameraToPosition(dad.x + 800, dad.y + 250, 1, FlxEase.sineOut);
                 });
-            cutsceneHandler.timer (32, function () 
-                {
-                    gf.visible = true;
-                    otis.visible = false;
-                    speaker.visible = true;
-                });
 
             cutsceneHandler.finishCallback = function() {
                 game.isCameraOnForcedPos = false;
@@ -362,8 +362,6 @@ override function create()
                 camHUD.visible = true;
                 FlxTween.tween(camHUD, {alpha: 1}, 2, {ease: FlxEase.sineInOut});
                 startCountdown();
-                otis.destroy();
-                tankmanIntro.destroy();
             };
 
             cutsceneHandler.skipCallback = function () {
@@ -374,7 +372,6 @@ override function create()
                 //tankmanIntro.visible = false;
                 gf.visible = true;
                 dad.visible = true;
-                speaker.visible = true;
                 dad.dance();
                 gf.dance();
                 boyfriend.dance();
@@ -392,7 +389,7 @@ override function create()
     
             dad.playAnim("Cutscene");   
     
-            game.tweenCameraToPosition(tankCutscene.x + 580, tankCutscene.y + 400);
+            game.tweenCameraToPosition(dad.x + 800, dad.y + 200);
             game.tweenCameraZoom(0.65, 0.8, true, FlxEase.smoothStepOut);
             FlxG.sound.play(Paths.sound('Tank/endCutscene'));
             
@@ -426,7 +423,7 @@ override function create()
             });
             cutsceneHandler.timer (11.1, function () 
             {
-                    game.tweenCameraToPosition(tankCutscene.x + 450, tankCutscene.y + 100, 4.3, FlxEase.smoothStepOut);
+                    game.tweenCameraToPosition(dad.x + 800, dad.y + 0, 4.3, FlxEase.smoothStepOut);
             });
         }
 
@@ -446,6 +443,21 @@ override function create()
 					FlxG.camera.shake(0.01, 0.2);
 			}
 		}
+        function applyAbotShader(sprite:FlxSprite){
+		var rim = new DropShadowScreenspace();
+		rim.setAdjustColor(-46, -38, -25, -20);
+		rim.color = 0xFFDFEF3C;
+        rim.threshold = 0.4;
+		rim.antialiasAmt = 0;
+		rim.attachedSprite = sprite;
+		rim.angle = 90;
+		sprite.shader = rim;
+		sprite.animation.callback = function(anim, frame, index)
+		{
+			rim.updateFrameInfo(sprite.frame);
+			rim.curZoom = camGame.zoom;
+		};
+	}
         function applyShader(sprite:FlxSprite, char_name:String)
 	{
 		var rim = new DropShadowShader();
@@ -507,9 +519,8 @@ override function create()
 		}
 		sprite.shader = rim;
 	}
+ }
 
-    }
 
-    
 
 
