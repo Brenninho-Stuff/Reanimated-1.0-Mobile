@@ -483,7 +483,7 @@ override function create()
 						rim.updateFrameInfo(sprite.frame);
 					};
 				}
-            case "tankman-blody":
+            case "tankman-bloody":
 				{
 					rim.angle = 130;
 					rim.altMaskImage = Paths.image("Erect/masks/tankmanCaptainBloody_mask").bitmap;
