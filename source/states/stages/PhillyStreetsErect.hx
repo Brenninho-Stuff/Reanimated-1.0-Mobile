@@ -48,6 +48,8 @@ class PhillyStreetsErect extends BaseStage
 	var rainShaderStartIntensity:Float = 0;
 	var rainShaderEndIntensity:Float = 0;
 
+    var colorShader:AdjustColorShader;
+
     override function create() {
 
         ratingPos.set(1400, 800);
@@ -178,7 +180,7 @@ class PhillyStreetsErect extends BaseStage
     override function createPost()
     {   
         super.createPost();
-        var colorShader = new AdjustColorShader();
+        colorShader = new AdjustColorShader();
         colorShader.hue = -20;
         colorShader.saturation = -40;
         colorShader.contrast = -20;
@@ -215,7 +217,40 @@ class PhillyStreetsErect extends BaseStage
         add(greyGradient);
     }
 
-    function everyoneDance() {}
+    function setShader(char:FlxSprite, charName:String)
+	{
+    	if (ClientPrefs.data.shaders) {
+        	char.shader = colorShader;
+    	} else {
+        	char.shader = null;
+    	}
+	}
+
+	override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float) {
+	    switch(eventName)
+            {
+            case "Change Character":
+            ClientPrefs.data.shaders;
+			switch(value1.toLowerCase().trim()) {
+				case 'gf' | 'girlfriend' | '2':
+					setShader(gf, gf.curCharacter);
+                    if (reflectedGF != null) reflectedGF.destroy();
+                    reflectedGF = new ReflectedChar(gf, 0.35);
+                    addBehindGF(reflectedGF);
+				case 'dad' | 'opponent' | '1':
+					setShader(dad, dad.curCharacter);
+                    if (reflectedDad != null) reflectedDad.destroy();
+                    reflectedDad = new ReflectedChar(dad, 0.35);
+                    addBehindDad(reflectedDad);
+				default:
+					setShader(boyfriend, boyfriend.curCharacter);
+                    if (reflectedBF != null) reflectedBF.destroy();
+                    reflectedBF = new ReflectedChar(boyfriend, 0.35);
+                    addBehindBF(reflectedBF);
+			}
+
+	    }
+    }
 
     override function update(elapsed:Float) {
         // Actualizar el shader solo si está habilitado

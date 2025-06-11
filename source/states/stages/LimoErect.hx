@@ -198,6 +198,28 @@ class LimoErect extends BaseStage
          }
 	}
 
+	function setShader(char:FlxSprite, charName:String)
+	{
+    	if (ClientPrefs.data.shaders) {
+        	char.shader = colorShader;
+    	} else {
+        	char.shader = null;
+    	}
+	}
+
+	override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float) {
+		if(eventName == "Change Character" && ClientPrefs.data.shaders){
+			switch(value1.toLowerCase().trim()) {
+				case 'gf' | 'girlfriend' | '2':
+					setShader(gf, gf.curCharacter);
+				case 'dad' | 'opponent' | '1':
+					setShader(dad, dad.curCharacter);
+				default:
+					setShader(boyfriend, boyfriend.curCharacter);
+			}
+		}
+	}
+
 	var limoSpeed:Float = 0;
     var _timer:Float = 0;
 
@@ -335,15 +357,6 @@ class LimoErect extends BaseStage
 		if(paused)
 		{
 			if(carTimer != null) carTimer.active = false;
-		}
-	}
-
-	override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float)
-	{
-		switch(eventName)
-		{
-			case "Kill Henchmen":
-				killHenchmen();
 		}
 	}
 

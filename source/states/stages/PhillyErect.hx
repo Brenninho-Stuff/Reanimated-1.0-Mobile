@@ -26,6 +26,8 @@ class PhillyErect extends BaseStage
 	var phillyWindowEvent:BGSprite;
 	var curLightEvent:Int = -1;
 
+    var colorShader:AdjustColorShader;
+
     override function create() {
         ratingPos.set(400, 500);
         comboCountPos.set(300, 650);
@@ -83,7 +85,7 @@ class PhillyErect extends BaseStage
 		addBehindGF(reflectedGF);
 		reflectedDad = new ReflectedChar(dad, 0.35);
 		addBehindDad(reflectedDad);
-		var colorShader = new AdjustColorShader();
+		colorShader = new AdjustColorShader();
         colorShader.hue = -40;
         colorShader.saturation = -25;
         colorShader.contrast = 0;
@@ -95,7 +97,14 @@ class PhillyErect extends BaseStage
         car.shader = colorShader;
         if (speaker != null) speaker.setShader(colorShader);
     }
-    
+    function setShader(char:FlxSprite, charName:String)
+	{
+    	if (ClientPrefs.data.shaders) {
+        	char.shader = colorShader;
+    	} else {
+        	char.shader = null;
+    	}
+	}
     override function eventPushed(event:objects.Note.EventNote) {
         switch(event.event) {
             case "Philly Glow":
@@ -137,7 +146,7 @@ class PhillyErect extends BaseStage
         }
     }
 
-    override function countdownTick(count:Countdown, num:Int) if(num % 2 == 0) everyoneDance();
+    //override function countdownTick(count:Countdown, num:Int) if(num % 2 == 0) everyoneDance();
 
     override function beatHit() {       
         super.beatHit();
@@ -149,12 +158,29 @@ class PhillyErect extends BaseStage
         }
     }
 
-    function everyoneDance() { 
-    }
 
     override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float) {
         switch(eventName)
-        {
+            {
+            case "Change Character":
+            ClientPrefs.data.shaders;
+			switch(value1.toLowerCase().trim()) {
+				case 'gf' | 'girlfriend' | '2':
+					setShader(gf, gf.curCharacter);
+                    if (reflectedGF != null) reflectedGF.destroy();
+                    reflectedGF = new ReflectedChar(gf, 0.35);
+                    addBehindGF(reflectedGF);
+				case 'dad' | 'opponent' | '1':
+					setShader(dad, dad.curCharacter);
+                    if (reflectedDad != null) reflectedDad.destroy();
+                    reflectedDad = new ReflectedChar(dad, 0.35);
+                    addBehindDad(reflectedDad);
+				default:
+					setShader(boyfriend, boyfriend.curCharacter);
+                    if (reflectedBF != null) reflectedBF.destroy();
+                    reflectedBF = new ReflectedChar(boyfriend, 0.35);
+                    addBehindBF(reflectedBF);
+			}    
             case "Philly Glow":
 				PlayState.instance.eventExisted = true;
                 if(flValue1 == null || flValue1 <= 0) flValue1 = 0;
@@ -246,6 +272,7 @@ class PhillyErect extends BaseStage
                                 }
                             }
                         }
+                        
                         phillyGlowGradient.bop();
                 }
         }
@@ -257,4 +284,5 @@ class PhillyErect extends BaseStage
 
         FlxG.camera.flash(color, 0.15, null, true);
     }
+    
 }

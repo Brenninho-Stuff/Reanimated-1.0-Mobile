@@ -17,6 +17,7 @@ class MallErect extends BaseStage
 	var cutsceneHandler:CutsceneHandler;
     var blackScreen:FlxSprite;
 
+	var colorShader:AdjustColorShader;
 	override function create()
 	{
 		ratingPos.set(550, 450);
@@ -103,23 +104,47 @@ class MallErect extends BaseStage
 		add(snowfallin);
 		super.createPost();
 
-		boyfriend.shader = makeCoolShader(-20,-15,0,-10);
-		gf.shader = makeCoolShader(-20,-15,0,-10);
-		dad.shader = makeCoolShader(-20,-15,0,-10);
-		if (speaker != null) speaker.setShader(makeCoolShader(-20,-15,0,-10)); 
-		bottomBoppers.shader = makeCoolShader(-4,-30,-22,0);
-		santa.shader = makeCoolShader(-20,-15,0,-10);
-		santaDead.shader = makeCoolShader(-20,-15,0,-10);
-		parentsCutscene.shader = makeCoolShader(-20,-15,0,-10);
+		boyfriend.shader = makecolorShader(-20,-15,0,-10);
+		gf.shader = makecolorShader(-20,-15,0,-10);
+		dad.shader = makecolorShader(-20,-15,0,-10);
+		if (speaker != null) speaker.setShader(makecolorShader(-20,-15,0,-10)); 
+		bottomBoppers.shader = makecolorShader(-4,-30,-22,0);
+		santa.shader = makecolorShader(-20,-15,0,-10);
+		santaDead.shader = makecolorShader(-20,-15,0,-10);
+		parentsCutscene.shader = makecolorShader(-20,-15,0,-10);
 	}
 	override function countdownTick(count:Countdown, num:Int) everyoneDance();
 	override function beatHit() {
 		super.beatHit();
 		everyoneDance();
 	}
-
+	function setShader(char:FlxSprite, charName:String)
+{
+    if (ClientPrefs.data.shaders) {
+        switch(charName.toLowerCase()) {
+            case 'gf', 'girlfriend', '2':
+                char.shader = makecolorShader(-20,-15,0,-10);
+            case 'dad', 'opponent', '1':
+                char.shader = makecolorShader(-20,-15,0,-10);
+            default:
+                char.shader = makecolorShader(-20,-15,0,-10);
+        }
+    } else {
+        char.shader = null;
+    }
+}
 	override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float) {
 		switch(eventName) {
+			case "Change Character":
+            ClientPrefs.data.shaders;
+			switch(value1.toLowerCase().trim()) {
+				case 'gf' | 'girlfriend' | '2':
+					setShader(gf, gf.curCharacter);
+				case 'dad' | 'opponent' | '1':
+					setShader(dad, dad.curCharacter);
+				default:
+					setShader(boyfriend, boyfriend.curCharacter);
+			}
 			case "Hey!":
 				switch(value1.toLowerCase().trim()) {
 					case 'bf' | 'boyfriend' | '0':
@@ -238,12 +263,12 @@ class MallErect extends BaseStage
 			FlxTween.tween(blackScreen, {alpha: 1}, 1, {startDelay: 0.3});
 		});
 	}
-	function makeCoolShader(hue:Float,sat:Float,bright:Float,contrast:Float) {
-        var coolShader = new AdjustColorShader();
-        coolShader.hue = hue;
-        coolShader.saturation = sat;
-        coolShader.brightness = bright;
-        coolShader.contrast = contrast;
-        return coolShader;
+	function makecolorShader(hue:Float,sat:Float,bright:Float,contrast:Float) {
+        colorShader = new AdjustColorShader();
+        colorShader.hue = hue;
+        colorShader.saturation = sat;
+        colorShader.brightness = bright;
+        colorShader.contrast = contrast;
+        return colorShader;
     }
 }

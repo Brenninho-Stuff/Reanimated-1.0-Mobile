@@ -94,6 +94,7 @@ class PhillyStreets extends BaseStage
 	var rainShaderStartIntensity:Float = 0;
 	var rainShaderEndIntensity:Float = 0;
 
+	var colorShader:AdjustColorShader;
     override function create() {
 
 		ratingPos.set(1400, 800); // Just used random numbers for example
@@ -310,7 +311,7 @@ class PhillyStreets extends BaseStage
 		reflectedBF = new ReflectedChar(boyfriend, 0.35);
 		addBehindBF(reflectedBF);
 		super.createPost();
-		var colorShader = new AdjustColorShader();
+		colorShader = new AdjustColorShader();
         colorShader.hue = -26;
         colorShader.saturation = -23;
         colorShader.contrast = 1;
@@ -542,31 +543,40 @@ class PhillyStreets extends BaseStage
 		super.update(elapsed);
 	}
 
-    override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float)
+    function setShader(char:FlxSprite, charName:String)
 	{
-		switch(eventName)
-		{
-			case "Change Character":
-				if (value1.toLowerCase() == "bf" || value1.toLowerCase() == "boyfriend" || value1.toLowerCase() == "player") {
-					//if (useShader)
-					{
-						reflectedBF.destroy();
-						reflectedBF = new ReflectedChar(boyfriend, 0.35);
-						addBehindBF(reflectedBF);
-					}
-				} 
-				if (value1.toLowerCase() == "dad" || value1.toLowerCase() == "enemy" || value1.toLowerCase() == "opponent") {
-					reflectedDad.destroy();
-					reflectedDad = new ReflectedChar(dad, 0.35);
-					addBehindDad(reflectedDad);
-				}
-				if (value1.toLowerCase() == 'gf' || value1.toLowerCase() == 'girlfriend') {
-					reflectedGF.destroy();
-					reflectedGF = new ReflectedChar(gf, 0.35);
-					addBehindGF(reflectedGF);
-				} 
-		}
+    	if (ClientPrefs.data.shaders) {
+        	char.shader = colorShader;
+    	} else {
+        	char.shader = null;
+    	}
 	}
+
+	override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float) {
+	    switch(eventName)
+            {
+            case "Change Character":
+            ClientPrefs.data.shaders;
+			switch(value1.toLowerCase().trim()) {
+				case 'gf' | 'girlfriend' | '2':
+					setShader(gf, gf.curCharacter);
+                    if (reflectedGF != null) reflectedGF.destroy();
+                    reflectedGF = new ReflectedChar(gf, 0.35);
+                    addBehindGF(reflectedGF);
+				case 'dad' | 'opponent' | '1':
+					setShader(dad, dad.curCharacter);
+                    if (reflectedDad != null) reflectedDad.destroy();
+                    reflectedDad = new ReflectedChar(dad, 0.35);
+                    addBehindDad(reflectedDad);
+				default:
+					setShader(boyfriend, boyfriend.curCharacter);
+                    if (reflectedBF != null) reflectedBF.destroy();
+                    reflectedBF = new ReflectedChar(boyfriend, 0.35);
+                    addBehindBF(reflectedBF);
+			}
+
+	    }
+    }
 
 	override function countdownTick(count:Countdown, num:Int) {
 		if (isStoryMode && !seenDarnellCutscene)
