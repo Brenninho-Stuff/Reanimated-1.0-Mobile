@@ -224,7 +224,6 @@ override function create()
         speakerFront.antialiasing = ClientPrefs.data.antialiasing;
         addBehindDadAndBF(speakerFront);
         cutsceneHandler.push(speakerFront);
-        speakerFront.visible = false;
 
         //tankmanIntro.visible = true;
         game.inCutscene = true;
@@ -271,11 +270,11 @@ override function create()
 
             var cutsceneSnd:FlxSound = new FlxSound().loadEmbedded(playWeekSound('stressPicoCutscene'));
 		    FlxG.sound.list.add(cutsceneSnd);
-            speakerBack.anim.addBySymbol('cutscene', 'Tankmens', 24, false);
+            speakerBack.anim.addBySymbol('cutscene', 'Tankmens 2', 24, false);
             speakerBack.anim.play("cutscene", true);
             applyAbotShader(speakerBack);
 
-            speakerFront.anim.addBySymbol('cutscene', 'Tankmens', 24, false);
+            speakerFront.anim.addBySymbol('cutscene', 'Tankmens 2', 24, false);
             speakerFront.anim.play("cutscene", true);
             applyAbotShader(speakerFront);
             
