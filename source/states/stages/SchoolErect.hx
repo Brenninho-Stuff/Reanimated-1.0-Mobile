@@ -88,6 +88,10 @@ class SchoolErect extends BaseStage
 		if(!ClientPrefs.data.lowQuality) {
 			bgGirls = new BackgroundGirlsErect(-750, 290);
 			bgGirls.scrollFactor.set(0.9, 0.9);
+			applyShader(bgGirls, "");
+            if (bgGirls.shader != null && Std.isOfType(bgGirls.shader, DropShadowShader)) {
+            cast(bgGirls.shader, DropShadowShader).threshold = 0.1;
+			}
 			add(bgGirls);
 		}
 		setDefaultGF('gf-pixel');
@@ -203,7 +207,7 @@ class SchoolErect extends BaseStage
 		/*gf.shader = makeCoolShader(6,15,-30,-16);
         dad.shader = makeCoolShader(6,15,-30,-16);
         boyfriend.shader = makeCoolShader(6,15,-30,-16);*/
-		bgGirls.shader = makeCoolShader(-10,-23,-66, 24);
+		//bgGirls.shader = makeCoolShader(-10,-23,-66, 24);
 		applyShader(boyfriend,boyfriend.curCharacter);
 		applyShader(gf,gf.curCharacter);
 		applyShader(dad,dad.curCharacter);

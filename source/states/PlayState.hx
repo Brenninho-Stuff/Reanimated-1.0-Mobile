@@ -486,6 +486,7 @@ class PlayState extends MusicBeatState
 			case 'school': new School();				//Week 6 - Senpai, Roses
 			case "schoolErect": new SchoolErect();		//Week 6 - Erect
 			case 'schoolEvil': new SchoolEvil();		//Week 6 - Thorns
+			case 'schoolEvilErect': new SchoolEvilErect();		//Week 6 - ErectStage
 			case 'tank': new Tank();					//Week 7 - Ugh, Guns, Stress
 			case "tankErect": new TankErect();		//Week 7 - Erect
 			case 'phillyStreets': new PhillyStreets(); 	//Weekend 1 - Darnell, Lit Up, 2Hot
