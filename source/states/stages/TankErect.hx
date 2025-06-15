@@ -10,11 +10,20 @@ import flixel.util.FlxSignal;
 import shaders.DropShadowShader;
 import shaders.DropShadowScreenspace;
 import torchsthings.shaders.AdjustColorShader;
+import flash.display.BlendMode;
 
 
 class TankErect extends BaseStage
 {
     var bg:BGSprite;
+    var ceiling:BGSprite;
+    var bus:BGSprite;
+    var mountain:BGSprite;
+    var city:BGSprite;
+    var street:BGSprite;
+    var bar:BGSprite;
+    var lights:BGSprite;
+    var sky:BGSprite;
     var guy:FlxSprite;
     var sniper:FlxSprite;
     var tankCutscene:Character;
@@ -31,10 +40,61 @@ override function create()
         comboCountPos.set(450, 650);
         comboImage.set( 0, 600);
         
-        bg = new BGSprite('Erect/bg', -1085, -805);
+        sky = new BGSprite('Erect/sky', -900, -650);
+        sky.setGraphicSize(Std.int(sky.width * 1));
+        sky.updateHitbox();
+        sky.antialiasing = ClientPrefs.data.antialiasing;
+        add(sky);
+
+        city = new BGSprite('Erect/city', -600, -300);
+        city.setGraphicSize(Std.int(city.width * 0.9));
+        city.updateHitbox();
+        city.antialiasing = ClientPrefs.data.antialiasing;
+        add(city);
+
+        mountain = new BGSprite('Erect/mountains', 600, -500);
+        mountain.setGraphicSize(Std.int(mountain.width * 0.9));
+        mountain.updateHitbox();
+        mountain.antialiasing = ClientPrefs.data.antialiasing;
+        add(mountain);
+
+        street = new BGSprite('Erect/street', -900, 570);
+        street.antialiasing = ClientPrefs.data.antialiasing;
+        street.setGraphicSize(Std.int(street.width * 0.8));
+        street.updateHitbox();
+        add(street);
+
+        tankmanRun = new FlxTypedGroup<TankmenBG>();
+		add(tankmanRun);
+
+        bus = new BGSprite('Erect/bus', -1050, 10);
+        bus.antialiasing = ClientPrefs.data.antialiasing;
+        bus.setGraphicSize(Std.int(bus.width * 1));
+        bus.updateHitbox();
+        add(bus);
+
+        bar = new BGSprite('Erect/bar', 1250, 520);
+        bar.antialiasing = ClientPrefs.data.antialiasing;
+        bar.setGraphicSize(Std.int(bar.width * 0.9));
+        bar.updateHitbox();
+        add(bar);
+
+        lights = new BGSprite('Erect/light', 700, 260);
+        lights.blend = ADD;
+        lights.alpha = 0.7;
+        lights.antialiasing = ClientPrefs.data.antialiasing;
+        lights.setGraphicSize(Std.int(lights.width * 0.9));
+        lights.updateHitbox();
+
+        ceiling = new BGSprite('Erect/ceiling', 1450, -280);
+        ceiling.antialiasing = ClientPrefs.data.antialiasing;
+        ceiling.setGraphicSize(Std.int(ceiling.width * 0.9));
+        ceiling.updateHitbox();
+
+        /*bg = new BGSprite('Erect/bg', -1085, -805);
         bg.setGraphicSize(Std.int(bg.width * 1.15));
         bg.updateHitbox();
-        add(bg);
+        add(bg);*/
 
         guy = new FlxSprite(1300, 410);
         guy.frames = Paths.getSparrowAtlas("Erect/guy");
@@ -42,6 +102,7 @@ override function create()
         guy.updateHitbox();
         guy.animation.addByPrefix("idle", "BLTank2 instance 1", 24, false);
 		guy.animation.play("idle");
+        guy.visible = false;
         add(guy);
 
         sniper = new FlxSprite(-207, 339);
@@ -52,10 +113,8 @@ override function create()
 		sniper.animation.addByPrefix("idle", "Tankmanidlebaked instance 1", 24, false);
 		sniper.animation.addByPrefix("sip", "tanksippingBaked instance 1", 24, false);
 		sniper.animation.play("idle");
+        sniper.visible = false;
 		add(sniper);
-
-        tankmanRun = new FlxTypedGroup<TankmenBG>();
-		add(tankmanRun);
 
         if (PlayState.SONG.song.toLowerCase().contains('pico-mix')) {
 			defaultSpeaker = 'abot';
@@ -83,7 +142,8 @@ override function create()
 
     }
     override function createPost() {   
-
+        add(lights);
+        add(ceiling);
         if(!ClientPrefs.data.lowQuality) {
             for (daGf in gfGroup)
 			{
@@ -148,9 +208,9 @@ override function create()
 
         super.createPost();
         var colorShader = new AdjustColorShader();
-        colorShader.hue = -38;
+        colorShader.hue = -50;
         colorShader.saturation = -20;
-        colorShader.contrast = -25;
+        colorShader.contrast = -15;
         colorShader.brightness = -46;
         applyShader(boyfriend, boyfriend.curCharacter);
 		applyShader(gf, gf.curCharacter);
@@ -444,12 +504,12 @@ override function create()
 		}
         function applyAbotShader(sprite:FlxSprite){
 		var rim = new DropShadowScreenspace();
-		rim.setAdjustColor(-46, -38, -25, -20);
-		rim.color = 0xFFDFEF3C;
-        rim.threshold = 0.4;
+		rim.setAdjustColor(-40, -25, -10, -20);
+		rim.color =  0xFF539BFA;
+        rim.threshold = 0.7;
 		rim.antialiasAmt = 0;
 		rim.attachedSprite = sprite;
-		rim.angle = 90;
+		rim.angle = 135;
 		sprite.shader = rim;
 		sprite.animation.callback = function(anim, frame, index)
 		{
@@ -460,17 +520,18 @@ override function create()
         function applyShader(sprite:FlxSprite, char_name:String)
 	{
 		var rim = new DropShadowShader();
-		rim.color = 0xFFDFEF3C;
-        rim.setAdjustColor(-46, -38, -25, -20);
+		rim.color = 0xFF539BFA;
+        rim.setAdjustColor(-40, -25, -10, -20);
 		rim.threshold = 0.1;
 		rim.attachedSprite = sprite;
 		rim.distance = 15;
 		rim.strength = 1;
-		rim.angle = 90;
+		rim.angle = 135;
 		switch (char_name)
 		{
 			case "bf":
 				{
+                    rim.angle = 135;
 					sprite.animation.callback = function(anim, frame, index)
 					{
 						rim.updateFrameInfo(sprite.frame);
@@ -479,7 +540,7 @@ override function create()
 
 			case "nene":
 				{
-					rim.angle = 90;
+					rim.angle = 135;
 					sprite.animation.callback = function(anim, frame, index)
 					{
 						rim.updateFrameInfo(sprite.frame);
@@ -488,7 +549,7 @@ override function create()
             case "tankman":
 				{
 					rim.threshold = 0.3;
-					rim.angle = 130;
+					rim.angle = 135;
 					sprite.animation.callback = function(anim, frame, index)
 					{
 						rim.updateFrameInfo(sprite.frame);
@@ -496,7 +557,7 @@ override function create()
 				}
             case "tankman-bloody":
 				{
-					rim.angle = 130;
+					rim.angle = 135;
 					rim.altMaskImage = Paths.image("Erect/masks/tankmanCaptainBloody_mask").bitmap;
 					rim.maskThreshold = 1;
 					rim.threshold = 0.3;
@@ -509,7 +570,7 @@ override function create()
 				}
 			default:
 				{
-					rim.angle = 90;
+					rim.angle = 135;
 					sprite.animation.callback = function(anim, frame, index)
 					{
 						rim.updateFrameInfo(sprite.frame);

@@ -31,6 +31,8 @@ class StageErect extends BaseStage
     var mist1:FlxBackdrop;
     var mist2:FlxBackdrop;
 
+    var colorShader:AdjustColorShader;
+
     override function create() {
 
         ratingPos.set(850, 450);
@@ -97,7 +99,7 @@ class StageErect extends BaseStage
                 case 'test':
                     gfPixel = new Character(330, 405, 'gf-pixel', true); // Made her a "player" so she would face the other way
                     add(gfPixel);
-                    gfPixel.shader = makeCoolShader(-32,0,-33,-23);
+                    gfPixel.shader = makecolorShader(-32,0,-33,-23);
                     gfPixel.dance();
             }
         }
@@ -109,10 +111,10 @@ class StageErect extends BaseStage
         add(lightAbove);
         super.createPost();
         //Color Shader2 es Para el Abot lol
-        gf.shader = makeCoolShader(-9,0,-30,-4);
-        dad.shader = makeCoolShader(-32,0,-33,-23);
-        boyfriend.shader = makeCoolShader(12,0,-23,7);
-        if (speaker != null) speaker.setShader(makeCoolShader(-9, 0, -30, -4)); 
+        gf.shader = makecolorShader(-9,0,-30,-4);
+        dad.shader = makecolorShader(-32,0,-33,-23);
+        boyfriend.shader = makecolorShader(12,0,-23,7);
+        if (speaker != null) speaker.setShader(makecolorShader(-9, 0, -30, -4)); 
         if (!offsetState) {
             switch(PlayState.SONG.song.toLowerCase()) {
                 case 'test':
@@ -131,14 +133,22 @@ class StageErect extends BaseStage
     
     function everyoneDance() {}
 
-    function makeCoolShader(hue:Float,sat:Float,bright:Float,contrast:Float) {
-        var coolShader = new AdjustColorShader();
-        coolShader.hue = hue;
-        coolShader.saturation = sat;
-        coolShader.brightness = bright;
-        coolShader.contrast = contrast;
-        return coolShader;
+    function makecolorShader(hue:Float,sat:Float,bright:Float,contrast:Float) {
+        colorShader = new AdjustColorShader();
+        colorShader.hue = hue;
+        colorShader.saturation = sat;
+        colorShader.brightness = bright;
+        colorShader.contrast = contrast;
+        return colorShader;
     }
+    function setShader(char:FlxSprite, charName:String)
+	{
+    	if (ClientPrefs.data.shaders) {
+        	char.shader = colorShader;
+    	} else {
+        	char.shader = null;
+    	}
+	}
     var tween:FlxTween;
 
     override function update(elapsed:Float) {
@@ -198,6 +208,16 @@ class StageErect extends BaseStage
         {
             switch(eventName)
             {
+                case "Change Character":
+                    ClientPrefs.data.shaders;
+			    switch(value1.toLowerCase().trim()) {
+				    case 'gf' | 'girlfriend' | '2':
+					    setShader(gf, gf.curCharacter);
+				    case 'dad' | 'opponent' | '1':
+					    setShader(dad, dad.curCharacter);
+				    default:
+					    setShader(boyfriend, boyfriend.curCharacter);
+			    }
                 case "Dadbattle Spotlight":
                     PlayState.instance.eventExisted = true;
                     if(flValue1 == null) flValue1 = 0;
