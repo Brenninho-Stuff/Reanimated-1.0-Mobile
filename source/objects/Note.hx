@@ -54,6 +54,7 @@ class Note extends FlxSprite
 		"Duo Sing",
 		'No Animation',
 		"Shoot Note",
+		'Bullet Note',
 		'Dodge Tankman',
 		'weekend-1-lightcan',
 		'weekend-1-kickcan',
@@ -252,6 +253,11 @@ class Note extends FlxSprite
 					noMissAnimation = true;
 					noteSplashData.texture = 'noteSplashes/noteSplashes';
 					noCharShader = true;
+				case 'Bullet Note':
+					lowPriority = true;
+					reloadNote('bullet_notes');
+					noMissAnimation = true;
+					noCharShader = true;
 			}
 			if (value != null && value.length > 1) NoteTypesConfig.applyNoteTypeData(this, value);
 			if (hitsound != 'hitsound' && hitsoundVolume > 0) Paths.sound(hitsound); //precache new sound for being idiot-proof
@@ -260,7 +266,8 @@ class Note extends FlxSprite
 		return value;
 	}
 	public static var keepSkin:Array<String> = [
-		'Shoot Note'
+		'Shoot Note',
+		'Bullet Note'
 	];
 	
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false, ?createdFrom:Dynamic = null)

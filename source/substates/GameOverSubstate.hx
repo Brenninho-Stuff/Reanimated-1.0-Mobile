@@ -1,5 +1,6 @@
 package substates;
 
+import states.PlayState;
 import backend.WeekData;
 
 import objects.Character;
@@ -73,6 +74,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 		PlayState.instance.camHUD.visible = false;
+		PlayState.instance.camOther.visible = false;
 
 		Conductor.songPosition = 0;
 

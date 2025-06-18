@@ -759,7 +759,12 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.data.downScroll)
 			botplayTxt.y = healthBar.y + 120;
 
-		warning = new FlxSprite(30, 400).loadGraphic(Paths.image('Dodge Event/warningNote'));
+		warning = new FlxSprite(30, 400);
+		warning.frames = Paths.getSparrowAtlas('Dodge Event/space');
+		warning.antialiasing = true;
+		warning.animation.addByPrefix('dodge', 'bop', 12, true);
+		warning.animation.addByPrefix('hurt', 'miss', 12, true);
+		warning.animation.addByPrefix('noice', 'pressed', 12, true);
 		warning.cameras = [camOther];
 		warning.alpha = 0;
 		warning.screenCenter();
@@ -2471,7 +2476,9 @@ class PlayState extends MusicBeatState
 					
 					boyfriend.playAnim('dodge', true);
 					gf.playAnim('dodge', true);
-					warning.alpha = 0;
+					warning.animation.play("noice");
+					FlxTween.tween(warning, {alpha: 0}, 0.6,  {ease: FlxEase.sineInOut});
+					//warning.alpha = 0;
 					dodged = true;
 					canDodge = false;
 				}
@@ -3294,6 +3301,7 @@ class PlayState extends MusicBeatState
 				canDodge = true;
 				warning.alpha = 1;
 				poste.alpha = 1;
+				warning.animation.play("dodge");
 				new FlxTimer().start(0.1, function(tmr:FlxTimer) {
 					FlxG.sound.play(Paths.sound('warning'));
 					FlxTween.tween(poste, {x:3650}, 1.35, {ease:FlxEase.sineIn, onComplete: 
@@ -3305,8 +3313,11 @@ class PlayState extends MusicBeatState
 				new FlxTimer().start(1, function(tmr:FlxTimer) {
 					if(!dodged)
 					{
-						health = 0;
+						health -= 0.99;
 						boyfriend.playAnim('hurt', true);
+						warning.animation.play("hurt");
+						FlxTween.tween(warning, {alpha: 0}, 0.7,  {ease: FlxEase.sineInOut});
+
 					}
 				});
 			case 'Show Lyrics':
@@ -3955,6 +3966,19 @@ class PlayState extends MusicBeatState
 			health -= 0.35;
 		}
 
+		if (daNote.noteType == "Bullet Note") {
+			if (boyfriend.animOffsets.exists('hurt')) {
+				boyfriend.playAnim('hurt', true);
+				boyfriend.specialAnim = true;
+			}
+				if(dad.animOffsets.exists('shoot')) {
+					dad.playAnim('shoot', true);
+					dad.specialAnim = true;
+					FlxG.camera.shake(0.01, 0.4);				
+				
+			}
+			health -= 0.6;
+		}
 		noteMissCommon(daNote.noteData, daNote);
 		stagesFunc(function(stage:BaseStage) stage.noteMiss(daNote));
 		var result:Dynamic = callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
@@ -4293,6 +4317,18 @@ class PlayState extends MusicBeatState
 							FlxG.sound.play(Paths.sound('shoot'),0.5);
 							FlxG.camera.shake(0.01, 0.2);
 					}
+				case "Bullet Note":
+					var dodgeAnimations:Array<String> = ['dodgeLEFT', 'dodgeDOWN', 'dodgeUP', 'dodgeRIGHT'];
+					var animToPlay:String = dodgeAnimations[Std.int(Math.abs(note.noteData))];
+					boyfriend.playAnim(animToPlay, true);
+					boyfriend.specialAnim = true;
+					if(dad.animOffsets.exists('shoot')) {
+					dad.playAnim('shoot', true);
+					dad.specialAnim = true;
+					FlxG.camera.shake(0.01, 0.2);				
+				
+			}
+					
 				case "Duo Sing":
 					var singsAnimations:Array<String> = ['singLEFT', 'singDOWN', 'singUP', 'singRIGHT'];
 					var animToPlay:String = singsAnimations[Std.int(Math.abs(note.noteData))];
