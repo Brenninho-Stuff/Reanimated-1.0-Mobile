@@ -144,7 +144,7 @@ class IconDanceSubMenu extends MusicBeatSubstate
                 else
                     FlxG.sound.music.volume = 0;
             }
-            else FlxG.sound.playMusic(Paths.music('freakyMenu'));
+            else FlxG.sound.playMusic(Paths.music('FreakyMenuSound'));
             ClientPrefs.data.iconAnims = [ availableAnims[primaryIndex], availableAnims[secondaryIndex] ];
             if (onConfirm != null)
                 onConfirm();
@@ -160,7 +160,7 @@ class IconDanceSubMenu extends MusicBeatSubstate
                 else
                     FlxG.sound.music.volume = 0;
             }
-            else FlxG.sound.playMusic(Paths.music('freakyMenu'));
+            else FlxG.sound.playMusic(Paths.music('FreakyMenuSound'));
             closeMenu();
         }
 

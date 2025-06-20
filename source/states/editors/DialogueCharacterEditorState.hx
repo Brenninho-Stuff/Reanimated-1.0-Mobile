@@ -604,7 +604,7 @@ class DialogueCharacterEditorState extends MusicBeatState implements PsychUIEven
 				if(!unsavedProgress)
 				{
 					MusicBeatState.switchState(new states.editors.MasterEditorMenu());
-					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					FlxG.sound.playMusic(Paths.music('FreakyMenuSound'));
 					transitioning = true;
 				}
 				else openSubState(new ExitConfirmationPrompt(function() transitioning = true));

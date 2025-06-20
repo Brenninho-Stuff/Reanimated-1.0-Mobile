@@ -28,7 +28,7 @@ class SpeakerSkin extends FlxSpriteGroup {
         'abot',
         'nene',
         'abot-pixel',
-        'nene-pixel'
+        '-pixel'
     ];
     public var gf:Character = PlayState.instance.gf;
     public var bpm:Float = PlayState.SONG.bpm;

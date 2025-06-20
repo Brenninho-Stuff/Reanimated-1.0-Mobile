@@ -720,7 +720,7 @@ class ResultsScreen extends MusicBeatState {
 
         if (FlxG.keys.justPressed.ENTER) {
             if (FlxG.sound.music != null) FlxG.sound.music.stop();
-            FlxG.sound.playMusic(Paths.music('freakyMenu'));
+            FlxG.sound.playMusic(Paths.music('FreakyMenuSound'));
 
             if (storyMode) {
                 LoadingState.loadAndSwitchState(new StoryMenuState());

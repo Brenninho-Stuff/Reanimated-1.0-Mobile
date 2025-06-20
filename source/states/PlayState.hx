@@ -3313,7 +3313,7 @@ class PlayState extends MusicBeatState
 				new FlxTimer().start(1, function(tmr:FlxTimer) {
 					if(!dodged)
 					{
-						health -= 0.99;
+						health -= 1.99;
 						boyfriend.playAnim('hurt', true);
 						warning.animation.play("hurt");
 						FlxTween.tween(warning, {alpha: 0}, 0.7,  {ease: FlxEase.sineInOut});
@@ -3494,7 +3494,7 @@ class PlayState extends MusicBeatState
 				if (storyPlaylist.length <= 0)
 				{
 					Mods.loadTopMod();
-					//FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					//FlxG.sound.playMusic(Paths.music('FreakyMenuSound'));
 					#if DISCORD_ALLOWED DiscordClient.resetClientID(); #end
 
 					canResync = false;
@@ -3550,7 +3550,7 @@ class PlayState extends MusicBeatState
 
 				canResync = false;
 				//MusicBeatState.switchState(new FreeplayState());
-				LoadingState.loadAndSwitchState(new ResultsScreen(SONG.song, ratingName, songScore, Difficulty.getString(), [ratingsData[0].hits, ratingsData[1].hits, ratingsData[2].hits, ratingsData[3].hits, songMisses, maxCombo, Math.floor(ratingPercent * 100)], oldScore, false, boyfriend.curCharacter));				//FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				LoadingState.loadAndSwitchState(new ResultsScreen(SONG.song, ratingName, songScore, Difficulty.getString(), [ratingsData[0].hits, ratingsData[1].hits, ratingsData[2].hits, ratingsData[3].hits, songMisses, maxCombo, Math.floor(ratingPercent * 100)], oldScore, false, boyfriend.curCharacter));				//FlxG.sound.playMusic(Paths.music('FreakyMenuSound'));
 				changedDifficulty = false;
 			}
 			transitioning = true;
@@ -4318,14 +4318,15 @@ class PlayState extends MusicBeatState
 							FlxG.camera.shake(0.01, 0.2);
 					}
 				case "Bullet Note":
-					var dodgeAnimations:Array<String> = ['dodgeLEFT', 'dodgeDOWN', 'dodgeUP', 'dodgeRIGHT'];
-					var animToPlay:String = dodgeAnimations[Std.int(Math.abs(note.noteData))];
-					boyfriend.playAnim(animToPlay, true);
-					boyfriend.specialAnim = true;
+				if(note.noteType == 'Bullet Note') {
+				boyfriend.playAnim("dodge", true);
+				boyfriend.specialAnim = true;
+				
 					if(dad.animOffsets.exists('shoot')) {
 					dad.playAnim('shoot', true);
 					dad.specialAnim = true;
-					FlxG.camera.shake(0.01, 0.2);				
+					FlxG.camera.shake(0.01, 0.2);		
+					}		
 				
 			}
 					
