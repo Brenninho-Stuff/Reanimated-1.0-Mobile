@@ -718,7 +718,7 @@ class PlayState extends MusicBeatState
 		iconP1.y = healthBar.y - 50;
 		iconP1.visible = !ClientPrefs.data.hideHud;
 		iconP1.alpha = ClientPrefs.data.healthBarAlpha;
-		uiGroup.add(iconP1);
+		
 
 		iconP2 = new HealthIcon(dad.healthIcon, false);
 		//iconP2.y = healthBar.y - 75;
@@ -726,6 +726,7 @@ class PlayState extends MusicBeatState
 		iconP2.visible = !ClientPrefs.data.hideHud;
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP2);
+		uiGroup.add(iconP1);
 		
 		iconsAnimator = new IconsAnimator(iconP1, iconP2, iconP1.y);
 
@@ -834,16 +835,11 @@ class PlayState extends MusicBeatState
 		creditsCharter.setFormat(Paths.font(isPixelStage ? "pixel.otf" : "vcr.ttf"), isPixelStage ? 20 : 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		creditsCharter.size = creditsTextSize;
 
-		creditsIconP = new HealthIcon(boyfriend.healthIcon, false);
-		creditsIconP.flipX = true;
-		creditsIconP.setGraphicSize(Std.int(creditsIconP.width * 0.65));
-		//creditsIconP.setGraphicSize(0.4, 0.4);
+		creditsIconP = new HealthIcon(boyfriend.healthIcon, true);
 		creditsIconP.x = -170;
 		creditsIconP.y = 315;
 
 		creditsIconEn = new HealthIcon(dad.healthIcon, false);
-		creditsIconEn.setGraphicSize(Std.int(creditsIconEn.width * 0.65));
-		//creditsIconEn.setGraphicSize(0.4, 0.4);
 		creditsIconEn.x = -170;
 		creditsIconEn.y = 315; 
 
@@ -4551,8 +4547,6 @@ class PlayState extends MusicBeatState
 			case 3:
 				FlxTween.tween(creditsBG, {x: -120}, 2.6, {ease:FlxEase.expoOut});
 				FlxTween.tween(creditsFrontBG, {x: -100}, 3.1, {ease:FlxEase.expoOut});
-				creditsIconEn.angle = 15;
-				creditsIconP.angle = -15;
 				FlxTween.tween(creditsIconP, {x: 1095}, 2, {ease:FlxEase.expoOut});	
 				FlxTween.tween(creditsDisk, {x: 390}, 2.6, {ease:FlxEase.expoOut});
 				FlxTween.tween(creditsDisk, {angle: 2000}, 15, 
@@ -4580,22 +4574,6 @@ class PlayState extends MusicBeatState
 				FlxTween.tween(creditsCharter, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
 			}
 
-			if(curStep % 2 == 0)
-			{
-				if (creditsIconP.angle == -15)
-				{
-					creditsIconP.angle = 15;
-					creditsIconEn.angle = -15;
-				}
-				else
-				{
-					if(creditsIconP.angle == 15)
-					{
-						creditsIconP.angle = -15;
-						creditsIconEn.angle = 15;
-					}
-				}	
-		}
 		super.stepHit();
 
 		if(curStep == lastStepHit) {
@@ -4623,6 +4601,22 @@ class PlayState extends MusicBeatState
 		iconsAnimator.updateIcons(curBeat, ClientPrefs.data.iconAnims, curBoyfriendAnimation, curDadAnimation);
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
+
+		if(curStep % 2 == 0)
+			{
+		if (creditsIconP != null && creditsIconEn != null) {
+        var creditsAnimP = curBoyfriendAnimation;
+        var creditsAnimEn = curDadAnimation;
+        lawsthings.objects.IconsAnimator.updateIconsStatic(
+            creditsIconP, creditsIconEn, creditsIconP.y,
+            curBeat, ClientPrefs.data.iconAnims, creditsAnimP, creditsAnimEn
+        );
+        creditsIconP.setGraphicSize(Std.int(creditsIconP.width * 0.65));
+        creditsIconEn.setGraphicSize(Std.int(creditsIconP.width * 0.65));
+        creditsIconP.updateHitbox();
+        creditsIconEn.updateHitbox();
+   		}
+	}
 
 		characterBopper(curBeat);
 
