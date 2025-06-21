@@ -32,6 +32,10 @@ class HealthIcon extends FlxSprite
 						name = 'iconsNew/' + char;
 					else if (Paths.fileExists('images/iconsNew/icon-' + char + '.png', IMAGE))
 						name = 'iconsNew/icon-' + char;
+					else if (Paths.fileExists('images/iconsNew/' + char + '-new.png', IMAGE))
+						name = 'iconsNew/' + char + '-new';
+					else if (Paths.fileExists('images/iconsNew/icon-' + char + '-new.png', IMAGE))
+						name = 'iconsNew/icon-' + char + '-new';
 				case "Old Version":
 					if (Paths.fileExists('images/iconsOld/' + char + '.png', IMAGE))
 						name = 'iconsOld/' + char;
@@ -42,13 +46,16 @@ class HealthIcon extends FlxSprite
 					else if (Paths.fileExists('images/iconsOld/icon-' + char + '-old.png', IMAGE))
 						name = 'iconsOld/icon-' + char + '-old';
 				default:
-						name = 'icons/' + char;
-						if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/icon-' + char;
-						if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/icon-face';
+    					name = 'icons/' + char;
+    					if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/icon-' + char;
+    					if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/icon-face';
 					
 			}
 			
 			var graphic = Paths.image(name, allowGPU);
+			if (graphic == null) {
+    		graphic = Paths.image('icons/icon-face', allowGPU);
+			}
 			var iSize:Float = Math.round(graphic.width / graphic.height);
 			/*
 			loadGraphic(graphic, true, Math.floor(graphic.width / iSize), Math.floor(graphic.height));
