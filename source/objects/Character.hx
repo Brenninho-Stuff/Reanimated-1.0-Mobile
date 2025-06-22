@@ -78,6 +78,7 @@ class Character extends FlxSprite
 	public var curCharacter:String = DEFAULT_CHARACTER;
 
 	public var holdTimer:Float = 0;
+	public var dodgetime:Float = 0;
 	public var heyTimer:Float = 0;
 	public var specialAnim:Bool = false;
 	public var animationNotes:Array<Dynamic> = [];
@@ -316,6 +317,8 @@ class Character extends FlxSprite
 
 	override function update(elapsed:Float)
 	{
+		if (dodgetime > 0)
+			dodgetime--;
 		if(isAnimateAtlas) atlas.update(elapsed);
 
 		if(debugMode || (!isAnimateAtlas && animation.curAnim == null) || (isAnimateAtlas && (atlas.anim.curInstance == null || atlas.anim.curSymbol == null)))

@@ -157,6 +157,9 @@ class PlayState extends MusicBeatState
 	public var dodged:Bool = false;
 	public var warning:FlxSprite;
 	public var poste:FlxSprite;
+	public var light:FlxSprite;
+	public var dodgeHitbox:FlxSprite;
+
 
 	public var boyfriendGroup:FlxSpriteGroup;
 	public var dadGroup:FlxSpriteGroup;
@@ -770,9 +773,17 @@ class PlayState extends MusicBeatState
 		warning.alpha = 0;
 		warning.screenCenter();
 		add(warning);
+		
+		light = new FlxSprite(-1570, 110).loadGraphic(Paths.image('Dodge Event/coldHeartKiller'));
+		light.setGraphicSize(Std.int(light.width * 2));
+		light.updateHitbox();
+		light.alpha = 0;
+		add(light);
 
-		poste = new FlxSprite(-1150, 110).loadGraphic(Paths.image('Dodge Event/street_pole'));
-		poste.cameras = [camOther];
+		poste = new FlxSprite(-1150, 110).loadGraphic(Paths.image('Dodge Event/metalPole'));
+		//poste.cameras = [camOther];
+		poste.setGraphicSize(Std.int(poste.width * 2));
+		poste.updateHitbox();
 		poste.alpha = 0;
 		add(poste);
 
@@ -2477,6 +2488,7 @@ class PlayState extends MusicBeatState
 					//warning.alpha = 0;
 					dodged = true;
 					canDodge = false;
+					boyfriend.dodgetime = 10;
 				}
 		if (healthBar.bounds.max != null && health > healthBar.bounds.max)
 			health = healthBar.bounds.max;
@@ -3297,15 +3309,33 @@ class PlayState extends MusicBeatState
 				canDodge = true;
 				warning.alpha = 1;
 				poste.alpha = 1;
+				light.alpha = 1;
 				warning.animation.play("dodge");
+				boyfriend.dodgetime = 10;
 				new FlxTimer().start(0.1, function(tmr:FlxTimer) {
-					FlxG.sound.play(Paths.sound('warning'));
-					FlxTween.tween(poste, {x:3650}, 1.35, {ease:FlxEase.sineIn, onComplete: 
+				FlxG.sound.play(Paths.sound('warning'));
+				var posteStart = -1150;
+				var posteEnd = 3650;
+				var posteDist = posteEnd - posteStart;
+				var posteTime = 1.25;
+				var speed = posteDist / posteTime;
+
+				var lightStart = -1570;
+				var lightEnd = 3450;
+				var lightDist = lightEnd - lightStart;
+				var lightTime = lightDist / speed;
+
+				FlxTween.tween(poste, {x: posteEnd}, posteTime, {ease: FlxEase.linear, onComplete: 
 					function(twn:FlxTween)
 					{
-						poste.x = -1150;
+						poste.x = posteStart;
 					}});
-				});
+				FlxTween.tween(light, {x: lightEnd}, lightTime, {ease: FlxEase.linear, onComplete: 
+					function(twn:FlxTween)
+					{
+						light.x = lightStart;
+					}});
+   				});
 				new FlxTimer().start(1, function(tmr:FlxTimer) {
 					if(!dodged)
 					{
@@ -3316,6 +3346,24 @@ class PlayState extends MusicBeatState
 
 					}
 				});
+				 if (cpuControlled && canDodge) {
+                    boyfriend.animation.finishCallback = function(name:String) {
+                        if (name == 'dodge')
+                            boyfriend.dance();
+                    };
+                    gf.animation.finishCallback = function(name:String) {
+                        if (name == 'dodge')
+                            gf.dance();
+                    };
+                    boyfriend.playAnim('dodge', true);
+					boyfriend.specialAnim = true;
+                    gf.playAnim('dodge', true);
+					gf.specialAnim = true;
+                    warning.animation.play("noice");
+                    FlxTween.tween(warning, {alpha: 0}, 0.6,  {ease: FlxEase.sineInOut});
+                    dodged = true;
+                    canDodge = false;
+                }
 			case 'Show Lyrics':
 				subTitle.text = value1;
 				subTitle.visible = true;
@@ -4602,7 +4650,7 @@ class PlayState extends MusicBeatState
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
 
-		if(curStep % 2 == 0)
+		if(curStep % 4 == 0)
 			{
 		if (creditsIconP != null && creditsIconEn != null) {
         var creditsAnimP = curBoyfriendAnimation;
@@ -4629,11 +4677,11 @@ class PlayState extends MusicBeatState
 
 	public function characterBopper(beat:Int):Void
 	{
-		if (gf != null && beat % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && !gf.getAnimationName().startsWith('sing') && !gf.stunned)
+		if (gf != null && beat % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && !gf.getAnimationName().startsWith('sing') && !gf.stunned && gf.dodgetime == 0)
 			gf.dance();
-		if (boyfriend != null && beat % boyfriend.danceEveryNumBeats == 0 && !boyfriend.getAnimationName().startsWith('sing') && !boyfriend.stunned)
+		if (boyfriend != null && beat % boyfriend.danceEveryNumBeats == 0 && !boyfriend.getAnimationName().startsWith('sing') && !boyfriend.stunned && boyfriend.dodgetime == 0)
 			boyfriend.dance();
-		if (dad != null && beat % dad.danceEveryNumBeats == 0 && !dad.getAnimationName().startsWith('sing') && !dad.stunned)
+		if (dad != null && beat % dad.danceEveryNumBeats == 0 && !dad.getAnimationName().startsWith('sing') && !dad.stunned && dad.dodgetime == 0)
 			dad.dance();
 	}
 
