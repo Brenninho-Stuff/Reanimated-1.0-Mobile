@@ -1,100 +1,132 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
 			"anim": "idle",
-			"fps": 24,
-			"name": "pico idle",
-			"indices": []
+			"indices": [],
+			"name": "pico idle"
 		},
 		{
-			"loop": false,
-			"offsets": [84, -7],
-			"anim": "singLEFT",
-			"fps": 24,
-			"name": "pico lef",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [76, -93],
-			"anim": "singDOWN",
-			"fps": 24,
-			"name": "pico sindrome de down",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [61, 50],
-			"anim": "singUP",
-			"fps": 24,
-			"name": "pico up",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [-65, 16],
-			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "pico righ",
-			"indices": []
-		},
-		{
-			"loop": false,
 			"offsets": [75, -98],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWNmiss",
-			"fps": 24,
-			"name": "arriba",
-			"indices": []
+			"indices": [],
+			"name": "arriba"
 		},
 		{
-			"loop": false,
 			"offsets": [50, 52],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUPmiss",
-			"fps": 24,
-			"name": "abajoespania",
-			"indices": []
+			"indices": [],
+			"name": "abajoespania"
 		},
 		{
-			"loop": false,
 			"offsets": [97, -7],
+			"loop": false,
+			"fps": 24,
 			"anim": "singLEFTmiss",
-			"fps": 24,
-			"name": "milei",
-			"indices": []
+			"indices": [],
+			"name": "milei"
 		},
 		{
-			"loop": false,
 			"offsets": [-64, 23],
+			"loop": false,
+			"fps": 24,
 			"anim": "singRIGHTmiss",
-			"fps": 24,
-			"name": "rimi",
-			"indices": []
+			"indices": [],
+			"name": "rimi"
 		},
 		{
-			"loop": false,
 			"offsets": [53, -5],
-			"anim": "lockin",
+			"loop": false,
 			"fps": 24,
-			"name": "fuck you",
+			"anim": "lockin",
+			"indices": [],
+			"name": "fuck you"
+		},
+		{
+			"loop": false,
+			"offsets": [296, 237],
+			"anim": "shoot",
+			"fps": 24,
+			"name": "pico dispara gripa0",
 			"indices": []
 		},
 		{
-			"offsets": [296, 237],
 			"loop": false,
+			"offsets": [8, -22],
+			"anim": "cock",
 			"fps": 24,
-			"anim": "shoot",
-			"indices": [],
-			"name": "pico dispara gripa0"
+			"name": "pico recarga movistar paquete de datos ilimitado0",
+			"indices": []
 		},
 		{
-			"offsets": [8, -22],
-			"loop": false,
-			"fps": 24,
-			"anim": "cock",
+			"offsets": [84, -7],
 			"indices": [],
-			"name": "pico recarga movistar paquete de datos ilimitado0"
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "pico lef0"
+		},
+		{
+			"offsets": [76, -93],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "pico sindrome de down0"
+		},
+		{
+			"offsets": [84, -7],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT-shit",
+			"loop": false,
+			"name": "pico lef ola0"
+		},
+		{
+			"offsets": [76, -93],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN-shit",
+			"loop": false,
+			"name": "pico sindrome de down nivel20"
+		},
+		{
+			"offsets": [61, 50],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "pico up0"
+		},
+		{
+			"offsets": [61, 50],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP-shit",
+			"loop": false,
+			"name": "pico up bajen"
+		},
+		{
+			"offsets": [-65, 16],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT-shit",
+			"loop": false,
+			"name": "pico righ ola mami"
+		},
+		{
+			"offsets": [-65, 16],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "pico righ0"
 		}
 	],
 	"vocals_file": "",
