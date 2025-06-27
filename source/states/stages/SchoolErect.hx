@@ -10,15 +10,21 @@ import torchsthings.shaders.AdjustColorShader;
 import torchsthings.objects.SpeakerSkin;
 import shaders.DropShadowShader;
 import shaders.DropShadowScreenspace;
+import torchsthings.objects.effects.ReflectedChar;
+import flixel.addons.display.FlxBackdrop;
+import shaders.WiggleEffectRuntime;
 
 import openfl.utils.Assets as OpenFlAssets;
 
 class SchoolErect extends BaseStage
 {
 	var bgGirls:BackgroundGirlsErect;
+	var bgSky:FlxBackdrop;
 	var crt:CRT = new CRT();
 	var shaderFilter:ShaderFilter;
 	var speakerTest:SpeakerSkin = null;
+	var wiggle:WiggleEffectRuntime;
+
 
 	override function create() {
 		ratingPos.set(500, 600);
@@ -31,8 +37,12 @@ class SchoolErect extends BaseStage
 		if(_song.gameOverEnd == null || _song.gameOverEnd.trim().length < 1) GameOverSubstate.endSoundName = 'pixel/gameOverEnd-pixel';
 		if(_song.gameOverChar == null || _song.gameOverChar.trim().length < 1) GameOverSubstate.characterName = 'bf-pixel-dead';
 
-		var bgSky:BGSprite = new BGSprite('weeb/Erect/weebSky', -500, -250, 0.1, 0.1);
-		bgSky.setGraphicSize(Std.int(bgSky.width * 0.5));
+		bgSky = new FlxBackdrop(Paths.image('weeb/Erect/weebSky'), X);
+		bgSky.setPosition(-500, -380);
+		bgSky.scrollFactor.set(0.1, 0.1);
+		bgSky.scale.set(0.5, 0.5);
+		bgSky.velocity.x = -20;
+		bgSky.antialiasing = ClientPrefs.data.antialiasing;
 		add(bgSky);
 		bgSky.antialiasing = false;
 
@@ -204,6 +214,9 @@ class SchoolErect extends BaseStage
 	}
 	override function createPost() {
 		super.createPost();
+		wiggle = new WiggleEffectRuntime(0.3, 0.4, 0.024, WiggleEffectType.DREAMY);
+		if (bgSky != null) bgSky.shader = wiggle;
+
 		/*gf.shader = makeCoolShader(6,15,-30,-16);
         dad.shader = makeCoolShader(6,15,-30,-16);
         boyfriend.shader = makeCoolShader(6,15,-30,-16);*/
@@ -212,6 +225,12 @@ class SchoolErect extends BaseStage
 		applyShader(gf,gf.curCharacter);
 		applyShader(dad,dad.curCharacter);
 		if (speaker != null) speaker.setShader(makeCoolShader(-10,-23,-66, 24)); 
+		reflectedBF = new ReflectedChar(boyfriend, 0.35);
+		addBehindBF(reflectedBF);
+		reflectedGF = new ReflectedChar(gf, 0.35);
+		addBehindGF(reflectedGF);
+		reflectedDad = new ReflectedChar(dad, 0.35);
+		addBehindDad(reflectedDad);
 		shaderFilter = new ShaderFilter(crt);
 		ShaderUtils.applyFiltersToCams([camGame, camHUD, camOther], [shaderFilter]);
 	}
@@ -316,6 +335,7 @@ class SchoolErect extends BaseStage
 	}
 		override function update(elapsed:Float) {
 		crt.update(elapsed);
+		wiggle?.update(elapsed);
 	}
 
 }

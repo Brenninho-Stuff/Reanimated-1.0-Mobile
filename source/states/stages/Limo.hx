@@ -1,6 +1,7 @@
 package states.stages;
 
 import states.stages.objects.*;
+import backend.Controls;
 
 enum HenchmenKillState
 {
@@ -29,6 +30,14 @@ class Limo extends BaseStage
 	var bgLimo:BGSprite;
 	var grpLimoParticles:FlxTypedGroup<BGSprite>;
 	var dancersDiff:Float = 320;
+
+	// Event Dodge
+	var lightpolecanDoShit:Bool = true;
+	var dodgeLimoMetalPole:BGSprite;
+	var dodgeLimoLight:BGSprite;
+	var hitbox:BGSprite;
+	var warning:FlxSprite;
+
 
 	override function create()
 	{
@@ -80,6 +89,7 @@ class Limo extends BaseStage
 			resetLimoKill();
 
 			//PRECACHE SOUND
+			Paths.sound('warning');
 			Paths.sound('dancerdeath');
 			setDefaultGF('gf-car');
 			
@@ -95,6 +105,35 @@ class Limo extends BaseStage
 	}
 	override function createPost()
 	{
+		warning = new FlxSprite(30, 400);
+		warning.frames = Paths.getSparrowAtlas('Dodge Event/space');
+		warning.antialiasing = true;
+		warning.animation.addByPrefix('dodge', 'bop', 12, true);
+		warning.animation.addByPrefix('hurt', 'miss', 12, true);
+		warning.animation.addByPrefix('noice', 'pressed', 12, true);
+		warning.cameras = [camOther];
+		warning.set.scale(0.5, 0.5);
+		warning.alpha = 0;
+		warning.screenCenter();
+		add(warning);
+
+		dodgeLimoLight = new BGSprite('gore/coldHeartKiller', -1450, 240);
+		dodgeLimoLight.setGraphicSize(Std.int(dodgeLimoLight.width * 2));
+		dodgeLimoLight.active = true;
+		add(dodgeLimoLight);
+
+		dodgeLimoMetalPole = new BGSprite('gore/metalPole', -1050, 610);
+		dodgeLimoMetalPole.setGraphicSize(Std.int(dodgeLimoMetalPole.width * 2));
+		dodgeLimoMetalPole.active = true;
+		add(dodgeLimoMetalPole);
+
+		hitbox = new BGSprite(null, -1870, 110);
+		hitbox.makeGraphic(250, 250, FlxColor.BLACK);
+		hitbox.active = true;
+		hitbox.visible = true;
+		add(hitbox);
+
+		resetPole();
 		resetFastCar();
 		addBehindBlackSceen(fastCar);
 		
@@ -107,6 +146,27 @@ class Limo extends BaseStage
 	var limoSpeed:Float = 0;
 	override function update(elapsed:Float)
 	{
+		hitbox.x = dodgeLimoLight.x + 60;
+		hitbox.y = dodgeLimoLight.y + 20;
+		if(!PlayState.instance.cpuControlled)
+		{
+			if (PlayState.instance.controls.justPressed("dodge_action")) boyfriend.dodge();
+
+
+			if (hitbox.overlapsPoint(boyfriend.getGraphicMidpoint()) && !boyfriend.dodging && !PlayState.instance.endingSong)
+			{
+				if(boyfriend.animOffsets.exists('hurt'))
+				{
+					boyfriend.playAnim('hurt', true);
+					warning.animation.play("hurt");
+					FlxTween.tween(warning, {alpha: 0}, 0.7,  {ease: FlxEase.sineInOut});
+				}
+
+				PlayState.instance.health -= 1.99;
+
+			}
+		} else
+			if (hitbox.overlapsPoint(boyfriend.getGraphicMidpoint()) && !boyfriend.dodging) boyfriend.dodge();
 		if(!ClientPrefs.data.lowQuality) {
 			grpLimoParticles.forEach(function(spr:BGSprite) {
 				if(spr.animation.curAnim.finished) {
@@ -114,6 +174,7 @@ class Limo extends BaseStage
 					grpLimoParticles.remove(spr, true);
 					spr.destroy();
 				}
+				
 			});
 
 			/*switch(limoKillingState) {
@@ -198,7 +259,6 @@ class Limo extends BaseStage
 			dancers[i].y = bgLimo.y - 400;
 		}
 
-		
 	}
 
 	override function beatHit()
@@ -231,12 +291,22 @@ class Limo extends BaseStage
 		}
 	}
 
+	override function eventPushed(event:objects.Note.EventNote)
+	{
+		switch(event.event)
+		{
+			case "Start Pole":
+				boyfriend.canDodge = true;
+		
+		}
+	}
+
 	override function eventCalled(eventName:String, value1:String, value2:String, flValue1:Null<Float>, flValue2:Null<Float>, strumTime:Float)
 	{
 		switch(eventName)
 		{
-			case "Kill Henchmen":
-				killHenchmen();
+			case 'Start Pole':
+				if(lightpolecanDoShit) startPole();
 		}
 	}
 
@@ -267,7 +337,28 @@ class Limo extends BaseStage
 		fastCar.velocity.x = 0;
 		fastCarCanDrive = true;
 	}
+	
+	var poleTimer:FlxTimer;
+	function startPole() {
+		dodgeLimoMetalPole.velocity.x = 20 * PlayState.SONG.bpm;
+		dodgeLimoLight.velocity.x = 20 * PlayState.SONG.bpm;
+		hitbox.velocity.x = 20 * PlayState.SONG.bpm;
+		lightpolecanDoShit = false;
+		new FlxTimer().start(3, function(tmr:FlxTimer){
+			resetPole();
+		});
+	}
 
+	function resetPole()
+	{
+		dodgeLimoMetalPole.x = -2440;
+		dodgeLimoLight.x = -2585;
+		dodgeLimoMetalPole.velocity.x = 0;
+		dodgeLimoLight.velocity.x = 0;
+		hitbox.velocity.x = 0;
+		lightpolecanDoShit = true;
+		//trace("Resetting dodgeLimoLight");
+	}
 	var carTimer:FlxTimer;
 	function fastCarDrive()
 	{

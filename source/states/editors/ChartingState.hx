@@ -88,6 +88,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
 		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
 		['Dodge Event', "none :v"],
+		['Start Pole', "For \"limo\" stage"],
 		['Camera Flash', "You know what it is.\nValue 1: white (0)/black (1) \nValue 2: Flash duration"],
 		['HUD Fade', "Value 1: Opaticity\nValue 2: Duration"],
 		["Set Health Drain", 'Defines how much life will be taken from the player\nwhen the enemy presses a note\n(recommend to use 0.06 or less)'],

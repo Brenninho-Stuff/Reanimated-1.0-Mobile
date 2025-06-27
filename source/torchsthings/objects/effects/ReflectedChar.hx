@@ -40,6 +40,10 @@ class ReflectedChar extends Character {
                 return -325;
             case 'torch' | 'torch-dead':
                 return -75;
+            case 'bf-pixel':
+                return -325;
+            case 'senpai' | 'senpai-angry':
+                return -325;
             default: // 'bf' is used at the default here.
                 return -55;
         }
