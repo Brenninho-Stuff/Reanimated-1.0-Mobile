@@ -137,10 +137,6 @@ class Character extends FlxSprite
 	public var animatedOverlay:Bool = false;
 	public var healthBarOverlayAnimation:String = '';
 
-		//HD stuff
-	public var dodging:Bool = false;
-	public var dodgeTimer:FlxTimer;
-	public var canDodge:Bool = false;
 
 	public function new(x:Float, y:Float, ?character:String = 'bf', ?isPlayer:Bool = false)
 	{
@@ -445,7 +441,7 @@ class Character extends FlxSprite
 	 */
 	public function dance()
 	{
-		if (!debugMode && !skipDance && !specialAnim && !dodging)
+		if (!debugMode && !skipDance && !specialAnim)
 		{
 			if (forceIdle && hasAnimation('idle' + idleSuffix))
 			{
@@ -470,20 +466,6 @@ class Character extends FlxSprite
 		}
 	}
 
-	public function dodge()
-	{
-		if (canDodge && !dodging)
-		{
-			var dodgeAnim:String = 'dodge';
-			if (curCharacter.startsWith('gf-') || curCharacter == 'gf') dodgeAnim = 'dodge';
-			if (animOffsets.exists(dodgeAnim)) playAnim(dodgeAnim);
-			dodging = true;
-			dodgeTimer = new FlxTimer().start(1, function(tmr:FlxTimer) {
-				dodging = false;
-				dance();
-			});
-		}
-	}
 
 	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{

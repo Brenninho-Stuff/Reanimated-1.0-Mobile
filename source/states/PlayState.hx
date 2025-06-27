@@ -153,12 +153,11 @@ class PlayState extends MusicBeatState
 	public var playbackRate(default, set):Float = 1;
 
 	//dodge Event
-/*ublic var canDodge:Bool = true;
-	public var dodged:Bool = false;*/
+	private var canDodge:Bool = true;
+	private var dodged:Bool = false;
 	public var warning:FlxSprite;
 	public var poste:FlxSprite;
 	public var light:FlxSprite;
-	public var dodgeHitbox:FlxSprite;
 
 
 	public var boyfriendGroup:FlxSpriteGroup;
@@ -2469,7 +2468,7 @@ class PlayState extends MusicBeatState
 				}
 				
 			}
-			/*if (controls.DODGE_ACTION && canDodge)
+			if (controls.DODGE_ACTION && canDodge)
 				{
 					boyfriend.animation.finishCallback = function(name:String) {
 						if (name == 'dodge')
@@ -2482,14 +2481,16 @@ class PlayState extends MusicBeatState
 					};
 					
 					boyfriend.playAnim('dodge', true);
+					boyfriend.specialAnim = true;
 					gf.playAnim('dodge', true);
+					gf.specialAnim = true;
 					warning.animation.play("noice");
 					FlxTween.tween(warning, {alpha: 0}, 0.6,  {ease: FlxEase.sineInOut});
 					//warning.alpha = 0;
 					dodged = true;
 					canDodge = false;
 					boyfriend.dodgetime = 10;
-				}*/
+				}
 		if (healthBar.bounds.max != null && health > healthBar.bounds.max)
 			health = healthBar.bounds.max;
 
@@ -3304,7 +3305,7 @@ class PlayState extends MusicBeatState
 							camOther.flash(FlxColor.BLACK, time, null, true);
 					}
 				}
-			/*case 'Dodge Event':
+			case 'Dodge Event':
 				dodged = false;
 				canDodge = true;
 				warning.alpha = 1;
@@ -3363,7 +3364,7 @@ class PlayState extends MusicBeatState
                     FlxTween.tween(warning, {alpha: 0}, 0.6,  {ease: FlxEase.sineInOut});
                     dodged = true;
                     canDodge = false;
-                }*/
+                }
 			case 'Show Lyrics':
 				subTitle.text = value1;
 				subTitle.visible = true;
