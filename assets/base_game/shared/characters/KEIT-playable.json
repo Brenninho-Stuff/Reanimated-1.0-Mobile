@@ -1,0 +1,207 @@
+{
+	"animations": [
+		{
+			"offsets": [-5, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "K IDLE0"
+		},
+		{
+			"offsets": [-3, 2],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "K RIGHT0"
+		},
+		{
+			"offsets": [-3, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "K DOWN0"
+		},
+		{
+			"offsets": [-8, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "K UP0"
+		},
+		{
+			"offsets": [-6, -1],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "K LEFT0"
+		},
+		{
+			"offsets": [-3, 2],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "K RIGHT M"
+		},
+		{
+			"offsets": [-3, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "K DOWN M"
+		},
+		{
+			"offsets": [-8, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "K UP M"
+		},
+		{
+			"offsets": [-6, -1],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "K LEFT M"
+		},
+		{
+			"offsets": [-5, 0],
+			"loop": false,
+			"fps": 29,
+			"anim": "hey",
+			"indices": [],
+			"name": "HEY"
+		},
+		{
+			"offsets": [-5, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "scared",
+			"indices": [],
+			"name": "K IDLE scared"
+		},
+		{
+			"offsets": [-5, 0],
+			"loop": true,
+			"fps": 24,
+			"anim": "scared-loop",
+			"indices": [3, 4, 5],
+			"name": "K IDLE scared"
+		},
+		{
+			"offsets": [-5, -4],
+			"loop": false,
+			"fps": 24,
+			"anim": "dodge",
+			"indices": [],
+			"name": "keit dodge"
+		},
+		{
+			"offsets": [-6, -1],
+			"loop": false,
+			"fps": 24,
+			"anim": "hit",
+			"indices": [],
+			"name": "keit hit"
+		},
+		{
+			"offsets": [-3, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "pre-attack",
+			"indices": [],
+			"name": "K pre-attack"
+		},
+		{
+			"offsets": [120, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "attack",
+			"indices": [],
+			"name": "K attack"
+		},
+		{
+			"offsets": [-8, -1],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT-alt",
+			"indices": [],
+			"name": "K RIGHT-alt"
+		},
+		{
+			"offsets": [-6, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN-alt",
+			"indices": [],
+			"name": "K DOWN-alt"
+		},
+		{
+			"offsets": [-6, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP-alt",
+			"indices": [],
+			"name": "K UP-alt"
+		},
+		{
+			"offsets": [-6, 1],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT-alt",
+			"indices": [],
+			"name": "K LEFT-alt"
+		},
+		{
+			"offsets": [-4, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT-beat",
+			"indices": [],
+			"name": "beatRIGHT"
+		},
+		{
+			"offsets": [-5, -1],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN-beat",
+			"indices": [],
+			"name": "beatDOWN"
+		},
+		{
+			"offsets": [-5, 1],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP-beat",
+			"indices": [],
+			"name": "beatUP"
+		},
+		{
+			"offsets": [-6, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT-beat",
+			"indices": [],
+			"name": "beatLEFT"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/devs/keit_assets, characters/devs/keit_alt_animations, characters/devs/keit_combat",
+	"position": [-130, 110],
+	"healthicon": "keit",
+	"flip_x": false,
+	"healthbar_colors": [49, 49, 49],
+	"camera_position": [80, -40],
+	"sing_duration": 5.9,
+	"scale": 1.1,
+	"_editor_isPlayer": true
+}

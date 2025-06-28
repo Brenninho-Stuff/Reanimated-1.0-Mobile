@@ -81,7 +81,7 @@ override function create()
 
         lights = new BGSprite('Erect/light', 700, 260);
         lights.blend = ADD;
-        lights.alpha = 0.7;
+        lights.alpha = 0.9;
         lights.antialiasing = ClientPrefs.data.antialiasing;
         lights.setGraphicSize(Std.int(lights.width * 0.9));
         lights.updateHitbox();

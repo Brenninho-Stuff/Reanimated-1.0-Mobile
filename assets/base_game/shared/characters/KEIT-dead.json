@@ -1,0 +1,39 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [-5, 9],
+			"anim": "firstDeath",
+			"fps": 21.5,
+			"name": "K dies",
+			"indices": []
+		},
+		{
+			"offsets": [-5, 9],
+			"indices": [],
+			"fps": 12,
+			"anim": "deathLoop",
+			"loop": true,
+			"name": "K dead loop"
+		},
+		{
+			"offsets": [-5, 9],
+			"indices": [],
+			"fps": 20,
+			"anim": "deathConfirm",
+			"loop": false,
+			"name": "K dead confirm"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/devs/keit_assets_dead",
+	"position": [-110, 120],
+	"healthicon": "keit",
+	"flip_x": true,
+	"healthbar_colors": [49, 49, 49],
+	"camera_position": [0, 0],
+	"sing_duration": 4,
+	"scale": 1.1,
+	"_editor_isPlayer": true
+}

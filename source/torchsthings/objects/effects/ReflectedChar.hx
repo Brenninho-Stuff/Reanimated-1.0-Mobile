@@ -44,6 +44,10 @@ class ReflectedChar extends Character {
                 return -325;
             case 'senpai' | 'senpai-angry':
                 return -325;
+            case 'pico-pixel':
+                return -105;
+            case 'nene-pixel':
+                return 280;
             default: // 'bf' is used at the default here.
                 return -55;
         }

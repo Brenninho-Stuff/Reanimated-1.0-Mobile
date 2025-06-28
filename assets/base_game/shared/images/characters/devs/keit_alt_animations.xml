@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="keit_alt_animations.png">
+	<!-- Created with Adobe Animate version 20.0.0.17400 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+        <SubTexture name="K DOWN-alt0000" x="5" y="5" width="640" height="640"/>
+        <SubTexture name="K DOWN-alt0001" x="5" y="5" width="640" height="640"/>
+        <SubTexture name="K DOWN-alt0002" x="655" y="5" width="640" height="640"/>
+        <SubTexture name="K DOWN-alt0003" x="655" y="5" width="640" height="640"/>
+        <SubTexture name="K DOWN-alt0004" x="655" y="5" width="640" height="640"/>
+        <SubTexture name="K DOWN-alt0005" x="655" y="5" width="640" height="640"/>
+        <SubTexture name="K DOWN-alt0006" x="655" y="5" width="640" height="640"/>
+        <SubTexture name="K DOWN-alt0007" x="655" y="5" width="640" height="640"/>
+        <SubTexture name="K DOWN-alt0008" x="655" y="5" width="640" height="640"/>
+        <SubTexture name="K DOWN-alt0009" x="655" y="5" width="640" height="640"/>
+        <SubTexture name="K LEFT-alt0000" x="1305" y="5" width="640" height="640"/>
+        <SubTexture name="K LEFT-alt0001" x="1305" y="5" width="640" height="640"/>
+        <SubTexture name="K LEFT-alt0002" x="1955" y="5" width="640" height="640"/>
+        <SubTexture name="K LEFT-alt0003" x="1955" y="5" width="640" height="640"/>
+        <SubTexture name="K LEFT-alt0004" x="5" y="655" width="640" height="640"/>
+        <SubTexture name="K LEFT-alt0005" x="5" y="655" width="640" height="640"/>
+        <SubTexture name="K LEFT-alt0006" x="655" y="655" width="640" height="640"/>
+        <SubTexture name="K LEFT-alt0007" x="655" y="655" width="640" height="640"/>
+        <SubTexture name="K LEFT-alt0008" x="655" y="655" width="640" height="640"/>
+        <SubTexture name="K LEFT-alt0009" x="655" y="655" width="640" height="640"/>
+        <SubTexture name="K RIGHT-alt0000" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K RIGHT-alt0001" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K RIGHT-alt0002" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K RIGHT-alt0003" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K RIGHT-alt0004" x="5" y="1305" width="640" height="640"/>
+        <SubTexture name="K RIGHT-alt0005" x="5" y="1305" width="640" height="640"/>
+        <SubTexture name="K RIGHT-alt0006" x="655" y="1305" width="640" height="640"/>
+        <SubTexture name="K RIGHT-alt0007" x="655" y="1305" width="640" height="640"/>
+        <SubTexture name="K RIGHT-alt0008" x="655" y="1305" width="640" height="640"/>
+        <SubTexture name="K RIGHT-alt0009" x="655" y="1305" width="640" height="640"/>
+        <SubTexture name="K UP-alt0000" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K UP-alt0001" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K UP-alt0002" x="1955" y="1305" width="640" height="640"/>
+        <SubTexture name="K UP-alt0003" x="1955" y="1305" width="640" height="640"/>
+        <SubTexture name="K UP-alt0004" x="5" y="1955" width="640" height="640"/>
+        <SubTexture name="K UP-alt0005" x="5" y="1955" width="640" height="640"/>
+        <SubTexture name="K UP-alt0006" x="655" y="1955" width="640" height="640"/>
+        <SubTexture name="K UP-alt0007" x="655" y="1955" width="640" height="640"/>
+        <SubTexture name="K UP-alt0008" x="655" y="1955" width="640" height="640"/>
+        <SubTexture name="K UP-alt0009" x="655" y="1955" width="640" height="640"/>
+        <SubTexture name="beatDOWN0000" x="1305" y="1955" width="640" height="640"/>
+        <SubTexture name="beatDOWN0001" x="1305" y="1955" width="640" height="640"/>
+        <SubTexture name="beatDOWN0002" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="beatDOWN0003" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="beatDOWN0004" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="beatDOWN0005" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="beatDOWN0006" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="beatDOWN0007" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="beatDOWN0008" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="beatDOWN0009" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="beatLEFT0000" x="2605" y="5" width="640" height="640"/>
+        <SubTexture name="beatLEFT0001" x="2605" y="5" width="640" height="640"/>
+        <SubTexture name="beatLEFT0002" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="beatLEFT0003" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="beatLEFT0004" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="beatLEFT0005" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="beatLEFT0006" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="beatLEFT0007" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="beatLEFT0008" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="beatLEFT0009" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="beatRIGHT0000" x="2605" y="1305" width="640" height="640"/>
+        <SubTexture name="beatRIGHT0001" x="2605" y="1305" width="640" height="640"/>
+        <SubTexture name="beatRIGHT0002" x="2605" y="1955" width="640" height="640"/>
+        <SubTexture name="beatRIGHT0003" x="2605" y="1955" width="640" height="640"/>
+        <SubTexture name="beatRIGHT0004" x="2605" y="1955" width="640" height="640"/>
+        <SubTexture name="beatRIGHT0005" x="2605" y="1955" width="640" height="640"/>
+        <SubTexture name="beatRIGHT0006" x="2605" y="1955" width="640" height="640"/>
+        <SubTexture name="beatRIGHT0007" x="2605" y="1955" width="640" height="640"/>
+        <SubTexture name="beatRIGHT0008" x="2605" y="1955" width="640" height="640"/>
+        <SubTexture name="beatRIGHT0009" x="2605" y="1955" width="640" height="640"/>
+        <SubTexture name="beatUP0000" x="5" y="2605" width="640" height="640"/>
+        <SubTexture name="beatUP0001" x="5" y="2605" width="640" height="640"/>
+        <SubTexture name="beatUP0002" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="beatUP0003" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="beatUP0004" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="beatUP0005" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="beatUP0006" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="beatUP0007" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="beatUP0008" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="beatUP0009" x="655" y="2605" width="640" height="640"/>
+</TextureAtlas>

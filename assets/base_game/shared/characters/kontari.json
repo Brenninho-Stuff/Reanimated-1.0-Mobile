@@ -1,0 +1,103 @@
+{
+	"animations": [
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "idle"
+		},
+		{
+			"offsets": [39, -9],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "lef"
+		},
+		{
+			"offsets": [-20, -31],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "down"
+		},
+		{
+			"offsets": [-58, 14],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "righ"
+		},
+		{
+			"offsets": [-6, 51],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "up"
+		},
+		{
+			"offsets": [38, 24],
+			"loop": false,
+			"fps": 24,
+			"anim": "hey",
+			"indices": [],
+			"name": "hey"
+		},
+		{
+			"loop": false,
+			"offsets": [39, -9],
+			"anim": "singLEFT-alt",
+			"fps": 24,
+			"name": "lef",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-20, -31],
+			"anim": "singDOWN-alt",
+			"fps": 24,
+			"name": "down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-58, 14],
+			"anim": "singRIGHT-alt",
+			"fps": 24,
+			"name": "righ",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-6, 51],
+			"anim": "singUP-alt",
+			"fps": 24,
+			"name": "up",
+			"indices": []
+		},
+		{
+			"offsets": [0, 0],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle-alt",
+			"loop": false,
+			"name": "idle"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/devs/Kontari",
+	"position": [-60, 280],
+	"healthicon": "nyah",
+	"flip_x": true,
+	"healthbar_colors": [223, 45, 101],
+	"camera_position": [80, 70],
+	"sing_duration": 4,
+	"scale": 0.9,
+	"_editor_isPlayer": true
+}

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="keit_assets_dead.png">
+	<!-- Created with Adobe Animate version 20.0.0.17400 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="K dies0000" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="K dies0001" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="K dies0002" x="5" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0003" x="5" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0004" x="655" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0005" x="655" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0006" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0007" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0008" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0009" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0010" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0011" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0012" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0013" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0014" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0015" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0016" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0017" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0018" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0019" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0020" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0021" x="1955" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0022" x="1955" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0023" x="2605" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0024" x="2605" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0025" x="5" y="1955" width="640" height="640"/>
+        <SubTexture name="K dies0026" x="655" y="1955" width="640" height="640"/>
+        <SubTexture name="K dies0027" x="655" y="1955" width="640" height="640"/>
+        <SubTexture name="K dies0028" x="1305" y="1955" width="640" height="640"/>
+        <SubTexture name="K dies0029" x="1305" y="1955" width="640" height="640"/>
+        <SubTexture name="K dies0030" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="K dies0031" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="K dies0032" x="2605" y="1955" width="640" height="640"/>
+        <SubTexture name="K dies0033" x="2605" y="1955" width="640" height="640"/>
+        <SubTexture name="K dies0034" x="5" y="2605" width="640" height="640"/>
+        <SubTexture name="K dies0035" x="5" y="2605" width="640" height="640"/>
+        <SubTexture name="K dies0036" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="K dies0037" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="K dies0038" x="1305" y="2605" width="640" height="640"/>
+        <SubTexture name="K dies0039" x="1955" y="2605" width="640" height="640"/>
+        <SubTexture name="K dies0040" x="2605" y="2605" width="640" height="640"/>
+        <SubTexture name="K dies0041" x="3255" y="5" width="640" height="640"/>
+        <SubTexture name="K dies0042" x="3255" y="655" width="640" height="640"/>
+        <SubTexture name="K dies0043" x="3255" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0044" x="3255" y="1305" width="640" height="640"/>
+        <SubTexture name="K dies0045" x="3255" y="1955" width="640" height="640"/>
+        <SubTexture name="K dies0046" x="3255" y="2605" width="640" height="640"/>
+        <SubTexture name="K dies0047" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0048" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0049" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0050" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0051" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0052" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0053" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0054" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0055" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0056" x="655" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0057" x="1305" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0058" x="1955" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0059" x="1955" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0060" x="1955" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0061" x="1955" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0062" x="1955" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0063" x="1955" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0064" x="1955" y="3255" width="640" height="640"/>
+        <SubTexture name="K dies0065" x="1955" y="3255" width="640" height="640"/>
+        <SubTexture name="K dead loop0000" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0001" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0002" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0003" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0004" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0005" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0006" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0007" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0008" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0009" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0010" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0011" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0012" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0013" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0014" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0015" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0016" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead loop0017" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K dead confirm0000" x="5" y="5" width="640" height="640"/>
+        <SubTexture name="K dead confirm0001" x="5" y="5" width="640" height="640"/>
+        <SubTexture name="K dead confirm0002" x="655" y="5" width="640" height="640"/>
+        <SubTexture name="K dead confirm0003" x="655" y="5" width="640" height="640"/>
+        <SubTexture name="K dead confirm0004" x="1305" y="5" width="640" height="640"/>
+        <SubTexture name="K dead confirm0005" x="1305" y="5" width="640" height="640"/>
+        <SubTexture name="K dead confirm0006" x="1955" y="5" width="640" height="640"/>
+        <SubTexture name="K dead confirm0007" x="1955" y="5" width="640" height="640"/>
+        <SubTexture name="K dead confirm0008" x="2605" y="5" width="640" height="640"/>
+        <SubTexture name="K dead confirm0009" x="2605" y="5" width="640" height="640"/>
+        <SubTexture name="K dead confirm0010" x="5" y="655" width="640" height="640"/>
+        <SubTexture name="K dead confirm0011" x="5" y="655" width="640" height="640"/>
+        <SubTexture name="K dead confirm0012" x="655" y="655" width="640" height="640"/>
+</TextureAtlas>
+

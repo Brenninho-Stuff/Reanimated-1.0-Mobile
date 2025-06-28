@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="keit_assets.png">
+	<!-- Created with Adobe Animate version 20.0.0.17400 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+        <SubTexture name="HEY0000" x="5" y="5" width="640" height="640"/>
+        <SubTexture name="HEY0001" x="5" y="5" width="640" height="640"/>
+        <SubTexture name="HEY0002" x="655" y="5" width="640" height="640"/>
+        <SubTexture name="HEY0003" x="655" y="5" width="640" height="640"/>
+        <SubTexture name="HEY0004" x="1305" y="5" width="640" height="640"/>
+        <SubTexture name="HEY0005" x="1955" y="5" width="640" height="640"/>
+        <SubTexture name="HEY0006" x="1955" y="5" width="640" height="640"/>
+        <SubTexture name="HEY0007" x="2605" y="5" width="640" height="640"/>
+        <SubTexture name="HEY0008" x="2605" y="5" width="640" height="640"/>
+        <SubTexture name="HEY0009" x="2605" y="5" width="640" height="640"/>
+        <SubTexture name="HEY0010" x="2605" y="5" width="640" height="640"/>
+        <SubTexture name="HEY0011" x="2605" y="5" width="640" height="640"/>
+        <SubTexture name="HEY0012" x="2605" y="5" width="640" height="640"/>
+        <SubTexture name="K DOWN M0000" x="3255" y="5" width="640" height="640"/>
+        <SubTexture name="K DOWN M0001" x="5" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0002" x="5" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0003" x="655" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0004" x="655" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0005" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0006" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0007" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0008" x="655" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0009" x="655" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0010" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0011" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0012" x="655" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0013" x="655" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0014" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0015" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0016" x="655" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0017" x="655" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0018" x="1305" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN M0019" x="1305" y="655" width="640" height="640"/>
+	<SubTexture name="K DOWN0000" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN0001" x="1955" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN0002" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN0003" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN0004" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN0005" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN0006" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN0007" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN0008" x="2605" y="655" width="640" height="640"/>
+        <SubTexture name="K DOWN0009" x="2605" y="655" width="640" height="640"/>       
+        <SubTexture name="K LEFT M0000" x="2605" y="1955" width="640" height="640"/>
+        <SubTexture name="K LEFT M0001" x="3255" y="1955" width="640" height="640"/>
+        <SubTexture name="K LEFT M0002" x="3255" y="1955" width="640" height="640"/>
+        <SubTexture name="K LEFT M0003" x="5" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0004" x="5" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0005" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0006" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0007" x="5" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0008" x="5" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0009" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0010" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0011" x="5" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0012" x="5" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0013" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0014" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0015" x="5" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0016" x="5" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0017" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0018" x="655" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT M0019" x="5" y="2605" width="640" height="640"/>
+	<SubTexture name="K LEFT0000" x="1305" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT0001" x="1305" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT0002" x="1955" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT0003" x="1955" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT0004" x="1955" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT0005" x="1955" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT0006" x="1955" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT0007" x="1955" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT0008" x="1955" y="2605" width="640" height="640"/>
+        <SubTexture name="K LEFT0009" x="1955" y="2605" width="640" height="640"/>
+	<SubTexture name="K RIGHT M0000" x="2605" y="2605" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0001" x="3255" y="2605" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0002" x="3255" y="2605" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0003" x="5" y="3255" width="640" height="640"/> 
+        <SubTexture name="K RIGHT M0004" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0005" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0006" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0007" x="5" y="3255" width="640" height="640"/> 
+        <SubTexture name="K RIGHT M0008" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0009" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0010" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0011" x="5" y="3255" width="640" height="640"/> 
+        <SubTexture name="K RIGHT M0012" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0013" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0014" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0015" x="5" y="3255" width="640" height="640"/> 
+        <SubTexture name="K RIGHT M0016" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0017" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0018" x="5" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT M0019" x="5" y="3255" width="640" height="640"/> 
+	<SubTexture name="K RIGHT0000" x="655" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT0001" x="655" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT0002" x="1305" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT0003" x="1305" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT0004" x="1305" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT0005" x="1305" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT0006" x="1305" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT0007" x="1305" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT0008" x="1305" y="3255" width="640" height="640"/>
+        <SubTexture name="K RIGHT0009" x="1305" y="3255" width="640" height="640"/>
+	<SubTexture name="K UP M0000" x="1955" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0001" x="2605" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0002" x="2605" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0003" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0004" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0005" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0006" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0007" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0008" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0009" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0010" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0011" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0012" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0013" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0014" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0015" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0016" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0017" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0018" x="3255" y="3255" width="640" height="640"/>
+        <SubTexture name="K UP M0019" x="3255" y="3255" width="640" height="640"/>
+	<SubTexture name="K UP0000" x="3905" y="5" width="640" height="640"/>
+        <SubTexture name="K UP0001" x="3905" y="5" width="640" height="640"/>
+        <SubTexture name="K UP0002" x="3905" y="655" width="640" height="640"/>
+        <SubTexture name="K UP0003" x="3905" y="655" width="640" height="640"/>
+        <SubTexture name="K UP0004" x="3905" y="655" width="640" height="640"/>
+        <SubTexture name="K UP0005" x="3905" y="655" width="640" height="640"/>
+        <SubTexture name="K UP0006" x="3905" y="655" width="640" height="640"/>
+        <SubTexture name="K UP0007" x="3905" y="655" width="640" height="640"/>
+        <SubTexture name="K UP0008" x="3905" y="655" width="640" height="640"/>
+        <SubTexture name="K UP0009" x="3905" y="655" width="640" height="640"/>
+	<SubTexture name="K IDLE0000" x="3255" y="1305" width="640" height="640"/>
+        <SubTexture name="K IDLE0001" x="3255" y="1305" width="640" height="640"/>
+        <SubTexture name="K IDLE0002" x="5" y="1955" width="640" height="640"/>
+        <SubTexture name="K IDLE0003" x="5" y="1955" width="640" height="640"/> 
+        <SubTexture name="K IDLE0004" x="655" y="1955" width="640" height="640"/>
+        <SubTexture name="K IDLE0005" x="655" y="1955" width="640" height="640"/>
+        <SubTexture name="K IDLE0006" x="1305" y="1955" width="640" height="640"/>
+        <SubTexture name="K IDLE0007" x="1305" y="1955" width="640" height="640"/>
+        <SubTexture name="K IDLE0008" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="K IDLE0009" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="K IDLE0010" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="K IDLE0011" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="K IDLE0012" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="K IDLE0013" x="1955" y="1955" width="640" height="640"/>
+        <SubTexture name="K IDLE scared0000" x="3255" y="655" width="640" height="640"/>
+        <SubTexture name="K IDLE scared0001" x="5" y="1305" width="640" height="640"/>
+        <SubTexture name="K IDLE scared0002" x="655" y="1305" width="640" height="640"/>
+        <SubTexture name="K IDLE scared0003" x="1305" y="1305" width="640" height="640"/>
+        <SubTexture name="K IDLE scared0004" x="1955" y="1305" width="640" height="640"/>
+        <SubTexture name="K IDLE scared0005" x="2605" y="1305" width="640" height="640"/>
+</TextureAtlas>

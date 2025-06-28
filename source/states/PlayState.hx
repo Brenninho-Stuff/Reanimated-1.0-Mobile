@@ -762,15 +762,15 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.data.downScroll)
 			botplayTxt.y = healthBar.y + 120;
 
-		warning = new FlxSprite(30, 400);
+		warning = new FlxSprite(310, 200);
 		warning.frames = Paths.getSparrowAtlas('Dodge Event/space');
 		warning.antialiasing = true;
 		warning.animation.addByPrefix('dodge', 'bop', 12, true);
 		warning.animation.addByPrefix('hurt', 'miss', 12, true);
 		warning.animation.addByPrefix('noice', 'pressed', 12, true);
 		warning.cameras = [camOther];
+		warning.scale.set(0.6, 0.6);
 		warning.alpha = 0;
-		warning.screenCenter();
 		add(warning);
 		
 		light = new FlxSprite(-1570, 110).loadGraphic(Paths.image('Dodge Event/coldHeartKiller'));
@@ -3314,7 +3314,7 @@ class PlayState extends MusicBeatState
 				warning.animation.play("dodge");
 				boyfriend.dodgetime = 10;
 				new FlxTimer().start(0.1, function(tmr:FlxTimer) {
-				FlxG.sound.play(Paths.sound('warning'));
+				FlxG.sound.play(Paths.sound('warning', 'week4'));
 				var posteStart = -1150;
 				var posteEnd = 3650;
 				var posteDist = posteEnd - posteStart;
