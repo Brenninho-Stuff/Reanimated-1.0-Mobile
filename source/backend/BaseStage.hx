@@ -249,6 +249,7 @@ public function addBehindDadAndBF(obj:FlxBasic) {
 	public var defaultSpeaker:String = 'base'; // This is only used for setting a default speaker per stage if someone doesn't change the speaker themselves
 
 	// I'd highly recommend using gfGroup.x and gfGroup.y to base values off to make it easier
+	// Example -> addSpeaker(gfGroup.x, gfGroup.y + 500);
 	function addSpeaker(?xOffset:Float = 0.0, ?yOffset:Float = 550.0, ?scrollFactorX:Float = 1.0, ?scrollFactorY:Float = 1.0) {
 		var skin:String = switch (ClientPrefs.data.speakerSkin.toLowerCase()) {
             case "stage":

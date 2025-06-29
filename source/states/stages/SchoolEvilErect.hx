@@ -18,12 +18,26 @@ class SchoolEvilErect extends BaseStage
 	var crt:CRT = new CRT(true);
 	var shaderFilter:ShaderFilter;
 	var wiggle:WiggleEffectRuntime;
+	var glitch:GlitchEffect;
+	//var gfGlitch:GlitchEffect;
+	//var backgroundGlitch:GlitchEffect;
+	var glitchFilter:ShaderFilter;
 
 	override function create()
 	{
 		ratingPos.set(500, 600);
         comboCountPos.set(400, 750);
-		comboImage.set( 0, 750);
+		comboImage.set(0, 750);
+		
+		if (ClientPrefs.data.intenseShaders) {
+			glitch = new GlitchEffect(true, true, true, true, true, true, true);
+			//gfGlitch = new GlitchEffect(true, true, true, true, true, false, true);
+			//backgroundGlitch = new GlitchEffect(true, true, true, true, true, true, true);
+		}
+		else {
+			glitch = new GlitchEffect(true, false, false, false, true, false, true);
+			//gfGlitch = new GlitchEffect(true, false, false, false, true, false, true);
+		}
 
 		var _song = PlayState.SONG;
 		if(_song.gameOverSound == null || _song.gameOverSound.trim().length < 1) GameOverSubstate.deathSoundName = 'pixel/fnf_loss_sfx-pixel';
@@ -38,6 +52,7 @@ class SchoolEvilErect extends BaseStage
 		bg.scale.set(PlayState.daPixelZoom, PlayState.daPixelZoom);
 		bg.setGraphicSize(Std.int(9 * bg.width));
 		bg.antialiasing = false;
+		//if (ClientPrefs.data.shaders && ClientPrefs.data.intenseShaders && backgroundGlitch != null) bg.shader = backgroundGlitch;
 		add(bg);
 		setDefaultGF('gf-pixel');
 
@@ -52,8 +67,13 @@ class SchoolEvilErect extends BaseStage
 
 	override function createPost()
 	{
-		shaderFilter = new ShaderFilter(crt);
-		ShaderUtils.applyFiltersToCams([camGame, camHUD, camOther], [shaderFilter]);
+		if (ClientPrefs.data.shaders) {
+			shaderFilter = new ShaderFilter(crt);
+			glitchFilter = new ShaderFilter(glitch);
+			//gf.shader = gfGlitch;
+			ShaderUtils.applyFiltersToCams([camGame],  [glitchFilter, shaderFilter]);
+			ShaderUtils.applyFiltersToCams([camHUD, camOther], [shaderFilter]);
+		}
 		var trail:FlxTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 		wiggle = new WiggleEffectRuntime(2, 4, 0.017, WiggleEffectType.DREAMY);
 		bg.shader = wiggle;
@@ -64,8 +84,14 @@ class SchoolEvilErect extends BaseStage
 	}
 
 	override function update(elapsed:Float) {
-		crt.update(elapsed);
-		wiggle?.update(elapsed);
+		if (ClientPrefs.data.shaders) {
+			glitch.update(elapsed);
+			//gfGlitch.update(elapsed);
+			//if (backgroundGlitch != null && ClientPrefs.data.intenseShaders) backgroundGlitch.update(elapsed);
+			
+			crt.update(elapsed);
+			wiggle?.update(elapsed);
+		}
 	}
 
 	// Ghouls event
