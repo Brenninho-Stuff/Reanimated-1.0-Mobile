@@ -133,6 +133,8 @@ class Tank extends BaseStage
 		if(songName == 'stress' || songName == 'stress-Pico-Mix') setDefaultGF('pico-speaker');
 		else setDefaultGF('gf-tankmen');
 		*/
+		defaultSpeaker = 'default';
+        addSpeaker(gfGroup.x + 100, gfGroup.y + 355);
 		
         if (PlayState.SONG.song.toLowerCase().contains('pico-mix')) {
 			defaultSpeaker = 'abot';

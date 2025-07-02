@@ -1,0 +1,234 @@
+{
+	"events": [
+		[
+			3840,
+			[
+				["Dodge Event", "", ""]
+			]
+		],
+		[
+			7680,
+			[
+				["Dodge Event", "", ""]
+			]
+		],
+		[
+			19680,
+			[
+				["Add Camera Zoom", "0.050", "0.0.50"]
+			]
+		],
+		[
+			20160,
+			[
+				["Add Camera Zoom", "0.050", "0.0.50"]
+			]
+		],
+		[
+			20400,
+			[
+				["Dodge Event", "", ""]
+			]
+		],
+		[
+			20520,
+			[
+				["Add Camera Zoom", "0.050", "0.0.50"]
+			]
+		],
+		[
+			34560,
+			[
+				["Color Transform", "1", "13.43,nocolor"],
+				["Updated Camera Zoom", "Main", "1.1,6,smoothStepInOut"],
+				["Set Health Drain", "0.03", ""],
+				["Enemy Splashes", "true", "true"]
+			]
+		],
+		[
+			36480,
+			[
+				["Dodge Event", "", ""]
+			]
+		],
+		[
+			37920,
+			[
+				["Updated Camera Zoom", "Main", "0.65,7.5,smoothStepInOut"]
+			]
+		],
+		[
+			40560,
+			[
+				["Dodge Event", "", ""]
+			]
+		],
+		[
+			42240,
+			[
+				["Set Property", "cameraSpeed", "0.3"],
+				["Camera Follow Pos", "900", "500,0.95,expoOut"]
+			]
+		],
+		[
+			45960,
+			[
+				["Camera Follow Pos", "1500", "410,3,smoothStepInout"]
+			]
+		],
+		[
+			46080,
+			[
+				["Updated Camera Zoom", "Main", "0.75,3,smoothStepInOut"]
+			]
+		],
+		[
+			48960,
+			[
+				["Updated Camera Zoom", "Main", "0.85,1.2,quadOut"]
+			]
+		],
+		[
+			49440,
+			[
+				["Updated Camera Zoom", "Main", "0.95,1.2,quadOut"]
+			]
+		],
+		[
+			49905,
+			[
+				["Camera Follow Pos", "", ""],
+				["Torch's Custom Zoom", "Reset", ""]
+			]
+		],
+		[
+			50040,
+			[
+				["Set Property", "cameraSpeed", "0.5"]
+			]
+		],
+		[
+			50640,
+			[
+				["Updated Camera Zoom", "Main", "0.9,2,smoothStepInOut"]
+			]
+		],
+		[
+			55800,
+			[
+				["Dodge Event", "", ""]
+			]
+		],
+		[
+			57600,
+			[
+				["Updated Camera Zoom", "Main", "1.1,3,smoothStepInOut"],
+				["Cinematics", "1,7", "120"]
+			]
+		],
+		[
+			63360,
+			[
+				["Updated Camera Zoom", "Main", "0.8,2,smoothStepInOut"]
+			]
+		],
+		[
+			65265,
+			[
+				["Color Transform", "1", "13.43,nocolor"],
+				["Updated Camera Zoom", "Main", "1,4,smoothStepInOut"]
+			]
+		],
+		[
+			67200,
+			[
+				["Updated Camera Zoom", "Main", "0.65,7.5,smoothStepInOut"],
+				["Camera Follow Pos", "900", "500"]
+			]
+		],
+		[
+			69120,
+			[
+				["Camera Follow Pos", "", ""]
+			]
+		],
+		[
+			71160,
+			[
+				["Dodge Event", "", ""]
+			]
+		],
+		[
+			72960,
+			[
+				["Camera Follow Pos", "900", "500,0.95,expoOut"]
+			]
+		],
+		[
+			76680,
+			[
+				["Camera Follow Pos", "1400", "410,3,smoothStepInout"]
+			]
+		],
+		[
+			76800,
+			[
+				["Updated Camera Zoom", "Main", "0.75,3.1,smoothStepInOut"]
+			]
+		],
+		[
+			79680,
+			[
+				["Updated Camera Zoom", "Main", "0.85,1.2,quadOut"]
+			]
+		],
+		[
+			80040,
+			[
+				["Updated Camera Zoom", "Main", "0.85,1.2,quadOut"]
+			]
+		],
+		[
+			80640,
+			[
+				["Camera Follow Pos", "900", "500,2,sineOut"],
+				["Updated Camera Zoom", "Main", "0.65,2,sineOut"]
+			]
+		],
+		[
+			84480,
+			[
+				["Camera Follow Pos", "500", "500,2,sineOut"],
+				["Updated Camera Zoom", "Main", "0.85,2,sineOut"]
+			]
+		],
+		[
+			88320,
+			[
+				["Camera Follow Pos", "800", "500,2,sineOut"],
+				["Updated Camera Zoom", "Main", "0.65,2,sineOut"]
+			]
+		],
+		[
+			92160,
+			[
+				["Camera Follow Pos", "1230", "500,2,sineOut"],
+				["Updated Camera Zoom", "Main", "0.85,2,sineOut"]
+			]
+		],
+		[
+			96000,
+			[
+				["Camera Follow Pos", "900", "500,1.5,sineOut"],
+				["Updated Camera Zoom", "Main", "0.65,2,sineOut"]
+			]
+		],
+		[
+			96960,
+			[
+				["Camera Fade", "8", "off"]
+			]
+		]
+	],
+	"format": "torch_v1_events"
+}

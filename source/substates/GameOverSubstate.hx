@@ -80,7 +80,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		var playBF:String = PlayState.instance.boyfriend.curCharacter;
 
-		var customCharPath = Paths.getPath('characters/deads/$playBF-dead.json', TEXT, null, true);
+		var customCharPath = Paths.getPath('characters/$playBF-dead.json', TEXT, null, true);
 
 		#if MODS_ALLOWED
 		var hasCustomGameOver = FileSystem.exists(customCharPath);
