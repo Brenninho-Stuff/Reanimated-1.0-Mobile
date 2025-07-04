@@ -12,6 +12,8 @@ import haxe.Json;
 import backend.Song;
 import states.stages.objects.TankmenBG;
 
+import substates.GameOverSubstate;
+
 typedef CharacterFile = {
 	var animations:Array<AnimArray>;
 	var image:String;
@@ -26,6 +28,12 @@ typedef CharacterFile = {
 	var no_antialiasing:Bool;
 	var healthbar_colors:Array<Int>;
 	var vocals_file:String;
+
+	@:optional var gameOverChar:Null<String>;
+	@:optional var gameOverSound:Null<String>;
+	@:optional var gameOverLoop:Null<String>;
+	@:optional var gameOverEnd:Null<String>;
+
 	@:optional var _editor_isPlayer:Null<Bool>;
 
 	@:optional var noteSkin:String;
@@ -106,6 +114,10 @@ class Character extends FlxSprite
 	public var jsonScale:Float = 1;
 	public var noAntialiasing:Bool = false;
 	public var originalFlipX:Bool = false;
+	public var gameOverChar:String;
+	public var gameOverSound:String;
+	public var gameOverLoop:String;
+	public var gameOverEnd:String;
 	public var editorIsPlayer:Null<Bool> = null;
 
 	public var noteSkin:String = '';
@@ -256,7 +268,19 @@ class Character extends FlxSprite
 		healthColorArray = (json.healthbar_colors != null && json.healthbar_colors.length > 2) ? json.healthbar_colors : [161, 161, 161];
 		vocalsFile = json.vocals_file != null ? json.vocals_file : '';
 		originalFlipX = (json.flip_x == true);
+		gameOverChar = json.gameOverChar;
+		gameOverSound = json.gameOverSound;
+		gameOverLoop = json.gameOverLoop;
+		gameOverEnd = json.gameOverEnd;
 		editorIsPlayer = json._editor_isPlayer;
+
+		if (isPlayer)
+		{
+			if(gameOverChar != null && gameOverChar.trim().length > 0) GameOverSubstate.characterName = gameOverChar;
+			if(gameOverSound != null && gameOverSound.trim().length > 0) GameOverSubstate.deathSoundName = gameOverSound;
+			if(gameOverLoop != null && gameOverLoop.trim().length > 0) GameOverSubstate.loopSoundName = gameOverLoop;
+			if(gameOverEnd != null && gameOverEnd.trim().length > 0) GameOverSubstate.endSoundName = gameOverEnd;
+		}
 
 		// antialiasing
 		noAntialiasing = (json.no_antialiasing == true);

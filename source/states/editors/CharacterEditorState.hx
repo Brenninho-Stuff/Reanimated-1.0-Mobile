@@ -19,6 +19,8 @@ import states.editors.content.Prompt;
 import states.editors.content.PsychJsonPrinter;
 import backend.EditorState;
 import torchsthings.utils.WindowUtils;
+import substates.GameOverSubstate;
+
 
 //class CharacterEditorState extends MusicBeatState implements PsychUIEventHandler.PsychUIEvent
 class CharacterEditorState extends EditorState implements PsychUIEventHandler.PsychUIEvent
@@ -164,6 +166,15 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 
 		makeUIMenu();
 
+		var gameOverCharacters:Array<String> = loadFileList('characters/', 'data/characterList.txt');
+		gameOverCharacters.insert(0, '');
+		gameOverCharacters.sort(function(a:String, b:String)
+		{
+			if((a == '' || a.endsWith('-dead') || a.endsWith('-death')) && !(b == '' || b.endsWith('-dead') || b.endsWith('-death'))) return -1; //Prioritize "-dead" or "-death" characters
+				return 0;
+		});
+		gameOverCharDropDown.list = gameOverCharacters;
+
 		updatePointerPos();
 		updateHealthBar();
 		character.finishAnimation();
@@ -258,7 +269,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		UI_box.scrollFactor.set();
 		UI_box.cameras = [camHUD];
 
-		UI_characterbox = new PsychUIBox(UI_box.x - 100, UI_box.y + UI_box.height + 10, 350, 280, ['Animations', 'Character', 'Note Colors']);
+		UI_characterbox = new PsychUIBox(UI_box.x - 100, UI_box.y + UI_box.height + 10, 350, 280, ['GameOver','Animations', 'Character', 'Note Colors']);
 		UI_characterbox.scrollFactor.set();
 		UI_characterbox.cameras = [camHUD];
 		add(UI_characterbox);
@@ -270,6 +281,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		addAnimationsUI();
 		addCharacterUI();
 		addNoteColorsUI();
+		addGameOverUI();
 
 		UI_box.selectedName = 'Settings';
 		UI_characterbox.selectedName = 'Character';
@@ -725,6 +737,60 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		tab_group.add(saveCharacterButton);
 	}
 
+	var gameOverCharDropDown:PsychUIDropDownMenu;
+	var gameOverSndInputText:PsychUIInputText;
+	var gameOverLoopInputText:PsychUIInputText;
+	var gameOverRetryInputText:PsychUIInputText;
+	function addGameOverUI()
+	{
+		var tab_group = UI_characterbox.getTab('GameOver').menu;
+		var objX = 15;
+		var objY = 30;
+		gameOverCharDropDown = new PsychUIDropDownMenu(objX, objY, [''], function(id:Int, character:String)
+		{
+			this.character.gameOverChar = character;
+			if(character.length < 1) Reflect.deleteField(this.character, 'gameOverChar');
+			trace('selected $character');
+		});
+
+		objY += 40;
+		gameOverSndInputText = new PsychUIInputText(objX, objY, 120, '', 8);
+		gameOverSndInputText.onChange = function(old:String, cur:String)
+		{
+			this.character.gameOverSound = cur;
+			if(cur.trim().length < 1) Reflect.deleteField(this.character, 'gameOverSound');
+		}
+		objY += 40;
+		gameOverLoopInputText = new PsychUIInputText(objX, objY, 120, '', 8);
+		gameOverLoopInputText.onChange = function(old:String, cur:String)
+		{
+			this.character.gameOverLoop = cur;
+			if(cur.trim().length < 1) Reflect.deleteField(this.character, 'gameOverLoop');
+		}
+		objY += 40;
+		gameOverRetryInputText = new PsychUIInputText(objX, objY, 120, '', 8);
+		gameOverRetryInputText.onChange = function(old:String, cur:String)
+		{
+			this.character.gameOverEnd = cur;
+			if(cur.trim().length < 1) Reflect.deleteField(this.character, 'gameOverEnd');
+		}
+	
+		tab_group.add(new FlxText(gameOverCharDropDown.x, gameOverCharDropDown.y - 15, 120, 'Game Over Character:'));
+		tab_group.add(new FlxText(gameOverSndInputText.x, gameOverSndInputText.y - 15, 180, 'Game Over Death Sound (sounds/):'));
+		tab_group.add(new FlxText(gameOverLoopInputText.x, gameOverLoopInputText.y - 15, 180, 'Game Over Loop Music (music/):'));
+		tab_group.add(new FlxText(gameOverRetryInputText.x, gameOverRetryInputText.y - 15, 180, 'Game Over Retry Music (music/):'));
+		tab_group.add(gameOverSndInputText);
+		tab_group.add(gameOverLoopInputText);
+		tab_group.add(gameOverRetryInputText);
+		tab_group.add(gameOverCharDropDown); //lowest priority to display properly
+	}
+
+	function reloadGameOverCharacters() {
+		gameOverCharDropDown.selectedLabel = this.character.gameOverChar;
+		gameOverSndInputText.text = this.character.gameOverSound;
+		gameOverLoopInputText.text = this.character.gameOverLoop;
+		gameOverRetryInputText.text = this.character.gameOverEnd;
+	}
 	// HELL YEAH, I REDUCED THE STEPPER COUNT
 	var noteColorStepperInsideR:PsychUINumericStepper;
 	var noteColorStepperInsideG:PsychUINumericStepper;
@@ -1300,6 +1366,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		charNoteSkinLib.text = character.noteSkinLib;
 		reloadAnimationDropDown();
 		updateHealthBar();
+		reloadGameOverCharacters();
 		updateAllNotes();
 		setNoteColorVals();
 		altButton();
@@ -1727,6 +1794,45 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		animationDropDown.list = animList;
 	}
 
+	function loadFileList(mainFolder:String, ?optionalList:String = null, ?fileTypes:Array<String> = null)
+	{
+		if(fileTypes == null) fileTypes = ['.json'];
+
+		var fileList:Array<String> = [];
+		if(optionalList != null)
+		{
+			for (file in Mods.mergeAllTextsNamed(optionalList))
+			{
+				file = file.trim();
+				if(file.length > 0 && !fileList.contains(file))
+					fileList.push(file);
+			}
+		}
+
+		#if MODS_ALLOWED
+		for (directory in Mods.directoriesWithFile(Paths.getSharedPath(), mainFolder))
+		{
+			for (file in FileSystem.readDirectory(directory))
+			{
+				var path = haxe.io.Path.join([directory, file.trim()]);
+				if (!FileSystem.isDirectory(path) && !file.startsWith('readme.'))
+				{
+					for (fileType in fileTypes)
+					{
+						var fileToCheck:String = file.substr(0, file.length - fileType.length);
+						if(fileToCheck.length > 0 && path.endsWith(fileType) && !fileList.contains(fileToCheck))
+						{
+							fileList.push(fileToCheck);
+							break;
+						}
+					}
+				}
+			}
+		}
+		#end
+		return fileList;
+	}
+
 	// save
 	var _file:FileReference;
 	function onSaveComplete(_):Void
@@ -1782,6 +1888,11 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			"healthbar_colors": character.healthColorArray,
 			"vocals_file": character.vocalsFile,
 			"_editor_isPlayer": character.isPlayer,
+
+			"gameOverChar": character.gameOverChar,
+			"gameOverSound": character.gameOverSound,
+			"gameOverLoop": character.gameOverLoop,
+			"gameOverEnd": character.gameOverEnd,
 
 			"noteColors": {
 				"left": character.noteColors.left,
