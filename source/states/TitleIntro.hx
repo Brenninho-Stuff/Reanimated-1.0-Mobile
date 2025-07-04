@@ -50,7 +50,7 @@ class TitleIntro extends MusicBeatState
     public function startVideo(name:String)
     {
         var n = Paths.video(name);
-        video = new VideoSprite(n, false, true, false);
+        video = new VideoSprite(n, false, false, false);
         video.finishCallback = endVideo;
 		video.onSkip = endVideo;
         add(video);
