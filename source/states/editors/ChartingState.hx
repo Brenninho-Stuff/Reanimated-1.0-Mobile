@@ -231,6 +231,11 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 	var waveformEnabled:Bool = false;
 	var waveformTarget:WaveformTarget = INST;
 
+	var lilBf:FlxSprite;
+	var lilOpp:FlxSprite;
+	var lilBfResetAnim:Float = 0;
+	var lilOppResetAnim:Float = 0;
+
 	override function create()
 	{
 		WindowUtils.changeTitle(WindowUtils.baseTitle + ' - Charting Menu');
@@ -300,6 +305,50 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		add(behindRenderedNotes);
 		add(curRenderedNotes);
 		add(movingNotes);
+
+		// LilStage
+		var lilStage:FlxSprite = new FlxSprite(0, FlxG.height - 266).loadGraphic(Paths.image('ChartEditor/lilStage'));
+		lilStage.antialiasing = false;
+		lilStage.scrollFactor.set(0, 0);
+		lilStage.x = 10;
+		lilStage.y = FlxG.height - 266;
+		lilStage.setGraphicSize(Std.int(lilStage.width));
+		lilStage.updateHitbox();
+		add(lilStage);
+
+		// Lil BF
+		lilBf = new FlxSprite(0, FlxG.height - 266);
+		lilBf.antialiasing = false;
+		lilBf.frames = Paths.getSparrowAtlas('ChartEditor/lilBf');
+		lilBf.animation.addByPrefix('idle', 'lilbf idle', 12);
+		lilBf.animation.addByPrefix('0', 'lilbf left', 12);
+		lilBf.animation.addByPrefix('1', 'lilbf down', 12);
+		lilBf.animation.addByPrefix('2', 'lilbf up', 12);
+		lilBf.animation.addByPrefix('3', 'lilbf right', 12);
+		lilBf.animation.play('idle');
+		lilBf.scrollFactor.set(0, 0);
+		lilBf.setGraphicSize(Std.int(lilBf.width));
+		lilBf.x = 0;
+		lilBf.y = FlxG.height - 266;
+		lilBf.updateHitbox();
+		add(lilBf);
+
+		// Lil Opponent
+		lilOpp = new FlxSprite(15, FlxG.height - 266);
+		lilOpp.antialiasing = false;
+		lilOpp.frames = Paths.getSparrowAtlas('ChartEditor/lilOpp');
+		lilOpp.animation.addByPrefix('idle', 'lilOpp idle', 12);
+		lilOpp.animation.addByPrefix('0', 'lilOpp left', 12);
+		lilOpp.animation.addByPrefix('1', 'lilOpp down', 12);
+		lilOpp.animation.addByPrefix('2', 'lilOpp up', 12);
+		lilOpp.animation.addByPrefix('3', 'lilOpp right', 12);
+		lilOpp.animation.play('idle');
+		lilOpp.scrollFactor.set(0, 0);
+		lilOpp.setGraphicSize(Std.int(lilOpp.width));
+		lilOpp.x = 15;
+		lilOpp.y = FlxG.height - 266;
+		lilOpp.updateHitbox();
+		add(lilOpp);
 
 		eventLockOverlay = new FlxSprite(gridBg.x, 0).makeGraphic(1, 1, FlxColor.BLACK);
 		eventLockOverlay.alpha = 0.6;
@@ -944,6 +993,8 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 				}
 				else if(FlxG.keys.pressed.W != FlxG.keys.pressed.S || FlxG.mouse.wheel != 0)
 				{
+					var lilBfResetAnim:Float = 0;
+                    var lilOppResetAnim:Float = 0;
 					if(FlxG.sound.music.playing)
 						setSongPlaying(false);
 
@@ -969,6 +1020,8 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 				}
 				else if(FlxG.keys.justPressed.SPACE)
 				{
+					var lilBfResetAnim:Float = 0;
+                    var lilOppResetAnim:Float = 0;
 					setSongPlaying(!FlxG.sound.music.playing);
 				}
 			}
@@ -977,6 +1030,25 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 			updateScrollY();
 		}
 
+		if (lilOppResetAnim > 0)
+		{
+			lilOppResetAnim -= elapsed;
+			if (lilOppResetAnim <= 0)
+			{
+				lilOpp.animation.play('idle');
+				lilOppResetAnim = 0;
+			}
+		}
+
+		if (lilBfResetAnim > 0)
+		{
+			lilBfResetAnim -= elapsed;
+			if (lilBfResetAnim <= 0)
+			{
+				lilBf.animation.play('idle');
+				lilBfResetAnim = 0;
+			}
+		}
 		super.update(elapsed);
 		
 		if(songFinished)
@@ -1495,6 +1567,19 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 							strumNote.resetAnim = Math.max(Conductor.stepCrochet * 1.25, note.sustainLength) / 1000 / playbackRate;
 						}
 					}
+					if (!note.noAnimation) {
+                        if (note.mustPress)
+                        {
+                            lilBf.animation.play("" + (note.noteData % 4), true);
+                            lilBfResetAnim = ((Conductor.stepCrochet * 3) + note.sustainLength) / 1000 / playbackRate;
+                        }
+                        else
+                        {
+                            lilOpp.animation.play("" + (note.noteData % 4), true);
+                            lilOppResetAnim = ((Conductor.stepCrochet * 3) + note.sustainLength) / 1000 / playbackRate;
+                        }
+                    }
+					
 				}
 			}
 			forceDataUpdate = false;
