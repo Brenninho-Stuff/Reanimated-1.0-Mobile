@@ -9,20 +9,16 @@ import flixel.input.mouse.FlxMouseEventManager;
 import openfl.ui.Mouse;
 import torchsthings.shaders.CRT;
 import openfl.filters.ShaderFilter;
+import objects.VideoSprite;
 
-#if VIDEOS_ALLOWED
-#if (hxCodec >= "3.0.0") import hxcodec.flixel.FlxVideo as VideoHandler;
-#elseif (hxCodec >= "2.6.1") import hxcodec.VideoHandler as VideoHandler;
-#elseif (hxCodec == "2.6.0") import VideoHandler;
-#else import vlc.MP4Handler as VideoHandler; #end
+#if hxvlc
+import hxvlc.flixel.FlxVideoSprite;
 #end
-
-
 class TitleIntro extends MusicBeatState
 {
 	var crt:CRT = new CRT();
     public var jesus:Bool = true;
-    private var video:VideoHandler;
+    private var video:VideoSprite;
     override function create()
     {
         FlxG.mouse.visible = false;
@@ -42,53 +38,30 @@ class TitleIntro extends MusicBeatState
             jesus = false;
         }
 
-        if (FlxG.keys.justPressed.ENTER) {
+        /*if (FlxG.keys.justPressed.ENTER) {
             endVideo();
         }
 		crt.update(elapsed);
+        */
 
         super.update(elapsed);
     }
 
     public function startVideo(name:String)
     {
-        #if VIDEOS_ALLOWED
+        var n = Paths.video(name);
+        video = new VideoSprite(n, false, true, false);
+        video.finishCallback = endVideo;
+		video.onSkip = endVideo;
+        add(video);
+        video.play();
         
-        var filepath:String = Paths.video(name);
-        #if sys
-        if(!FileSystem.exists(filepath))
-        #else
-        if(!OpenFlAssets.exists(filepath))
-        #end
-        {
-            FlxG.log.warn('Couldnt find video file: ' + name);
-            MusicBeatState.switchState(new TitleState());
-            return;
-        }
-
-        video = new VideoHandler();
-        #if (hxCodec >= "3.0.0")
-        // Recent versions
-        video.play(filepath);
-        video.onEndReached.add(endVideo, true);
-        #else
-        // Older versions
-        video.playVideo(filepath);
-        video.finishCallback = endVideo();
-        #end
-        #else
-        FlxG.log.warn('Platform not supported!');
-        MusicBeatState.switchState(new TitleState());
-        #end
     } 
     
     function endVideo(){
-        #if (hxCodec >= "3.0.0")
-        video.dispose();
-        #end
-
         FlxG.game.setFilters(null);
-
+        video = null;
         MusicBeatState.switchState(new TitleState());
     }
+    
 }
