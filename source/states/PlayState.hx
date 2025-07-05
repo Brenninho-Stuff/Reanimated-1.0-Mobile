@@ -2440,6 +2440,8 @@ class PlayState extends MusicBeatState
 						switch (boyfriend.curCharacter) {
 							case "pico-player":
 								thesound = "pico-yeah";
+							case "KEIT-playable":
+								thesound = "HEY keit";
 							default:
 								thesound = "heysound" + num;
 						}
@@ -2459,6 +2461,8 @@ class PlayState extends MusicBeatState
 						switch (boyfriend.curCharacter) {
 							case "pico-player":
 								thesound = "pico-yeah";
+							case "KEIT-playable":
+								thesound = "HEY keit";
 							default:
 								thesound = "heysound" + num;
 						}
