@@ -90,22 +90,23 @@
 		},
 		{
 			"offsets": [0, -38],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "alone",
-			"loop": false,
+			"indices": [],
 			"name": "Pico Idle solo Dance0"
 		},
 		{
 			"offsets": [294, 39],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "catch nene",
-			"loop": false,
+			"indices": [],
 			"name": "pico catch nene full"
 		}
 	],
 	"vocals_file": "",
+	"gameOverEnd": "gameOverEnd-pico",
 	"no_antialiasing": false,
 	"useNoteSkin": false,
 	"image": "characters/picoAndNene",
@@ -134,6 +135,7 @@
 		]
 	},
 	"healthicon": "pico-nene",
+	"gameOverSound": "gameOvers/fnf_loss_sfx-pico-and-nene",
 	"flip_x": true,
 	"healthbar_colors": [133, 230, 81],
 	"disableNoteRGB": false,
@@ -161,7 +163,9 @@
 			-9297408
 		]
 	},
+	"gameOverChar": "pico-holding-nene-dead",
 	"sing_duration": 4,
+	"gameOverLoop": "gameOver-pico",
 	"hasAltColors": false,
 	"scale": 1,
 	"_editor_isPlayer": true

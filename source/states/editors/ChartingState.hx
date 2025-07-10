@@ -313,22 +313,23 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		lilStage.x = 10;
 		lilStage.y = FlxG.height - 266;
 		lilStage.setGraphicSize(Std.int(lilStage.width));
+		lilStage.visible = false;
 		lilStage.updateHitbox();
 		add(lilStage);
 
 		// Lil BF
 		lilBf = new FlxSprite(0, FlxG.height - 266);
 		lilBf.antialiasing = false;
-		lilBf.frames = Paths.getSparrowAtlas('ChartEditor/lilBf');
-		lilBf.animation.addByPrefix('idle', 'lilbf idle', 12);
-		lilBf.animation.addByPrefix('0', 'lilbf left', 12);
-		lilBf.animation.addByPrefix('1', 'lilbf down', 12);
-		lilBf.animation.addByPrefix('2', 'lilbf up', 12);
-		lilBf.animation.addByPrefix('3', 'lilbf right', 12);
+		lilBf.frames = Paths.getSparrowAtlas('ChartEditor/BF');
+		lilBf.animation.addByPrefix('idle', 'Dance0', 24);
+		lilBf.animation.addByPrefix('0', 'left bf0', 24);
+		lilBf.animation.addByPrefix('1', 'down bf0', 24);
+		lilBf.animation.addByPrefix('2', 'up bf0', 24);
+		lilBf.animation.addByPrefix('3', 'right bf0', 24);
 		lilBf.animation.play('idle');
 		lilBf.scrollFactor.set(0, 0);
 		lilBf.setGraphicSize(Std.int(lilBf.width));
-		lilBf.x = 0;
+		lilBf.x = 170;
 		lilBf.y = FlxG.height - 266;
 		lilBf.updateHitbox();
 		add(lilBf);
@@ -336,17 +337,17 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		// Lil Opponent
 		lilOpp = new FlxSprite(15, FlxG.height - 266);
 		lilOpp.antialiasing = false;
-		lilOpp.frames = Paths.getSparrowAtlas('ChartEditor/lilOpp');
-		lilOpp.animation.addByPrefix('idle', 'lilOpp idle', 12);
-		lilOpp.animation.addByPrefix('0', 'lilOpp left', 12);
-		lilOpp.animation.addByPrefix('1', 'lilOpp down', 12);
-		lilOpp.animation.addByPrefix('2', 'lilOpp up', 12);
-		lilOpp.animation.addByPrefix('3', 'lilOpp right', 12);
+		lilOpp.frames = Paths.getSparrowAtlas('ChartEditor/opponent');
+		lilOpp.animation.addByPrefix('idle', 'idle0', 24);
+		lilOpp.animation.addByPrefix('0', 'left0', 24);
+		lilOpp.animation.addByPrefix('1', 'down0', 24);
+		lilOpp.animation.addByPrefix('2', 'up0', 24);
+		lilOpp.animation.addByPrefix('3', 'right0', 24);
 		lilOpp.animation.play('idle');
 		lilOpp.scrollFactor.set(0, 0);
 		lilOpp.setGraphicSize(Std.int(lilOpp.width));
-		lilOpp.x = 15;
-		lilOpp.y = FlxG.height - 266;
+		lilOpp.x = -85;
+		lilOpp.y = FlxG.height - 306;
 		lilOpp.updateHitbox();
 		add(lilOpp);
 
