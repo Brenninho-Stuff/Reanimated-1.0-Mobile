@@ -18,10 +18,10 @@ class SchoolEvilErect extends BaseStage
 	var crt:CRT = new CRT(true);
 	var shaderFilter:ShaderFilter;
 	var wiggle:WiggleEffectRuntime;
-	var glitch:GlitchEffect;
+	// var glitch:GlitchEffect;
 	//var gfGlitch:GlitchEffect;
 	//var backgroundGlitch:GlitchEffect;
-	var glitchFilter:ShaderFilter;
+	// var glitchFilter:ShaderFilter;
 
 	override function create()
 	{
@@ -29,15 +29,15 @@ class SchoolEvilErect extends BaseStage
         comboCountPos.set(400, 750);
 		comboImage.set(0, 750);
 		
-		if (ClientPrefs.data.intenseShaders) {
-			glitch = new GlitchEffect(true, true, true, true, true, true, true);
+		//if (ClientPrefs.data.intenseShaders) {
+		//	glitch = new GlitchEffect(true, true, true, true, true, true, true);
 			//gfGlitch = new GlitchEffect(true, true, true, true, true, false, true);
 			//backgroundGlitch = new GlitchEffect(true, true, true, true, true, true, true);
-		}
-		else {
-			glitch = new GlitchEffect(true, false, false, false, true, false, true);
+		//}
+		// else {
+		// 	glitch = new GlitchEffect(true, false, false, false, true, false, true);
 			//gfGlitch = new GlitchEffect(true, false, false, false, true, false, true);
-		}
+		//}
 
 		var _song = PlayState.SONG;
 		if(_song.gameOverSound == null || _song.gameOverSound.trim().length < 1) GameOverSubstate.deathSoundName = 'pixel/fnf_loss_sfx-pixel';
@@ -69,9 +69,9 @@ class SchoolEvilErect extends BaseStage
 	{
 		if (ClientPrefs.data.shaders) {
 			shaderFilter = new ShaderFilter(crt);
-			glitchFilter = new ShaderFilter(glitch);
+			// glitchFilter = new ShaderFilter(glitch);
 			//gf.shader = gfGlitch;
-			ShaderUtils.applyFiltersToCams([camGame],  [glitchFilter, shaderFilter]);
+			ShaderUtils.applyFiltersToCams([camGame],  [shaderFilter]);
 			ShaderUtils.applyFiltersToCams([camHUD, camOther], [shaderFilter]);
 		}
 		var trail:FlxTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
@@ -85,7 +85,7 @@ class SchoolEvilErect extends BaseStage
 
 	override function update(elapsed:Float) {
 		if (ClientPrefs.data.shaders) {
-			glitch.update(elapsed);
+			// glitch.update(elapsed);
 			//gfGlitch.update(elapsed);
 			//if (backgroundGlitch != null && ClientPrefs.data.intenseShaders) backgroundGlitch.update(elapsed);
 			
