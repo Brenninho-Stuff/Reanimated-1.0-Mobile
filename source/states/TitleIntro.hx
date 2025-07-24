@@ -10,6 +10,8 @@ import openfl.ui.Mouse;
 import torchsthings.shaders.CRT;
 import openfl.filters.ShaderFilter;
 import objects.VideoSprite;
+import torchsthings.utils.WindowUtils;
+import torchsfunctions.functions.ColorUtils;
 
 #if hxvlc
 import hxvlc.flixel.FlxVideoSprite;
@@ -21,6 +23,9 @@ class TitleIntro extends MusicBeatState
     private var video:VideoSprite;
     override function create()
     {
+		WindowUtils.changeTitle(WindowUtils.DEFAULT_TITLE);
+		WindowUtils.setDarkMode();
+		WindowUtils.setWindowBorderColor(ColorUtils.getIntArray(FlxColor.BLACK));
         FlxG.mouse.visible = false;
 
 		FlxG.game.setFilters([new ShaderFilter(crt)]);

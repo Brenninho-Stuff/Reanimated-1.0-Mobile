@@ -19,7 +19,7 @@ import states.StoryMenuState;
 import states.MainMenuState;
 
 import torchsthings.utils.WindowUtils;
-import torchsfunctions.functions.ColorUtils;
+//import torchsfunctions.functions.ColorUtils;
 
 typedef TitleData =
 {
@@ -80,10 +80,11 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		/*
 		WindowUtils.changeTitle(WindowUtils.DEFAULT_TITLE);
-
 		WindowUtils.setDarkMode();
 		WindowUtils.setWindowBorderColor(ColorUtils.getIntArray(FlxColor.BLACK));
+		*/
 
 		Paths.clearStoredMemory();
 		super.create();
