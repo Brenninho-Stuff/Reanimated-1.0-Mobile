@@ -12,7 +12,7 @@ import openfl.filters.ShaderFilter;
 class SchoolEvil extends BaseStage
 {
 	var crt:CRT = new CRT(true);
-	// var shaderFilter:ShaderFilter;
+	var shaderFilter:ShaderFilter;
 	// var glitch:GlitchEffect;
 	// var gfGlitch:GlitchEffect;
 	// var backgroundGlitch:GlitchEffect;
