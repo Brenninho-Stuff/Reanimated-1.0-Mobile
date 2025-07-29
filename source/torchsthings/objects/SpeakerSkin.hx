@@ -36,11 +36,13 @@ class SpeakerSkin extends FlxSpriteGroup {
     public var atlasSpeaker:FlxAnimate = null;
     public var spriteSpeaker:FlxSprite = null;
 
-    var customSpeaker:Bool = false; // This is for use with completely unique speakers, like Nene's for example
+    public var customSpeaker:Bool = false; // This is for use with completely unique speakers, like Nene's for example
     public var daCustomSpeaker:Dynamic = null;
+    public var speakerName:String = 'base';
 
     override public function new(x:Float, y:Float, speaker:String = 'base') {
         super(x,y);
+        speakerName = speaker;
         var speakerSettings:SpeakerSettings = null;
         if (Paths.fileExists('data/speakerSkins/$speaker.json', TEXT, false, 'shared')) {
             trace("Found Speaker Skin JSON");

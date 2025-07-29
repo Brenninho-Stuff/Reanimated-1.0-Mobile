@@ -3644,10 +3644,22 @@ class PlayState extends MusicBeatState
 			Paths.image(uiFolder + 'num' + i + uiPostfix);
 	}
 
+	var notesHit:Int = 0;
+	var resetTimer:FlxTimer;
+
 	private function popUpScore(note:Note = null):Void
 	{
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.data.ratingOffset);
 		vocals.volume = 1;
+		notesHit += 1;
+
+		if (resetTimer != null) resetTimer.cancel();
+		resetTimer = new FlxTimer().start(2, _ -> {
+			notesHit = 0;
+			// You can do more here but I am just making this basic for now.
+			// For example, you could have an image pop up that says 
+			// "Note Combo" before fading away when this timer finishes.
+		});
 
 		if (!ClientPrefs.data.comboStacking && comboGroup.members.length > 0)
 		{
@@ -3745,11 +3757,11 @@ class PlayState extends MusicBeatState
 
 		var daLoop:Int = 0;
 		var xThing:Float = 0;
-		if (showCombo && combo >= 50)
+		if (showCombo && notesHit >= 10)
 			comboGroup.add(comboSpr);
 		var separatedScore:String = Std.string(combo).lpad('0', 1);
 		for (i in 0...separatedScore.length)
-	{
+		{
 			var comboPoint:FlxPoint = new FlxPoint(0, 0);
 			stagesFunc(function(stage:BaseStage) {
 				comboPoint.x = stage.comboCountPos.x;
@@ -4049,6 +4061,9 @@ class PlayState extends MusicBeatState
 		// score and data
 		var subtract:Float = pressMissDamage;
 		if(note != null) subtract = note.missHealth;
+		
+		notesHit = 0;
+		if (resetTimer != null) resetTimer.cancel();
 
 		// GUITAR HERO SUSTAIN CHECK LOL!!!!
 		if (note != null && guitarHeroSustains && note.parent == null) {
