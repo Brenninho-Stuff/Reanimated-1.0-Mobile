@@ -496,6 +496,7 @@ class PlayState extends MusicBeatState
 			case "phillyStreetsErect": new PhillyStreetsErect(); //Weekend 1 bf mix - Erect
 			case 'wait': new Wait();					//Wait - CG5 Best Song
 			case 'robin': new Robin();			//Wait - Erect
+			default: new Gray(); // Base Gray stage for visibility
 		}
 		if(isPixelStage) {
 			introSoundsSuffix = '-pixel';
@@ -1704,7 +1705,9 @@ class PlayState extends MusicBeatState
 					}
 				}
 
-				var swagNote:Note = new Note(spawnTime, noteColumn, oldNote);
+				var swagNote:Note;
+				if (gottaHitNote) swagNote = new Note(spawnTime, noteColumn, oldNote, boyfriend.usesPixelNotesSpecifically);
+				else swagNote = new Note(spawnTime, noteColumn, oldNote, dad.usesPixelNotesSpecifically);
 				var isAlt: Bool = section.altAnim && !gottaHitNote;
 				swagNote.gfNote = (section.gfSection && gottaHitNote == section.mustHitSection);
 				swagNote.animSuffix = isAlt ? "-alt" : "";
@@ -1788,7 +1791,9 @@ class PlayState extends MusicBeatState
 					{
 						oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
 
-						var sustainNote:Note = new Note(spawnTime + (curStepCrochet * susNote), noteColumn, oldNote, true);
+						var sustainNote:Note;
+						if (gottaHitNote) sustainNote = new Note(spawnTime + (curStepCrochet * susNote), noteColumn, oldNote, boyfriend.usesPixelNotesSpecifically, true);
+						else sustainNote = new Note(spawnTime + (curStepCrochet * susNote), noteColumn, oldNote, dad.usesPixelNotesSpecifically, true);
 						sustainNote.animSuffix = swagNote.animSuffix;
 						sustainNote.mustPress = swagNote.mustPress;
 						sustainNote.gfNote = swagNote.gfNote;
@@ -1867,7 +1872,8 @@ class PlayState extends MusicBeatState
 						swagNote.tail.push(sustainNote);
 
 						sustainNote.correctionOffset = swagNote.height / 2;
-						if(!PlayState.isPixelStage)
+						var isPixel:Bool = PlayState.isPixelStage || swagNote.isNotePixel();
+						if(!isPixel)
 						{
 							if(oldNote.isSustainNote)
 							{
@@ -2028,6 +2034,9 @@ class PlayState extends MusicBeatState
 			else babyArrow.alpha = targetAlpha;
 
 			if (player == 1) {
+				babyArrow.pixelNote = boyfriend.usesPixelNotesSpecifically;
+				babyArrow.reloadNote();
+				strumCover.reloadCover(boyfriend.strumSkin, boyfriend.strumSkinLib);
 				if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 					if (boyfriend.disableNoteRGB) {
 						babyArrow.disableRGB = true;
@@ -2057,6 +2066,9 @@ class PlayState extends MusicBeatState
 				playerStrums.add(babyArrow);
 				playerCovers.add(strumCover);
 			} else {
+				babyArrow.pixelNote = dad.usesPixelNotesSpecifically;
+				babyArrow.reloadNote();
+				strumCover.reloadCover(dad.strumSkin, dad.strumSkinLib);
 				if(ClientPrefs.data.middleScroll)
 				{
 					babyArrow.x += 310;
@@ -3645,7 +3657,60 @@ class PlayState extends MusicBeatState
 	}
 
 	var notesHit:Int = 0;
+	var minNotesHit:Int = 10;
 	var resetTimer:FlxTimer;
+
+	function endCombo(miss:Bool = false) {
+		var uiFolder:String = "";
+		var antialias:Bool = ClientPrefs.data.antialiasing;
+		if (stageUI != "normal")
+		{
+			uiFolder = uiPrefix + "UI/";
+			antialias = !isPixelStage;
+		}
+
+		var endComboTxt:FlxText = new FlxText(0, 0, 600, miss ? 'Combo Break:' : 'Note Combo:', 50);
+		endComboTxt.setFormat(Paths.font(isPixelStage ? "pixel-latin.ttf" : "vcr.ttf"), isPixelStage ? 40 : 50, miss ? FlxColor.RED : FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		endComboTxt.screenCenter();
+		endComboTxt.borderSize = 2;
+		endComboTxt.updateHitbox();
+		comboGroup.add(endComboTxt);
+
+		var seperatedHits:String = Std.string(notesHit);
+		var hitLoop:Int = 0;
+		for (i in 0...seperatedHits.length) {
+			var num:FlxSprite = new FlxSprite().loadGraphic(Paths.image(uiFolder + 'num' + Std.parseInt(seperatedHits.charAt(i)) + uiPostfix));
+			num.screenCenter();
+			num.x = endComboTxt.x  + (endComboTxt.width * 0.8) + (43 * hitLoop) + ClientPrefs.data.comboOffset[2];
+			num.y += 80 - ClientPrefs.data.comboOffset[3];
+			if (!PlayState.isPixelStage) num.setGraphicSize(Std.int(num.width * 0.5));
+			else num.setGraphicSize(Std.int(num.width * daPixelZoom));
+			num.updateHitbox();
+
+			num.acceleration.y = FlxG.random.int(200, 300) * playbackRate * playbackRate;
+			num.velocity.y -= FlxG.random.int(140, 160) * playbackRate;
+			num.velocity.x = FlxG.random.float(-5, 5) * playbackRate;
+			num.visible = !ClientPrefs.data.hideHud;
+			num.antialiasing = antialias;
+			if (miss) num.color = FlxColor.RED;
+
+			comboGroup.add(num);
+
+			FlxTween.tween(num, {alpha: 0}, 0.2 / playbackRate, {
+				onComplete: function(tween:FlxTween) {num.destroy();},
+				startDelay: Conductor.crochet * 0.002 / playbackRate
+			});
+
+			hitLoop++;
+		}
+		FlxTween.tween(endComboTxt, {y: endComboTxt.y - (FlxG.random.int(50, 70) * playbackRate), alpha: 0}, 0.2 / playbackRate, {
+			onComplete: __ -> {
+				endComboTxt.kill();
+				endComboTxt.destroy();
+			},
+			startDelay: Conductor.crochet * 0.002 / playbackRate
+		});
+	}
 
 	private function popUpScore(note:Note = null):Void
 	{
@@ -3654,7 +3719,8 @@ class PlayState extends MusicBeatState
 		notesHit += 1;
 
 		if (resetTimer != null) resetTimer.cancel();
-		resetTimer = new FlxTimer().start(2, _ -> {
+		resetTimer = new FlxTimer().start(1.5, _ -> {
+			if (notesHit >= minNotesHit) endCombo();
 			notesHit = 0;
 			// You can do more here but I am just making this basic for now.
 			// For example, you could have an image pop up that says 
@@ -3757,9 +3823,9 @@ class PlayState extends MusicBeatState
 
 		var daLoop:Int = 0;
 		var xThing:Float = 0;
-		if (showCombo && notesHit >= 10)
+		if (showCombo && notesHit >= minNotesHit)
 			comboGroup.add(comboSpr);
-		var separatedScore:String = Std.string(combo).lpad('0', 1);
+		var separatedScore:String = Std.string(combo);
 		for (i in 0...separatedScore.length)
 		{
 			var comboPoint:FlxPoint = new FlxPoint(0, 0);
@@ -4062,6 +4128,7 @@ class PlayState extends MusicBeatState
 		var subtract:Float = pressMissDamage;
 		if(note != null) subtract = note.missHealth;
 		
+		if(notesHit >= minNotesHit) endCombo(true);
 		notesHit = 0;
 		if (resetTimer != null) resetTimer.cancel();
 
@@ -4510,11 +4577,11 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	public function spawnNoteSplash(x:Float = 0, y:Float = 0, ?data:Int = 0, ?note:Note, ?strum:StrumNote) {
+	public function spawnNoteSplash(x:Float = 0, y:Float = 0, ?data:Int = 0, ?note:Note, ?strum:StrumNote, ?player:Int = 0) {
 		//var splash:NoteSplash = new NoteSplash();
 		var splash:NoteSplash = grpNoteSplashes.recycle(NoteSplash);
 		splash.babyArrow = strum;
-		splash.spawnSplashNote(x, y, data, note);
+		splash.spawnSplashNote(x, y, data, note, true, player == 1 ? boyfriend.splashSkin : dad.splashSkin, player == 1 ? boyfriend.splashSkinLib : dad.splashSkinLib);
 		if (ClientPrefs.data.characterNoteColors != 'Disabled') {
 			switch (note.noteData) {
 				case 0:
@@ -4608,38 +4675,48 @@ class PlayState extends MusicBeatState
 	}
 
 	var lastStepHit:Int = -1;
+	var creditsTweens:Array<FlxTween> = []; //This might end up being a bit of tweens but at the very least it will allow me to cancel or finish one to start the next faster
 	override function stepHit()
 	{
 		switch(curStep)
 		{
 			case 3:
-				FlxTween.tween(creditsBG, {x: -120}, 2.6, {ease:FlxEase.expoOut});
-				FlxTween.tween(creditsFrontBG, {x: -100}, 3.1, {ease:FlxEase.expoOut});
-				FlxTween.tween(creditsIconP, {x: 1095}, 2, {ease:FlxEase.expoOut});	
-				FlxTween.tween(creditsDisk, {x: 390}, 2.6, {ease:FlxEase.expoOut});
-				FlxTween.tween(creditsDisk, {angle: 2000}, 15, 
-				{   ease:FlxEase.expoOut, 
+				creditsTweens[0] = FlxTween.tween(creditsBG, {x: -120}, 2.6, {ease:FlxEase.expoOut});
+				creditsTweens[1] = FlxTween.tween(creditsFrontBG, {x: -100}, 3.1, {ease:FlxEase.expoOut});
+				creditsTweens[2] = FlxTween.tween(creditsIconP, {x: 1095}, 2, {ease:FlxEase.expoOut});	
+				creditsTweens[3] = FlxTween.tween(creditsDisk, {x: 390}, 2.6, {ease:FlxEase.expoOut});
+				FlxTween.tween(creditsDisk, {angle: 2000}, 15, {   
+					ease:FlxEase.expoOut, 
 					onComplete: 
-					function(twn:FlxTween)
-					{
+					function(twn:FlxTween) {
+
 						remove(creditsGroup);
 					}
 				});
-				FlxTween.tween(creditsSongTitle, {x: 530}, 2.6, {ease:FlxEase.expoOut});
-				FlxTween.tween(creditsArtist, {x: 530}, 2.6, {ease:FlxEase.expoOut});
-				FlxTween.tween(creditsCharter, {x: 530}, 2.6, {ease:FlxEase.expoOut});
+				creditsTweens[4] = FlxTween.tween(creditsSongTitle, {x: 530}, 2.6, {ease:FlxEase.expoOut});
+				creditsTweens[5] = FlxTween.tween(creditsArtist, {x: 530}, 2.6, {ease:FlxEase.expoOut});
+				creditsTweens[6] = FlxTween.tween(creditsCharter, {x: 530}, 2.6, {ease:FlxEase.expoOut});
 			case 7:
-				FlxTween.tween(creditsIconEn, {x: 30}, 2.3, {ease: FlxEase.expoOut});
+				creditsTweens[7] = FlxTween.tween(creditsIconEn, {x: 30}, 2.3, {ease: FlxEase.expoOut});
 			case 25:
-				FlxTween.tween(creditsIconP, {x: 2075}, 2.1, {ease:FlxEase.expoIn});
+				if (creditsTweens[2] != null) creditsTweens[2].cancel();
+				creditsTweens[2] = FlxTween.tween(creditsIconP, {x: 2075}, 2.1, {ease:FlxEase.expoIn});
 			case 26:
-				FlxTween.tween(creditsBG, {x: 1400}, 2.3, {ease:FlxEase.expoIn});
-				FlxTween.tween(creditsFrontBG, {x: 1400}, 2.6, {ease:FlxEase.expoIn});
-				FlxTween.tween(creditsIconEn, {x: 2075}, 2.1, {ease:FlxEase.expoIn});
-				FlxTween.tween(creditsDisk, {x: 2075}, 1.9, {ease:FlxEase.expoIn});
-				FlxTween.tween(creditsSongTitle, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
-				FlxTween.tween(creditsArtist, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
-				FlxTween.tween(creditsCharter, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
+				if (creditsTweens[0] != null) creditsTweens[0].cancel();
+				if (creditsTweens[1] != null) creditsTweens[1].cancel();
+				if (creditsTweens[3] != null) creditsTweens[3].cancel();
+				if (creditsTweens[4] != null) creditsTweens[4].cancel();
+				if (creditsTweens[5] != null) creditsTweens[5].cancel();
+				if (creditsTweens[6] != null) creditsTweens[6].cancel();
+				if (creditsTweens[7] != null) creditsTweens[7].cancel();
+
+				creditsTweens[0] = FlxTween.tween(creditsBG, {x: 1400}, 2.3, {ease:FlxEase.expoIn});
+				creditsTweens[1] = FlxTween.tween(creditsFrontBG, {x: 1400}, 2.6, {ease:FlxEase.expoIn});
+				creditsTweens[7] = FlxTween.tween(creditsIconEn, {x: 2075}, 2.1, {ease:FlxEase.expoIn});
+				creditsTweens[3] = FlxTween.tween(creditsDisk, {x: 2075}, 1.9, {ease:FlxEase.expoIn});
+				creditsTweens[4] = FlxTween.tween(creditsSongTitle, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
+				creditsTweens[5] = FlxTween.tween(creditsArtist, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
+				creditsTweens[6] = FlxTween.tween(creditsCharter, {x: 2075}, 1.8, {ease:FlxEase.expoIn});
 			}
 
 		super.stepHit();

@@ -101,6 +101,7 @@ class Template extends BaseStage
 		switch(event.event)
 		{
 			case "My Event":
+				if (!torchsthings.objects.CustomEvents.stageEvents.contains("My Event")) torchsthings.objects.CustomEvents.stageEvents.push("My Event");
 				//precacheImage('myImage') //preloads images/myImage.png
 				//precacheSound('mySound') //preloads sounds/mySound.ogg
 				//precacheMusic('myMusic') //preloads music/myMusic.ogg

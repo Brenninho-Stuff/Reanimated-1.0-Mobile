@@ -121,6 +121,7 @@ class SchoolEvil extends BaseStage
 		switch(event.event)
 		{
 			case "Trigger BG Ghouls":
+                if (!torchsthings.objects.CustomEvents.stageEvents.contains("Trigger BG Ghouls")) torchsthings.objects.CustomEvents.stageEvents.push("Trigger BG Ghouls");
 				if(!ClientPrefs.data.lowQuality)
 				{
 					bgGhouls = new BGSprite('weeb/bgGhouls', -800, 290, ['BG freaks glitch instance'], false);

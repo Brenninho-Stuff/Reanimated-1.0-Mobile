@@ -73,7 +73,7 @@ class StrumCover extends FlxSprite {
         }
         var noteColor:String = colArray[strumNote.noteData].toTitleCase();
         var char:String = (strumNote.player == 0) ? 'Enemy' : 'Player';
-        trace('New $char $noteColor Strum Cover sustain length is $minSustainLength.');
+        //trace('New $char $noteColor Strum Cover sustain length is $minSustainLength.');
     }
 
     override function update(elapsed:Float) {
@@ -145,6 +145,12 @@ class StrumCover extends FlxSprite {
         if(animation.curAnim != null) lastAnim = animation.curAnim.name;
 
         // Failsafe
+        if (texture.length < 1) {
+            texture = 'strumCovers/NOTE_covers';
+        }
+        if (library.length < 1) {
+            library = 'shared';
+        }
         if ((texture.startsWith('strumCovers/') && !Paths.fileExists('images/' + texture + '.png', IMAGE, true, library))) {
             texture = 'strumCovers/NOTE_covers';
             library = 'shared';

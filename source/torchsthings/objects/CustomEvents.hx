@@ -11,6 +11,7 @@ import torchsthings.objects.effects.GhostEffect;
 class CustomEvents {
     static var cinematicUpperY:Float = -350.0;
     static var cinematicLowerY:Float = 720.0;
+    public static var stageEvents:Array<String> = [];
 
     public static function onEvent(eventName:String, value1:String, value2:String) {
         switch (eventName) {
@@ -81,7 +82,8 @@ class CustomEvents {
                         GhostEffect.slideDistance = Std.parseFloat(vals2[1].trim());
                     }
                 }
-
+            default: 
+                if (!stageEvents.contains (eventName)) trace('Event $eventName doesn\'t exist.');
         }
     }
 }

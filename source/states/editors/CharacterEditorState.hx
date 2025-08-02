@@ -269,7 +269,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		UI_box.scrollFactor.set();
 		UI_box.cameras = [camHUD];
 
-		UI_characterbox = new PsychUIBox(UI_box.x - 100, UI_box.y + UI_box.height + 10, 350, 280, ['GameOver','Animations', 'Character', 'Note Colors']);
+		UI_characterbox = new PsychUIBox(UI_box.x - 100, UI_box.y + UI_box.height + 10, 350, 280, ['Animations', 'Character', 'Note Colors', 'Note Textures']);
 		UI_characterbox.scrollFactor.set();
 		UI_characterbox.cameras = [camHUD];
 		add(UI_characterbox);
@@ -281,6 +281,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		addAnimationsUI();
 		addCharacterUI();
 		addNoteColorsUI();
+		addNoteTexturesUI();
 		addGameOverUI();
 
 		UI_box.selectedName = 'Settings';
@@ -818,12 +819,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 	var curNote:Int = 0;
 
 	var hasAltNoteColors:PsychUICheckBox;
-	var noteSkinText:FlxText;
-	var charNoteSkin:PsychUIInputText;
-	var noteSkinLibText:FlxText;
-	var charNoteSkinLib:PsychUIInputText;
 	var disableNoteRGB:PsychUICheckBox;
-	var usingNoteSkin:PsychUICheckBox;
 	var reloadNotes:PsychUIButton;
 
 	var leftNoteButton:PsychUIButton;
@@ -850,7 +846,8 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		noteColorNotes = [new Note(0, 0), new Note(0, 1), new Note(0, 2), new Note(0, 3)];
 		for (i => note in noteColorNotes) {
 			note.y = 15;
-			note.scale.set(0.5, 0.5);
+			if (note.isNotePixel()) note.scale.set(4.5, 4.5);
+			else note.scale.set(0.5, 0.5);
 			note.updateHitbox();
 			note.x = 7 + (85 * i);
 			switch (i) {
@@ -876,7 +873,8 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		altNoteColorNotes = [new Note(0, 0), new Note(0, 1), new Note(0, 2), new Note(0, 3)];
 		for (i => note in altNoteColorNotes) {
 			note.y = 15;
-			note.scale.set(0.5, 0.5);
+			if (note.isNotePixel()) note.scale.set(4.5, 4.5);
+			else note.scale.set(0.5, 0.5);
 			note.updateHitbox();
 			note.x = 7 + (85 * i);
 			switch (i) {
@@ -1038,11 +1036,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		hasAltNoteColors = new PsychUICheckBox(altText.x, changeToAltColors.y + 24, "Has Alt Note Colors?", 150);
 		hasAltNoteColors.onClick = function() {character.hasAltColors = hasAltNoteColors.checked;};
 		
-		noteSkinText = new FlxText(hasAltNoteColors.x, hasAltNoteColors.y + 18, 150, "Note Skin:");
-		charNoteSkin = new PsychUIInputText(noteSkinText.x, noteSkinText.y + 12, 75, character.noteSkin != null ? character.noteSkin : '', 8);
-		noteSkinLibText = new FlxText(charNoteSkin.x, charNoteSkin.y + 18, 150, "Note Skin Library:");
-		charNoteSkinLib = new PsychUIInputText(noteSkinLibText.x, noteSkinLibText.y + 12, 75, character.noteSkinLib != null ? character.noteSkinLib : '', 8);
-		reloadNotes = new PsychUIButton(leftNoteButton.x, blueY + 31, "Reload Notes", function() {
+		reloadNotes = new PsychUIButton(noteColorNotes[0].x, 235, "Reload Notes", function() {
 			var allNotes:Array<Note> = [];
 			for (note in noteColorNotes) {
 				allNotes.push(note);
@@ -1054,6 +1048,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			for (note in allNotes) {
 				note.rgbShader.enabled = !character.disableNoteRGB; // Yeah yeah, I know I am swapping it, but if "disableNoteRGB" is true, then if I didn't swap it, the notes would be showing the RGB shader in the preview
 				//trace(Paths.fileExists('images/' + character.noteSkin + ".png", IMAGE, false, character.noteSkinLib));
+				note.setNotePixel(character.usesPixelNotesSpecifically);
 				if (character.useNoteSkin && Paths.fileExists('images/' + character.noteSkin + ".png", IMAGE, false, character.noteSkinLib)) {
 					reloadNote(note);
 				}
@@ -1062,14 +1057,9 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			updateAllNotes();
 		});
 		
-		disableNoteRGB = new PsychUICheckBox(reloadNotes.x + 85, reloadNotes.y + 4, "No Note RGB?", 75);
+		disableNoteRGB = new PsychUICheckBox(leftNoteButton.x + 85, 239, "No Note RGB?", 75);
 		disableNoteRGB.onClick = function() {
 			character.disableNoteRGB = disableNoteRGB.checked;
-		};
-
-		usingNoteSkin = new PsychUICheckBox(disableNoteRGB.x + 100, disableNoteRGB.y, "Custom Note Skin?", 150);
-		usingNoteSkin.onClick = function() {
-			character.useNoteSkin = usingNoteSkin.checked;
 		};
 		
 		tab_group.add(altText);
@@ -1079,12 +1069,7 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		tab_group.add(downNoteButton);
 		tab_group.add(upNoteButton);
 		tab_group.add(rightNoteButton);
-		tab_group.add(noteSkinText);
-		tab_group.add(charNoteSkin);
-		tab_group.add(noteSkinLibText);
-		tab_group.add(charNoteSkinLib);
 		tab_group.add(disableNoteRGB);
-		tab_group.add(usingNoteSkin);
 		tab_group.add(reloadNotes);
 
 		//inputTextsGroup([charNoteSkin, charNoteSkinLib]);
@@ -1096,6 +1081,67 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		//checkBoxesGroup([usingNoteSkin, disableNoteRGB, hasAltNoteColors]);
 		//inputTexts.add(charNoteSkin);
 		//inputTexts.add(charNoteSkinLib);
+	}
+
+	var noteSkinText:FlxText;
+	var charNoteSkin:PsychUIInputText;
+	var noteSkinLibText:FlxText;
+	var charNoteSkinLib:PsychUIInputText;
+	var splashSkinText:FlxText;
+	var charSplashSkin:PsychUIInputText;
+	var splashSkinLibText:FlxText;
+	var charSplashSkinLib:PsychUIInputText;
+	var strumSkinText:FlxText;
+	var charStrumSkin:PsychUIInputText;
+	var strumSkinLibText:FlxText;
+	var charStrumSkinLib:PsychUIInputText;
+	var usingNoteSkin:PsychUICheckBox;
+	var usePixelSpecific:PsychUICheckBox;
+
+	function addNoteTexturesUI() {
+		var tab_group = UI_characterbox.getTab('Note Textures').menu;
+		noteSkinText = new FlxText(10, 10, 150, "Note Skin:");
+		charNoteSkin = new PsychUIInputText(noteSkinText.x, noteSkinText.y + 12, 150, character.noteSkin != null ? character.noteSkin : '', 8);
+		noteSkinLibText = new FlxText(charNoteSkin.x, charNoteSkin.y + 18, 150, "Note Skin Library:");
+		charNoteSkinLib = new PsychUIInputText(noteSkinLibText.x, noteSkinLibText.y + 12, 150, character.noteSkinLib != null ? character.noteSkinLib : '', 8);
+
+		splashSkinText = new FlxText(charNoteSkinLib.x, charNoteSkinLib.y + 18, 150, "Note Splash Skin:");
+		charSplashSkin = new PsychUIInputText(splashSkinText.x, splashSkinText.y + 12, 150, character.splashSkin != null ? character.splashSkin : '', 8);
+		splashSkinLibText = new FlxText(charSplashSkin.x, charSplashSkin.y + 18, 150, "Note Splash Library:");
+		charSplashSkinLib = new PsychUIInputText(splashSkinLibText.x, splashSkinLibText.y + 12, 150, character.splashSkinLib != null ? character.splashSkinLib : '', 8);
+		strumSkinText = new FlxText(charSplashSkinLib.x, charSplashSkinLib.y + 18, 150, "Strum Cover Skin:");
+		charStrumSkin = new PsychUIInputText(strumSkinText.x, strumSkinText.y + 12, 150, character.strumSkin != null ? character.strumSkin : '', 8);
+		strumSkinLibText = new FlxText(charStrumSkin.x, charStrumSkin.y + 18, 150, "Strum Cover Library:");
+		charStrumSkinLib = new PsychUIInputText(strumSkinLibText.x, strumSkinLibText.y + 12, 150, character.strumSkinLib != null ? character.strumSkinLib : '', 8);
+		var warningText:FlxText = new FlxText(175, 10, 150, 
+			"Hey, make sure you type the file name and library correctly, if you don't... the game WILL crash. It's not intentional but I don't have a workaround implemented yet, sorry."
+		);
+
+		usingNoteSkin = new PsychUICheckBox(10, 240, "Custom Note Skin?", 100);
+		usingNoteSkin.onClick = function() {
+			character.useNoteSkin = usingNoteSkin.checked;
+		};
+
+		usePixelSpecific = new PsychUICheckBox(usingNoteSkin.x + 135, usingNoteSkin.y, "Pixel Note Skin?", 100);
+		usePixelSpecific.onClick = function() {
+			character.usesPixelNotesSpecifically = usePixelSpecific.checked;
+		};
+
+		tab_group.add(noteSkinText);
+		tab_group.add(charNoteSkin);
+		tab_group.add(noteSkinLibText);
+		tab_group.add(charNoteSkinLib);
+		tab_group.add(splashSkinText);
+		tab_group.add(charSplashSkin);
+		tab_group.add(splashSkinLibText);
+		tab_group.add(charSplashSkinLib);
+		tab_group.add(strumSkinText);
+		tab_group.add(charStrumSkin);
+		tab_group.add(strumSkinLibText);
+		tab_group.add(charStrumSkinLib);
+		tab_group.add(usingNoteSkin);
+		tab_group.add(usePixelSpecific);
+		tab_group.add(warningText);
 	}
 
 	function altButton() {
@@ -1185,6 +1231,18 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			} else if (sender == charNoteSkinLib) {
 				character.noteSkinLib = charNoteSkinLib.text;
 				unsavedProgress = true;
+			} else if (sender == charSplashSkin) {
+				character.splashSkin = charSplashSkin.text;
+				unsavedProgress = true;
+			} else if (sender == charSplashSkinLib) {
+				character.splashSkinLib = charSplashSkinLib.text;
+				unsavedProgress = true;
+			} else if (sender == charStrumSkin) {
+				character.strumSkin = charStrumSkin.text;
+				unsavedProgress = true;
+			} else if (sender == charStrumSkinLib) {
+				character.strumSkinLib = charStrumSkinLib.text;
+				unsavedProgress = true;
 			}
 		}
 		else if(id == PsychUINumericStepper.CHANGE_EVENT)
@@ -1267,7 +1325,8 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 
 	function reloadNote(note:Note) {
 		note.reloadNote(character.noteSkin, character.noteSkinLib);
-		note.scale.set(0.5, 0.5);
+		if (note.isNotePixel()) note.scale.set(4.5, 4.5);
+		else note.scale.set(0.5, 0.5);
 		note.updateHitbox();
 	}
 
@@ -1362,8 +1421,13 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 		altColors = false;
 		disableNoteRGB.checked = character.disableNoteRGB;
 		usingNoteSkin.checked = character.useNoteSkin;
+		usePixelSpecific.checked = character.usesPixelNotesSpecifically;
 		charNoteSkin.text = character.noteSkin;
 		charNoteSkinLib.text = character.noteSkinLib;
+		charSplashSkin.text = character.splashSkin;
+		charSplashSkinLib.text = character.splashSkinLib;
+		charStrumSkin.text = character.strumSkin;
+		charStrumSkinLib.text = character.strumSkinLib;
 		reloadAnimationDropDown();
 		updateHealthBar();
 		reloadGameOverCharacters();
@@ -1909,8 +1973,13 @@ class CharacterEditorState extends EditorState implements PsychUIEventHandler.Ps
 			"hasAltColors": character.hasAltColors,
 			"noteSkin": character.noteSkin,
 			"noteSkinLib": character.noteSkinLib,
+			"splashSkin": character.splashSkin,
+			"splashSkinLib": character.splashSkinLib,
+			"strumSkin": character.strumSkin,
+			"strumSkinLib": character.strumSkinLib,
 			"disableNoteRGB": character.disableNoteRGB,
-			"useNoteSkin": character.useNoteSkin
+			"useNoteSkin": character.useNoteSkin,
+			"usesPixelNotesSpecifically": character.usesPixelNotesSpecifically
 		};
 
 		var data:String = PsychJsonPrinter.print(json, ['offsets', 'position', 'healthbar_colors', 'camera_position', 'indices']);

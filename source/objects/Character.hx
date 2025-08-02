@@ -38,12 +38,16 @@ typedef CharacterFile = {
 
 	@:optional var noteSkin:String;
 	@:optional var noteSkinLib:String;
+	@:optional var splashSkin:String;
+	@:optional var splashSkinLib:String;
+	@:optional var strumSkin:String;
+	@:optional var strumSkinLib:String;
 	@:optional var disableNoteRBG:Bool;
 	@:optional var useNoteSkin:Bool;
+	@:optional var useSplashSkin:Bool;
+	@:optional var useStrumSkin:Bool;
 	var noteColors:NoteColors;
 	@:optional var altNoteColors:NoteColors;
-	@:optional var splashSkin:String;
-	@:optional var strumSkin:String;
 	@:optional var hasAltColors:Bool;
 
 	@:optional var healthBar:String;
@@ -53,6 +57,8 @@ typedef CharacterFile = {
 	@:optional var healthBarAnimation:String;
 	@:optional var animatedHealthBarOverlay:Bool;
 	@:optional var healthBarOverlayAnimation:String;
+
+	@:optional var usesPixelNotesSpecifically:Bool;
 }
 
 typedef NoteColors = {
@@ -122,8 +128,14 @@ class Character extends FlxSprite
 
 	public var noteSkin:String = '';
 	public var noteSkinLib:String = '';
+	public var splashSkin:String = '';
+	public var splashSkinLib:String = '';
+	public var strumSkin:String = '';
+	public var strumSkinLib:String = '';
 	public var disableNoteRGB:Bool = false;
 	public var useNoteSkin:Bool = false;
+	public var useSplashSkin:Bool = false;
+	public var useStrumSkin:Bool = false;
 	public var noteColors:NoteColors = {
 		left: [0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
 		down: [0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
@@ -137,8 +149,6 @@ class Character extends FlxSprite
 		up: [0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
 		right: [0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
 	}; // This needed a default value
-	public var splashSkin:String = '';
-	public var strumSkin:String = '';
 	public var hasAltColors:Bool = false;
 
 	public var healthBar:String = 'default';
@@ -148,7 +158,8 @@ class Character extends FlxSprite
 	public var healthBarAnimation:String = '';
 	public var animatedOverlay:Bool = false;
 	public var healthBarOverlayAnimation:String = '';
-
+	
+	public var usesPixelNotesSpecifically:Bool = false;
 
 	public function new(x:Float, y:Float, ?character:String = 'bf', ?isPlayer:Bool = false)
 	{
@@ -324,9 +335,11 @@ class Character extends FlxSprite
 
 		if (json.noteSkin != null && json.noteSkin != '') noteSkin = json.noteSkin;
 		if (json.noteSkinLib != null && json.noteSkinLib != '') noteSkinLib = json.noteSkinLib; else noteSkinLib = 'shared';
-		if (json.noteColors != null) noteColors = json.noteColors;
-		if (json.splashSkin != null && json.splashColors != '') splashSkin = json.splashSkin;
+		if (json.splashSkin != null && json.splashSkin != '') splashSkin = json.splashSkin;
+		if (json.splashSkinLib != null && json.splashSkinLib != '') splashSkinLib = json.splashSkinLib; else splashSkinLib = 'shared';
 		if (json.strumSkin != null && json.strumSkin != '') strumSkin = json.strumSkin;
+		if (json.strumSkinLib != null && json.strumSkinLib != '') strumSkinLib = json.strumSkinLib; else strumSkinLib = 'shared';
+		if (json.noteColors != null) noteColors = json.noteColors;
 		if (json.healthBar != null && json.healthBar != '') healthBar = json.healthBar;
 		if (json.healthBarLibrary != null && json.healthBarLibrary != '') healthBarLibrary = json.healthBarLibrary;
 		if (json.healthBarOverlay != null && json.healthBarOverlay != '') healthBarOverlay = json.healthBarOverlay;
@@ -338,6 +351,9 @@ class Character extends FlxSprite
 		if (json.hasAltColors != null) hasAltColors = json.hasAltColors;
 		if (json.disableNoteRGB != null) disableNoteRGB = json.disableNoteRGB;
 		if (json.useNoteSkin != null) useNoteSkin = json.useNoteSkin;
+		if (json.useSplashSkin != null) useSplashSkin = json.useSplashSkin;
+		if (json.useStrumSkin != null) useStrumSkin = json.useStrumSkin;
+		if (json.usesPixelNotesSpecifically != null) usesPixelNotesSpecifically = json.usesPixelNotesSpecifically;
 	}
 
 	override function update(elapsed:Float)

@@ -108,6 +108,7 @@ class PhillyErect extends BaseStage
     override function eventPushed(event:objects.Note.EventNote) {
         switch(event.event) {
             case "Philly Glow":
+                if (!torchsthings.objects.CustomEvents.stageEvents.contains("Philly Glow")) torchsthings.objects.CustomEvents.stageEvents.push("Philly Glow");
                 blammedLightsBlack = new FlxSprite(FlxG.width * -0.8, FlxG.height * -0.5).makeGraphic(Std.int(FlxG.width * 3), Std.int(FlxG.height * 2), FlxColor.BLACK);
                 blammedLightsBlack.visible = false;
                 insert(members.indexOf(street), blammedLightsBlack);
