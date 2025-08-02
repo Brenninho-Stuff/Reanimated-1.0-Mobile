@@ -275,7 +275,7 @@ class Note extends FlxSprite
 		'Bullet Note'
 	];
 	
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?pixelMode:Bool = false, ?sustainNote:Bool = false, ?inEditor:Bool = false, ?createdFrom:Dynamic = null)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?pixelMode:Bool = false, ?daType:String = "", ?sustainNote:Bool = false, ?inEditor:Bool = false, ?createdFrom:Dynamic = null)
 	{
 		super();
 		pixelNote = pixelMode;
@@ -314,6 +314,19 @@ class Note extends FlxSprite
 				animToPlay = colArray[noteData % colArray.length];
 				animation.play(animToPlay + 'Scroll');
 			}
+		}
+
+		if (daType != null && daType != '') {
+			if (!daType.endsWith("-pixel") && keepSkin.contains(daType)) {
+				pixelNote = false;
+				isPixel = false;
+			} else if (daType.endsWith("-pixel") && keepSkin.contains(daType)) {
+				pixelNote = true;
+				isPixel = true;
+			} else {
+				//do nothing ya fuck...
+			}
+			this.noteType = daType;
 		}
 
 		// trace(prevNote);
@@ -440,7 +453,7 @@ class Note extends FlxSprite
 			_lastValidChecked = customSkin;
 		}
 
-		if(isPixel) {
+		if(isPixel && !(keepSkin.contains(noteType) && !noteType.endsWith("-pixel"))) {
 			if(isSustainNote) {
 				var graphic = Paths.image((pixelNote && !(texture.length < 1) ? '' : 'pixelUI/') + skinPixel + 'ENDS' + skinPostfix, library);
 				loadGraphic(graphic, true, Math.floor(graphic.width / 4), Math.floor(graphic.height / 2));
