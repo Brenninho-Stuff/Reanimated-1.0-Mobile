@@ -114,7 +114,6 @@
 	"healthbar_colors": [43, 174, 255],
 	"disableNoteRGB": false,
 	"camera_position": [350, -200],
-	"noteSkin": "",
 	"noteColors": {
 		"right": [
 			-30642,
@@ -140,5 +139,7 @@
 	"sing_duration": 6.1,
 	"hasAltColors": false,
 	"scale": 6,
-	"_editor_isPlayer": true
+	"_editor_isPlayer": true,
+	"usesPixelNotesSpecifically": true,
+	"noteSkin": "pixelUI/noteSkins/NOTE_assets"
 }
