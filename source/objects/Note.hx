@@ -326,7 +326,7 @@ class Note extends FlxSprite
 			} else {
 				//do nothing ya fuck...
 			}
-			this.noteType = daType;
+			//this.noteType = daType;
 		}
 
 		// trace(prevNote);

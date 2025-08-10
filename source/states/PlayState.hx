@@ -1713,7 +1713,7 @@ class PlayState extends MusicBeatState
 				swagNote.animSuffix = isAlt ? "-alt" : "";
 				swagNote.mustPress = gottaHitNote;
 				swagNote.sustainLength = holdLength;
-				//swagNote.noteType = noteType;
+				swagNote.noteType = noteType;
 				if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled' && !Note.keepSkin.contains(swagNote.noteType)) {
 					swagNote.reloadNote(boyfriend.noteSkin, boyfriend.noteSkinLib);
 				} else if (dad.useNoteSkin && !gottaHitNote && ClientPrefs.data.characterNoteColors != 'Disabled' && !Note.keepSkin.contains(swagNote.noteType)) {
@@ -1797,7 +1797,7 @@ class PlayState extends MusicBeatState
 						sustainNote.animSuffix = swagNote.animSuffix;
 						sustainNote.mustPress = swagNote.mustPress;
 						sustainNote.gfNote = swagNote.gfNote;
-						//sustainNote.noteType = swagNote.noteType;
+						sustainNote.noteType = swagNote.noteType;
 
 						if (boyfriend.useNoteSkin && gottaHitNote && ClientPrefs.data.characterNoteColors == 'Enabled' && !Note.keepSkin.contains(sustainNote.noteType)) {
 							sustainNote.reloadNote(boyfriend.noteSkin, boyfriend.noteSkinLib);
@@ -4231,6 +4231,7 @@ class PlayState extends MusicBeatState
 		{
 			var char:Character = dad;
 			var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, note.noteData)))] + note.animSuffix;
+			//trace('Opp Anim Attempting To Play: ' + animToPlay);
 			if(note.gfNote) char = gf;
 
 			if(char != null)
@@ -4349,6 +4350,7 @@ class PlayState extends MusicBeatState
 			if(!note.noAnimation)
 			{
 				var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, note.noteData)))] + note.animSuffix;
+				//trace('BF Anim Attempting To Play: ' + animToPlay);
 
 				var char:Character = boyfriend;
 				var animCheck:String = 'hey';
