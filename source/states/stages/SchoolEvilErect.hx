@@ -11,6 +11,7 @@ import torchsfunctions.functions.ShaderUtils;
 import openfl.filters.ShaderFilter;
 import shaders.DropShadowShader;
 import shaders.DropShadowScreenspace;
+import objects.Note;
 
 class SchoolEvilErect extends BaseStage
 {
@@ -46,7 +47,7 @@ class SchoolEvilErect extends BaseStage
 		if(_song.gameOverChar == null || _song.gameOverChar.trim().length < 1) GameOverSubstate.characterName = 'bf-pixel-dead';
 		
 		var posX = 400;
-		var posY = 200;
+		var posY = 320;
 
 		bg = new BGSprite('weeb/Erect/evilSchoolBG', posX, posY, 0.8, 0.9);
 		bg.scale.set(PlayState.daPixelZoom, PlayState.daPixelZoom);
@@ -78,10 +79,16 @@ class SchoolEvilErect extends BaseStage
 		wiggle = new WiggleEffectRuntime(2, 4, 0.017, WiggleEffectType.DREAMY);
 		bg.shader = wiggle;
 		addBehindDad(trail);
+		var trial:FlxTrail = new FlxTrail(boyfriend, null, 4, 24, 0.3, 0.069);
+		addBehindBF(trial);
 		applyShader(boyfriend, boyfriend.curCharacter);
 		applyShader(gf, gf.curCharacter);
 		applyShader(dad, dad.curCharacter);
 	}
+
+	override function opponentNoteHit(note:Note) {
+        FlxG.camera.shake(0.005, 0.1);
+    }
 
 	override function update(elapsed:Float) {
 		if (ClientPrefs.data.shaders) {

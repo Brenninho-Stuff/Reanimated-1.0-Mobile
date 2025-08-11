@@ -24,13 +24,13 @@ void main()
     vec2 edge = smoothstep(0.0, BLUR, crtUV) * (1.0 - smoothstep(1.0 - BLUR, 1.0, crtUV));
 
     if (uIsCreepy >= 0.5) {
-        col.r = flixel_texture2D(bitmap,vec2(uv.x+0.003,uv.y)).x;
-        col.g = flixel_texture2D(bitmap,vec2(uv.x+0.000,uv.y)).y;
-        col.b = flixel_texture2D(bitmap,vec2(uv.x-0.003,uv.y)).z;
+        col.r = flixel_texture2D(bitmap,vec2(uv.x+0.0035,uv.y)).x;
+        col.g = flixel_texture2D(bitmap,vec2(uv.x+0.0060,uv.y)).y;
+        col.b = flixel_texture2D(bitmap,vec2(uv.x-0.0035,uv.y)).z;
         col.a = flixel_texture2D(bitmap,vec2(uv.x,uv.y)).a;
     } else {
         col.r = flixel_texture2D(bitmap,vec2(crtUV.x+0.003,crtUV.y)).x;
-        col.g = flixel_texture2D(bitmap,vec2(crtUV.x+0.000,crtUV.y)).y;
+        col.g = flixel_texture2D(bitmap,vec2(crtUV.x+0.001,crtUV.y)).y;
         col.b = flixel_texture2D(bitmap,vec2(crtUV.x-0.003,crtUV.y)).z;
         col.a = flixel_texture2D(bitmap,vec2(crtUV.x,crtUV.y)).a;
     }
@@ -46,6 +46,9 @@ void main()
     col *= 0.99+0.01*sin(110.0*uTime);
     
     col *= 1.25; 
+    if (uIsCreepy >= 0.5) {
+    col *= 1.60;
+    }
     col = mix( col, oricol, clamp(-2.0 + 2.0 * q.x + 3.0 * uSwipeAmount, 0.0, 1.0) );
     
     if (uIsCreepy >= 0.5 && uIsTest >= 0.5) {

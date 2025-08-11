@@ -1,8 +1,10 @@
 package states.stages;
 
 import states.stages.objects.*;
+import states.stages.cutscenes.TwoPicos;
 import objects.Character;
 import torchsthings.shaders.AdjustColorShader;
+import cutscenes.CutsceneHandler;
 import torchsthings.objects.effects.ReflectedChar;
 
 class PhillyErect extends BaseStage
@@ -70,6 +72,9 @@ class PhillyErect extends BaseStage
         car = new BGSprite('philly/Erect/car', -810, 730, 0.9, 0.9);
         car.setGraphicSize(Std.int(car.width * 1.2));
         car.updateHitbox();
+
+        //Debería haber un !seenCutscene para esto, pero como los pico mixes aún no están implementados lo dejo así para testear 
+		if(PlayState.SONG.player1 == "pico-player" && PlayState.SONG.player2 == "pico") setStartCallback(new TwoPicos(this).startCutscene);
     
         //addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
         defaultSpeaker = 'abot';
