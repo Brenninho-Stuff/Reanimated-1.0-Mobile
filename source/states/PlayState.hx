@@ -2040,6 +2040,7 @@ class PlayState extends MusicBeatState
 				if (ClientPrefs.data.characterNoteColors == 'Enabled') {
 					if (boyfriend.disableNoteRGB) {
 						babyArrow.disableRGB = true;
+						strumCover.rgbShader.enabled = false;
 					} else {
 						switch (i) {
 							case 0:
@@ -2079,6 +2080,7 @@ class PlayState extends MusicBeatState
 				if (ClientPrefs.data.characterNoteColors != 'Disabled') {
 					if (dad.disableNoteRGB) {
 						babyArrow.disableRGB = true;
+						strumCover.rgbShader.enabled = false;
 					} else {
 						switch (i) {
 							case 0:
