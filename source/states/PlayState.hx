@@ -4585,6 +4585,7 @@ class PlayState extends MusicBeatState
 		//var splash:NoteSplash = new NoteSplash();
 		var splash:NoteSplash = grpNoteSplashes.recycle(NoteSplash);
 		splash.babyArrow = strum;
+		splash.rgbShader.pixelAmount = (PlayState.isPixelStage || note.pixelNote) ? PlayState.daPixelZoom : 1;
 		splash.spawnSplashNote(x, y, data, note, true, player == 1 ? boyfriend.splashSkin : dad.splashSkin, player == 1 ? boyfriend.splashSkinLib : dad.splashSkinLib);
 		if (ClientPrefs.data.characterNoteColors != 'Disabled') {
 			switch (note.noteData) {

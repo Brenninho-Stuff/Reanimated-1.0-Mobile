@@ -112,10 +112,12 @@ class Note extends FlxSprite
 	public static var colArray:Array<String> = ['purple', 'blue', 'green', 'red'];
 	public static var defaultNoteSkin(default, never):String = 'noteSkins/NOTE_assets';
 
+	public var pixelNote:Bool = false;
+
 	public var noteSplashData:NoteSplashData = {
 		disabled: false,
 		texture: null,
-		antialiasing: !(PlayState.isPixelStage || pixelNote),
+		antialiasing: !(PlayState.isPixelStage),
 		useGlobalShader: false,
 		useRGBShader: (PlayState.SONG != null) ? !(PlayState.SONG.disableNoteRGB == true) : true,
 		r: -1,
@@ -142,7 +144,6 @@ class Note extends FlxSprite
 	public var ratingDisabled:Bool = false;
 
 	public var texture(default, set):String = null;
-	public static var pixelNote:Bool = false;
 
 	public var noAnimation:Bool = false;
 	public var noMissAnimation:Bool = false;
@@ -284,6 +285,7 @@ class Note extends FlxSprite
 		animation = new PsychAnimationController(this);
 
 		antialiasing = ClientPrefs.data.antialiasing;
+		noteSplashData.antialiasing = !isPixel;
 		if(createdFrom == null) createdFrom = PlayState.instance;
 
 		if (prevNote == null)
@@ -388,7 +390,7 @@ class Note extends FlxSprite
 		if(globalRgbShaders[noteData] == null)
 		{
 			var newRGB:RGBPalette = new RGBPalette();
-			var arr:Array<FlxColor> = (!PlayState.isPixelStage || !pixelNote) ? ClientPrefs.data.arrowRGB[noteData] : ClientPrefs.data.arrowRGBPixel[noteData];
+			var arr:Array<FlxColor> = (!PlayState.isPixelStage) ? ClientPrefs.data.arrowRGB[noteData] : ClientPrefs.data.arrowRGBPixel[noteData];
 			
 			if (arr != null && noteData > -1 && noteData <= arr.length)
 			{
