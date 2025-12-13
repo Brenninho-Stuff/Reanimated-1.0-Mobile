@@ -85,25 +85,26 @@ class CustomEvents {
 
                     // Create persistent bars on 'on'
                     if (cmd == 'on') {
-                        if (upperBar == null || upperBar.alive == false) {
-                            if (upperBar != null) {
-                                upperBar.kill();
-                                upperBar.destroy();
-                            }
-                            if (lowerBar != null) {
-                                lowerBar.kill();
-                                lowerBar.destroy();
-                            }
-
-                            upperBar = new FlxSprite(-210, upperInitY).makeGraphic(1500, 350, 0xFF000000);
-                            lowerBar = new FlxSprite(-10, lowerInitY).makeGraphic(1500, 350, 0xFF000000);
-                            upperBar.cameras = [PlayState.instance.camBlack];
-                            lowerBar.cameras = [PlayState.instance.camBlack];
-                            upperBar.angle = -5;
-                            lowerBar.angle = -5;
-                            PlayState.instance.add(upperBar);
-                            PlayState.instance.add(lowerBar);
+                        // Always destroy previous bars to ensure clean state on song reload
+                        if (upperBar != null) {
+                            upperBar.kill();
+                            upperBar.destroy();
+                            upperBar = null;
                         }
+                        if (lowerBar != null) {
+                            lowerBar.kill();
+                            lowerBar.destroy();
+                            lowerBar = null;
+                        }
+
+                        upperBar = new FlxSprite(-210, upperInitY).makeGraphic(1500, 350, 0xFF000000);
+                        lowerBar = new FlxSprite(-10, lowerInitY).makeGraphic(1500, 350, 0xFF000000);
+                        upperBar.cameras = [PlayState.instance.camBlack];
+                        lowerBar.cameras = [PlayState.instance.camBlack];
+                        upperBar.angle = -5;
+                        lowerBar.angle = -5;
+                        PlayState.instance.add(upperBar);
+                        PlayState.instance.add(lowerBar);
 
                         FlxTween.tween(upperBar, { y: -275 }, duration, { ease: FlxEase.quadOut });
                         FlxTween.tween(lowerBar, { y: 645 }, duration, { ease: FlxEase.quadOut });
