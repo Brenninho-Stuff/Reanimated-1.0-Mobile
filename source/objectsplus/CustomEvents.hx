@@ -19,14 +19,21 @@ class CustomEvents {
 
     static var gameTween:FlxTween;
     static var hudTween:FlxTween;
+    static var blackcamTween:FlxTween;
+
+    // Cinematics-A bars
+    static var upperBar:FlxSprite;
+    static var lowerBar:FlxSprite;
+    static var upperInitY:Float = -690;
+    static var lowerInitY:Float = 1060;
 
     public static function onEvent(eventName:String, value1:String, value2:String) {
         switch (eventName) {
             case 'Cinematic Bars' | 'Cinematics':
                 var upperBar:FlxSprite = new FlxSprite(-110, initialUpperY).makeGraphic(1500, 350, 0xFF000000);
                 var lowerBar:FlxSprite = new FlxSprite(-110, initialLowerY).makeGraphic(1500, 350, 0xFF000000);
-                upperBar.cameras = [PlayState.instance.camHUD];
-                lowerBar.cameras = [PlayState.instance.camHUD];
+                upperBar.cameras = [PlayState.instance.camBlack];
+                lowerBar.cameras = [PlayState.instance.camBlack];
                 PlayState.instance.add(upperBar);
                 PlayState.instance.add(lowerBar);
 
@@ -72,15 +79,78 @@ class CustomEvents {
                     
                 }
 
+                case 'Cinematics-A' | 'Cinematics-Angle':
+                    var cmd:String = (value1 != null) ? value1.toLowerCase() : 'on';
+                    var duration:Float = (value2 != null && value2 != '') ? Std.parseFloat(value2) : 0.6;
+
+                    // Create persistent bars on 'on'
+                    if (cmd == 'on') {
+                        if (upperBar == null || upperBar.alive == false) {
+                            if (upperBar != null) {
+                                upperBar.kill();
+                                upperBar.destroy();
+                            }
+                            if (lowerBar != null) {
+                                lowerBar.kill();
+                                lowerBar.destroy();
+                            }
+
+                            upperBar = new FlxSprite(-210, upperInitY).makeGraphic(1500, 350, 0xFF000000);
+                            lowerBar = new FlxSprite(-10, lowerInitY).makeGraphic(1500, 350, 0xFF000000);
+                            upperBar.cameras = [PlayState.instance.camBlack];
+                            lowerBar.cameras = [PlayState.instance.camBlack];
+                            upperBar.angle = -5;
+                            lowerBar.angle = -5;
+                            PlayState.instance.add(upperBar);
+                            PlayState.instance.add(lowerBar);
+                        }
+
+                        FlxTween.tween(upperBar, { y: -275 }, duration, { ease: FlxEase.quadOut });
+                        FlxTween.tween(lowerBar, { y: 645 }, duration, { ease: FlxEase.quadOut });
+
+                    // Quick beat pop
+                    } else if (cmd == 'beat') {
+                        if (upperBar != null && lowerBar != null) {
+                            upperBar.y = -255;
+                            lowerBar.y = 625;
+                            FlxTween.tween(upperBar, { y: -275 }, 0.2, { ease: FlxEase.quadOut });
+                            FlxTween.tween(lowerBar, { y: 645 }, 0.2, { ease: FlxEase.quadOut });
+                        }
+
+                    // Remove and destroy on 'off'
+                    } else if (cmd == 'off') {
+                        if (upperBar != null) {
+                            FlxTween.tween(upperBar, { y: upperInitY }, duration, { ease: FlxEase.quadIn,
+                                onComplete: function(twn:FlxTween) {
+                                    upperBar.kill();
+                                    upperBar.destroy();
+                                    upperBar = null;
+                                }
+                            });
+                        }
+                        if (lowerBar != null) {
+                            FlxTween.tween(lowerBar, { y: lowerInitY }, duration, { ease: FlxEase.quadIn,
+                                onComplete: function(twn:FlxTween) {
+                                    lowerBar.kill();
+                                    lowerBar.destroy();
+                                    lowerBar = null;
+                                }
+                            });
+                        }
+                    }
+
             case 'Camera Fade':
                 var duration:Float = Std.parseFloat(value1);
                 if (gameTween != null) gameTween.cancel();
                 if (hudTween != null) hudTween.cancel();
+                if (blackcamTween != null) blackcamTween.cancel();
                 if (value2.toLowerCase() == 'on') {
                     hudTween = FlxTween.tween(PlayState.instance.camHUD, {alpha: 1}, duration, {ease: FlxEase.expoOut});
+                    blackcamTween = FlxTween.tween(PlayState.instance.camBlack, {alpha: 1}, duration, {ease: FlxEase.expoOut});
                     gameTween = FlxTween.tween(PlayState.instance.camGame, {alpha: 1}, duration, {ease: FlxEase.expoOut});
                 } else if (value2.toLowerCase() == 'off') {
                     hudTween = FlxTween.tween(PlayState.instance.camHUD, {alpha: 0}, duration, {ease: FlxEase.expoOut});
+                    blackcamTween = FlxTween.tween(PlayState.instance.camBlack, {alpha: 0}, duration, {ease: FlxEase.expoOut});
                     gameTween = FlxTween.tween(PlayState.instance.camGame, {alpha: 0}, duration, {ease: FlxEase.expoOut});
                 }
 

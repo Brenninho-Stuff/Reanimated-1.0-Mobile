@@ -3676,7 +3676,8 @@ class PlayState extends MusicBeatState
 		endComboTxt.screenCenter();
 		endComboTxt.borderSize = 2;
 		endComboTxt.updateHitbox();
-		comboGroup.add(endComboTxt);
+		endComboTxt.camera = camHUD;
+		add(endComboTxt);
 
 		var seperatedHits:String = Std.string(notesHit);
 		var hitLoop:Int = 0;
@@ -3695,8 +3696,8 @@ class PlayState extends MusicBeatState
 			num.visible = !ClientPrefs.data.hideHud;
 			num.antialiasing = antialias;
 			if (miss) num.color = FlxColor.RED;
-
-			comboGroup.add(num);
+			num.camera = camHUD;
+			add(num);
 
 			FlxTween.tween(num, {alpha: 0}, 0.2 / playbackRate, {
 				onComplete: function(tween:FlxTween) {num.destroy();},
