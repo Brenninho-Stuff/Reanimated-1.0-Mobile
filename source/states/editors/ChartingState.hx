@@ -75,6 +75,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Set GF Speed', "Sets GF head bopping speed,\nValue 1: 1 = Normal speed,\n2 = 1/2 speed, 4 = 1/4 speed etc.\nUsed on Fresh during the beatbox parts.\n\nWarning: Value must be integer!"],
 		['Philly Glow', "Exclusive to Week 3\nValue 1: 0/1/2 = OFF/ON/Reset Gradient\n \nNo, i won't add it to other weeks."],
 		['Kill Henchmen', "For Mom's songs, don't use this please, i love them :("],
+		['bloody Tank Anims', "Activates Tankman bloody Anims"],
 		['Add Camera Zoom', "Used on MILF on that one \"hard\" part\nValue 1: Camera zoom add (Default: 0.015)\nValue 2: UI zoom add (Default: 0.03)\nLeave the values blank if you want to use Default."],
 		['Updated Camera Zoom', "Value 1: Sets the Zoom Type\nRegular: Default Cam Zoom\nMain: Use the tween on the Game Camera\nHUD: Uses the tween on the Game HUD\nBoth: Uses the tween on the Game Camera and the HUD\nReset: Resets both to default (leave Value 2 blank)\nSoft Reset: Resets both to default, but with customizability (First value of Value 2 will be ignored)\n\nValue 2: Is either Zoom Amount or 3 values\n1 - Zoom Amount, 2 - Zoom Duration, 3 - Tween Ease\n2 & 3 is only used if value 1 is not 'regular'\n\nExamples:\nRegular ex. - '1.5'\nCustom ex. - '1.5,0.75,expoIn'\n\nFor the list of tweens, please go to this site below\nhttps://api.haxeflixel.com/flixel/tweens/FlxEase.html"],
 		['BG Freaks Expression', "Should be used only in \"school\" Stage!"],
@@ -98,7 +99,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Cinematics-Angle',"Value 1: ON or OFF \nValue 2: Speed"],
 		['Cinematics',"Value 1: The speed the bars move on screen \nand how long until they leave (ex. [2,4] [(speed),(wait)])\n\nValue 2: The distance the bars move"],
 		['Show Lyrics', "Value 1: Show lyrics\nValue 2: Fade Lyrics(This is optional, this is the same as fade hud [1,1]) \nAn example of how to use it when it is a lyrics with fade,\nValue1: [Hi!!]\nValue2: [0,1]\nTo return it to normal it would be like this\nValue1: [Surprise]\nValue2: [1,0.1]\nThis is used in case you use the fade lyrics"],
-		['Color Transform', "Value 1: Time in seconds to apply the color transform effect.\nValue 2: (Optional) If you don't want the color to be applied, just put 'nocolor' and that's it"],
+		['Color Transform', "Value 1: ON or OFF for apply the color transform effect.\nValue 2: Time for the activation \n(Optional) If you don't want the color to be applied, just put 'nocolor' and that's it"],
 		['Edit Ghost Notes', 'Value 1: If the ghost should be colored, \nif the ghosts color should be affected by their custom note colors\nDefault Values: "true, true".\n\nValue 2: The tween time, the sliding distance.\nDefault Values: "0.4, 90.0"']
 	];
 	

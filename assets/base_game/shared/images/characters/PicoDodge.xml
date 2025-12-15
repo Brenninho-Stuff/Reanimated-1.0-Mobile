@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Pico_reanimated1.png">
+	<!-- Created with Adobe Animate version 24.0.12.3 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="dodge pico0000" x="0" y="0" width="501" height="496" frameX="-16" frameY="0" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0001" x="501" y="0" width="501" height="495" frameX="-16" frameY="-1" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0002" x="1002" y="0" width="517" height="493" frameX="-10" frameY="-3" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0003" x="1519" y="0" width="527" height="483" frameX="0" frameY="-13" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0004" x="0" y="496" width="527" height="489" frameX="0" frameY="-7" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0005" x="527" y="496" width="527" height="483" frameX="0" frameY="-13" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0006" x="1519" y="0" width="527" height="483" frameX="0" frameY="-13" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0007" x="0" y="496" width="527" height="489" frameX="0" frameY="-7" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0008" x="527" y="496" width="527" height="483" frameX="0" frameY="-13" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0009" x="1519" y="0" width="527" height="483" frameX="0" frameY="-13" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0010" x="0" y="496" width="527" height="489" frameX="0" frameY="-7" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0011" x="527" y="496" width="527" height="483" frameX="0" frameY="-13" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0012" x="1519" y="0" width="527" height="483" frameX="0" frameY="-13" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0013" x="0" y="496" width="527" height="489" frameX="0" frameY="-7" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0014" x="527" y="496" width="527" height="483" frameX="0" frameY="-13" frameWidth="527" frameHeight="496"/>
+	<SubTexture name="dodge pico0015" x="1519" y="0" width="527" height="483" frameX="0" frameY="-13" frameWidth="527" frameHeight="496"/>
+</TextureAtlas>

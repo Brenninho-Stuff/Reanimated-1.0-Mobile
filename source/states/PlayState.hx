@@ -2904,6 +2904,8 @@ class PlayState extends MusicBeatState
 	var zoomTweens:Array<FlxTween> = [null];
 	public var eventExisted:Bool = true;
 
+	var isbloody:Bool = false;
+
 	public function triggerEvent(eventName:String, value1:String, value2:String, strumTime:Float) {
 		var flValue1:Null<Float> = Std.parseFloat(value1);
 		var flValue2:Null<Float> = Std.parseFloat(value2);
@@ -2951,6 +2953,11 @@ class PlayState extends MusicBeatState
 			case 'Set GF Speed':
 				if(flValue1 == null || flValue1 < 1) flValue1 = 1;
 				gfSpeed = Math.round(flValue1);
+
+			case 'bloody Tank Anims':
+				if(isbloody && dad.curCharacter.startsWith('tankman')) dad.bloodyAnim = '';
+				else if(!isbloody && dad.curCharacter.startsWith('tankman')) dad.bloodyAnim = '-bloody';
+				iconP2.changeIcon('icon-tankman-bloody');
 
 			case 'Add Camera Zoom':
 				if(ClientPrefs.data.camZooms && FlxG.camera.zoom < 1.35) {
@@ -4198,7 +4205,7 @@ class PlayState extends MusicBeatState
 			var postfix:String = '';
 			if(note != null) postfix = note.animSuffix;
 
-			var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, direction)))] + 'miss' + postfix;
+			var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, direction)))] + 'miss' + char.bloodyAnim + postfix;
 			char.playAnim(animToPlay, true);
 
 			if(char != gf && lastCombo > 5 && gf != null && gf.hasAnimation('sad'))
@@ -4233,7 +4240,7 @@ class PlayState extends MusicBeatState
 		if(!note.noAnimation)
 		{
 			var char:Character = dad;
-			var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, note.noteData)))] + note.animSuffix;
+			var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, note.noteData)))] + dad.bloodyAnim + note.animSuffix;
 			//trace('Opp Anim Attempting To Play: ' + animToPlay);
 			if(note.gfNote) char = gf;
 

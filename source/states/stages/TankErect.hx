@@ -349,7 +349,7 @@ override function create()
                     audioPlaying = cutsceneSnd;
                 };
             
-            dad.playAnim("Cutscene");
+            dad.playAnim("Cutscene1");
             gf.playAnim("Cutscene");
             boyfriend.animation.finishCallback = function(name:String) {
                 if (name == "alone") {
@@ -446,7 +446,7 @@ override function create()
     
             canPause = false;
     
-            dad.playAnim("Cutscene");   
+            dad.playAnim("CutsceneEnd");   
     
             game.tweenCameraToPosition(dad.x + 800, dad.y + 200);
             game.tweenCameraZoom(0.65, 0.8, true, FlxEase.smoothStepOut);

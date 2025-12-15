@@ -27,6 +27,11 @@ class CustomEvents {
     static var upperInitY:Float = -690;
     static var lowerInitY:Float = 1060;
 
+    // Color Transform state
+    static var colorTransformActive:Bool = false;
+    static var colorTransformChars:Array<Character> = [];
+    static var colorTransformBlackScreen:FlxSprite;
+
     public static function onEvent(eventName:String, value1:String, value2:String) {
         switch (eventName) {
             case 'Cinematic Bars' | 'Cinematics':
@@ -156,50 +161,70 @@ class CustomEvents {
                 }
 
             case 'Color Transform':
-                var characters:Array<Character> = [PlayState.instance.boyfriend, PlayState.instance.gf, PlayState.instance.dad];
-                var seconds:Float = (value1 != null && value1 != '') ? Std.parseFloat(value1) : 0;
-                var delay:Float = 0;
-                var reverseImmediate:Bool = false;
+                var cmd:String = (value1 != null) ? value1.toLowerCase() : 'on';
+                var durationStr:String = (value2 != null && value2 != '') ? value2 : '0.6';
+                var duration:Float = 0.6;
                 var skipColorTransform:Bool = false;
+                var reverseImmediate:Bool = false;
+                var delay:Float = 0;
 
-                if (value2 != null && value2.trim() != '') {
-                    var value2Parts:Array<String> = value2.split(",");
-                    for (part in value2Parts) {
-                        part = part.trim();
-                        if (~/^-?\d+(\.\d+)?$/.match(part)) {
-                            delay = Std.parseFloat(part);
+                // Parse value2 for duration and options
+                if (durationStr != null && durationStr.trim() != '') {
+                    var value2Parts:Array<String> = durationStr.split(",");
+                    for (i in 0...value2Parts.length) {
+                        var part:String = value2Parts[i].trim();
+                        if (i == 0 && ~/^-?\d+(\.\d+)?$/.match(part)) {
+                            duration = Std.parseFloat(part);
                         } else if (part.toLowerCase() == "nocolor") {
                             skipColorTransform = true;
+                        } else if (~/^-?\d+(\.\d+)?$/.match(part)) {
+                            delay = Std.parseFloat(part);
                         } else {
                             reverseImmediate = true;
                         }
                     }
                 }
 
-                var blackScreen:FlxSprite = PlayState.instance.blackScreen;
-                FlxTween.tween(blackScreen, {alpha: 0.6}, seconds, {ease: FlxEase.linear});
+                if (cmd == 'on') {
+                    colorTransformActive = true;
+                    colorTransformChars = [PlayState.instance.boyfriend, PlayState.instance.gf, PlayState.instance.dad];
+                    colorTransformBlackScreen = PlayState.instance.blackScreen;
 
-                for (char in characters) {
-                    if (char == null || !char.visible || char.alpha <= 0) continue;
+                    FlxTween.tween(colorTransformBlackScreen, {alpha: 0.6}, duration, {ease: FlxEase.linear});
 
-                    if (!skipColorTransform) {
-                        FlxTween.cancelTweensOf(char.colorTransform);
+                    for (char in colorTransformChars) {
+                        if (char == null || !char.visible || char.alpha <= 0) continue;
 
-                        var rgbColors:Array<Int> = char.healthColorArray;
-                        FlxTween.tween(char.colorTransform, { 
-                            redOffset: rgbColors[0], greenOffset: rgbColors[1], blueOffset: rgbColors[2], 
-                            redMultiplier: 0, greenMultiplier: 0, blueMultiplier: 0 
-                        }, seconds, {ease: FlxEase.linear});
+                        if (!skipColorTransform) {
+                            FlxTween.cancelTweensOf(char.colorTransform);
+
+                            var rgbColors:Array<Int> = char.healthColorArray;
+                            FlxTween.tween(char.colorTransform, { 
+                                redOffset: rgbColors[0], greenOffset: rgbColors[1], blueOffset: rgbColors[2], 
+                                redMultiplier: 0, greenMultiplier: 0, blueMultiplier: 0 
+                            }, duration, {ease: FlxEase.linear});
+                        }
+
+                        if (reverseImmediate) {
+                            revertColorTransform(char, duration);
+                            fadeOutBlackScreen(colorTransformBlackScreen, duration);
+                        } else if (delay > 0) {
+                            new FlxTimer().start(delay, function(tmr:FlxTimer) {
+                                revertColorTransform(char, duration);
+                                fadeOutBlackScreen(colorTransformBlackScreen, duration);
+                            });
+                        }
                     }
 
-                    if (reverseImmediate) {
-                        revertColorTransform(char, seconds);
-                        fadeOutBlackScreen(blackScreen, seconds);
-                    } else if (delay > 0) {
-                        new FlxTimer().start(delay, function(tmr:FlxTimer) {
-                            revertColorTransform(char, seconds);
-                            fadeOutBlackScreen(blackScreen, seconds);
-                        });
+                } else if (cmd == 'off') {
+                    colorTransformActive = false;
+
+                    for (char in colorTransformChars) {
+                        if (char == null) continue;
+                        revertColorTransform(char, duration);
+                    }
+                    if (colorTransformBlackScreen != null) {
+                        fadeOutBlackScreen(colorTransformBlackScreen, duration);
                     }
                 }
             default: 

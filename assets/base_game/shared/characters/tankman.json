@@ -1,145 +1,89 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [0, 0],
-			"loop": false,
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "Tankman Idle Dance0"
+			"fps": 24,
+			"name": "Tankman Idle Dance0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [59, 5],
-			"loop": false,
-			"fps": 24,
 			"anim": "argh",
-			"indices": [],
-			"name": "tankman ARGH"
+			"fps": 24,
+			"name": "tankman ARGH",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [87, -13],
-			"loop": false,
-			"fps": 24,
 			"anim": "beat it",
-			"indices": [],
-			"name": "tankman beat it"
+			"fps": 24,
+			"name": "tankman beat it",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [-23, 12],
-			"loop": false,
-			"fps": 24,
 			"anim": "laugh",
-			"indices": [],
-			"name": "tankman laugh"
+			"fps": 24,
+			"name": "tankman laugh",
+			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [46, 43],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUP",
-			"fps": 24,
-			"name": "Tankman UP note0",
-			"indices": []
+			"indices": [],
+			"name": "Tankman UP note0"
 		},
 		{
-			"loop": false,
 			"offsets": [69, -113],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWN",
-			"fps": 24,
-			"name": "Tankman DOWN note0",
-			"indices": []
+			"indices": [],
+			"name": "Tankman DOWN note0"
 		},
 		{
-			"loop": false,
 			"offsets": [90, -14],
+			"loop": false,
+			"fps": 24,
 			"anim": "singLEFT",
-			"fps": 24,
-			"name": "Tankman Right Note0",
-			"indices": []
+			"indices": [],
+			"name": "Tankman Right Note0"
 		},
 		{
-			"loop": false,
 			"offsets": [-15, -32],
+			"loop": false,
+			"fps": 24,
 			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "Tankman Note Left0",
-			"indices": []
+			"indices": [],
+			"name": "Tankman Note Left0"
 		},
 		{
-			"loop": false,
 			"offsets": [71, -52],
+			"loop": false,
+			"fps": 24,
 			"anim": "dodge",
-			"fps": 24,
-			"name": "Tankman Dodge0",
-			"indices": []
-		},
-		{
-			"offsets": [1, 52],
-			"loop": false,
-			"fps": 24,
-			"anim": "idle-blody",
 			"indices": [],
-			"name": "Tankman Idle bloody0"
-		},
-		{
-			"offsets": [44, 154],
-			"loop": false,
-			"fps": 24,
-			"anim": "singUP-blody",
-			"indices": [],
-			"name": "Tankman UP note bloody0"
-		},
-		{
-			"offsets": [69, -117],
-			"loop": false,
-			"fps": 24,
-			"anim": "singDOWN-blody",
-			"indices": [],
-			"name": "Tankman DOWN note bloody0"
-		},
-		{
-			"offsets": [110, 118],
-			"loop": false,
-			"fps": 24,
-			"anim": "redheads",
-			"indices": [],
-			"name": "redheads anim0"
-		},
-		{
-			"offsets": [-14, 15],
-			"loop": false,
-			"fps": 24,
-			"anim": "singRIGHT-blody",
-			"indices": [],
-			"name": "Tankman Note Left bloody0"
-		},
-		{
-			"offsets": [89, 13],
-			"loop": false,
-			"fps": 24,
-			"anim": "singLEFT-blody",
-			"indices": [],
-			"name": "Tankman Right Note bloody0"
-		},
-		{
-			"loop": false,
-			"offsets": [1, 90],
-			"anim": "pretty good-blody",
-			"fps": 24,
-			"name": "pretty good anim0",
-			"indices": []
+			"name": "Tankman Dodge0"
 		},
 		{
 			"loop": false,
 			"offsets": [1, 52],
-			"anim": "idle-alt",
+			"anim": "idle-bloody",
 			"fps": 24,
 			"name": "Tankman Idle bloody0",
 			"indices": []
 		},
 		{
 			"loop": false,
-			"offsets": [46, 154],
-			"anim": "singUP-alt",
+			"offsets": [44, 154],
+			"anim": "singUP-bloody",
 			"fps": 24,
 			"name": "Tankman UP note bloody0",
 			"indices": []
@@ -147,7 +91,7 @@
 		{
 			"loop": false,
 			"offsets": [69, -117],
-			"anim": "singDOWN-alt",
+			"anim": "singDOWN-bloody",
 			"fps": 24,
 			"name": "Tankman DOWN note bloody0",
 			"indices": []
@@ -155,80 +99,107 @@
 		{
 			"loop": false,
 			"offsets": [-14, 15],
-			"anim": "singRIGHT-alt",
+			"anim": "singRIGHT-bloody",
 			"fps": 24,
 			"name": "Tankman Note Left bloody0",
 			"indices": []
 		},
 		{
 			"loop": false,
-			"offsets": [90, 14],
-			"anim": "singLEFT-alt",
+			"offsets": [89, 13],
+			"anim": "singLEFT-bloody",
 			"fps": 24,
 			"name": "Tankman Right Note bloody0",
 			"indices": []
 		},
 		{
+			"offsets": [1, 90],
 			"loop": false,
+			"fps": 24,
+			"anim": "pretty good-bloody",
+			"indices": [],
+			"name": "pretty good anim0"
+		},
+		{
 			"offsets": [-7, -6],
+			"loop": false,
+			"fps": 24,
 			"anim": "ugh",
-			"fps": 24,
-			"name": "TANKMAN UGH",
-			"indices": []
+			"indices": [],
+			"name": "TANKMAN UGH"
 		},
 		{
-			"loop": false,
 			"offsets": [1, 17],
-			"anim": "pretty good",
+			"loop": false,
 			"fps": 24,
-			"name": "PRETTY GOOD tankman",
+			"anim": "pretty good",
+			"indices": [],
+			"name": "PRETTY GOOD tankman"
+		},
+		{
+			"loop": false,
+			"offsets": [78, -16],
+			"anim": "miss",
+			"fps": 24,
+			"name": "tankman miss0",
 			"indices": []
 		},
 		{
-			"offsets": [78, -16],
-			"loop": false,
-			"fps": 24,
-			"anim": "miss",
-			"indices": [],
-			"name": "tankman miss0"
-		},
-		{
-			"offsets": [78, -16],
 			"loop": true,
-			"fps": 24,
+			"offsets": [78, -16],
 			"anim": "miss-loop",
-			"indices": [5, 6, 7],
-			"name": "tankman miss0"
+			"fps": 24,
+			"name": "tankman miss0",
+			"indices": [5, 6, 7]
 		},
 		{
-			"offsets": [-9, 11],
 			"loop": false,
-			"fps": 24,
+			"offsets": [-9, 11],
 			"anim": "pissed",
-			"indices": [],
-			"name": "tankman pissed0"
+			"fps": 24,
+			"name": "tankman pissed0",
+			"indices": []
 		},
 		{
-			"offsets": [-9, 11],
 			"loop": true,
-			"fps": 24,
+			"offsets": [-9, 11],
 			"anim": "pissed-loop",
-			"indices": [4, 5, 6],
-			"name": "tankman pissed0"
+			"fps": 24,
+			"name": "tankman pissed0",
+			"indices": [4, 5, 6]
+		},
+		{
+			"offsets": [175, 10],
+			"loop": false,
+			"fps": 24,
+			"anim": "Cutscene1",
+			"indices": [],
+			"name": "tankman lines mostly"
 		},
 		{
 			"loop": false,
-			"offsets": [175, 10],
-			"anim": "Cutscene",
+			"offsets": [111, 117],
+			"anim": "redheads",
 			"fps": 24,
-			"name": "tankman lines mostly",
+			"name": "redheads anim0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [0, 82],
+			"anim": "CutsceneEnd",
+			"fps": 24,
+			"name": "Cutscene0",
 			"indices": []
 		}
 	],
 	"vocals_file": "",
+	"usesPixelNotesSpecifically": false,
+	"gameOverEnd": null,
 	"no_antialiasing": false,
+	"splashSkin": "",
 	"useNoteSkin": false,
-	"image": "characters/tankmanCaptain,characters/tankmanCaptainBloody,characters/tankStress,,characters/cutsceneTank/tank",
+	"image": "characters/tankmanCaptain,characters/tankmanCaptainBloody,characters/tankStress,characters/cutsceneTank/tank,characters/cutsceneTank/TankEnd",
 	"position": [0, 240],
 	"noteSkinLib": "shared",
 	"altNoteColors": {
@@ -253,10 +224,14 @@
 			-12837034
 		]
 	},
+	"strumSkin": "",
 	"healthicon": "tankman",
+	"gameOverSound": null,
 	"flip_x": true,
 	"healthbar_colors": [225, 225, 225],
 	"disableNoteRGB": false,
+	"strumSkinLib": "shared",
+	"splashSkinLib": "shared",
 	"camera_position": [0, 0],
 	"noteSkin": "",
 	"noteColors": {
@@ -281,7 +256,9 @@
 			-13948117
 		]
 	},
+	"gameOverChar": null,
 	"sing_duration": 4,
+	"gameOverLoop": null,
 	"hasAltColors": false,
 	"scale": 1,
 	"_editor_isPlayer": false
