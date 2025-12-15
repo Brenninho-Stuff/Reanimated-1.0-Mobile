@@ -115,7 +115,7 @@
 		[
 			53584.9719101124,
 			[
-				["Cinematics", "2, 7", "70"]
+				["Cinematics-Angle", "on", "1"]
 			]
 		],
 		[
@@ -127,7 +127,7 @@
 		[
 			53930.4775280899,
 			[
-				["Color Transform", "0.5", "nocolor, 8"]
+				["Color Transform", "on", "1,nocolor"]
 			]
 		],
 		[
@@ -173,9 +173,15 @@
 			]
 		],
 		[
+			61853.9325842697,
+			[
+				["Color Transform", "off", "0.8,nocolor"],
+				["Cinematics-Angle", "off", "0.8"]
+			]
+		],
+		[
 			62022.4719101124,
 			[
-				["HUD Fade", "0", "0.5"],
 				["Play Animation", "redheads", "dad"],
 				["Set Property", "cameraSpeed", "2"],
 				["Updated Camera Zoom", "Main", "0.7,3,expoOut"]
@@ -201,10 +207,9 @@
 			]
 		],
 		[
-			64466.2921348315,
+			64634.8314606742,
 			[
-				["Change Character", "dad", "tankman-bloody"],
-				["Play Animation", "redheads-loop", "dad"]
+				["bloody Tank Anims", "", ""]
 			]
 		],
 		[
@@ -217,12 +222,6 @@
 			]
 		],
 		[
-			64803.3707865168,
-			[
-				["Color Transform", "0", ""]
-			]
-		],
-		[
 			72808.988764045,
 			[
 				["Updated Camera Zoom", "Main", "0.85,3,expoOut"]
@@ -231,8 +230,8 @@
 		[
 			75421.3483146068,
 			[
-				["Cinematics", "2,19", "60"],
-				["Color Transform", "0.5", "nocolor, 21"]
+				["Cinematics-Angle", "on", "1.5"],
+				["Color Transform", "on", "0.5,nocolor"]
 			]
 		],
 		[
@@ -314,6 +313,13 @@
 			[
 				["Updated Camera Zoom", "Main", "0.55,3,expoOut"],
 				["Camera Follow Pos", "700", "500"]
+			]
+		],
+		[
+			97078.6516853934,
+			[
+				["Color Transform", "off", "1.2,nocolor"],
+				["Cinematics-Angle", "off", "1"]
 			]
 		],
 		[

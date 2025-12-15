@@ -3,21 +3,32 @@
 		[
 			0,
 			[
-				["Torch's Custom Zoom", "Main", "0.6,1,smootherStepInOut"],
 				["Set Health Drain", "0.02", ""],
 				["Enemy Splashes", "true", "true"]
 			]
 		],
 		[
-			3840,
+			5520,
 			[
-				["Torch's Custom Zoom", "Main", "0.8,1,smoothStepInOut"]
+				["Dodge Event", "", ""]
+			]
+		],
+		[
+			10440,
+			[
+				["Dodge Event", "", ""]
 			]
 		],
 		[
 			17280,
 			[
 				["Torch's Custom Zoom", "Main", "0.65,3,smoothStepInOut"]
+			]
+		],
+		[
+			20880,
+			[
+				["Dodge Event", "", ""]
 			]
 		],
 		[
@@ -66,6 +77,12 @@
 			]
 		],
 		[
+			35640,
+			[
+				["Dodge Event", "", ""]
+			]
+		],
+		[
 			38400,
 			[
 				["Torch's Custom Zoom", "Main", "0.7,1,smoothStepInOut"]
@@ -76,7 +93,7 @@
 			[
 				["Torch's Custom Zoom", "Main", "0.6,1.6,smoothStepInOut"],
 				["Camera Follow Pos", "700", "500"],
-				["Color Transform", "1", "5.72"]
+				["Color Transform", "on", "0.8"]
 			]
 		],
 		[
@@ -88,15 +105,33 @@
 			]
 		],
 		[
+			48120,
+			[
+				["Color Transform", "off", "1.4"]
+			]
+		],
+		[
 			48360,
 			[
 				["Set Property", "cameraSpeed", "1"]
 			]
 		],
 		[
+			51120,
+			[
+				["Dodge Event", "", ""]
+			]
+		],
+		[
 			57840,
 			[
 				["Torch's Custom Zoom", "Main", "0.75,1,smoothStepInOut"]
+			]
+		],
+		[
+			65280,
+			[
+				["Dodge Event", "", ""]
 			]
 		],
 		[
@@ -115,8 +150,8 @@
 			72960,
 			[
 				["Torch's Custom Zoom", "Main", "0.6,1.6,smoothStepInOut"],
-				["Camera Follow Pos", "700", "500"],
-				["Color Transform", "1", "5.72"]
+				["Camera Follow Pos", "850", "500"],
+				["Color Transform", "on", "0.8"]
 			]
 		],
 		[
@@ -125,6 +160,12 @@
 				["Torch's Custom Zoom", "Main", "0.8,2.5,smoothStepInOut"],
 				["Camera Follow Pos", "", ""],
 				["Set Property", "cameraSpeed", "0.2"]
+			]
+		],
+		[
+			78840,
+			[
+				["Color Transform", "off", "1.2"]
 			]
 		],
 		[
@@ -137,7 +178,7 @@
 			80640,
 			[
 				["Torch's Custom Zoom", "Main", "0.7,1,smoothStepInOut"],
-				["Camera Follow Pos", "700", "450"]
+				["Camera Follow Pos", "850", "450"]
 			]
 		],
 		[
@@ -146,14 +187,14 @@
 				["Camera Follow Pos", "", ""],
 				["Torch's Custom Zoom", "Main", "1,3,smoothStepInOut"],
 				["Set Property", "cameraSpeed", "0.3"],
-				["Cinematics", "1,100", "80"]
+				["Cinematics-Angle", "on", "1"]
 			]
 		],
 		[
 			88320,
 			[
 				["Set Property", "cameraSpeed", "1"],
-				["Camera Follow Pos", "700", "450"],
+				["Camera Follow Pos", "850", "450"],
 				["Torch's Custom Zoom", "Main", "0.7,1,smoothStepInOut"]
 			]
 		],
@@ -180,11 +221,17 @@
 			]
 		],
 		[
+			109440,
+			[
+				["Dodge Event", "", ""]
+			]
+		],
+		[
 			111240,
 			[
 				["Camera Fade", "2", "off"]
 			]
 		]
 	],
-	"format": "psych_v1"
+	"format": "torch_v1_events"
 }

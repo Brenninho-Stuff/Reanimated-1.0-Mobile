@@ -1,9 +1,37 @@
 {
-	"directory": "week7",
-	"defaultZoom": 0.65,
+	"_editorMeta": {
+		"boyfriend": "bf-holding-gf",
+		"gf": "pico-speaker",
+		"dad": "tankman"
+	},
+	"girlfriend": [
+		200,
+		105
+	],
 	"stageUI": "",
-
-	"boyfriend": [870, 100],
-	"girlfriend": [200, 105],
-	"opponent": [-60, 100]
+	"boyfriend": [
+		870,
+		100
+	],
+	"objects": [
+		{
+			"type": "gf"
+		},
+		{
+			"type": "dad"
+		},
+		{
+			"type": "boyfriend"
+		}
+	],
+	"defaultZoom": 0.7,
+	"camera_girlfriend": [
+		50,
+		100
+	],
+	"directory": "week7",
+	"opponent": [
+		-60,
+		100
+	]
 }

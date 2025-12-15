@@ -122,25 +122,36 @@
 		},
 		{
 			"offsets": [0, 0],
-			"indices": [0, 1, 2, 3],
+			"loop": true,
 			"fps": 24,
 			"anim": "hairBlow",
-			"loop": true,
+			"indices": [0, 1, 2, 3],
 			"name": "Nene Hair Blowing"
 		},
 		{
 			"offsets": [0, 0],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "hairFall",
-			"loop": false,
+			"indices": [],
 			"name": "Nene Hair Blowing"
+		},
+		{
+			"loop": false,
+			"offsets": [-75, 9],
+			"anim": "dodge",
+			"fps": 24,
+			"name": "Nene Dodge0",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
+	"usesPixelNotesSpecifically": false,
+	"gameOverEnd": null,
 	"no_antialiasing": false,
+	"splashSkin": "",
 	"useNoteSkin": false,
-	"image": "characters/nene",
+	"image": "characters/nene,characters/NeneDodge",
 	"position": [170, 30],
 	"noteSkinLib": "shared",
 	"altNoteColors": {
@@ -165,10 +176,14 @@
 			-12837034
 		]
 	},
+	"strumSkin": "",
 	"healthicon": "nene",
+	"gameOverSound": null,
 	"flip_x": false,
 	"healthbar_colors": [250, 105, 146],
 	"disableNoteRGB": false,
+	"strumSkinLib": "shared",
+	"splashSkinLib": "shared",
 	"camera_position": [100, -10],
 	"noteSkin": "",
 	"noteColors": {
@@ -193,7 +208,9 @@
 			-12837034
 		]
 	},
+	"gameOverChar": null,
 	"sing_duration": 4,
+	"gameOverLoop": null,
 	"hasAltColors": false,
 	"scale": 1,
 	"_editor_isPlayer": false

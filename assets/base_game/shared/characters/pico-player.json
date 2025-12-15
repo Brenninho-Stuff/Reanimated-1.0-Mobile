@@ -242,17 +242,28 @@
 		},
 		{
 			"offsets": [56, 18],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "hey-alt",
-			"loop": false,
+			"indices": [],
 			"name": "Pico YEAH cheer0"
+		},
+		{
+			"loop": false,
+			"offsets": [112, 10],
+			"anim": "dodge",
+			"fps": 24,
+			"name": "dodge pico0",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
+	"usesPixelNotesSpecifically": false,
+	"gameOverEnd": null,
 	"no_antialiasing": false,
+	"splashSkin": "",
 	"useNoteSkin": false,
-	"image": "characters/Pico_FNF_assetss,characters/Pico_Intro,characters/Pico_all,characters/Pico_FNF_assetss_Beatbox,characters/pico-yeah",
+	"image": "characters/Pico_FNF_assetss,characters/Pico_Intro,characters/Pico_all,characters/Pico_FNF_assetss_Beatbox,characters/pico-yeah,characters/PicoDodge",
 	"position": [0, 300],
 	"noteSkinLib": "shared",
 	"altNoteColors": {
@@ -277,10 +288,14 @@
 			-12837034
 		]
 	},
+	"strumSkin": "",
 	"healthicon": "pico",
+	"gameOverSound": null,
 	"flip_x": true,
 	"healthbar_colors": [133, 230, 81],
 	"disableNoteRGB": false,
+	"strumSkinLib": "shared",
+	"splashSkinLib": "shared",
 	"camera_position": [190, 0],
 	"noteSkin": "",
 	"noteColors": {
@@ -305,7 +320,9 @@
 			-9297408
 		]
 	},
+	"gameOverChar": null,
 	"sing_duration": 4,
+	"gameOverLoop": null,
 	"hasAltColors": false,
 	"scale": 1,
 	"_editor_isPlayer": true

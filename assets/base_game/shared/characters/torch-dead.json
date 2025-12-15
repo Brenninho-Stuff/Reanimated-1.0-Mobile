@@ -27,7 +27,7 @@
 	],
 	"vocals_file": "",
 	"no_antialiasing": false,
-	"image": "unlockable characters/torch",
+	"image": "characters/torch",
 	"position": [-100, 5],
 	"altNoteColors": {
 		"right": [

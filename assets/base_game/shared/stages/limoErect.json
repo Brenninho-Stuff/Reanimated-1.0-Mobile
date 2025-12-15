@@ -1,15 +1,36 @@
 {
-	"directory": "week4",
-	"defaultZoom": 0.7,
+	"camera_boyfriend": [
+		-50,
+		80
+	],
+	"_editorMeta": {
+		"boyfriend": "pico-player",
+		"dad": "mom-car",
+		"gf": "nene"
+	},
+	"boyfriend": [
+		1220,
+		-80
+	],
+	"girlfriend": [
+		700,
+		280
+	],
 	"stageUI": "",
-
-	"boyfriend": [1280, -80],
-	"girlfriend": [700, 280],
-	"opponent": [0, 130],
+	"camera_girlfriend": [
+		0,
+		0
+	],
+	"defaultZoom": 0.75,
+	"opponent": [
+		0,
+		130
+	],
+	"directory": "week4",
+	"camera_speed": 1,
 	"hide_girlfriend": false,
-
-	"camera_boyfriend": [-200, 100],
-	"camera_opponent": [0, 0],
-	"camera_girlfriend": [0, 0],
-	"camera_speed": 1
+	"camera_opponent": [
+		150,
+		0
+	]
 }
