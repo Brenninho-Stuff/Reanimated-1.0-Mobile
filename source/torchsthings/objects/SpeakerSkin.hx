@@ -33,6 +33,9 @@ class SpeakerSkin extends FlxSpriteGroup {
     public var gf:Character = PlayState.instance.gf;
     public var bpm:Float = PlayState.SONG.bpm;
 
+    public var tankmen:Array<Float>;
+    public var thugmen:Array<Float>;
+
     public var atlasSpeaker:FlxAnimate = null;
     public var spriteSpeaker:FlxSprite = null;
 
@@ -56,6 +59,8 @@ class SpeakerSkin extends FlxSpriteGroup {
         }
         if (speakerSettings.library == null || speakerSettings.library == '') speakerSettings.library = 'shared';
         if (speakerSettings.offsets == null) speakerSettings.offsets = [0, 0];
+        if (speakerSettings.tankmen == null) speakerSettings.tankmen = [0, 0];
+        if (speakerSettings.thugmen == null) speakerSettings.thugmen = [0, 0];
         //if (speakerSettings.gfOffsets == null) speakerSettings.gfOffsets = [0, 0];
 
         var speakerToAdjust:Dynamic = null;
@@ -107,6 +112,9 @@ class SpeakerSkin extends FlxSpriteGroup {
 
         speakerToAdjust.x += speakerSettings.offsets[0];
         speakerToAdjust.y += speakerSettings.offsets[1];
+
+        tankmen = speakerSettings.tankmen;
+        thugmen = speakerSettings.thugmen;
     }
 
     public function setShader(sdr:FlxShader) {
@@ -342,4 +350,6 @@ typedef SpeakerSettings = {
     @:optional var library:String;
     @:optional var offsets:Array<Float>;
     @:optional var isAnimateAtlas:Bool;
+    @:optional var thugmen:Array<Float>;
+    @:optional var tankmen:Array<Float>;
 }

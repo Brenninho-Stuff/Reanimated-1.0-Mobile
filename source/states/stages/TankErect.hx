@@ -34,6 +34,9 @@ class TankErect extends BaseStage
     var audioPlaying:FlxSound;
     var hasPlayedInitialCutscene:Bool = false;
 
+    var tankmenSpeaker:TankmenSpeaker;
+
+
 override function create()
     {
         ratingPos.set(550, 500);
@@ -215,13 +218,18 @@ override function create()
         applyShader(boyfriend, boyfriend.curCharacter);
 		applyShader(gf, gf.curCharacter);
 		applyShader(dad, dad.curCharacter);
+        if (speaker != null)
+        {
+        speaker.setShader(colorShader);
+        tankmenSpeaker = new TankmenSpeaker(speaker.tankmen, speaker.thugmen, this);
+		addBehindDadAndBF(tankmenSpeaker); //Pagen la pensión por favor, me muero de hambre :"v
+        }
         //tankmanIntro.shader = colorShader;
         /*for (tankman in tankmanRun.members) {
             if (tankman != null) {
                 tankman.setShader(colorShader); //I'll do this tomorrow, Monday. I barely understand shaders, bruh, lol.
             }
         }*/
-        if (speaker != null) speaker.setShader(colorShader);
     }
 
     var isSipping:Bool = false;
@@ -232,6 +240,9 @@ override function create()
             sniper.animation.play("idle", false);
         }
         guy.animation.play("idle", false);
+        if (tankmenSpeaker != null) {
+            tankmenSpeaker.dance();
+        }
     
         if (!isSipping && FlxG.random.bool(2)) {  
             sipAnimation();

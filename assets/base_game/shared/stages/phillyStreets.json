@@ -1,16 +1,47 @@
-
 {
-	"directory": "weekend1",
-	"defaultZoom": 0.77,
+	"camera_boyfriend": [
+		-200,
+		-10
+	],
+	"_editorMeta": {
+		"boyfriend": "pico-player",
+		"dad": "darnell",
+		"gf": "nene"
+	},
+	"boyfriend": [
+		1940,
+		450
+	],
+	"girlfriend": [
+		1200,
+		414
+	],
 	"isPixelStage": false,
-
-	"boyfriend": [1940, 450],
-	"girlfriend": [1200, 414],
-	"opponent": [600, 425],
+	"objects": [
+		{
+			"type": "gf"
+		},
+		{
+			"type": "dad"
+		},
+		{
+			"type": "boyfriend"
+		}
+	],
+	"camera_girlfriend": [
+		0,
+		100
+	],
+	"defaultZoom": 0.77,
+	"opponent": [
+		600,
+		425
+	],
+	"directory": "weekend1",
+	"camera_speed": 1,
 	"hide_girlfriend": false,
-
-	"camera_boyfriend": [-150, 40],
-	"camera_girlfriend": [0, 0],
-	"camera_opponent": [270, 5],
-	"camera_speed": 1
+	"camera_opponent": [
+		220,
+		5
+	]
 }

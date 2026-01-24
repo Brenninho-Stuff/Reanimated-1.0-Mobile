@@ -35,53 +35,70 @@ class CustomEvents {
     public static function onEvent(eventName:String, value1:String, value2:String) {
         switch (eventName) {
             case 'Cinematic Bars' | 'Cinematics':
-                var upperBar:FlxSprite = new FlxSprite(-110, initialUpperY).makeGraphic(1500, 350, 0xFF000000);
-                var lowerBar:FlxSprite = new FlxSprite(-110, initialLowerY).makeGraphic(1500, 350, 0xFF000000);
-                upperBar.cameras = [PlayState.instance.camBlack];
-                lowerBar.cameras = [PlayState.instance.camBlack];
-                PlayState.instance.add(upperBar);
-                PlayState.instance.add(lowerBar);
+                var cmd:String = (value1 != null) ? value1.toLowerCase() : 'on';
+                var duration:Float = (value2 != null && value2 != '') ? Std.parseFloat(value2) : 0.6;
+                var distance:Float = 100;  // distancia por defecto
 
-                var vals1:Array<String> = value1.split(",");
-                var speed:Float = 0.0;
-                var wait:Float = 0.0;
-                if (vals1 != null) {
-                    if (vals1[0] != null || vals1[0] != '') speed = Std.parseFloat(vals1[0].trim());
-                    if (vals1[1] != null || vals1[1] != '') wait = Std.parseFloat(vals1[1].trim());
-                }
+                 // Parsear value2: "duration,distance"
+    if (value2 != null && value2 != '') {
+        var parts:Array<String> = value2.split(",");
+        if (parts[0] != null) duration = Std.parseFloat(parts[0].trim());
+        if (parts[1] != null) distance = Std.parseFloat(parts[1].trim());
+    }
+    
+                // Crear barras persistentes en 'on'
+                if (cmd == 'on') {
+                    // Destruir barras anteriores para asegurar estado limpio al recargar la canción
+                    if (upperBar != null) {
+                        upperBar.kill();
+                        upperBar.destroy();
+                        upperBar = null;
+                    }
+                    if (lowerBar != null) {
+                        lowerBar.kill();
+                        lowerBar.destroy();
+                        lowerBar = null;
+                    }
 
-                //var speed:Float = Std.parseFloat(value1);
-                var distance:Float = Std.parseFloat(value2);
-                if (distance > 200.0) distance = 200.0;
+                    upperBar = new FlxSprite(-110, initialUpperY).makeGraphic(1500, 350, 0xFF000000);
+                    lowerBar = new FlxSprite(-110, initialLowerY).makeGraphic(1500, 350, 0xFF000000);
+                    upperBar.cameras = [PlayState.instance.camBlack];
+                    lowerBar.cameras = [PlayState.instance.camBlack];
+                    PlayState.instance.add(upperBar);
+                    PlayState.instance.add(lowerBar);
 
-                if (speed > 0 && distance > 0) {
-                    FlxTween.tween(upperBar, {y: initialUpperY + distance}, speed, {ease: FlxEase.quadOut});
-                    FlxTween.tween(lowerBar, {y: initialLowerY - distance}, speed, {
-                        ease: FlxEase.quadOut, 
-                        onComplete: function(twn:FlxTween) {
-                            new FlxTimer().start(wait, function(tmr:FlxTimer) {
-                                FlxTween.tween(upperBar, {y: initialUpperY}, speed, {ease: FlxEase.quadIn});
-                                FlxTween.tween(lowerBar, {y: initialLowerY}, speed, {
-                                    ease: FlxEase.quadIn,
-                                    onComplete: function (other:FlxTween) {
-                                        upperBar.kill();
-                                        upperBar.destroy();
-                                        lowerBar.kill();
-                                        lowerBar.destroy();
-                                    }
-                                });
-                                FlxTween.tween(PlayState.instance.healthBar, {alpha: 1}, speed/2);
-                                FlxTween.tween(PlayState.instance.iconP1, {alpha: 1}, speed/2);
-                                FlxTween.tween(PlayState.instance.iconP2, {alpha: 1}, speed/2);
-                                IconsAnimator.canResetProperties = true;
-                            });
-                        }
-                    });
-                    FlxTween.tween(PlayState.instance.healthBar, {alpha: 0}, speed/2);
-                    FlxTween.tween(PlayState.instance.iconP1, {alpha: 0}, speed/2);
-                    FlxTween.tween(PlayState.instance.iconP2, {alpha: 0}, speed/2);
-                    IconsAnimator.canResetProperties = false;
-                    
+                    FlxTween.tween(upperBar, { y: initialUpperY + distance }, duration, { ease: FlxEase.quadOut });
+                    FlxTween.tween(lowerBar, { y: initialLowerY - distance }, duration, { ease: FlxEase.quadOut });
+
+                // Pop rápido en beat
+                } else if (cmd == 'beat') {
+                    if (upperBar != null && lowerBar != null) {
+                        upperBar.y = initialUpperY + distance - 10;
+                        lowerBar.y = initialLowerY - distance + 10;
+                        FlxTween.tween(upperBar, { y: initialUpperY + distance }, 0.2, { ease: FlxEase.quadOut });
+                        FlxTween.tween(lowerBar, { y: initialLowerY - distance }, 0.2, { ease: FlxEase.quadOut });
+                    }
+
+                // Remover y destruir en 'off'
+                } else if (cmd == 'off') {
+                    if (upperBar != null) {
+                        FlxTween.tween(upperBar, { y: initialUpperY }, duration, { ease: FlxEase.quadIn,
+                            onComplete: function(twn:FlxTween) {
+                                upperBar.kill();
+                                upperBar.destroy();
+                                upperBar = null;
+                            }
+                        });
+                    }
+                    if (lowerBar != null) {
+                        FlxTween.tween(lowerBar, { y: initialLowerY }, duration, { ease: FlxEase.quadIn,
+                            onComplete: function(twn:FlxTween) {
+                                lowerBar.kill();
+                                lowerBar.destroy();
+                                lowerBar = null;
+                            }
+                        });
+                    }
                 }
 
                 case 'Cinematics-A' | 'Cinematics-Angle':
