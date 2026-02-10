@@ -266,6 +266,7 @@ class PlayState extends MusicBeatState
 
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
+	public var iconGF:HealthIcon;
 	public var camHUD:FlxCamera;
 	public var camBlack:FlxCamera;
 	public var camGame:FlxCamera;
@@ -731,8 +732,15 @@ class PlayState extends MusicBeatState
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP2);
 		uiGroup.add(iconP1);
+
+		iconGF = new HealthIcon(gf.healthIcon, true);
+		iconGF.y = healthBar.y - 50 + 30;
+		iconGF.x = healthBar.barCenter + 40;
+		iconGF.visible = !ClientPrefs.data.hideHud;
+		iconGF.alpha = ClientPrefs.data.healthBarAlpha;
+		uiGroup.add(iconGF);
 		
-		iconsAnimator = new IconsAnimator(iconP1, iconP2, iconP1.y);
+		iconsAnimator = new IconsAnimator(iconP1, iconP2, iconP1.y, iconGF);
 
 		subTitle = new FlxText(0, 560.8, FlxG.width, "", 20);
 		//subTitle.setFormat(Paths.font("PhantomMuff.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -2715,6 +2723,10 @@ class PlayState extends MusicBeatState
 		var mult:Float = FlxMath.lerp(1, iconP2.scale.x, Math.exp(-elapsed * 9 * playbackRate));
 		iconP2.scale.set(mult, mult);
 		iconP2.updateHitbox();
+
+		var mult:Float = FlxMath.lerp(1, iconGF.scale.x, Math.exp(-elapsed * 9 * playbackRate));
+		iconGF.scale.set(mult, mult);
+		iconGF.updateHitbox();
 	}
 
 	var iconsAnimations:Bool = true;
@@ -2741,6 +2753,15 @@ class PlayState extends MusicBeatState
 			iconP1.animation.curAnim.curFrame = healthBar.leftToRight ? 1 : 2;
 		else
 			iconP1.animation.curAnim.curFrame = 0;
+
+		if (iconGF != null && iconGF.animation != null && iconGF.animation.curAnim != null) {
+			if (healthBar.percent < 30) // GF Losing
+				iconGF.animation.curAnim.curFrame = healthBar.leftToRight ? 2 : 1;
+			else if (healthBar.percent > 75) // GF Winning
+				iconGF.animation.curAnim.curFrame = healthBar.leftToRight ? 1 : 2;
+			else
+				iconGF.animation.curAnim.curFrame = 0;
+		}
 
 		if (healthBar.percent > 75) // Enemy Losing
 			iconP2.animation.curAnim.curFrame = healthBar.leftToRight ? 2 : 1;
@@ -4760,6 +4781,7 @@ class PlayState extends MusicBeatState
 		iconsAnimator.updateIcons(curBeat, ClientPrefs.data.iconAnims, curBoyfriendAnimation, curDadAnimation);
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
+		if (iconGF != null) iconGF.updateHitbox();
 
 		if(curStep % 4 == 0)
 			{

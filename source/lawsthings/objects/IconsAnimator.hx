@@ -12,15 +12,21 @@ class IconsAnimator {
 
     public var iconP1:HealthIcon;
     public var iconP2:HealthIcon;
+    public var iconGF:HealthIcon;
     var iconY:Float;
+    var iconYGF:Float = 0;
     
     var pBouncing:Bool = false;
     var oBouncing:Bool = false;
+    var gfBouncing:Bool = false;
     var initialX1:Float;
     var initialX2:Float;
+    var initialXGF:Float;
+    var initialYGF:Float;
 
     var stretchTweenP1:FlxTween;
     var stretchTweenP2:FlxTween;
+    var stretchTweenGF:FlxTween;
 
     public static var canResetProperties:Bool = true;
     
@@ -30,12 +36,16 @@ class IconsAnimator {
 
     var isAnimatingPosition:Bool = false;
 
-    public function new(icon1:HealthIcon, icon2:HealthIcon, iconY:Float) {
+    public function new(icon1:HealthIcon, icon2:HealthIcon, iconY:Float, icon3:HealthIcon = null) {
         iconP1 = icon1;
         iconP2 = icon2;
+        iconGF = icon3;
         this.iconY = iconY;
         initialX1 = icon1.x;
         initialX2 = icon2.x;
+        initialXGF = icon3 != null ? icon3.x : 0;
+        initialYGF = icon3 != null ? icon3.y : 0;
+        iconYGF = initialYGF;
     }
 
     public function updateIcons(curBeat:Int, iconAnims:Array<String>, bfAnim:String, dadAnim:String) {
@@ -181,27 +191,38 @@ class IconsAnimator {
         if (!canResetProperties) return;
         iconP1.setPosition(initialX1, iconY);
         iconP2.setPosition(initialX2, iconY);
+        if (iconGF != null) {
+            iconGF.setPosition(initialXGF, initialYGF);
+        }
         iconP1.flipX = iconP2.flipX = false;
+        if (iconGF != null) iconGF.flipX = false;
         iconP1.alpha = iconP2.alpha = 1;
+        if (iconGF != null) iconGF.alpha = 1;
         iconP1.scale.set(1, 1);
         iconP2.scale.set(1, 1);
+        if (iconGF != null) iconGF.scale.set(1, 1);
         iconP1.color = iconP2.color = FlxColor.WHITE;
+        if (iconGF != null) iconGF.color = FlxColor.WHITE;
         iconP1.angle = iconP2.angle = 0;
+        if (iconGF != null) iconGF.angle = 0;
     }
 
     function setIconsScale(scale:Float) {
         iconP1.scale.set(scale, scale);
         iconP2.scale.set(scale, scale);
+        if (iconGF != null) iconGF.scale.set(scale, scale);
     }
 
     function toggleScales(scale1:Float, scale2:Float) {
         iconP1.scale.set(scale1, scale1);
         iconP2.scale.set(scale2, scale2);
+        if (iconGF != null) iconGF.scale.set(scale1, scale1);
     }
 
     function animateAngles(curBeat:Int) {
         iconP1.angle = (curBeat % 2 == 0) ? 10 : -10;
         iconP2.angle = (curBeat % 2 == 0) ? 10 : -10;
+        if (iconGF != null) iconGF.angle = (curBeat % 2 == 0) ? 10 : -10;
     }
 
     function handleBounce(bfAnim:String, dadAnim:String) {
@@ -238,16 +259,24 @@ class IconsAnimator {
         if (!isAnimatingPosition && PlayState.instance != null && PlayState.instance.healthBar != null) {
             iconP1.x = PlayState.instance.healthBar.barCenter + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
             iconP2.x = PlayState.instance.healthBar.barCenter - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
+            if (iconGF != null) {
+                    // GF se posiciona +80 pixeles a la derecha y +30 abajo relativo a iconP1
+                iconGF.x = iconP1.x + 40;
+                iconGF.y = iconY + 30;
+            }
         }
     }
 
     public function destroy() {
         if (stretchTweenP1 != null) stretchTweenP1.cancel();
         if (stretchTweenP2 != null) stretchTweenP2.cancel();
+        if (stretchTweenGF != null) stretchTweenGF.cancel();
         FlxTween.cancelTweensOf(iconP1.scale);
         FlxTween.cancelTweensOf(iconP2.scale);
+        if (iconGF != null) FlxTween.cancelTweensOf(iconGF.scale);
     
         iconP1 = null;
         iconP2 = null;
+        iconGF = null;
     }
 }
