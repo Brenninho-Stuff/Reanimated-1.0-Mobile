@@ -77,12 +77,12 @@ class TankmenSpeaker extends FlxGroup
 	function applyShader(sprite:FlxSprite)
 	{
 		var rim = new DropShadowShader();
-		rim.setAdjustColor(-46, -38, -25, -20);
-		rim.color = 0xFF539BFA;
+		rim.setAdjustColor(-60, -45, -20, -30);
+		rim.color = 0xFF1E17FF;
 		rim.threshold = 0.4;
 		rim.antialiasAmt = 0;
 		rim.attachedSprite = sprite;
-		rim.angle = 90;
+		rim.angle = 135;
 		sprite.shader = rim;
 		sprite.animation.callback = function(anim, frame, index)
 		{

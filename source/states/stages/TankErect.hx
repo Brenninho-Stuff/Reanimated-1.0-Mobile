@@ -211,10 +211,10 @@ override function create()
 
         super.createPost();
         var colorShader = new AdjustColorShader();
-        colorShader.hue = -50;
-        colorShader.saturation = -20;
-        colorShader.contrast = -15;
-        colorShader.brightness = -46;
+        colorShader.hue = -45;
+        colorShader.saturation = -30;
+        colorShader.contrast = -20;
+        colorShader.brightness = -60;
         applyShader(boyfriend, boyfriend.curCharacter);
 		applyShader(gf, gf.curCharacter);
 		applyShader(dad, dad.curCharacter);
@@ -515,8 +515,8 @@ override function create()
 		}
         function applyAbotShader(sprite:FlxSprite){
 		var rim = new DropShadowScreenspace();
-		rim.setAdjustColor(-40, -25, -10, -20);
-		rim.color =  0xFF539BFA;
+		rim.setAdjustColor(-60, -45, -20, -30);
+		rim.color =  0xFF1E17FF;
         rim.threshold = 0.7;
 		rim.antialiasAmt = 0;
 		rim.attachedSprite = sprite;
@@ -531,8 +531,8 @@ override function create()
         function applyShader(sprite:FlxSprite, char_name:String)
 	{
 		var rim = new DropShadowShader();
-		rim.color = 0xFF539BFA;
-        rim.setAdjustColor(-40, -25, -10, -20);
+		rim.color = 0xFF1E17FF;
+        rim.setAdjustColor(-60, -45, -20, -30);
 		rim.threshold = 0.1;
 		rim.attachedSprite = sprite;
 		rim.distance = 15;

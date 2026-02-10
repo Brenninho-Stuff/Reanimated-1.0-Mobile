@@ -3,6 +3,7 @@ package states.stages;
 import states.stages.objects.*;
 import objects.Character;
 import torchsthings.shaders.*;
+import torchsthings.shaders.AdjustColorShader;
 import torchsfunctions.functions.ShaderUtils;
 import openfl.filters.ShaderFilter;
 import torchsthings.objects.effects.ReflectedChar;
@@ -11,9 +12,6 @@ import substates.GameOverSubstate;
 
 class StageWeek1 extends BaseStage
 {
-	var dadbattleBlack:BGSprite;
-	var dadbattleGlowup:BGSprite;
-	var dadbattleGlowdown:BGSprite;
 	var dadbattleLight:BGSprite;
 	var dadbattleFog:DadBattleFog;
 	var crt:CRT = new CRT(false, true);
@@ -22,6 +20,21 @@ class StageWeek1 extends BaseStage
 	var offsetState:Bool = false; // Literally only here to prevent a crash I found - Torch
 	//var reflectedBF:ReflectedChar;
 	//var reflectedDad:ReflectedChar;
+
+	//base
+	var bg:BGSprite;
+	var stageFront:BGSprite;
+	var stagelittlelights:BGSprite;
+	var stageCurtains:BGSprite;
+	var stageColumns:BGSprite;
+	//event
+	var bgGlow:BGSprite;
+	var stageFrontGlow:BGSprite;
+	var stagelittlelightsGlow:BGSprite;
+	var stageCurtainsGlow:BGSprite;
+	var stageColumnsGlow:BGSprite;
+	var colorShader:AdjustColorShader;
+
 	override function create()
 	{
 		ratingPos.set(850, 450);
@@ -29,14 +42,29 @@ class StageWeek1 extends BaseStage
 		comboImage.set( 0, 550);
 
 		offsetState = Std.isOfType(FlxG.state, options.NoteOffsetState);
-		var bg:BGSprite = new BGSprite('rework/stageback', -650, -300, 0.9, 0.9);
+
+		bgGlow = new BGSprite('rework/event/stageback', -650, -300, 0.9, 0.9);
+		bgGlow.setGraphicSize(Std.int(bgGlow.width * 1.5));
+		bgGlow.updateHitbox();
+		bgGlow.visible = false;
+		add(bgGlow);
+
+		bg = new BGSprite('rework/stageback', -650, -300, 0.9, 0.9);
 		bg.setGraphicSize(Std.int(bg.width * 1.5));
 		bg.updateHitbox();
+		bg.visible = true;
 		add(bg);
 
-		var stageFront:BGSprite = new BGSprite('rework/stagefront', -650, -300, 0.9, 0.9);
+		stageFrontGlow = new BGSprite('rework/event/stagefront', -650, -300, 0.9, 0.9);
+		stageFrontGlow.setGraphicSize(Std.int(stageFrontGlow.width * 1.5));
+		stageFrontGlow.updateHitbox();
+		stageFrontGlow.visible = false;
+		add(stageFrontGlow);
+
+		stageFront = new BGSprite('rework/stagefront', -650, -300, 0.9, 0.9);
 		stageFront.setGraphicSize(Std.int(stageFront.width * 1.5));
 		stageFront.updateHitbox();
+		stageFront.visible = true;
 		add(stageFront);
 		if(!ClientPrefs.data.lowQuality) {
 					/*var stageHorns:BGSprite = new BGSprite('Altavoces', -200, 400, 0.9, 0.9);
@@ -44,19 +72,41 @@ class StageWeek1 extends BaseStage
 					stageHorns.updateHitbox();
 					add(stageHorns);*/
 
-					var stagelittlelights:BGSprite = new BGSprite('rework/stage_light',  -550, -500, 1.0, 1.0);
+					stagelittlelightsGlow = new BGSprite('rework/event/stage_light',  -550, -500, 1.0, 1.0);
+					stagelittlelightsGlow.scale.set(1.45, 1.5);
+					stagelittlelightsGlow.updateHitbox();
+					stagelittlelightsGlow.visible = false;
+					add(stagelittlelightsGlow);
+
+					stagelittlelights = new BGSprite('rework/stage_light',  -550, -500, 1.0, 1.0);
 					stagelittlelights.scale.set(1.45, 1.5);
 					stagelittlelights.updateHitbox();
+					stagelittlelights.visible = true;
 					add(stagelittlelights);
 
-					var stageCurtains:BGSprite = new BGSprite('rework/stagecurtains',  -550, -460, 1.1, 1.1);
+					stageCurtainsGlow = new BGSprite('rework/event/stagecurtains',  -550, -460, 1.1, 1.1);
+					stageCurtainsGlow.scale.set(1.4, 1.5);
+					stageCurtainsGlow.updateHitbox();
+					stageCurtainsGlow.visible = false;
+					add(stageCurtainsGlow);
+
+					stageCurtains = new BGSprite('rework/stagecurtains',  -550, -460, 1.1, 1.1);
 					stageCurtains.scale.set(1.4, 1.5);
 					stageCurtains.updateHitbox();
+					stageCurtains.visible = true;
 					add(stageCurtains);
 		}
-		var stageColumns:BGSprite = new BGSprite('rework/stagecolumns', -550, -250, 1.2, 1.2);
+		
+		stageColumnsGlow = new BGSprite('rework/event/stagecolumns', -550, -250, 1.2, 1.2);
+		stageColumnsGlow.scale.set(1.4, 1.3);
+		stageColumnsGlow.updateHitbox();
+		stageColumnsGlow.visible = false;
+		add(stageColumnsGlow);
+
+		stageColumns = new BGSprite('rework/stagecolumns', -550, -250, 1.2, 1.2);
 		stageColumns.scale.set(1.4, 1.3);
 		stageColumns.updateHitbox();
+		stageColumns.visible = true;
 		add(stageColumns);
 
 		if (!offsetState) {
@@ -86,6 +136,15 @@ class StageWeek1 extends BaseStage
 	}
 
 	var tween:FlxTween;
+
+	function makecolorShader(hue:Float, sat:Float, bright:Float, contrast:Float) {
+		colorShader = new AdjustColorShader();
+		colorShader.hue = hue;
+		colorShader.saturation = sat;
+		colorShader.brightness = bright;
+		colorShader.contrast = contrast;
+		return colorShader;
+	}
 
 	override function update(elapsed:Float) {
 		crt.update(elapsed);
@@ -117,33 +176,12 @@ class StageWeek1 extends BaseStage
 		{
 			case "Dadbattle Spotlight":
 				if (!torchsthings.objects.CustomEvents.stageEvents.contains("Dadbattle Spotlight")) torchsthings.objects.CustomEvents.stageEvents.push("Dadbattle Spotlight");
-				dadbattleBlack = new BGSprite(null, -800, -400, 0, 0);
-				dadbattleBlack.makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
-				dadbattleBlack.alpha = 0.45;
-				dadbattleBlack.visible = false;
-				add(dadbattleBlack);
 
 				dadbattleLight = new BGSprite('spotlight', 400, 100);
 				dadbattleLight.alpha = 0.375;
 				dadbattleLight.blend = ADD;
 				dadbattleLight.visible = false;
 				add(dadbattleLight);
-
-				dadbattleGlowup = new BGSprite('rework/light', -400, -400, 1.2, 1.2);
-				dadbattleGlowup.setGraphicSize(Std.int(dadbattleGlowup.width * 2.3));
-				dadbattleGlowup.updateHitbox();
-				dadbattleGlowup.alpha = 0.75;
-				dadbattleGlowup.blend = ADD;
-				dadbattleGlowup.visible = false;
-				add(dadbattleGlowup);
-
-				dadbattleGlowdown = new BGSprite('rework/light2', -700, 600, 0.9, 0.9);
-				dadbattleGlowdown.setGraphicSize(Std.int(dadbattleGlowdown.width * 2.1));
-				dadbattleGlowdown.updateHitbox();
-				dadbattleGlowdown.alpha = 0.75;
-				dadbattleGlowdown.blend = ADD;
-				dadbattleGlowdown.visible = false;
-				add(dadbattleGlowdown);
 
 				dadbattleFog = new DadBattleFog();
 				dadbattleFog.visible = false;
@@ -165,12 +203,26 @@ class StageWeek1 extends BaseStage
 					case 1, 2, 3: //enable and target dad
 						if(val == 1) //enable
 						{
-							dadbattleBlack.visible = true;
-							dadbattleGlowup.visible = true;
-							dadbattleGlowdown.visible = true;
 							dadbattleLight.visible = true;
 							dadbattleFog.visible = true;
+							bgGlow.visible = true;
+							stageFrontGlow.visible = true;
+							stagelittlelightsGlow.visible = true;
+							stageCurtainsGlow.visible = true;
+							stageColumnsGlow.visible = true;
+
+							bg.visible = false;
+							stageFront.visible = false;
+							stagelittlelights.visible = false;
+							stageCurtains.visible = false;
+							stageColumns.visible = false;
 							defaultCamZoom += 0.12;
+							
+							// Cambiar colores con AdjustColorShader
+							gf.shader = makecolorShader(-35, -35, -60, 10);
+							dad.shader = makecolorShader(-35, -35, -60, 10);
+							boyfriend.shader = makecolorShader(-35, -35, -60, 10);
+							if (speaker != null) speaker.setShader(makecolorShader(-35, -35, -60, 10));
 						}
 
 						var who:Character = dad;
@@ -185,12 +237,26 @@ class StageWeek1 extends BaseStage
 						FlxTween.tween(dadbattleFog, {alpha: 0.7}, 1.5, {ease: FlxEase.quadInOut});
 
 					default:
-						dadbattleBlack.visible = false;
-						dadbattleGlowup.visible = false;
-						dadbattleGlowdown.visible = false;
 						dadbattleLight.visible = false;
+						bgGlow.visible = false;
+						stageFrontGlow.visible = false;
+						stagelittlelightsGlow.visible = false;
+						stageCurtainsGlow.visible = false;
+						stageColumnsGlow.visible = false;
+
+						bg.visible = true;
+						stageFront.visible = true;
+						stagelittlelights.visible = true;
+						stageCurtains.visible = true;
+						stageColumns.visible = true;
 						defaultCamZoom -= 0.12;
 						FlxTween.tween(dadbattleFog, {alpha: 0}, 0.7, {onComplete: function(twn:FlxTween) dadbattleFog.visible = false});
+						
+						// Restaurar colores originales
+						gf.shader = null;
+						dad.shader = null;
+						boyfriend.shader = null;
+						if (speaker != null) speaker.setShader(null);
 				}
 			case "Change Character":
 				if (value1.toLowerCase() == "bf" || value1.toLowerCase() == "boyfriend" || value1.toLowerCase() == "player") {

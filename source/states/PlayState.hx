@@ -496,6 +496,7 @@ class PlayState extends MusicBeatState
 			case "phillyStreetsErect": new PhillyStreetsErect(); //Weekend 1 bf mix - Erect
 			case 'wait': new Wait();					//Wait - CG5 Best Song
 			case 'robin': new Robin();			//Wait - Erect
+			case 'pear': new TetoPear();			//Machine Love - Teto Pear
 			default: new Gray(); // Base Gray stage for visibility
 		}
 		if(isPixelStage) {

@@ -24,6 +24,7 @@ class StageErect extends BaseStage
 	var shaderFilter:ShaderFilter;
 	var gfPixel:Character = null;
 	var offsetState:Bool = false; // Literally only here to prevent a crash I found - Torch
+    var guitar:BGSprite;
 
     //event lol
     var dadbattleLight:BGSprite;
@@ -65,11 +66,17 @@ class StageErect extends BaseStage
         orange.updateHitbox();
         add(orange);
 
-        erectSpeaker = new BGSprite('rework/Erect/speaker', -201, 205, 1, 1);
+        erectSpeaker = new BGSprite('rework/Erect/speaker', 10, 205, 1, 1);
         erectSpeaker.antialiasing =  ClientPrefs.data.antialiasing;
         erectSpeaker.setGraphicSize(Std.int(erectSpeaker.width * 0.9));
         erectSpeaker.updateHitbox();
         add(erectSpeaker);
+
+        guitar = new BGSprite('rework/Erect/guitar', -110, 750, 1, 1);
+        guitar.antialiasing =  ClientPrefs.data.antialiasing;
+        guitar.setGraphicSize(Std.int(guitar.width * 1));
+        guitar.updateHitbox();
+        add(guitar);
 
         lightsmall = new BGSprite('rework/Erect/brightLightSmall', 1500, -200, 0.9, 0.9);
         lightsmall.antialiasing =  ClientPrefs.data.antialiasing;
@@ -143,11 +150,11 @@ class StageErect extends BaseStage
     }
     function setShader(char:FlxSprite, charName:String)
 	{
-    	if (ClientPrefs.data.shaders) {
-        	char.shader = colorShader;
-    	} else {
-        	char.shader = null;
-    	}
+        if (ClientPrefs.data.shaders) {
+            char.shader = colorShader;
+        } else {
+            char.shader = null;
+        }
 	}
     var tween:FlxTween;
 
@@ -193,13 +200,14 @@ class StageErect extends BaseStage
                     add(dadbattleLight);
 
                     mist2 = new FlxBackdrop(Paths.image("rework/Erect/mistMid"), X);
-                    mist2.setPosition(0, 25);
+                    mist2.setPosition(0, -105);
                     mist2.blend = ADD;
-                    mist2.scrollFactor.set(0.9, 0.9);
-                    mist2.scale.set(0.9, 0.9);
-                    mist2.velocity.x = 30;
-                    mist2.alpha = 0.8;
+                    mist2.scrollFactor.set(1.1, 1.1);
+                    mist2.velocity.x = 50;
+                    mist2.alpha = 0.9;
                     mist2.visible = false;
+                    mist2.color = 0xFF6a4da1;
+                    mist2.scale.set(1.3, 1.3);
                     mist2.antialiasing = ClientPrefs.data.antialiasing;
                     add(mist2);
             }
@@ -233,6 +241,12 @@ class StageErect extends BaseStage
                                 dadbattleLight.visible = true;
                                 mist2.visible = true;
                                 defaultCamZoom += 0.12;
+                                
+                                // Cambiar colores con AdjustColorShader
+                                gf.shader = makecolorShader(-25, -15, 20, 15);
+                                dad.shader = makecolorShader(-40, -20, 25, 20);
+                                boyfriend.shader = makecolorShader(5, -10, 15, 10);
+                                if (speaker != null) speaker.setShader(makecolorShader(-25, -15, 20, 15));
                             }
     
                             var who:Character = dad;
@@ -251,6 +265,12 @@ class StageErect extends BaseStage
                             mist2.visible = false;
                             defaultCamZoom -= 0.12;
                             FlxTween.tween(mist2, {alpha: 0}, 0.7, {onComplete: function(twn:FlxTween) mist2.visible = false});
+                            
+                            // Restaurar colores originales
+                            gf.shader = makecolorShader(-9, 0, -30, -4);
+                            dad.shader = makecolorShader(-32, 0, -33, -23);
+                            boyfriend.shader = makecolorShader(12, 0, -23, 7);
+                            if (speaker != null) speaker.setShader(makecolorShader(-9, 0, -30, -4));
 
                     }
                 }
