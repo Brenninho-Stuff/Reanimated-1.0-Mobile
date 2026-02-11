@@ -64,7 +64,7 @@ class Mall extends BaseStage
 	}
 
 	override function createPost() {
-		addBehindBlackSceen(santa);
+		add(santa);
 		super.createPost();
 	}
 

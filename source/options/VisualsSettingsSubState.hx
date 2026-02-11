@@ -94,118 +94,6 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		addOption(option);
 		option.onChange = playNoteSplashes;
 
-		var strumSkins:Array<String> = Mods.mergeAllTextsNamed('images/strumCovers/list.txt');
-		if (strumSkins.length > 0) {
-			if (!strumSkins.contains(ClientPrefs.data.strumSkin))
-				ClientPrefs.data.strumSkin = ClientPrefs.defaultData.strumSkin;
-
-			strumSkins.insert(0, ClientPrefs.defaultData.strumSkin);
-			var option:Option = new Option('Strum Covers:',
-				"Select your prefered Strum Cover variation.",
-				'strumSkin',
-				STRING,
-				strumSkins);
-			addOption(option);
-			option.onChange = playStrumCovers;
-		}
-
-		var option:Option = new Option('Character Based Notes:',
-			"Should characters override the default Note Skin and Colors?\nIf the character contains a noteskin or note colors\nthis will override them if enabled.",
-			'characterNoteColors',
-			STRING,
-			['Enabled', 'Opponent\nOnly', 'Disabled']);
-		addOption(option);
-
-		var healthSkins:Array<String> = Mods.mergeAllTextsNamed('images/healthbars/list.txt');
-		if (!healthSkins.contains(ClientPrefs.defaultData.healthBarSkin)) {
-			healthSkins.insert(0, ClientPrefs.defaultData.healthBarSkin);
-		}
-		if (!healthSkins.contains('Char Based')) {
-			healthSkins.insert(1, 'Char Based');
-		}
-		if (!healthSkins.contains(ClientPrefs.data.healthBarSkin)) {
-			ClientPrefs.data.healthBarSkin = ClientPrefs.defaultData.healthBarSkin;
-		}
-		var option:Option = new Option('Health Bar Skin:',
-			"How would you like your health bar to look?\nChar Based is set in the Character's json's.",
-			'healthBarSkin',
-			STRING,
-			healthSkins);
-		addOption(option);
-
-		var option:Option = new Option('Speaker Skin:',
-			"What speaker skin do you want to use?",
-			'speakerSkin',
-			STRING,
-			["Stage", "Default", "Christmas", "ABot", "ABot-Pixel", "Hev"]);
-		addOption(option);
-
-		var option:Option = new Option('Icon Skin:',
-			"What kind of icon skin do you want to use?",
-			'iconSkin',
-			STRING,
-			['Old Version', 'Vanilla', 'New Version']);
-		addOption(option);
-		#if desktop
-		var option:Option = new Option('Volume Bop',
-			"Should the speaker bop be dependant on user volume?\n\nTrue - Speakers bop the louder the overall volume is\nFalse - Speakers bop at song volume independent of user volume",
-			'volumeDependantBop',
-			'bool');
-		addOption(option);
-		#end
-
-		var option:Option = new Option('Show Credits',
-			'Uncheck this if you dont want to see the credits on song start',
-			'showSongCredits',
-			'bool');
-		addOption(option);
-
-		var option:Option = new Option('Dynamic Cam. Move Amount',
-			'The camera move depending on the note pressed using this value \nif the value is zero, it is disabled',
-			'extraCamMovementAmount',
-			INT);
-		option.scrollSpeed = 2.5;
-		option.minValue = 0;
-		option.maxValue = 100;
-		option.changeValue = 1;
-		option.decimals = 1;
-		addOption(option);
-
-		var option:Option = new Option('Icons Dance:',
-			"Combine up to 2 icon animations!",
-			'iconAnims',
-			ARRAY, 
-			[
-				'Default', 
-                'Arrow Funk', 
-                'GF Dance', 
-                'Zoom In And Out', 
-                'Bounce', 
-                'Heartbeat', 
-                'Spin', 
-                'Color Flash', 
-                'Stretch', 
-                'Mirror Flip', 
-                'Beat Drop', 
-                'Color Cycle', 
-                'Vertical Shake',
-                'Pulse',   
-                'Pop',        
-                'Tilt',         
-                'Glow',             
-                'Disabled'
-			],
-			null,
-			2 
-		);
-		addOption(option);
-
-		var option:Option = new Option('Smooth health bar',
-			'If enabled makes health bar move more smoothly',
-			'vsliceSmoothBar',
-			'bool');
-		addOption(option);
-
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',
 			'hideHud',
@@ -353,7 +241,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 		if(Paths.fileExists('images/$customSkin.png', IMAGE)) skin = customSkin;
 
 		note.texture = skin; //Load texture and anims
-		note.reloadNote();
+		//note.reloadNote();
 		note.playAnim('static');
 	}
 
@@ -424,7 +312,7 @@ class VisualsSettingsSubState extends BaseOptionsMenu
 
 	override function destroy()
 	{
-		if(changedMusic && !OptionsState.onPlayState) FlxG.sound.playMusic(Paths.music('FreakyMenuSound'), 1, true);
+		if(changedMusic && !OptionsState.onPlayState) FlxG.sound.playMusic(Paths.music('freakyMenu'), 1, true);
 		if (strumTime != null) strumTime.cancel();
 		Note.globalRgbShaders = [];
 		super.destroy();

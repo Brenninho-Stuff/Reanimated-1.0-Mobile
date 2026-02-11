@@ -21,6 +21,10 @@ import torchsthings.states.CharacterMenu;
 
 import torchsthings.utils.WindowUtils;
 
+import shaders.GlassShader;
+import openfl.display.BitmapData;
+
+
 
 class PauseSubState extends MusicBeatSubstate
 {
@@ -40,6 +44,9 @@ class PauseSubState extends MusicBeatSubstate
 
 	var missingTextBG:FlxSprite;
 	var missingText:FlxText;
+	var glassShader:GlassShader;
+	var shaderTime:Float = 0;
+	var glass:FlxSprite;
 	var cancionpolla:String = PlayState.SONG.song;
 
 	var charactersData:Array<Array<String>> = [
@@ -138,6 +145,36 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
+		// Capture screen using readPixels to avoid rendering artifacts (white bars)
+		// and downscale it for better blur quality and performance
+		var screenImage = FlxG.stage.window.readPixels();
+		var screenBD = BitmapData.fromImage(screenImage);
+
+		var scale:Float = 0.25; // Downscale to 25%
+		var smallBD = new BitmapData(Std.int(FlxG.width * scale), Std.int(FlxG.height * scale), true, 0);
+		var matrix = new flixel.math.FlxMatrix();
+		matrix.scale(scale, scale);
+		smallBD.draw(screenBD, matrix, null, null, null, true); // Smoothing true for bilinear filtering
+
+		glass = new FlxSprite().loadGraphic(Paths.image('glass'));
+		glass.antialiasing = ClientPrefs.data.antialiasing;
+		glass.scrollFactor.set();
+		glass.setGraphicSize(Std.int(glass.width * 1.175));
+		glass.updateHitbox();
+		glass.screenCenter(Y);
+		glass.alpha = 0;
+
+		glassShader = new GlassShader();
+		glassShader.setResolution(FlxG.width, FlxG.height); // Correct mapping: Use screen resolution
+		glassShader.setBrightness(0.1);
+		glassShader.setRect(glass.x, glass.y, glass.width, glass.height);
+
+				// Set the captured screen texture
+		glassShader.uScreenTexture.input = smallBD;
+
+		glass.shader = glassShader;
+		add(glass);
+
 		randomCharacternum = FlxG.random.int(0, charactersData.length - 1);
 		var charName:String = charactersData[randomCharacternum][0];
 		var charOffsets:Array<Int> = [Std.parseInt(charactersData[randomCharacternum][1]), Std.parseInt(charactersData[randomCharacternum][2])];
@@ -234,6 +271,7 @@ class PauseSubState extends MusicBeatSubstate
 		artCredits.x = FlxG.width - (artCredits.width + 20);
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
+		FlxTween.tween(glass, {alpha: 0.3}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
 		FlxTween.tween(blueballedTxt, {alpha: 1, y: blueballedTxt.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.7});
@@ -273,6 +311,13 @@ class PauseSubState extends MusicBeatSubstate
 	var cantUnpause:Float = 0.1;
 	override function update(elapsed:Float)
 	{
+		
+		if (glassShader != null)
+		{
+			shaderTime += elapsed;
+			glassShader.update(shaderTime);
+		}
+
 		cantUnpause -= elapsed;
 		if (pauseMusic.volume < 0.5)
 			pauseMusic.volume += 0.01 * elapsed;

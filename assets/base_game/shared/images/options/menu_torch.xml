@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="menu_torch.png">
+	<!-- Created with Adobe Animate version 24.0.5.40 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="torch idle0000" x="5" y="5" width="855" height="207"/>
+	<SubTexture name="torch idle0001" x="5" y="217" width="855" height="207"/>
+	<SubTexture name="torch idle0002" x="5" y="429" width="855" height="207"/>
+	<SubTexture name="torch selected0000" x="5" y="641" width="850" height="170"/>
+	<SubTexture name="torch selected0001" x="5" y="641" width="850" height="170"/>
+	<SubTexture name="torch selected0002" x="5" y="816" width="850" height="170"/>
+	<SubTexture name="torch selected0003" x="5" y="816" width="850" height="170"/>
+	<SubTexture name="torch selected0004" x="5" y="991" width="850" height="170"/>
+	<SubTexture name="torch selected0005" x="5" y="991" width="850" height="170"/>
+</TextureAtlas>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="menu_psych.png">
+	<!-- Created with Adobe Animate version 24.0.5.40 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="psych idle0000" x="5" y="5" width="868" height="190"/>
+	<SubTexture name="psych idle0001" x="5" y="200" width="868" height="190"/>
+	<SubTexture name="psych idle0002" x="5" y="395" width="868" height="190"/>
+	<SubTexture name="psych selected0000" x="5" y="590" width="826" height="163"/>
+	<SubTexture name="psych selected0001" x="5" y="590" width="826" height="163"/>
+	<SubTexture name="psych selected0002" x="5" y="758" width="826" height="163"/>
+	<SubTexture name="psych selected0003" x="5" y="758" width="826" height="163"/>
+	<SubTexture name="psych selected0004" x="5" y="926" width="826" height="163"/>
+	<SubTexture name="psych selected0005" x="5" y="926" width="826" height="163"/>
+</TextureAtlas>
