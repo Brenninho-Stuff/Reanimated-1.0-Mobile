@@ -140,6 +140,14 @@ class TorchsEngineSettingsState extends BaseOptionsMenu
 		addOption(option);
 		option.onChange = function() { ClientPrefs.saveSettings(); };
 
+		var option:Option = new Option('Icon Skin:',
+			"What kind of icon skin do you want to use?",
+			'iconSkin',
+			STRING,
+			['Old Version', 'Vanilla', 'New Version']);
+		addOption(option);
+		option.onChange = function() { ClientPrefs.saveSettings(); };
+
 		var option:Option = new Option('Icons Dance:',
 			"Combine up to 2 icon animations!",
 			'iconAnims',

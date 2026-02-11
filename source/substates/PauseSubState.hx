@@ -65,6 +65,7 @@ class PauseSubState extends MusicBeatSubstate
 		['Torch', '750', '180', '1.4', "Callisto", '3'],
 		['olaa uwu', '350', '180', '0.8', "z3mp", '6'],
 		['BFRock', '750', '320', '0.9', "Phantom Arcade", '4'],
+		['MeAndMyBestie', '670', '180', '0.24', "Lila/Meli", '4'],
 		['Alejandro', '700', '70', '0.9', "ElDiezMixta", '6'],
 		['Junio Sonic', '700', '180', '0.25', "SaNicbOom", '6'],
 		['keit', '800', '90', '0.7', "Keit", '6'],

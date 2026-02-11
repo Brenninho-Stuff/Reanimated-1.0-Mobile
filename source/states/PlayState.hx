@@ -736,7 +736,7 @@ class PlayState extends MusicBeatState
 		iconGF = new HealthIcon(gf.healthIcon, true);
 		iconGF.y = healthBar.y - 50 + 30;
 		iconGF.x = healthBar.barCenter + 40;
-		iconGF.visible = !ClientPrefs.data.hideHud;
+		iconGF.visible = false;
 		iconGF.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconGF);
 		
