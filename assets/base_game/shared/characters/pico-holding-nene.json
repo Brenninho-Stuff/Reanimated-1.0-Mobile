@@ -9,7 +9,7 @@
 			"name": "Pico Idle Dance0"
 		},
 		{
-			"offsets": [24, -16],
+			"offsets": [15, -22],
 			"loop": false,
 			"fps": 24,
 			"anim": "singLEFT",
@@ -17,7 +17,7 @@
 			"name": "Pico NOTE LEFT0"
 		},
 		{
-			"offsets": [96, -75],
+			"offsets": [78, -75],
 			"loop": false,
 			"fps": 24,
 			"anim": "singDOWN",
@@ -25,7 +25,7 @@
 			"name": "Pico Down Note0"
 		},
 		{
-			"offsets": [49, -5],
+			"offsets": [36, -8],
 			"loop": false,
 			"fps": 24,
 			"anim": "singUP",
@@ -33,7 +33,7 @@
 			"name": "pico Up note0"
 		},
 		{
-			"offsets": [-53, -22],
+			"offsets": [-67, -23],
 			"loop": false,
 			"fps": 24,
 			"anim": "singRIGHT",
@@ -41,7 +41,7 @@
 			"name": "Pico Note Right0"
 		},
 		{
-			"offsets": [4, 7],
+			"offsets": [-8, -1],
 			"loop": false,
 			"fps": 24,
 			"anim": "laugh",
@@ -49,7 +49,7 @@
 			"name": "pico nene laughing full0"
 		},
 		{
-			"offsets": [13, 26],
+			"offsets": [0, 21],
 			"loop": false,
 			"fps": 24,
 			"anim": "attack",
@@ -57,7 +57,7 @@
 			"name": "pico nene knife toss0"
 		},
 		{
-			"offsets": [25, -17],
+			"offsets": [8, -14],
 			"loop": false,
 			"fps": 24,
 			"anim": "singLEFTmiss",
@@ -65,7 +65,7 @@
 			"name": "note miss left pico nene0"
 		},
 		{
-			"offsets": [101, -76],
+			"offsets": [85, -78],
 			"loop": false,
 			"fps": 24,
 			"anim": "singDOWNmiss",
@@ -73,7 +73,7 @@
 			"name": "note miss down pico nene0"
 		},
 		{
-			"offsets": [56, -2],
+			"offsets": [42, -7],
 			"loop": false,
 			"fps": 24,
 			"anim": "singUPmiss",
@@ -81,7 +81,7 @@
 			"name": "note miss up piconene0"
 		},
 		{
-			"offsets": [-49, -22],
+			"offsets": [-63, -18],
 			"loop": false,
 			"fps": 24,
 			"anim": "singRIGHTmiss",
@@ -89,25 +89,27 @@
 			"name": "note miss right pico nene0"
 		},
 		{
-			"offsets": [0, -38],
 			"loop": false,
-			"fps": 24,
+			"offsets": [0, -42],
 			"anim": "alone",
-			"indices": [],
-			"name": "Pico Idle solo Dance0"
+			"fps": 24,
+			"name": "Pico Idle Dance Alone",
+			"indices": []
 		},
 		{
-			"offsets": [294, 39],
 			"loop": false,
-			"fps": 24,
+			"offsets": [278, 38],
 			"anim": "catch nene",
-			"indices": [],
-			"name": "pico catch nene full"
+			"fps": 24,
+			"name": "Cath nene",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
+	"usesPixelNotesSpecifically": false,
 	"gameOverEnd": "gameOverEnd-pico",
 	"no_antialiasing": false,
+	"splashSkin": "",
 	"useNoteSkin": false,
 	"image": "characters/picoAndNene",
 	"position": [0, 265],
@@ -134,12 +136,15 @@
 			-12837034
 		]
 	},
+	"strumSkin": "",
 	"healthicon": "pico-nene",
 	"gameOverSound": "gameOvers/fnf_loss_sfx-pico-and-nene",
 	"flip_x": true,
 	"healthbar_colors": [133, 230, 81],
 	"disableNoteRGB": false,
-	"camera_position": [240, 10],
+	"strumSkinLib": "shared",
+	"splashSkinLib": "shared",
+	"camera_position": [400, 0],
 	"noteSkin": "",
 	"noteColors": {
 		"right": [

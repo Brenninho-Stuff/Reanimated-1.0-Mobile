@@ -10,7 +10,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [59, 5],
+			"offsets": [58, 0],
 			"anim": "argh",
 			"fps": 24,
 			"name": "tankman ARGH",
@@ -18,7 +18,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [87, -13],
+			"offsets": [92, -17],
 			"anim": "beat it",
 			"fps": 24,
 			"name": "tankman beat it",
@@ -26,14 +26,14 @@
 		},
 		{
 			"loop": false,
-			"offsets": [-23, 12],
+			"offsets": [-21, 9],
 			"anim": "laugh",
 			"fps": 24,
 			"name": "tankman laugh",
 			"indices": []
 		},
 		{
-			"offsets": [46, 43],
+			"offsets": [46, 52],
 			"loop": false,
 			"fps": 24,
 			"anim": "singUP",
@@ -41,7 +41,7 @@
 			"name": "Tankman UP note0"
 		},
 		{
-			"offsets": [69, -113],
+			"offsets": [69, -118],
 			"loop": false,
 			"fps": 24,
 			"anim": "singDOWN",
@@ -57,7 +57,7 @@
 			"name": "Tankman Right Note0"
 		},
 		{
-			"offsets": [-15, -32],
+			"offsets": [-15, -33],
 			"loop": false,
 			"fps": 24,
 			"anim": "singRIGHT",
@@ -74,7 +74,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [1, 52],
+			"offsets": [0, 54],
 			"anim": "idle-bloody",
 			"fps": 24,
 			"name": "Tankman Idle bloody0",
@@ -82,7 +82,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [44, 154],
+			"offsets": [44, 155],
 			"anim": "singUP-bloody",
 			"fps": 24,
 			"name": "Tankman UP note bloody0",
@@ -90,7 +90,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [69, -117],
+			"offsets": [74, -116],
 			"anim": "singDOWN-bloody",
 			"fps": 24,
 			"name": "Tankman DOWN note bloody0",
@@ -98,7 +98,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [-14, 15],
+			"offsets": [-17, 14],
 			"anim": "singRIGHT-bloody",
 			"fps": 24,
 			"name": "Tankman Note Left bloody0",
@@ -106,35 +106,19 @@
 		},
 		{
 			"loop": false,
-			"offsets": [89, 13],
+			"offsets": [91, 18],
 			"anim": "singLEFT-bloody",
 			"fps": 24,
 			"name": "Tankman Right Note bloody0",
 			"indices": []
 		},
 		{
-			"offsets": [1, 90],
-			"loop": false,
-			"fps": 24,
-			"anim": "pretty good-bloody",
-			"indices": [],
-			"name": "pretty good anim0"
-		},
-		{
-			"offsets": [-7, -6],
+			"offsets": [-4, -8],
 			"loop": false,
 			"fps": 24,
 			"anim": "ugh",
 			"indices": [],
 			"name": "TANKMAN UGH"
-		},
-		{
-			"offsets": [1, 17],
-			"loop": false,
-			"fps": 24,
-			"anim": "pretty good",
-			"indices": [],
-			"name": "PRETTY GOOD tankman"
 		},
 		{
 			"loop": false,
@@ -154,7 +138,7 @@
 		},
 		{
 			"loop": false,
-			"offsets": [-9, 11],
+			"offsets": [-5, 9],
 			"anim": "pissed",
 			"fps": 24,
 			"name": "tankman pissed0",
@@ -162,14 +146,14 @@
 		},
 		{
 			"loop": true,
-			"offsets": [-9, 11],
+			"offsets": [-5, 9],
 			"anim": "pissed-loop",
 			"fps": 24,
 			"name": "tankman pissed0",
 			"indices": [4, 5, 6]
 		},
 		{
-			"offsets": [175, 10],
+			"offsets": [179, 8],
 			"loop": false,
 			"fps": 24,
 			"anim": "Cutscene1",
@@ -178,18 +162,34 @@
 		},
 		{
 			"loop": false,
-			"offsets": [111, 117],
-			"anim": "redheads",
+			"offsets": [3, 80],
+			"anim": "CutsceneEnd",
 			"fps": 24,
-			"name": "redheads anim0",
+			"name": "Cutscene0",
 			"indices": []
 		},
 		{
 			"loop": false,
-			"offsets": [0, 82],
-			"anim": "CutsceneEnd",
+			"offsets": [5, 87],
+			"anim": "pretty good-bloody",
 			"fps": 24,
-			"name": "Cutscene0",
+			"name": "PRETTY GOOD tankman bloody0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [113, 117],
+			"anim": "redheads",
+			"fps": 24,
+			"name": "tankman redheads plus knife0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [5, 13],
+			"anim": "pretty good",
+			"fps": 24,
+			"name": "PRETTY GOOD tankman0",
 			"indices": []
 		}
 	],
