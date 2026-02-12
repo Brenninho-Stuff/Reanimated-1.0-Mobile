@@ -214,6 +214,15 @@ class TwoPicos {
         {
             cutsceneHandler.timer(0.01, () ->
             {
+                host.gf.animation.finishCallback = function(name:String)
+                {
+                    switch(name)
+                    {
+                        case 'danceLeft', 'danceRight':
+                        host.gf.dance();
+                    }
+                }
+                host.gf.dance();
                 pico.shader = shader;
                 imposterPico.shader = shader;
                 bloodPool.shader = shader;
@@ -262,5 +271,21 @@ class TwoPicos {
         point.x -= char.cameraPosition[0] - camOffset[0];
         point.y += char.cameraPosition[1] + camOffset[1];
         return [point.x, point.y];
+    }
+
+    public function glowEvent(end:Bool)
+    {
+        if(explode && playerShoots)
+        {
+            cigarette.color = imposterPico.color = bloodPool.color = host.boyfriend.color;
+            if (!end) return;
+            cigarette.color = imposterPico.color = bloodPool.color = 0xFFFFFFFF;
+        }
+        if (cigarette != null) 
+        {
+            cigarette.color = host.boyfriend.color;
+            if (!end) return;
+            cigarette.color = 0xFFFFFFFF;
+        }
     }
 }

@@ -30,6 +30,8 @@ class PhillyErect extends BaseStage
 
     var colorShader:AdjustColorShader;
 
+    var cutscene:TwoPicos;
+
     override function create() {
         ratingPos.set(400, 500);
         comboCountPos.set(300, 650);
@@ -73,8 +75,9 @@ class PhillyErect extends BaseStage
         car.setGraphicSize(Std.int(car.width * 1.2));
         car.updateHitbox();
 
+        cutscene = new TwoPicos(this);
         //Debería haber un !seenCutscene para esto, pero como los pico mixes aún no están implementados lo dejo así para testear 
-		if(PlayState.SONG.player1 == "pico-player" && PlayState.SONG.player2 == "pico") setStartCallback(new TwoPicos(this).startCutscene);
+		if(PlayState.SONG.player1 == "pico-player" && PlayState.SONG.player2 == "pico") setStartCallback(cutscene.startCutscene);
     
         //addAbot(100, 355);		//abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
         defaultSpeaker = 'abot';
@@ -191,12 +194,14 @@ class PhillyErect extends BaseStage
 				PlayState.instance.eventExisted = true;
                 if(flValue1 == null || flValue1 <= 0) flValue1 = 0;
                 var lightId:Int = Math.round(flValue1);
+                if (phillyGlowGradient == null || phillyGlowParticles == null || phillyWindowEvent == null || blammedLightsBlack == null) return;
 
                 var chars:Array<FlxSprite> = [boyfriend, gf, dad];
                 if (speaker != null) chars.push(speaker);
                 switch(lightId) {
                     case 0:
                         if(phillyGlowGradient.visible) {
+							if (cutscene != null) cutscene.glowEvent(true);
                             doFlash();
                             if(ClientPrefs.data.camZooms) {
                                 FlxG.camera.zoom += 0.5;
@@ -213,9 +218,9 @@ class PhillyErect extends BaseStage
                                 who.color = FlxColor.WHITE;
                             }
                             street.color = FlxColor.WHITE;
-                            reflectedBF.color = FlxColor.WHITE;
-                            reflectedGF.color = FlxColor.WHITE;
-                            reflectedDad.color = FlxColor.WHITE;
+                            if (reflectedBF != null) reflectedBF.color = FlxColor.WHITE;
+                            if (reflectedGF != null) reflectedGF.color = FlxColor.WHITE;
+                            if (reflectedDad != null) reflectedDad.color = FlxColor.WHITE;
                             if(!ClientPrefs.data.lowQuality) {
                                 car.color = FlxColor.WHITE;
                             }
@@ -249,6 +254,7 @@ class PhillyErect extends BaseStage
                         for (who in chars) {
                             who.color = charColor;
                         }
+                        if (cutscene != null) cutscene.glowEvent(false);
                         phillyGlowParticles.forEachAlive(function(particle:PhillyGlowParticle) {
                             particle.color = color;
                         });
@@ -257,9 +263,9 @@ class PhillyErect extends BaseStage
 
                         color.brightness *= 0.5;
                         street.color = color;
-                        reflectedBF.color = color;
-                        reflectedGF.color = color;
-                        reflectedDad.color = color;
+                        if (reflectedBF != null) reflectedBF.color = color;
+                        if (reflectedGF != null) reflectedGF.color = color;
+                        if (reflectedDad != null) reflectedDad.color = color;
                         if(!ClientPrefs.data.lowQuality) {
                             car.color = color;
                         }
