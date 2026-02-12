@@ -11,6 +11,8 @@ import shaders.DropShadowShader;
 import shaders.DropShadowScreenspace;
 import torchsthings.shaders.AdjustColorShader;
 import flash.display.BlendMode;
+import states.stages.cutscenes.CutsceneTankErectEnd;
+import states.stages.cutscenes.CutsceneTankErect;
 
 
 class TankErect extends BaseStage
@@ -30,10 +32,6 @@ class TankErect extends BaseStage
     var cutsceneHandler:CutsceneHandler;
     var blackScreen:FlxSprite;
     var tankmanRun:FlxTypedGroup<TankmenBG>;
-    // InitialCutscene
-    var audioPlaying:FlxSound;
-    var hasPlayedInitialCutscene:Bool = false;
-
     var tankmenSpeaker:TankmenSpeaker;
 
 
@@ -137,10 +135,10 @@ override function create()
 		}
         super.create();
         if (!isStoryMode && PlayState.SONG.song.toLowerCase() == "stress-pico-mix") {
-            if (!hasPlayedInitialCutscene) {
-                setStartCallback(PlayInitialCutscene);
+            if (!seenCutscene) {
+                setStartCallback(new CutsceneTankErect(this).PlayCutscenePico);
             }
-            setEndCallback(StressErectCutscene);
+            setEndCallback(new CutsceneTankErectEnd(this).stressPicoCutscene);
         }
 
     }
@@ -272,230 +270,6 @@ override function create()
 			}
 		}
 	}
-    var otis:FlxAnimate;
-    var speakerFront:FlxAnimate;
-    var speakerBack:FlxAnimate;
-
-    function prepareCutsceneIntro() {
-        cutsceneHandler = new CutsceneHandler();
-        /*otis = new FlxAnimate(gf.x + -200, gf.y + -700);
-        Paths.loadAnimateAtlasFromLibrary(otis, "Erect/cutscene/Nene_Otis", Paths.currentLevel);
-        otis.antialiasing = ClientPrefs.data.antialiasing;
-        addBehindBF(otis);
-        cutsceneHandler.push(otis);*/ //Example
-        
-        speakerBack = new FlxAnimate(1170, 640);
-        Paths.loadAnimateAtlasFromLibrary(speakerBack, "Erect/cutscene/speakerBack", Paths.currentLevel);
-        speakerBack.antialiasing = ClientPrefs.data.antialiasing;
-        addBehindSpeaker(speakerBack);
-        cutsceneHandler.push(speakerBack);
-        
-        speakerFront = new FlxAnimate(1170, 640);
-        Paths.loadAnimateAtlasFromLibrary(speakerFront, "Erect/cutscene/speakerFront", Paths.currentLevel);
-        speakerFront.antialiasing = ClientPrefs.data.antialiasing;
-        addBehindDadAndBF(speakerFront);
-        cutsceneHandler.push(speakerFront);
-
-        //tankmanIntro.visible = true;
-        game.inCutscene = true;
-        game.isCameraOnForcedPos = true;
-        camHUD.visible = false;
-    }
-
-    function prepareStressCutscene()
-        {
-            cutsceneHandler = new CutsceneHandler();
-
-            game.inCutscene = true;
-            game.isCameraOnForcedPos = true;
-    
-            Paths.sound('Tank/endCutscene');
-    
-            FlxTween.tween(camHUD, {alpha: 0}, 1,  {ease: FlxEase.sineInOut});
-            
-            blackScreen = new FlxSprite(-600,-570).makeGraphic(Std.int(FlxG.width * 3), Std.int(FlxG.height * 3), FlxColor.BLACK);
-            blackScreen.alpha = 0;
-		    blackScreen.scrollFactor.set();
-            blackScreen.cameras = [camOther];
-		    add(blackScreen);
-
-            cutsceneHandler.finishCallback = cutsceneHandler.skipCallback = function() {
-                game.inCutscene = false;
-                camHUD.fade(0xFF000000, 0.5, true, null, true);
-                new FlxTimer().start(0.5, function(tmr)
-                {
-                    endSong();
-                });
-            }
-
-        }
-        
-
-        function PlayInitialCutscene()
-        {
-            hasPlayedInitialCutscene = true;
-            prepareCutsceneIntro();
-            cutsceneHandler.endTime = 32;
-
-            game.tweenCameraToPosition(dad.x + 850, dad.y + 200, 0.1);
-
-            var cutsceneSnd:FlxSound = new FlxSound().loadEmbedded(playWeekSound('stressPicoCutscene'));
-		    FlxG.sound.list.add(cutsceneSnd);
-            speakerBack.anim.addBySymbol('cutscene', 'Tankmens 2', 24, false);
-            speakerBack.anim.play("cutscene", true);
-            applyAbotShader(speakerBack);
-
-            speakerFront.anim.addBySymbol('cutscene', 'Tankmens 2', 24, false);
-            speakerFront.anim.play("cutscene", true);
-            applyAbotShader(speakerFront);
-            
-            //otis.anim.addBySymbol('cutscene', 'Nene Idle Otis', 24, false);
-            //otis.anim.play("cutscene", true);
-            //applyAbotShader(otis);
-
-
-            cutsceneHandler.onStart = function()
-                {
-                    cutsceneSnd.play(true);
-                    audioPlaying = cutsceneSnd;
-                };
-            
-            dad.playAnim("Cutscene1");
-            gf.playAnim("Cutscene");
-            boyfriend.animation.finishCallback = function(name:String) {
-                if (name == "alone") {
-                    boyfriend.playAnim("alone");
-                }
-            };
-            boyfriend.playAnim("alone");
-
-            cutsceneHandler.timer (6.5, function () 
-                {                    
-                    game.tweenCameraZoom(1.3, 1, true, FlxEase.quadInOut);
-                    game.tweenCameraToPosition(dad.x + 850, dad.y + 40, 2, FlxEase.sineOut);
-                });
-            cutsceneHandler.timer (8, function () 
-                {                    
-                    game.tweenCameraToPosition(dad.x + 750, dad.y + 40, 0.7, FlxEase.sineOut);
-                });
-            cutsceneHandler.timer (11.75, function () 
-                {                    
-                    game.tweenCameraZoom(0.75, 0.65, true, FlxEase.expoOut);
-                    game.tweenCameraToPosition(dad.x + 750, dad.y + -400, 0.9, FlxEase.sineOut);
-                });
-            cutsceneHandler.timer (13, function () 
-                {                    
-                    game.tweenCameraZoom(0.8, 1, true, 1.5,FlxEase.quadInOut);
-                    game.tweenCameraToPosition(dad.x + 900, dad.y + -100, 1.05, FlxEase.expoInOut);
-                });
-
-            cutsceneHandler.timer (13.7, function () 
-                {   
-                    game.tweenCameraZoom(1.05, 2, true, FlxEase.expoOut);
-                    game.tweenCameraToPosition(dad.x + 1350, dad.y + 300, 0.3, FlxEase.sineOut);         
-                    boyfriend.playAnim("catch nene", true);
-                });
-
-            cutsceneHandler.timer (24.7, function () 
-                {
-                    boyfriend.animation.finishCallback = function(name:String)
-                        {
-                            switch(name)
-                                {
-                                    case 'idle':
-                                        boyfriend.dance();
-                                }
-                            }
-                            boyfriend.dance();
-                });
-
-            cutsceneHandler.timer (24.2, function () 
-                {                    
-                    game.tweenCameraZoom(0.75, 1, true, FlxEase.quadInOut);
-                    game.tweenCameraToPosition(dad.x + 480, dad.y + 250, 1, FlxEase.sineOut);
-                });
-
-            cutsceneHandler.timer (27.8, function () 
-                {                    
-                    game.tweenCameraToPosition(dad.x + 440, dad.y + 250, 0.2, FlxEase.sineOut);
-                    FlxG.camera.shake(0.02, 0.1);
-                });
-            cutsceneHandler.timer (30, function () 
-                {                    
-                    game.tweenCameraZoom(0.65, 1, true, FlxEase.quadInOut);
-                    game.tweenCameraToPosition(dad.x + 800, dad.y + 250, 1, FlxEase.sineOut);
-                });
-
-            cutsceneHandler.finishCallback = function() {
-                game.isCameraOnForcedPos = false;
-                game.inCutscene = false;
-                camHUD.visible = true;
-                FlxTween.tween(camHUD, {alpha: 1}, 2, {ease: FlxEase.sineInOut});
-                startCountdown();
-            };
-
-            cutsceneHandler.skipCallback = function () {
-                cutsceneSnd.stop();
-                cutsceneHandler.finishCallback();
-
-                //otis.visible = false;
-                //tankmanIntro.visible = false;
-                gf.visible = true;
-                dad.visible = true;
-                dad.dance();
-                gf.dance();
-                boyfriend.dance();
-                dad.animation.finishCallback = null;
-                gf.animation.finishCallback = null;
-            }
-    
-        }
-        function StressErectCutscene()
-        {
-            prepareStressCutscene();
-            cutsceneHandler.endTime = 12;
-    
-            canPause = false;
-    
-            dad.playAnim("CutsceneEnd");   
-    
-            game.tweenCameraToPosition(dad.x + 800, dad.y + 200);
-            game.tweenCameraZoom(0.65, 0.8, true, FlxEase.smoothStepOut);
-            FlxG.sound.play(Paths.sound('Tank/endCutscene'));
-            
-            cutsceneHandler.timer(0.1, function()
-                {
-                    gf.animation.finishCallback = function(name:String) {
-                        if (name == "idle") {
-                            gf.playAnim("idle");
-                        }
-                    };
-                    gf.playAnim("idle");
-                        boyfriend.animation.finishCallback = function(name:String)
-                        {
-                            switch(name)
-                                {
-                                    case 'idle':
-                                        boyfriend.dance();
-                                }
-                            }
-                            boyfriend.dance();
-                });
-
-            cutsceneHandler.timer(7, function()
-            {
-                boyfriend.playAnim("laugh", true);
-                boyfriend.specialAnim = true;
-            });
-            cutsceneHandler.timer(10.9, function()
-            {
-                FlxTween.tween(blackScreen, { alpha: 1}, 1, {startDelay: 0.3});
-            });
-            cutsceneHandler.timer (11.1, function () 
-            {
-                    game.tweenCameraToPosition(dad.x + 800, dad.y + 0, 4.3, FlxEase.smoothStepOut);
-            });
-        }
 
     override function opponentNoteHit(note:Note)
 		{
@@ -590,7 +364,7 @@ override function create()
 		}
 		sprite.shader = rim;
 	}
- }
+}
 
 
 
