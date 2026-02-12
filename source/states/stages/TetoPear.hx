@@ -1,11 +1,14 @@
 package states.stages;
 
+import flixel.util.FlxColor;
+import flixel.FlxG;
 import states.stages.objects.*;
 import objects.VideoSprite;
 import flixel.FlxSubState;
 
 class TetoPear extends BaseStage {
     var bgVideo:VideoSprite;
+	var blackScreen:FlxSprite;
 
     override function create() {
         super.create();
@@ -20,8 +23,33 @@ class TetoPear extends BaseStage {
         bgVideo.cameras = [camHUD]; // Use HUD camera so it doesn't move with game camera
         add(bgVideo);
         // don't play immediately — start after the countdown (see countdownTick override)
+		blackScreen = new FlxSprite(-600,-570).makeGraphic(Std.int(FlxG.width * 3), Std.int(FlxG.height * 3), FlxColor.BLACK);
+        blackScreen.alpha = 1;
+		blackScreen.scrollFactor.set();
+		if (camOther != null) blackScreen.cameras = [camOther];
+		FlxTween.tween(blackScreen, {alpha: 0}, 10, {ease: FlxEase.expoInOut,startDelay: 0.5});
 
 	}
+
+	 override function createPost()
+    { 
+        // Hide opponent notes
+		for (i in 0...4) {
+		PlayState.instance.playerStrums.members[i].x = 365 + (110 * i);
+		PlayState.instance.playerStrums.members[i].x += 50;
+		PlayState.instance.defaultStrumPosition[i + 4][0] = 365 + (110 * i) + 50;
+		PlayState.instance.opponentStrums.members[i].x = -5000;
+		PlayState.instance.opponentStrums.members[i].visible = false;
+		PlayState.instance.defaultStrumPosition[i][0] = -5000;
+		}
+		PlayState.instance.iconP1.visible = false;
+        PlayState.instance.iconP2.visible = false;
+		PlayState.instance.healthBar.visible = false;
+		PlayState.instance.timeBar.visible = false;
+		PlayState.instance.timeTxt.visible = false;
+
+		if (blackScreen != null) add(blackScreen);
+    }
 
 	override function openSubState(SubState:FlxSubState) {
 		if (bgVideo != null) bgVideo.pause();

@@ -81,6 +81,8 @@ var character = (char == 'boyfriend') ? PlayState.instance.boyfriend :
                     (char == 'dad') ? PlayState.instance.dad :
                     PlayState.instance.gf;        
                     
+        if (character == null || character.animation == null || character.animation.curAnim == null) return;
+
         var ghostSprite = new FlxSprite(character.x, character.y);
         
         ghostSprite.frames = character.frames;
@@ -120,6 +122,8 @@ var character = (char == 'boyfriend') ? PlayState.instance.boyfriend :
         var character = (char == 'boyfriend') ? PlayState.instance.boyfriend : PlayState.instance.dad;
         var ghostData = (char == 'boyfriend') ? boyfriendGhostData : dadGhostData;
         
+        if (character == null || ghostData == null) return;
+
         if(!character.isAnimateAtlas)
         {
             ghostData.frameName = character.animation.frameName;
