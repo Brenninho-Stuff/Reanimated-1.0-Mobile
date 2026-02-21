@@ -4,6 +4,7 @@ import states.stages.objects.*;
 import torchsthings.shaders.AdjustColorShader;
 import flash.display.BlendMode;
 import flixel.addons.display.FlxBackdrop;
+import flixel.util.FlxAxes;
 
 enum HenchmenKillState1
 {
@@ -42,7 +43,7 @@ class LimoErect extends BaseStage
 
 	var shootingStarBeat:Int = 0;
 	var shootingStarOffset:Int = 2;
-	var star:BGSprite;
+	var shootingStar:BGSprite;
 
 	override function create()
 	{
@@ -54,9 +55,9 @@ class LimoErect extends BaseStage
         skyBG.scale.set(1.3, 1);
 		add(skyBG);
 
-        star = new BGSprite('limo/erect/shooting star', 200, 0, 1, 1, ['shooting star']);
-		star.blend = BlendMode.ADD;
-		add(star);
+        shootingStar = new BGSprite('limo/erect/shooting star', 200, 0, 0.12, 0.12, ['shooting star']);
+		shootingStar.blend = BlendMode.ADD;
+		add(shootingStar);
 
         {
 			colorShader = new AdjustColorShader();
@@ -370,10 +371,10 @@ class LimoErect extends BaseStage
 
     function doShootingStar(beat:Int):Void
         {
-            star.x = FlxG.random.int(50, 900);
-            star.y = FlxG.random.int(-10, 20);
-            star.flipX = FlxG.random.bool(50);
-            star.animation.play('shooting star');
+            shootingStar.x = FlxG.random.int(50, 900);
+            shootingStar.y = FlxG.random.int(-10, 20);
+            shootingStar.flipX = FlxG.random.bool(50);
+            shootingStar.animation.play('shooting star');
     
             shootingStarBeat = beat;
             shootingStarOffset = FlxG.random.int(4, 8);
