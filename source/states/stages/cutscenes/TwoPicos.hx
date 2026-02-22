@@ -2,7 +2,7 @@ package states.stages.cutscenes;
 
 import objects.Character;
 import cutscenes.CutsceneHandler;
-import states.stages.objects.PicoDopplegangerSprite;
+import states.stages.objects.NewPicoDopplegangerSprite;
 import states.stages.PhillyErect;
 import torchsthings.shaders.*;
 import torchsthings.shaders.AdjustColorShader;
@@ -10,8 +10,8 @@ import torchsthings.shaders.AdjustColorShader;
 class TwoPicos {
     // Cutscenes
     var cutsceneHandler:CutsceneHandler;
-    var imposterPico:PicoDopplegangerSprite;
-    var pico:PicoDopplegangerSprite;
+    var imposterPico:NewPicoDopplegangerSprite;
+    var pico:NewPicoDopplegangerSprite;
     var bloodPool:FlxAnimate;
     var cigarette:FlxSprite;
     var audioPlaying:FlxSound;
@@ -44,14 +44,16 @@ class TwoPicos {
         host.camHUD.visible = false;
         // inCutscene = true; //this would stop the camera movement, oops
 
-        imposterPico = new PicoDopplegangerSprite(host.dad.x + 82, host.dad.y + 400);
-        imposterPico.showPivot = false;
-        imposterPico.antialiasing = ClientPrefs.data.antialiasing;
+        imposterPico = new NewPicoDopplegangerSprite(host.dad.x + 82, host.dad.y + 400);
+        imposterPico.frames = Paths.getSparrowAtlas("philly/Erect/cutscene/PicoDoppleganguer");
+        //imposterPico.showPivot = false;
+        //imposterPico.antialiasing = ClientPrefs.data.antialiasing;
         cutsceneHandler.push(imposterPico);
 
-        pico = new PicoDopplegangerSprite(host.boyfriend.x + 48.5, host.boyfriend.y + 400);
-        pico.showPivot = false;
-        pico.antialiasing = ClientPrefs.data.antialiasing;
+        pico = new NewPicoDopplegangerSprite(host.boyfriend.x + 48.5, host.boyfriend.y + 400);
+        //pico.showPivot = false;
+        //pico.antialiasing = ClientPrefs.data.antialiasing;
+        pico.frames = Paths.getSparrowAtlas("philly/Erect/cutscene/PicoDoppleganguer");
         cutsceneHandler.push(pico);
 
         bloodPool = new FlxAnimate(0, 0);
@@ -94,9 +96,7 @@ class TwoPicos {
             if (explode)
             {
                 if(playerShoots){
-                    if (seenOutcome)
-                        imposterPico.playAnimation("loopOpponent", true, true, true);
-                    else
+                    if (!seenOutcome)
                     {
                         imposterPico.kill();
                         game.remove(imposterPico);
@@ -107,7 +107,7 @@ class TwoPicos {
                 else{
 
                     if(seenOutcome){
-                        pico.playAnimation("loopPlayer", true, true, true);
+                        //pico.playAnimation("loopPlayer", true, true, true);
                         game.endSong();
                     }
                     else{
@@ -205,8 +205,8 @@ class TwoPicos {
         var midPoint:Array<Float> = [(shooterPos[0] + cigarettePos[0]) / 2, (shooterPos[1] + cigarettePos[1]) / 2];
 
         // Allw picos to set their cutscene timers
-        imposterPico.doAnim("Opponent", !playerShoots, explode, cutsceneHandler);
-        pico.doAnim("Player", playerShoots, explode, cutsceneHandler);
+        imposterPico.doAnim("", !playerShoots, explode, cutsceneHandler);
+        pico.doAnim("", playerShoots, explode, cutsceneHandler);
 
         host.camFollow_set(midPoint[0], midPoint[1]);
 
