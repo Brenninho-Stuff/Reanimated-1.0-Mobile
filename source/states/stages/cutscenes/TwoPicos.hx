@@ -44,16 +44,14 @@ class TwoPicos {
         host.camHUD.visible = false;
         // inCutscene = true; //this would stop the camera movement, oops
 
-        imposterPico = new NewPicoDopplegangerSprite(host.dad.x + 82, host.dad.y + 400);
-        imposterPico.frames = Paths.getSparrowAtlas("philly/Erect/cutscene/PicoDoppleganguer");
+        imposterPico = new NewPicoDopplegangerSprite(host.dad.x, host.dad.y, "dopenemy");
         //imposterPico.showPivot = false;
         //imposterPico.antialiasing = ClientPrefs.data.antialiasing;
         cutsceneHandler.push(imposterPico);
 
-        pico = new NewPicoDopplegangerSprite(host.boyfriend.x + 48.5, host.boyfriend.y + 400);
+        pico = new NewPicoDopplegangerSprite(host.boyfriend.x, host.boyfriend.y, "doplayer");
         //pico.showPivot = false;
         //pico.antialiasing = ClientPrefs.data.antialiasing;
-        pico.frames = Paths.getSparrowAtlas("philly/Erect/cutscene/PicoDoppleganguer");
         cutsceneHandler.push(pico);
 
         bloodPool = new FlxAnimate(0, 0);
