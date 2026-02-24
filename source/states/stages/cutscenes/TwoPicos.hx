@@ -6,6 +6,7 @@ import states.stages.objects.NewPicoDopplegangerSprite;
 import states.stages.PhillyErect;
 import torchsthings.shaders.*;
 import torchsthings.shaders.AdjustColorShader;
+import torchsthings.objects.effects.ReflectedChar;
 
 class TwoPicos {
     // Cutscenes
@@ -21,6 +22,10 @@ class TwoPicos {
     var seenOutcome:Bool;
     var host:BaseStage;
     var shader:AdjustColorShader;
+
+    
+	public var reflectedPico:ReflectedChar;
+	public var reflectedDad:ReflectedChar;
 
     public function new(host:BaseStage) {
         this.host = host;
@@ -49,9 +54,11 @@ class TwoPicos {
         //imposterPico.antialiasing = ClientPrefs.data.antialiasing;
         cutsceneHandler.push(imposterPico);
 
-        pico = new NewPicoDopplegangerSprite(host.boyfriend.x, host.boyfriend.y, "doplayer");
+        pico = new NewPicoDopplegangerSprite(host.boyfriend.x - 50, host.boyfriend.y - 5, "doplayer");
         //pico.showPivot = false;
         //pico.antialiasing = ClientPrefs.data.antialiasing;
+        reflectedPico = new ReflectedChar(pico, 0.35);
+		cutsceneHandler.push(reflectedPico);
         cutsceneHandler.push(pico);
 
         bloodPool = new FlxAnimate(0, 0);
@@ -143,8 +150,6 @@ class TwoPicos {
 
         seenOutcome = false;
         //Testing variables
-         explode = true;
-         playerShoots = false;
         //50/50 chance for who shoots
         if (FlxG.random.bool(50))
         {

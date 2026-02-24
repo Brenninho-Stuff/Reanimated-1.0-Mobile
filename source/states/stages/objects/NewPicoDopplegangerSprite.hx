@@ -9,6 +9,8 @@ class NewPicoDopplegangerSprite extends Character
 
   public var cutsceneSounds:FlxSound = null; 
   var suffix:String = '';
+  var lastOffsetX:Float = 0;
+  var lastOffsetY:Float = 0;
 
   public function new(x:Float, y:Float, ?character:String = 'doplayer')
   {
@@ -64,6 +66,7 @@ class NewPicoDopplegangerSprite extends Character
         });
 
         cutsceneHandler.timer(3.7, () -> {
+          animation.play("prende", true);
           if (cutsceneSounds != null) cutsceneSounds.destroy();
           //animation.play("explode" , true);
           cutsceneSounds = FlxG.sound.load(Paths.sound('cutscene/picoCigarette2', 'week3'), 1.0, false, true, true);
@@ -85,6 +88,30 @@ class NewPicoDopplegangerSprite extends Character
         });
       }
     }
+  }
+
+  override public function update(elapsed:Float):Void {
+    super.update(elapsed);
+    var realBaseX:Float = x - lastOffsetX;
+    var realBaseY:Float = y - lastOffsetY;
+
+    var offsetX:Float = 0;
+    var offsetY:Float = 0;
+
+    if (animation.curAnim != null) {
+      switch (animation.curAnim.name) {
+        case "tiro":
+          if (isPlayer) { offsetX = -420; offsetY = -110; } else { offsetX = -40 ; offsetY = -110; }
+        case "prende":
+          if (isPlayer) { offsetX = -20; offsetY = 0; } else { offsetX = 0; offsetY = 0; }
+      }
+    }
+
+    x = realBaseX + offsetX;
+    y = realBaseY + offsetY;
+
+    lastOffsetX = offsetX;
+    lastOffsetY = offsetY;
   }
 
   /*function startLoop(x:String){

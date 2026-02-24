@@ -98,6 +98,7 @@ class PhillyErect extends BaseStage
         colorShader.saturation = -25;
         colorShader.contrast = 0;
         colorShader.brightness = -20;
+        reflectedBF.visible = reflectedDad.visible = false;
 
         boyfriend.shader = colorShader;
         gf.shader = colorShader;
@@ -138,6 +139,10 @@ class PhillyErect extends BaseStage
                 insert(members.indexOf(phillyGlowGradient) + 1, phillyGlowParticles);
         }
     }
+
+    override function startSong() {
+        reflectedBF.visible = reflectedDad.visible = true;
+	}
 
     override function update(elapsed:Float) {
         phillyWindow.alpha -= (Conductor.crochet / 1000) * FlxG.elapsed * 1.5;
