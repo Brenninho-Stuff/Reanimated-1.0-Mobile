@@ -13,6 +13,7 @@ import torchsthings.shaders.AdjustColorShader;
 import flash.display.BlendMode;
 import states.stages.cutscenes.CutsceneTankErectEnd;
 import states.stages.cutscenes.CutsceneTankErect;
+import flixel.addons.display.FlxBackdrop;
 
 
 class TankErect extends BaseStage
@@ -37,6 +38,8 @@ class TankErect extends BaseStage
 
 override function create()
     {
+		buildMist();
+
         ratingPos.set(550, 500);
         comboCountPos.set(450, 650);
         comboImage.set( 0, 600);
@@ -58,6 +61,9 @@ override function create()
         mountain.updateHitbox();
         mountain.antialiasing = ClientPrefs.data.antialiasing;
         add(mountain);
+		
+		add(mist0);
+		add(mist1);
 
         street = new BGSprite('Erect/street', -900, 570);
         street.antialiasing = ClientPrefs.data.antialiasing;
@@ -141,6 +147,36 @@ override function create()
             setEndCallback(new CutsceneTankErectEnd(this).stressPicoCutscene);
         }
 
+    }
+
+	var mist0:FlxBackdrop;
+	var mist1:FlxBackdrop;
+
+	function makeMist(image:String,scrollFac:Float,alpha:Float,velX:Float) {
+        var mist = new FlxBackdrop(Paths.image('Erect/$image'), X);
+		mist.setPosition(-650, 350);
+		mist.scrollFactor.set(scrollFac, scrollFac);
+        mist.blend = ADD;
+		mist.alpha = alpha;
+		mist.velocity.x = velX;
+        return mist;
+    }
+	function buildMist()
+	{
+
+		mist0 = makeMist('mistBack',1.2,1,80); //1000
+        mist0.alpha = 0.6;
+		mist0.setPosition(-650, -300);
+		mist1 = makeMist('mistBack',1.1,0.6,-50); //1000
+		mist1.setPosition(-650, -250);
+        mist1.alpha = 0.6;
+	}
+
+    var _timer:Float = 0;
+    function updateMist(elapsed:Float) {
+        _timer += elapsed;
+		mist0.y = 860 + (Math.sin(_timer*0.35)*70);
+		mist1.y = 500 + (Math.sin(_timer*0.3)*80);
     }
     override function createPost() {   
         add(lights);

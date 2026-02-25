@@ -217,16 +217,6 @@ class StageErect extends BaseStage
         {
             switch(eventName)
             {
-                case "Change Character":
-                    ClientPrefs.data.shaders;
-			    switch(value1.toLowerCase().trim()) {
-				    case 'gf' | 'girlfriend' | '2':
-					    setShader(gf, gf.curCharacter);
-				    case 'dad' | 'opponent' | '1':
-					    setShader(dad, dad.curCharacter);
-				    default:
-					    setShader(boyfriend, boyfriend.curCharacter);
-			    }
                 case "Dadbattle Spotlight":
                     PlayState.instance.eventExisted = true;
                     if(flValue1 == null) flValue1 = 0;
@@ -241,12 +231,6 @@ class StageErect extends BaseStage
                                 dadbattleLight.visible = true;
                                 mist2.visible = true;
                                 defaultCamZoom += 0.12;
-                                
-                                // Cambiar colores con AdjustColorShader
-                                gf.shader = makecolorShader(-25, -15, 20, 15);
-                                dad.shader = makecolorShader(-40, -20, 25, 20);
-                                boyfriend.shader = makecolorShader(5, -10, 15, 10);
-                                if (speaker != null) speaker.setShader(makecolorShader(-25, -15, 20, 15));
                             }
     
                             var who:Character = dad;
@@ -265,13 +249,6 @@ class StageErect extends BaseStage
                             mist2.visible = false;
                             defaultCamZoom -= 0.12;
                             FlxTween.tween(mist2, {alpha: 0}, 0.7, {onComplete: function(twn:FlxTween) mist2.visible = false});
-                            
-                            // Restaurar colores originales
-                            gf.shader = makecolorShader(-9, 0, -30, -4);
-                            dad.shader = makecolorShader(-32, 0, -33, -23);
-                            boyfriend.shader = makecolorShader(12, 0, -23, 7);
-                            if (speaker != null) speaker.setShader(makecolorShader(-9, 0, -30, -4));
-
                     }
                 }
             }

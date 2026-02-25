@@ -60,6 +60,10 @@ class SchoolErect extends BaseStage
 		add(bgStreet);
 		bgStreet.antialiasing = false;
 
+		var meowl:BGSprite = new BGSprite('weeb/meowl', 1140, 125, 0.9, 0.9);
+		meowl.setGraphicSize(Std.int(meowl.width * 0.1));
+		meowl.updateHitbox();
+		add(meowl);
 		var widShit = Std.int(bgSky.width * PlayState.daPixelZoom);
 		if(!ClientPrefs.data.lowQuality) {
 			var fgTrees:BGSprite = new BGSprite('weeb/Erect/weebTreesBack', 400, 450, 0.9, 0.9);

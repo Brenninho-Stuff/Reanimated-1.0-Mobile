@@ -15,11 +15,8 @@ import torchsthings.shaders.AdjustColorShader;
 
 class PhillyStreetsErect extends BaseStage
 {
-
     //Stage Objects
     var scrollingSky:FlxBackdrop;
-    var mistMid:FlxBackdrop;
-    var mistBack:FlxBackdrop;
     var phillySpray:BGSprite;
     var skyline:BGSprite;
     var foregroundcity:BGSprite;
@@ -52,6 +49,8 @@ class PhillyStreetsErect extends BaseStage
 
     override function create() {
 
+        buildMist();
+
         ratingPos.set(1400, 800);
 		comboCountPos.set(1300, 950);
 		comboImage.set( 0, 900);
@@ -79,6 +78,8 @@ class PhillyStreetsErect extends BaseStage
         highwaylight.setGraphicSize(Std.int(highwaylight.width * 1));
         highwaylight.updateHitbox();
         add(highwaylight);
+
+        add(mist5);
  
         construction  = new BGSprite('phillyStreets/erect/phillyConstruction', 1800, 364, 0.7, 1.0);
         construction.setGraphicSize(Std.int(construction.width * 1));
@@ -119,6 +120,8 @@ class PhillyStreetsErect extends BaseStage
 		phillyTraffic.animation.addByPrefix("tored", "greentored", 24, false);
 		add(phillyTraffic);
 
+        add(mist4);
+
         /*phillyTrafficLightmap = new BGSprite('phillyStreets/phillyTraffic_lightmap', 1840, 608, 0.9, 1.0);
         phillyTrafficLightmap.blend = ADD;
 		phillyTrafficLightmap.setGraphicSize(Std.int(phillyTrafficLightmap.width * 1));
@@ -130,27 +133,9 @@ class PhillyStreetsErect extends BaseStage
 		greyGradient.updateHitbox();
         greyGradient.alpha = 0.8;
 
-        mistBack = new FlxBackdrop(Paths.image("phillyStreets/erect/mistBack"), X);
-        mistBack.setPosition(0, 205);
-        mistBack.blend = ADD;
-        mistBack.scrollFactor.set(0.9, 0.9);
-        mistBack.scale.set(0.65, 0.65);
-        mistBack.velocity.x = 30;
-        mistBack.antialiasing = ClientPrefs.data.antialiasing;
-        add(mistBack);
-		
         var foreground = new BGSprite('phillyStreets/erect/phillyForeground', 380, 380, 1.0, 1.0);
         foreground.scale.set(1.3, 1.2);
         add(foreground);
-
-        mistMid = new FlxBackdrop(Paths.image("phillyStreets/erect/mistMid"), X);
-        mistMid.setPosition(0, 395);
-        mistMid.blend = ADD;
-        mistMid.scrollFactor.set(0.9, 0.9);
-        mistMid.scale.set(0.9, 0.9);
-        mistMid.velocity.x = 75;
-        mistMid.alpha = 0.8;
-        mistMid.antialiasing = ClientPrefs.data.antialiasing;
 
         //addAbot(100, 355);        //abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 310 /*+ 550*/);
         defaultSpeaker = 'abot';
@@ -160,8 +145,8 @@ class PhillyStreetsErect extends BaseStage
 			setupRainShader();
     }
 
-         function setupRainShader()
-             {
+        function setupRainShader()
+            {
                 rainShader = new RainShader();
                 rainShader.scale = FlxG.height / 200;
                 switch (songName)
@@ -171,11 +156,64 @@ class PhillyStreetsErect extends BaseStage
                         rainShaderEndIntensity = 0.05;
                     case 'lit-up-bf-mix':
                         rainShaderStartIntensity = 0.05;
-                         rainShaderEndIntensity = 0.1;
+                        rainShaderEndIntensity = 0.1;
                 }
                     rainShader.intensity = rainShaderStartIntensity;
                     FlxG.camera.setFilters([new ShaderFilter(rainShader)]);
             }
+    
+    var mist0:FlxBackdrop;
+	var mist1:FlxBackdrop;
+	var mist2:FlxBackdrop;
+	var mist3:FlxBackdrop;
+	var mist4:FlxBackdrop;
+	var mist5:FlxBackdrop;
+
+	function makeMist(image:String,scrollFac:Float,alpha:Float,velX:Float) {
+        var mist = new FlxBackdrop(Paths.image('phillyStreets/erect/$image'), X);
+		mist.setPosition(-650, 550);
+		mist.scrollFactor.set(scrollFac, scrollFac);
+        mist.blend = ADD;
+		mist.alpha = alpha;
+		mist.velocity.x = velX;
+        return mist;
+    }
+	function buildMist()
+	{
+
+		mist0 = makeMist('mistMid',1.2,0.6,172); //1000
+        mist0.alpha = 0.6;
+		mist1 = makeMist('mistMid',1.1,0.6,150); //1000
+        mist1.alpha = 0.6;
+		mist2 = makeMist('mistBack',1.2,0.8,-80); //1001
+        mist2.alpha = 0.6;
+		mist3 = makeMist('mistMid',0.95,0.5,-50); //99
+		mist3.scale.set(0.8, 0.8);
+        mist3.setPosition(-650, -150);
+		mist4 = makeMist('mistBack',0.8,1,40); //88
+		mist4.scale.set(0.7, 0.7);
+        mist4.setPosition(-650, -150);
+
+		mist5 = makeMist('mistMid',0.5,1,20); //39
+		mist5.scale.set(1.1, 1.1);
+        mist5.setPosition(-650, -150);
+
+	}
+
+    var _timer:Float = 0;
+    function updateMist(elapsed:Float) {
+        _timer += elapsed;
+		mist0.y = 860 + (Math.sin(_timer*0.35)*70);
+		mist1.y = 500 + (Math.sin(_timer*0.3)*80);
+		mist2.y = 540 + (Math.sin(_timer*0.4)*60);
+		mist3.y = 230 + (Math.sin(_timer*0.3)*70);
+		mist4.y = 170 + (Math.sin(_timer*0.35)*50);
+		mist5.y = -80 + (Math.sin(_timer*0.08)*100);
+		// mist3.y = -20 + (Math.sin(_timer*0.5)*200);
+		// mist4.y = -180 + (Math.sin(_timer*0.4)*300);
+		// mist5.y = -450 + (Math.sin(_timer*0.2)*1xxx50);
+		//trace(mist1.y);
+    }
 
     override function createPost()
     {   
@@ -204,16 +242,16 @@ class PhillyStreetsErect extends BaseStage
             */
         
         reflectedBF = new ReflectedChar(boyfriend, 0.35);
-        addBehindBF(reflectedBF);
-        
-        add(mistMid);
-                
+        addBehindBF(reflectedBF);                
         periodicoRandom = new FlxSprite(30, 350);
         periodicoRandom.frames = Paths.getSparrowAtlas("phillyStreets/erect/periodico");
         periodicoRandom.animation.addByPrefix('volandoAndo', 'Paper Blowing instancia 1', 24, false);
         periodicoRandom.antialiasing = ClientPrefs.data.antialiasing;
         periodicoRandom.visible = false;
         add(periodicoRandom);
+        add(mist0);
+        add(mist1);
+        add(mist2);
         add(greyGradient);
     }
 
@@ -260,6 +298,7 @@ class PhillyStreetsErect extends BaseStage
             rainShader.updateViewInfo(FlxG.width, FlxG.height, FlxG.camera);
             rainShader.update(elapsed);
         }
+        updateMist(elapsed);
     }
 
     var paperBeat:Int = 0;
