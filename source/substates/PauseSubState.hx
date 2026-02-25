@@ -44,9 +44,9 @@ class PauseSubState extends MusicBeatSubstate
 
 	var missingTextBG:FlxSprite;
 	var missingText:FlxText;
-	var glassShader:GlassShader;
+	/*var glassShader:GlassShader;
 	var shaderTime:Float = 0;
-	var glass:FlxSprite;
+	var glass:FlxSprite;*/
 	var cancionpolla:String = PlayState.SONG.song;
 
 	var charactersData:Array<Array<String>> = [
@@ -146,7 +146,7 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-		// Capture screen using readPixels to avoid rendering artifacts (white bars)
+		/*// Capture screen using readPixels to avoid rendering artifacts (white bars)
 		// and downscale it for better blur quality and performance
 		var screenImage = FlxG.stage.window.readPixels();
 		var screenBD = BitmapData.fromImage(screenImage);
@@ -174,7 +174,7 @@ class PauseSubState extends MusicBeatSubstate
 		glassShader.uScreenTexture.input = smallBD;
 
 		glass.shader = glassShader;
-		add(glass);
+		add(glass); */
 
 		randomCharacternum = FlxG.random.int(0, charactersData.length - 1);
 		var charName:String = charactersData[randomCharacternum][0];
@@ -272,7 +272,7 @@ class PauseSubState extends MusicBeatSubstate
 		artCredits.x = FlxG.width - (artCredits.width + 20);
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
-		FlxTween.tween(glass, {alpha: 0.3}, 0.4, {ease: FlxEase.quartInOut});
+		//FlxTween.tween(glass, {alpha: 0.3}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
 		FlxTween.tween(blueballedTxt, {alpha: 1, y: blueballedTxt.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.7});
@@ -313,11 +313,11 @@ class PauseSubState extends MusicBeatSubstate
 	override function update(elapsed:Float)
 	{
 		
-		if (glassShader != null)
+		/*if (glassShader != null)
 		{
 			shaderTime += elapsed;
 			glassShader.update(shaderTime);
-		}
+		}*/
 
 		cantUnpause -= elapsed;
 		if (pauseMusic.volume < 0.5)
