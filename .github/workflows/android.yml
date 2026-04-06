@@ -1,0 +1,139 @@
+name: Build Android
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+
+    env:
+      ANDROID_NDK_VERSION: "25.2.9519653"
+      ANDROID_BUILD_TOOLS:  "34.0.0"
+      ANDROID_API_LEVEL:    "34"
+
+    steps:
+      # ──────────────────────────────────────────────
+      # 1. Checkout
+      # ──────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ──────────────────────────────────────────────
+      # 2. Java 17
+      # ──────────────────────────────────────────────
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      # ──────────────────────────────────────────────
+      # 3. Android SDK + NDK
+      # ──────────────────────────────────────────────
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install NDK r25 and Build Tools
+        run: |
+          sdkmanager \
+            "ndk;${{ env.ANDROID_NDK_VERSION }}" \
+            "build-tools;${{ env.ANDROID_BUILD_TOOLS }}" \
+            "platforms;android-${{ env.ANDROID_API_LEVEL }}"
+
+      # ──────────────────────────────────────────────
+      # 4. Haxe
+      # ──────────────────────────────────────────────
+      - name: Set up Haxe
+        uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: "4.3.6"
+
+      # ──────────────────────────────────────────────
+      # 5. Cache — exclude .haxelib/ to avoid hxcpp conflicts
+      # ──────────────────────────────────────────────
+      - name: Cache haxelib local repo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/haxelib
+            ~/.hxcpp_config.xml
+          # exclude .haxelib inside project dir (causes linker conflicts)
+          key: haxelib-${{ runner.os }}-${{ hashFiles('Project.xml') }}
+          restore-keys: |
+            haxelib-${{ runner.os }}-
+
+      # ──────────────────────────────────────────────
+      # 6. Install haxelibs
+      # ──────────────────────────────────────────────
+      - name: Install haxelibs
+        run: |
+          haxelib setup ~/haxelib
+
+          # Core
+          haxelib install lime                    --quiet
+          haxelib install openfl                  --quiet
+          haxelib install flixel          5.6.1   --quiet
+          haxelib install flixel-addons   3.2.2   --quiet
+          haxelib install tjson           1.4.0   --quiet
+
+          # Mobile-relevant (VIDEOS_ALLOWED covers android)
+          haxelib install hxvlc           2.0.1   --quiet
+
+          # UI / animation
+          haxelib install flxanimate              --quiet
+          haxelib install haxeui-core             --quiet
+          haxelib install haxeui-flixel           --quiet
+
+          # Base game extras
+          haxelib install grig.audio              --quiet
+          haxelib install funkin.vis              --quiet
+
+          # Torch custom lib
+          haxelib install torchsfunctions         --quiet
+
+          # hxcpp (native backend)
+          haxelib install hxcpp                   --quiet
+
+          # lime setup must run after hxcpp is present
+          haxelib run lime setup
+
+      # ──────────────────────────────────────────────
+      # 7. Configure hxcpp with NDK path
+      # ──────────────────────────────────────────────
+      - name: Configure hxcpp Android paths
+        run: |
+          NDK_PATH="$ANDROID_SDK_ROOT/ndk/${{ env.ANDROID_NDK_VERSION }}"
+
+          cat > ~/.hxcpp_config.xml <<EOF
+          <xml>
+            <section id="vars">
+              <set name="ANDROID_SDK"  value="$ANDROID_SDK_ROOT" />
+              <set name="ANDROID_NDK_ROOT" value="$NDK_PATH" />
+              <set name="ANDROID_HOST" value="linux-x86_64" />
+              <set name="JAVA_HOME"    value="$JAVA_HOME" />
+            </section>
+          </xml>
+          EOF
+
+      # ──────────────────────────────────────────────
+      # 8. Build
+      # ──────────────────────────────────────────────
+      - name: Build APK (release)
+        run: haxelib run lime build android -release -D ACHIEVEMENTS_ALLOWED -D TRANSLATIONS_ALLOWED -D BASE_GAME_FILES -D SHOW_LOADING_SCREEN -D MULTITHREADED_LOADING
+
+      # ──────────────────────────────────────────────
+      # 9. Upload APK artifact
+      # ──────────────────────────────────────────────
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Reanimated-Android
+          path: export/release/android/bin/app/build/outputs/apk/release/*.apk
+          if-no-files-found: error
+          retention-days: 30
