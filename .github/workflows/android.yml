@@ -92,7 +92,7 @@ jobs:
 
           # Base game extras
           haxelib install grig.audio              --quiet
-          haxelib install funkin.vis              --quiet
+          haxelib git funkin.vis https://github.com/FunkinCrew/funkin.vis.git --quiet
 
           # Torch custom lib
           haxelib install torchsfunctions         --quiet
