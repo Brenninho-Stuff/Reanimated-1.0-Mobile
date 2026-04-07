@@ -63,7 +63,6 @@ jobs:
           path: |
             ~/haxelib
             ~/.hxcpp_config.xml
-          # exclude .haxelib inside project dir (causes linker conflicts)
           key: haxelib-${{ runner.os }}-${{ hashFiles('Project.xml') }}
           restore-keys: |
             haxelib-${{ runner.os }}-
@@ -90,10 +89,6 @@ jobs:
           haxelib install haxeui-core             --quiet
           haxelib install haxeui-flixel           --quiet
 
-          # Base game extras
-          haxelib install grig.audio              --quiet
-          haxelib git funkin.vis https://github.com/FunkinCrew/funkin.vis.git --quiet
-
           # Torch custom lib
           haxelib install torchsfunctions         --quiet
 
@@ -113,10 +108,10 @@ jobs:
           cat > ~/.hxcpp_config.xml <<EOF
           <xml>
             <section id="vars">
-              <set name="ANDROID_SDK"  value="$ANDROID_SDK_ROOT" />
+              <set name="ANDROID_SDK"      value="$ANDROID_SDK_ROOT" />
               <set name="ANDROID_NDK_ROOT" value="$NDK_PATH" />
-              <set name="ANDROID_HOST" value="linux-x86_64" />
-              <set name="JAVA_HOME"    value="$JAVA_HOME" />
+              <set name="ANDROID_HOST"     value="linux-x86_64" />
+              <set name="JAVA_HOME"        value="$JAVA_HOME" />
             </section>
           </xml>
           EOF
@@ -125,7 +120,12 @@ jobs:
       # 8. Build
       # ──────────────────────────────────────────────
       - name: Build APK (release)
-        run: haxelib run lime build android -release -D ACHIEVEMENTS_ALLOWED -D TRANSLATIONS_ALLOWED -D BASE_GAME_FILES -D SHOW_LOADING_SCREEN -D MULTITHREADED_LOADING
+        run: |
+          haxelib run lime build android -release \
+            -D ACHIEVEMENTS_ALLOWED \
+            -D TRANSLATIONS_ALLOWED \
+            -D SHOW_LOADING_SCREEN \
+            -D MULTITHREADED_LOADING
 
       # ──────────────────────────────────────────────
       # 9. Upload APK artifact
